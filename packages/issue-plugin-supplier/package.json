@@ -1,0 +1,43 @@
+{
+  "name": "@issue/plugin-supplier",
+  "version": "1.0.0",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist/**/*"
+  ],
+  "scripts": {
+    "build": "rimraf dist && tsc -p ./tsconfig.build.json && npm run minify",
+    "codegen": "graphql-codegen --config ./codegen.json",
+    "start": "ts-node src/index.ts",
+    "test-unit": "jest --config jest.config.js --runInBand --detectOpenHandles",
+    "typecheck": "tsc --project ./tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@vendure/common": "1.8.2",
+    "@vendure/core": "1.8.2"
+  },
+  "devDependencies": {
+    "@graphql-codegen/add": "3.2.1",
+    "@graphql-codegen/cli": "2.13.10",
+    "@graphql-codegen/introspection": "2.2.1",
+    "@graphql-codegen/typescript-operations": "2.5.6",
+    "@jest/types": "29.2.1",
+    "@types/jest": "29.2.1",
+    "@types/node": "18.11.9",
+    "@vendure/testing": "1.8.2",
+    "graphql": "15.5.1",
+    "jest": "29.2.2",
+    "prettier": "2.7.1",
+    "rimraf": "^3.0.2",
+    "terser": "5.15.1",
+    "ts-jest": "29.0.3",
+    "ts-node": "10.9.1",
+    "tsconfig-paths": "4.1.0",
+    "typescript": "4.8.4"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

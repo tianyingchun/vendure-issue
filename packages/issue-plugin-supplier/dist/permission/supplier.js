@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.supplierPermission=void 0;const core_1=require("@vendure/core");exports.supplierPermission=new core_1.CrudPermissionDefinition("Supplier");

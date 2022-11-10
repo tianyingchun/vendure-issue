@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "commonjs",
+    "declaration": true,
+    "sourceMap": false,
+    "outDir": "./dist",
+    "rootDirs": ["./src"],
+    "baseUrl": "./",
+    "paths": {}
+  },
+  "include": ["**/index.ts", "**/index-worker.ts", "**/migration.ts"],
+  "exclude": ["node_modules"]
+}

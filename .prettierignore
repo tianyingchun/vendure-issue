@@ -1,0 +1,11 @@
+# Ignore artifacts:
+coverage
+**/*.d.ts
+**/*.css
+**/*.less
+node_modules
+.yarn
+**/.next/**
+**/dist/**
+**/build/**
+**/tmp/**

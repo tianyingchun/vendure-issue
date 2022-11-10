@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.LOGGER_CTX=exports.PLUGIN_INIT_OPTIONS=void 0,exports.PLUGIN_INIT_OPTIONS=Symbol("SEMIC_SUPPLIER_PLUGIN_INIT_OPTIONS"),exports.LOGGER_CTX="SemicPluginSupplier";

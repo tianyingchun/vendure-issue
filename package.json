@@ -1,0 +1,47 @@
+{
+  "name": "vendure-issue",
+  "version": "1.0.0",
+  "description": "vendure issue minimal reproduction repo",
+  "homepage": "https://github.com/tianyingchun/vendure-issue#readme",
+  "bugs": {
+    "url": "https://github.com/tianyingchun/vendure-issue/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tianyingchun/vendure-issue.git"
+  },
+  "license": "MIT",
+  "author": "tianyingchun",
+  "main": "index.js",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "migration:generate": "ts-node migration generate",
+    "migration:revert": "ts-node migration revert",
+    "migration:run": "ts-node migration run",
+    "serve": "lerna run serve --stream",
+    "start": "lerna run start --stream"
+  },
+  "devDependencies": {
+    "@armit/eslint-config-bases": "0.0.7",
+    "@babel/core": "^7.19.6",
+    "@tsconfig/node16": "^1.0.3",
+    "@types/lodash": "^4.14.187",
+    "@types/prettier": "2.7.1",
+    "@types/rimraf": "^3.0.2",
+    "cross-env": "^7.0.3",
+    "eslint": "^8.26.0",
+    "jsdom": "^20.0.2",
+    "lodash": "^4.17.21",
+    "madge": "^5.0.1",
+    "prettier": "^2.7.1",
+    "rimraf": "^3.0.2"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": "please-use-yarn",
+    "yarn": ">=1.22.0"
+  },
+  "packageManager": "yarn@3.2.3"
+}

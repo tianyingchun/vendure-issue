@@ -1,0 +1,29 @@
+{
+  "overwrite": true,
+  "config": {
+    "strict": true,
+    "namingConvention": {
+      "enumValues": "keep"
+    },
+    "skipTypeNameForRoot": true,
+    "dedupeFragments": true,
+    "inlineFragmentTypes": "combine",
+    "scalars": {
+      "ID": "string | number"
+    },
+    "maybeValue": "T"
+  },
+  "generates": {
+    "src/generated-admin-types.ts": {
+      "schema": "http://localhost:3001/admin-api",
+      "plugins": ["typescript"]
+    },
+    "src/generated-shop-types.ts": {
+      "schema": "http://localhost:3001/shop-api",
+      "plugins": ["typescript"]
+    }
+  },
+  "hooks": {
+    "afterAllFileWrite": ["prettier --write"]
+  }
+}
