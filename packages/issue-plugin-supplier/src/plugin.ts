@@ -1,21 +1,25 @@
-import { I18nService, PluginCommonModule, VendurePlugin } from '@vendure/core';
+import { PluginCommonModule, VendurePlugin } from '@vendure/core';
+import { SupplierStockAdminResolver } from './api/resolvers/admin/supplier-stock-admin.resolver';
 import { SupplierStockInTransitAdminResolver } from './api/resolvers/admin/supplier-stock-in-transit-admin.resolver';
 import { SupplierStockEntityResolver } from './api/resolvers/entity/suppiler-stock-entity.resolver';
 import { adminApiExtensions } from './api/schema/admin-api';
 import { SupplierStockInTransitService } from './api/services/supplier-stock-in-transit.service';
+import { SupplierStockService } from './api/services/supplier-stock.service';
 import { PLUGIN_INIT_OPTIONS } from './constants';
 import { SupplierStockInTransit } from './entities/supplier-stock-in-transit.entity';
 import { SupplierStock } from './entities/supplier-stock.entity';
+import { Supplier } from './entities/supplier.entity';
 import type { PluginInitOptions } from './types';
 
-const services = [SupplierStockInTransitService];
+const services = [SupplierStockInTransitService, SupplierStockService];
 
 @VendurePlugin({
   imports: [PluginCommonModule],
-  entities: [SupplierStock, SupplierStockInTransit],
+  entities: [SupplierStock, Supplier, SupplierStockInTransit],
   adminApiExtensions: {
     schema: adminApiExtensions,
     resolvers: [
+      SupplierStockAdminResolver,
       SupplierStockEntityResolver,
       SupplierStockInTransitAdminResolver,
     ],
@@ -36,8 +40,6 @@ const services = [SupplierStockInTransitService];
 })
 export class IssueSupplierPlugin {
   static options: PluginInitOptions = {};
-
-  constructor(private i18nService: I18nService) {}
 
   /**
    * The static `init()` method is a convention used by Vendure plugins which allows options

@@ -13,6 +13,8 @@ export const supplierStockType = gql`
     productVariantId: ID!
     product: Product!
     productId: ID!
+    supplierId: ID
+    supplier: Supplier
     comment: String
     enabled: Boolean!
     link: String

@@ -7,6 +7,7 @@ import {
 } from '@vendure/core';
 import { Column, Entity, OneToMany, ManyToOne } from 'typeorm';
 import { SupplierStockInTransit } from './supplier-stock-in-transit.entity';
+import { Supplier } from './supplier.entity';
 
 /**
  * @description This entity represents a supplier virtual stock
@@ -57,6 +58,9 @@ export class SupplierStock extends VendureEntity {
 
   @Column('int', { nullable: true })
   productId: ID;
+
+  @ManyToOne(() => Supplier, { onDelete: 'SET NULL' })
+  supplier: Supplier;
 
   @Column('int', { nullable: true })
   supplierId?: ID;

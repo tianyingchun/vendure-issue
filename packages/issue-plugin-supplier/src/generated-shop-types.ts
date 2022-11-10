@@ -65,56 +65,6 @@ export enum AdjustmentType {
   PROMOTION = 'PROMOTION',
 }
 
-/** 处方输入验证的规则返回params的类型定义. */
-export type AllRuleProcessOptionEventParamsType = {
-  __typename?: 'AllRuleProcessOptionEventParamsType';
-  /** 当前根据流程选项条件动态产出的价格. */
-  adjustPrice?: Maybe<Scalars['Int']>;
-  /** 当前选项是否禁用, 为不可用状态. 需要将选项值强制设置为null */
-  disabled?: Maybe<Scalars['Boolean']>;
-};
-
-/** 流程选项相关T1,T2,T3,T4事件类型名定义 */
-export enum AllRuleProcessOptionEventTypes {
-  /** 用来标识当前流程选项, 是否启用, 默认为禁用, 当且仅当为可用的时候才执行. */
-  PROCESS_OPTION_ITEM_EVENT_TYPE_IS_AVAILABLE = 'PROCESS_OPTION_ITEM_EVENT_TYPE_IS_AVAILABLE',
-  /** 用来标识当前流程选项, 是否启用, 如果启动才进行其他规则校验, 如果未启用, 则忽略其他规则校验. */
-  PROCESS_OPTION_ITEM_EVENT_TYPE_IS_DISABLED = 'PROCESS_OPTION_ITEM_EVENT_TYPE_IS_DISABLED',
-  /** 用来标识当前流程选项, 是否显示为推荐, 默认为false. */
-  PROCESS_OPTION_ITEM_EVENT_TYPE_IS_RECOMMEND = 'PROCESS_OPTION_ITEM_EVENT_TYPE_IS_RECOMMEND',
-}
-
-/** 处方输入验证的规则返回params的类型定义. */
-export type AllRuleRxEventParamsType = {
-  __typename?: 'AllRuleRxEventParamsType';
-  /** 当前选项是否禁用, 为不可用状态. 需要将选项值强制设置为null */
-  disabled?: Maybe<Scalars['Boolean']>;
-  /** 对应错误信息的i18n多国语言消息KEY. */
-  messageKey?: Maybe<Scalars['String']>;
-  /** 当前产生了验证错误信息, warn, error, info, label */
-  messageType?: Maybe<RxItemMessageType>;
-  /** 当前业务规则命中的默认值 */
-  rxOptionDefaultValue?: Maybe<Scalars['String']>;
-  /** 当前业务命中默认选项范围的key */
-  rxOptionKey?: Maybe<LensProcessOptionKeys>;
-  /** 某一些消息结果里面可能包含了一些数据内容, 比如需要跳转到专题页的页面地址等. */
-  rxValidateAction?: Maybe<RxRuleDefineValidateAction>;
-};
-
-/** 处方规则相关的事件类型名定义 */
-export enum AllRuleRxEventTypes {
-  /** 当前验证规则标识用户当前需要popup弹窗提示让他选择特定的action行为执行. 比如跳转到专题页, 比如当前切换当前的T1,T2流程 */
-  RX_OPTION_ITEM_EVENT_TYPE_FOR_USER_ACTION = 'RX_OPTION_ITEM_EVENT_TYPE_FOR_USER_ACTION',
-  /** 用来标识所有的处方选项, 启用之后, 用户输入的数据不合法事件. */
-  RX_OPTION_ITEM_EVENT_TYPE_INPUT_INVALID = 'RX_OPTION_ITEM_EVENT_TYPE_INPUT_INVALID',
-  /** 用来标识处方选项指定的rxType下是此选项在其他输入条件下是否是可选输入, 还是必须要有值得, 不能为空(''|null|undefined) */
-  RX_OPTION_ITEM_EVENT_TYPE_INPUT_REQUIRED = 'RX_OPTION_ITEM_EVENT_TYPE_INPUT_REQUIRED',
-  /** 用来标识所有的处方选项, 是否启用, 如果启动才进行其他规则校验, 如果未启用, 则忽略其他规则校验. */
-  RX_OPTION_ITEM_EVENT_TYPE_IS_DISABLED = 'RX_OPTION_ITEM_EVENT_TYPE_IS_DISABLED',
-  /** 规则匹配动态数据源列表对应的事件类型. */
-  RX_OPTION_ITEM_EVENT_TYPE_ITEMS_RANGE = 'RX_OPTION_ITEM_EVENT_TYPE_ITEMS_RANGE',
-}
-
 /** Returned when attempting to set the Customer for an Order when already logged in. */
 export type AlreadyLoggedInError = ErrorResult & {
   __typename?: 'AlreadyLoggedInError';
@@ -174,87 +124,6 @@ export type AuthenticationResult =
   | InvalidCredentialsError
   | NotVerifiedError;
 
-export type Banner = Node & {
-  __typename?: 'Banner';
-  createdAt: Scalars['DateTime'];
-  displayOrder: Scalars['Int'];
-  id: Scalars['ID'];
-  key: Scalars['String'];
-  languageCode: LanguageCode;
-  lgImage: Scalars['String'];
-  link: Scalars['String'];
-  name: Scalars['String'];
-  position: BannerPosition;
-  published: Scalars['Boolean'];
-  shortDesc: Scalars['JSON'];
-  translations: Array<BannerTranslation>;
-  updatedAt: Scalars['DateTime'];
-  xsImage: Scalars['String'];
-};
-
-export type BannerFilterParameter = {
-  createdAt?: InputMaybe<DateOperators>;
-  displayOrder?: InputMaybe<NumberOperators>;
-  id?: InputMaybe<IdOperators>;
-  key?: InputMaybe<StringOperators>;
-  languageCode?: InputMaybe<StringOperators>;
-  lgImage?: InputMaybe<StringOperators>;
-  link?: InputMaybe<StringOperators>;
-  name?: InputMaybe<StringOperators>;
-  position?: InputMaybe<StringOperators>;
-  published?: InputMaybe<BooleanOperators>;
-  updatedAt?: InputMaybe<DateOperators>;
-  xsImage?: InputMaybe<StringOperators>;
-};
-
-export type BannerList = PaginatedList & {
-  __typename?: 'BannerList';
-  items: Array<Banner>;
-  totalItems: Scalars['Int'];
-};
-
-export type BannerListOptions = {
-  /** Allows the results to be filtered */
-  filter?: InputMaybe<BannerFilterParameter>;
-  /** Specifies whether multiple "filter" arguments should be combines with a logical AND or OR operation. Defaults to AND. */
-  filterOperator?: InputMaybe<LogicalOperator>;
-  /** Skips the first n results, for use in pagination */
-  skip?: InputMaybe<Scalars['Int']>;
-  /** Specifies which properties to sort the results by */
-  sort?: InputMaybe<BannerSortParameter>;
-  /** Takes n results, for use in pagination */
-  take?: InputMaybe<Scalars['Int']>;
-};
-
-export enum BannerPosition {
-  HomePage = 'HomePage',
-}
-
-export type BannerSortParameter = {
-  createdAt?: InputMaybe<SortOrder>;
-  displayOrder?: InputMaybe<SortOrder>;
-  id?: InputMaybe<SortOrder>;
-  key?: InputMaybe<SortOrder>;
-  lgImage?: InputMaybe<SortOrder>;
-  link?: InputMaybe<SortOrder>;
-  name?: InputMaybe<SortOrder>;
-  updatedAt?: InputMaybe<SortOrder>;
-  xsImage?: InputMaybe<SortOrder>;
-};
-
-export type BannerTranslation = Node & {
-  __typename?: 'BannerTranslation';
-  id: Scalars['ID'];
-  /** 当前语言 */
-  languageCode: LanguageCode;
-  lgImage: Scalars['String'];
-  link: Scalars['String'];
-  /** 当前选项的名称 */
-  name: Scalars['String'];
-  shortDesc: Scalars['String'];
-  xsImage: Scalars['String'];
-};
-
 export type BooleanCustomFieldConfig = CustomField & {
   __typename?: 'BooleanCustomFieldConfig';
   description?: Maybe<Array<LocalizedString>>;
@@ -278,92 +147,6 @@ export type BooleanOperators = {
   eq?: InputMaybe<Scalars['Boolean']>;
 };
 
-export type Campaign = Node & {
-  __typename?: 'Campaign';
-  applyForBeforeData: CampaignApplyForBeforeData;
-  /** 针对不需要领券的活动, 可能无resut配置 */
-  applyForResultData?: Maybe<CampaignApplyForResultData>;
-  campaignType: CampaignType;
-  /** 活动唯一标识 */
-  code: Scalars['String'];
-  createdAt: Scalars['DateTime'];
-  enabled: Scalars['Boolean'];
-  id: Scalars['ID'];
-  /** PC活动bannner */
-  lgImage?: Maybe<Scalars['String']>;
-  /** ADMIN-UI collection编辑应该有BUG 针对translation字段, 暂时遗留此字段为optional #issues/1338 */
-  name?: Maybe<Scalars['String']>;
-  needClaimCoupon?: Maybe<Scalars['Boolean']>;
-  periodOfValidity?: Maybe<Scalars['Int']>;
-  promotion?: Maybe<Promotion>;
-  shortDesc?: Maybe<Scalars['String']>;
-  updatedAt: Scalars['DateTime'];
-  /** Mobile活动bannner */
-  xsImage?: Maybe<Scalars['String']>;
-};
-
-export type CampaignApplyForBeforeData = {
-  __typename?: 'CampaignApplyForBeforeData';
-  /** 按钮文字 */
-  buttonText?: Maybe<Scalars['String']>;
-  /** 政策小字 */
-  policyText: Scalars['String'];
-  /** 规则小字 */
-  ruleText: Array<Scalars['String']>;
-  /** 小字（标题下方） */
-  subTitle: Array<Scalars['String']>;
-  /** 文本框文字提示 */
-  textBoxPlaceholder?: Maybe<Scalars['String']>;
-  /** 标题（加粗文字） */
-  title: Scalars['String'];
-};
-
-export type CampaignApplyForResultData = {
-  __typename?: 'CampaignApplyForResultData';
-  /** Expiry Date */
-  expiryLabel: Scalars['String'];
-  /** 规则小字 */
-  ruleText: Array<Scalars['String']>;
-  /** Terms条款label */
-  termsCondition: Scalars['String'];
-};
-
-export type CampaignCoupon = Node & {
-  __typename?: 'CampaignCoupon';
-  campaign: Campaign;
-  couponCode: Scalars['String'];
-  createdAt: Scalars['DateTime'];
-  emailAddress: Scalars['String'];
-  endsAt?: Maybe<Scalars['DateTime']>;
-  id: Scalars['ID'];
-  updatedAt: Scalars['DateTime'];
-};
-
-export type CampaignCouponList = PaginatedList & {
-  __typename?: 'CampaignCouponList';
-  items: Array<CampaignCoupon>;
-  totalItems: Scalars['Int'];
-};
-
-export type CampaignList = PaginatedList & {
-  __typename?: 'CampaignList';
-  items: Array<Campaign>;
-  totalItems: Scalars['Int'];
-};
-
-export enum CampaignType {
-  /** 所有用户, 固定金额拉新, 直降模式 */
-  AllUserFixedAmount = 'AllUserFixedAmount',
-  /** 买一送一+镜片打折 */
-  BuyXGetYFreeWithLensDiscount = 'BuyXGetYFreeWithLensDiscount',
-  /** 节假日直活动 */
-  DirectDiscount = 'DirectDiscount',
-  /** 新用户首单镜架1USD */
-  NewUserFirstPair = 'NewUserFirstPair',
-  /** 新用户固定金额拉新, 领券模式 */
-  NewUserFixedAmount = 'NewUserFixedAmount',
-}
-
 export type Channel = Node & {
   __typename?: 'Channel';
   code: Scalars['String'];
@@ -383,11 +166,9 @@ export type Collection = Node & {
   __typename?: 'Collection';
   assets: Array<Asset>;
   breadcrumbs: Array<CollectionBreadcrumb>;
-  /** 当前分类是否配置了campaign活动 */
-  campaign?: Maybe<Campaign>;
   children?: Maybe<Array<Collection>>;
   createdAt: Scalars['DateTime'];
-  customFields?: Maybe<CollectionCustomFields>;
+  customFields?: Maybe<Scalars['JSON']>;
   description: Scalars['String'];
   featuredAsset?: Maybe<Asset>;
   filters: Array<ConfigurableOperation>;
@@ -413,26 +194,11 @@ export type CollectionBreadcrumb = {
   slug: Scalars['String'];
 };
 
-export type CollectionCustomFields = {
-  __typename?: 'CollectionCustomFields';
-  campaign?: Maybe<Campaign>;
-  collectionType?: Maybe<Scalars['String']>;
-  invisible?: Maybe<Scalars['Boolean']>;
-  isFeatured?: Maybe<Scalars['Boolean']>;
-  metaDescription?: Maybe<Scalars['String']>;
-  metaTitle?: Maybe<Scalars['String']>;
-};
-
 export type CollectionFilterParameter = {
-  collectionType?: InputMaybe<StringOperators>;
   createdAt?: InputMaybe<DateOperators>;
   description?: InputMaybe<StringOperators>;
   id?: InputMaybe<IdOperators>;
-  invisible?: InputMaybe<BooleanOperators>;
-  isFeatured?: InputMaybe<BooleanOperators>;
   languageCode?: InputMaybe<StringOperators>;
-  metaDescription?: InputMaybe<StringOperators>;
-  metaTitle?: InputMaybe<StringOperators>;
   name?: InputMaybe<StringOperators>;
   position?: InputMaybe<NumberOperators>;
   slug?: InputMaybe<StringOperators>;
@@ -469,15 +235,9 @@ export type CollectionResult = {
 };
 
 export type CollectionSortParameter = {
-  campaign?: InputMaybe<SortOrder>;
-  collectionType?: InputMaybe<SortOrder>;
   createdAt?: InputMaybe<SortOrder>;
   description?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
-  invisible?: InputMaybe<SortOrder>;
-  isFeatured?: InputMaybe<SortOrder>;
-  metaDescription?: InputMaybe<SortOrder>;
-  metaTitle?: InputMaybe<SortOrder>;
   name?: InputMaybe<SortOrder>;
   position?: InputMaybe<SortOrder>;
   slug?: InputMaybe<SortOrder>;
@@ -487,19 +247,12 @@ export type CollectionSortParameter = {
 export type CollectionTranslation = {
   __typename?: 'CollectionTranslation';
   createdAt: Scalars['DateTime'];
-  customFields?: Maybe<CollectionTranslationCustomFields>;
   description: Scalars['String'];
   id: Scalars['ID'];
   languageCode: LanguageCode;
   name: Scalars['String'];
   slug: Scalars['String'];
   updatedAt: Scalars['DateTime'];
-};
-
-export type CollectionTranslationCustomFields = {
-  __typename?: 'CollectionTranslationCustomFields';
-  metaDescription?: Maybe<Scalars['String']>;
-  metaTitle?: Maybe<Scalars['String']>;
 };
 
 export type ConfigArg = {
@@ -554,18 +307,13 @@ export type Country = Node & {
   __typename?: 'Country';
   code: Scalars['String'];
   createdAt: Scalars['DateTime'];
-  customFields?: Maybe<CountryCustomFields>;
+  customFields?: Maybe<Scalars['JSON']>;
   enabled: Scalars['Boolean'];
   id: Scalars['ID'];
   languageCode: LanguageCode;
   name: Scalars['String'];
   translations: Array<CountryTranslation>;
   updatedAt: Scalars['DateTime'];
-};
-
-export type CountryCustomFields = {
-  __typename?: 'CountryCustomFields';
-  displayOrder?: Maybe<Scalars['Int']>;
 };
 
 export type CountryList = PaginatedList & {
@@ -623,108 +371,13 @@ export type CreateAddressInput = {
   streetLine2?: InputMaybe<Scalars['String']>;
 };
 
-export type CreateCustomerCustomFieldsInput = {
-  birthday?: InputMaybe<Scalars['String']>;
-  faceshape?: InputMaybe<Scalars['String']>;
-  languageCode?: InputMaybe<Scalars['String']>;
-};
-
 export type CreateCustomerInput = {
-  customFields?: InputMaybe<CreateCustomerCustomFieldsInput>;
+  customFields?: InputMaybe<Scalars['JSON']>;
   emailAddress: Scalars['String'];
   firstName: Scalars['String'];
   lastName: Scalars['String'];
   phoneNumber?: InputMaybe<Scalars['String']>;
   title?: InputMaybe<Scalars['String']>;
-};
-
-export type CreateInvitedCustomerProductReviewInput = {
-  content: Scalars['String'];
-  crop: Scalars['String'];
-  customerNameIsPublic: Scalars['Boolean'];
-  encryptedOrderId: Scalars['String'];
-  file?: InputMaybe<Array<Scalars['Upload']>>;
-  orderLineId: Scalars['ID'];
-  productId: Scalars['ID'];
-  rating: Scalars['Float'];
-  suggestions?: InputMaybe<Scalars['String']>;
-  title?: InputMaybe<Scalars['String']>;
-  variantId: Scalars['ID'];
-};
-
-export type CreateInvoiceInput = {
-  orderCode: Scalars['String'];
-};
-
-export type CreateProductQaInput = {
-  productId: Scalars['ID'];
-  question: Scalars['String'];
-};
-
-export type CreateProductReviewInput = {
-  content: Scalars['String'];
-  crop: Scalars['String'];
-  customerNameIsPublic: Scalars['Boolean'];
-  file?: InputMaybe<Array<Scalars['Upload']>>;
-  orderLineId: Scalars['ID'];
-  productId: Scalars['ID'];
-  rating: Scalars['Float'];
-  suggestions?: InputMaybe<Scalars['String']>;
-  title?: InputMaybe<Scalars['String']>;
-  variantId: Scalars['ID'];
-};
-
-export type CreateRxInput = {
-  /** 左右眼视力: 老花, Distance 不展示 */
-  add?: InputMaybe<Scalars['String']>;
-  /** 用户年龄 */
-  age?: InputMaybe<Scalars['String']>;
-  /** 针对游泳镜, 项链镜, 用户可以只输入度数即可加入购物车. */
-  directDegrees?: InputMaybe<Scalars['String']>;
-  /** 是否标记为默认处方 */
-  isDefault?: InputMaybe<Scalars['Boolean']>;
-  /** 处方单名称 */
-  name?: InputMaybe<Scalars['String']>;
-  /** 按照处方转换规则转换之后的处方内容 */
-  normalizedRx?: InputMaybe<NormalizedRxInput>;
-  /** 右眼视力: 散光轴度。散光度数在眼球发生的角度，0-180度之间 */
-  odAxis?: InputMaybe<Scalars['String']>;
-  /** 右眼视力: 柱镜度数（即散光）+正的指的是远视散光, -负指的是近视散光 */
-  odCyl?: InputMaybe<Scalars['String']>;
-  /** 右眼视力: 球镜（近视、远视度数) +表示远视， —表示近视 */
-  odSph?: InputMaybe<Scalars['String']>;
-  /** 左眼视力: 散光轴度。散光度数在眼球发生的角度，0-180度之间 */
-  osAxis?: InputMaybe<Scalars['String']>;
-  /** 左眼视力: 柱镜度数（即散光）+正的指的是远视散光, -负指的是近视散光 */
-  osCyl?: InputMaybe<Scalars['String']>;
-  /** 左眼视力: 球镜（近视、远视度数) +表示远视， —表示近视 */
-  osSph?: InputMaybe<Scalars['String']>;
-  /** 双眼PD,单位为1 */
-  pd?: InputMaybe<Scalars['String']>;
-  /** 左眼瞳距, 单眼PD, 单位为0.5 */
-  pdLeft?: InputMaybe<Scalars['String']>;
-  /** 右眼瞳距, 单眼PD, 单位为0.5 */
-  pdRight?: InputMaybe<Scalars['String']>;
-  /** 棱镜, 标准处方可选值 */
-  prism?: InputMaybe<PrismItemInput>;
-  /** 当针对老花的时候,可以允许用户直接选择一个度数, 用户也可以切换到标准处方自定义. */
-  reading?: InputMaybe<Scalars['String']>;
-  /** 处方的备注信息 */
-  rxComments?: InputMaybe<Scalars['String']>;
-  /** 处方类型, 老花处方/标准处方 */
-  rxType: RxType;
-};
-
-export type CreateTicketInput = {
-  issue: Scalars['String'];
-  subject: Scalars['String'];
-};
-
-export type CreateTryonFaceModelInput = {
-  crop: Array<Scalars['String']>;
-  file: Array<Scalars['Upload']>;
-  tags?: InputMaybe<Array<Scalars['String']>>;
-  userPd?: InputMaybe<Scalars['Int']>;
 };
 
 /**
@@ -1091,50 +744,27 @@ export type Customer = Node & {
   __typename?: 'Customer';
   addresses?: Maybe<Array<Address>>;
   createdAt: Scalars['DateTime'];
-  customFields?: Maybe<CustomerCustomFields>;
+  customFields?: Maybe<Scalars['JSON']>;
   emailAddress: Scalars['String'];
-  favorites: FavoriteList;
   firstName: Scalars['String'];
   id: Scalars['ID'];
   lastName: Scalars['String'];
   orders: OrderList;
   phoneNumber?: Maybe<Scalars['String']>;
-  /** Query customer property field rxList */
-  rxList: RxList;
   title?: Maybe<Scalars['String']>;
   updatedAt: Scalars['DateTime'];
   user?: Maybe<User>;
-};
-
-export type CustomerFavoritesArgs = {
-  options?: InputMaybe<FavoriteListOptions>;
-  productVariantNameFilter?: InputMaybe<Scalars['String']>;
 };
 
 export type CustomerOrdersArgs = {
   options?: InputMaybe<OrderListOptions>;
 };
 
-export type CustomerRxListArgs = {
-  options?: InputMaybe<RxListOptions>;
-  rxName?: InputMaybe<Scalars['String']>;
-};
-
-export type CustomerCustomFields = {
-  __typename?: 'CustomerCustomFields';
-  birthday?: Maybe<Scalars['String']>;
-  faceshape?: Maybe<Scalars['String']>;
-  languageCode?: Maybe<Scalars['String']>;
-};
-
 export type CustomerFilterParameter = {
-  birthday?: InputMaybe<StringOperators>;
   createdAt?: InputMaybe<DateOperators>;
   emailAddress?: InputMaybe<StringOperators>;
-  faceshape?: InputMaybe<StringOperators>;
   firstName?: InputMaybe<StringOperators>;
   id?: InputMaybe<IdOperators>;
-  languageCode?: InputMaybe<StringOperators>;
   lastName?: InputMaybe<StringOperators>;
   phoneNumber?: InputMaybe<StringOperators>;
   title?: InputMaybe<StringOperators>;
@@ -1174,20 +804,11 @@ export type CustomerListOptions = {
   take?: InputMaybe<Scalars['Int']>;
 };
 
-export type CustomerReviewOrderLines = {
-  __typename?: 'CustomerReviewOrderLines';
-  customer: Customer;
-  reviewOrderLines: Array<ReviewOrderLine>;
-};
-
 export type CustomerSortParameter = {
-  birthday?: InputMaybe<SortOrder>;
   createdAt?: InputMaybe<SortOrder>;
   emailAddress?: InputMaybe<SortOrder>;
-  faceshape?: InputMaybe<SortOrder>;
   firstName?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
-  languageCode?: InputMaybe<SortOrder>;
   lastName?: InputMaybe<SortOrder>;
   phoneNumber?: InputMaybe<SortOrder>;
   title?: InputMaybe<SortOrder>;
@@ -1245,42 +866,6 @@ export enum DeletionResult {
   NOT_DELETED = 'NOT_DELETED',
 }
 
-export type DimensionModelConfig = {
-  __typename?: 'DimensionModelConfig';
-  /** 中梁 */
-  bridge: Array<Array<Scalars['String']>>;
-  /** 框高 */
-  lensHeight: Array<Array<Scalars['String']>>;
-  /** 框宽 */
-  lensWidth: Array<Array<Scalars['String']>>;
-  /** 镜腿总长度 */
-  templeLength: Array<Array<Scalars['String']>>;
-  /** 整宽 */
-  totalWidth: Array<Array<Scalars['String']>>;
-};
-
-export type DimensionModelData = {
-  __typename?: 'DimensionModelData';
-  /** 中梁 */
-  bridge: DimensionModelDataItem;
-  /** 框高 */
-  lensHeight: DimensionModelDataItem;
-  /** 框宽 */
-  lensWidth: DimensionModelDataItem;
-  /** 镜腿总长度 */
-  templeLength: DimensionModelDataItem;
-  /** 整宽 */
-  totalWidth: DimensionModelDataItem;
-};
-
-export type DimensionModelDataItem = {
-  __typename?: 'DimensionModelDataItem';
-  /** 英寸单位下的值 */
-  in: Scalars['String'];
-  /** 毫米单位下的值 */
-  mm: Scalars['String'];
-};
-
 export type Discount = {
   __typename?: 'Discount';
   adjustmentSource: Scalars['String'];
@@ -1288,10 +873,6 @@ export type Discount = {
   amountWithTax: Scalars['Int'];
   description: Scalars['String'];
   type: AdjustmentType;
-};
-
-export type EmailAddInput = {
-  email: Scalars['String'];
 };
 
 /** Returned when attempting to create a Customer with an email address already registered to an existing User. */
@@ -1342,7 +923,7 @@ export type Facet = Node & {
   __typename?: 'Facet';
   code: Scalars['String'];
   createdAt: Scalars['DateTime'];
-  customFields?: Maybe<FacetCustomFields>;
+  customFields?: Maybe<Scalars['JSON']>;
   id: Scalars['ID'];
   languageCode: LanguageCode;
   name: Scalars['String'];
@@ -1351,18 +932,10 @@ export type Facet = Node & {
   values: Array<FacetValue>;
 };
 
-export type FacetCustomFields = {
-  __typename?: 'FacetCustomFields';
-  displayOrder?: Maybe<Scalars['Int']>;
-  invisible?: Maybe<Scalars['Boolean']>;
-};
-
 export type FacetFilterParameter = {
   code?: InputMaybe<StringOperators>;
   createdAt?: InputMaybe<DateOperators>;
-  displayOrder?: InputMaybe<NumberOperators>;
   id?: InputMaybe<IdOperators>;
-  invisible?: InputMaybe<BooleanOperators>;
   languageCode?: InputMaybe<StringOperators>;
   name?: InputMaybe<StringOperators>;
   updatedAt?: InputMaybe<DateOperators>;
@@ -1390,9 +963,7 @@ export type FacetListOptions = {
 export type FacetSortParameter = {
   code?: InputMaybe<SortOrder>;
   createdAt?: InputMaybe<SortOrder>;
-  displayOrder?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
-  invisible?: InputMaybe<SortOrder>;
   name?: InputMaybe<SortOrder>;
   updatedAt?: InputMaybe<SortOrder>;
 };
@@ -1410,35 +981,13 @@ export type FacetValue = Node & {
   __typename?: 'FacetValue';
   code: Scalars['String'];
   createdAt: Scalars['DateTime'];
-  customFields?: Maybe<FacetValueCustomFields>;
+  customFields?: Maybe<Scalars['JSON']>;
   facet: Facet;
   id: Scalars['ID'];
   languageCode: LanguageCode;
   name: Scalars['String'];
   translations: Array<FacetValueTranslation>;
   updatedAt: Scalars['DateTime'];
-};
-
-export type FacetValueCampaignConfigData = {
-  __typename?: 'FacetValueCampaignConfigData';
-  /** 直降活动结束时间 */
-  endsAt?: Maybe<Scalars['DateTime']>;
-  /** 直降专题, 镜架实际打折的比例 20%, 填字符串20 */
-  frameDiscountPercent: Scalars['String'];
-  /** 直降, 允许设置当前直降后的售价, 只针对镜架, 如果配置了此项目, 则覆盖会自动计算frameDiscountPercent, 此处$5填写为500 */
-  frameFixedSaleAmount?: Maybe<Scalars['String']>;
-  /** 直降专题, 镜架折扣显示标签 */
-  framePromotionText: Scalars['String'];
-  /** 直降专题, 镜架对应镜片实际打折的比例 20%, 填字符串填20 */
-  lensDiscountPercent: Scalars['String'];
-  /** 直降专题, 镜架对应的镜片折扣显示标签 */
-  lensPromotionText: Scalars['String'];
-};
-
-export type FacetValueCustomFields = {
-  __typename?: 'FacetValueCustomFields';
-  campaignConfigData?: Maybe<Scalars['String']>;
-  icon?: Maybe<Scalars['String']>;
 };
 
 /**
@@ -1471,48 +1020,6 @@ export type FacetValueTranslation = {
   languageCode: LanguageCode;
   name: Scalars['String'];
   updatedAt: Scalars['DateTime'];
-};
-
-export type Favorite = Node & {
-  __typename?: 'Favorite';
-  createdAt: Scalars['DateTime'];
-  customer: Customer;
-  id: Scalars['ID'];
-  languageCode?: Maybe<LanguageCode>;
-  productVariant?: Maybe<ProductVariant>;
-  updatedAt: Scalars['DateTime'];
-};
-
-export type FavoriteFilterParameter = {
-  createdAt?: InputMaybe<DateOperators>;
-  id?: InputMaybe<IdOperators>;
-  languageCode?: InputMaybe<StringOperators>;
-  updatedAt?: InputMaybe<DateOperators>;
-};
-
-export type FavoriteList = PaginatedList & {
-  __typename?: 'FavoriteList';
-  items: Array<Favorite>;
-  totalItems: Scalars['Int'];
-};
-
-export type FavoriteListOptions = {
-  /** Allows the results to be filtered */
-  filter?: InputMaybe<FavoriteFilterParameter>;
-  /** Specifies whether multiple "filter" arguments should be combines with a logical AND or OR operation. Defaults to AND. */
-  filterOperator?: InputMaybe<LogicalOperator>;
-  /** Skips the first n results, for use in pagination */
-  skip?: InputMaybe<Scalars['Int']>;
-  /** Specifies which properties to sort the results by */
-  sort?: InputMaybe<FavoriteSortParameter>;
-  /** Takes n results, for use in pagination */
-  take?: InputMaybe<Scalars['Int']>;
-};
-
-export type FavoriteSortParameter = {
-  createdAt?: InputMaybe<SortOrder>;
-  id?: InputMaybe<SortOrder>;
-  updatedAt?: InputMaybe<SortOrder>;
 };
 
 export type FloatCustomFieldConfig = CustomField & {
@@ -1555,323 +1062,6 @@ export enum GlobalFlag {
   INHERIT = 'INHERIT',
   TRUE = 'TRUE',
 }
-
-export type HelpCenter = Node & {
-  __typename?: 'HelpCenter';
-  body: Scalars['String'];
-  collections: Array<HelpCenterCollection>;
-  createdAt: Scalars['DateTime'];
-  displayOrder: Scalars['Int'];
-  helpfulNo: Scalars['Int'];
-  helpfulYes: Scalars['Int'];
-  id: Scalars['ID'];
-  languageCode: LanguageCode;
-  metaDescription: Scalars['String'];
-  metaTitle: Scalars['String'];
-  published: Scalars['Boolean'];
-  /** 关联文章, 当前文章关联分类, 中的文章, 取上下文 */
-  relatedArticles: Array<HelpCenter>;
-  shortDesc?: Maybe<Scalars['String']>;
-  showOnTop: Scalars['Boolean'];
-  slug: Scalars['String'];
-  tags: Array<HelpCenterTag>;
-  title: Scalars['String'];
-  translations: Array<HelpCenterTranslation>;
-  updatedAt: Scalars['DateTime'];
-};
-
-export type HelpCenterCollection = Node & {
-  __typename?: 'HelpCenterCollection';
-  breadcrumbs: Array<HelpCenterCollectionBreadcrumb>;
-  children?: Maybe<Array<HelpCenterCollection>>;
-  coverImage?: Maybe<Scalars['String']>;
-  createdAt: Scalars['DateTime'];
-  displayOrder: Scalars['Int'];
-  /** 扩展文章分类, 查询指定页面articles */
-  helpArticles: HelpCenterList;
-  id: Scalars['ID'];
-  languageCode: LanguageCode;
-  metaDescription: Scalars['String'];
-  metaTitle: Scalars['String'];
-  name: Scalars['String'];
-  parent?: Maybe<HelpCenterCollection>;
-  published: Scalars['Boolean'];
-  shortDesc?: Maybe<Scalars['String']>;
-  showOnTop: Scalars['Boolean'];
-  slug: Scalars['String'];
-  translations: Array<HelpCenterCollectionTranslation>;
-  updatedAt: Scalars['DateTime'];
-};
-
-export type HelpCenterCollectionHelpArticlesArgs = {
-  options?: InputMaybe<HelpCenterListOptions>;
-};
-
-export type HelpCenterCollectionBreadcrumb = {
-  __typename?: 'HelpCenterCollectionBreadcrumb';
-  id: Scalars['ID'];
-  name: Scalars['String'];
-  slug: Scalars['String'];
-};
-
-export type HelpCenterCollectionFilterParameter = {
-  coverImage?: InputMaybe<StringOperators>;
-  createdAt?: InputMaybe<DateOperators>;
-  displayOrder?: InputMaybe<NumberOperators>;
-  id?: InputMaybe<IdOperators>;
-  languageCode?: InputMaybe<StringOperators>;
-  metaDescription?: InputMaybe<StringOperators>;
-  metaTitle?: InputMaybe<StringOperators>;
-  name?: InputMaybe<StringOperators>;
-  published?: InputMaybe<BooleanOperators>;
-  shortDesc?: InputMaybe<StringOperators>;
-  showOnTop?: InputMaybe<BooleanOperators>;
-  slug?: InputMaybe<StringOperators>;
-  updatedAt?: InputMaybe<DateOperators>;
-};
-
-export type HelpCenterCollectionList = PaginatedList & {
-  __typename?: 'HelpCenterCollectionList';
-  items: Array<HelpCenterCollection>;
-  totalItems: Scalars['Int'];
-};
-
-export type HelpCenterCollectionListOptions = {
-  /** Allows the results to be filtered */
-  filter?: InputMaybe<HelpCenterCollectionFilterParameter>;
-  /** Specifies whether multiple "filter" arguments should be combines with a logical AND or OR operation. Defaults to AND. */
-  filterOperator?: InputMaybe<LogicalOperator>;
-  /** Skips the first n results, for use in pagination */
-  skip?: InputMaybe<Scalars['Int']>;
-  /** Specifies which properties to sort the results by */
-  sort?: InputMaybe<HelpCenterCollectionSortParameter>;
-  /** Takes n results, for use in pagination */
-  take?: InputMaybe<Scalars['Int']>;
-};
-
-export type HelpCenterCollectionSortParameter = {
-  coverImage?: InputMaybe<SortOrder>;
-  createdAt?: InputMaybe<SortOrder>;
-  displayOrder?: InputMaybe<SortOrder>;
-  id?: InputMaybe<SortOrder>;
-  metaDescription?: InputMaybe<SortOrder>;
-  metaTitle?: InputMaybe<SortOrder>;
-  name?: InputMaybe<SortOrder>;
-  shortDesc?: InputMaybe<SortOrder>;
-  slug?: InputMaybe<SortOrder>;
-  updatedAt?: InputMaybe<SortOrder>;
-};
-
-export type HelpCenterCollectionTranslation = {
-  __typename?: 'HelpCenterCollectionTranslation';
-  coverImage?: Maybe<Scalars['String']>;
-  id: Scalars['ID'];
-  languageCode: LanguageCode;
-  metaDescription: Scalars['String'];
-  metaTitle: Scalars['String'];
-  name: Scalars['String'];
-  redirectTo?: Maybe<Scalars['String']>;
-  shortDesc?: Maybe<Scalars['String']>;
-  slug: Scalars['String'];
-};
-
-export type HelpCenterFilterParameter = {
-  body?: InputMaybe<StringOperators>;
-  createdAt?: InputMaybe<DateOperators>;
-  displayOrder?: InputMaybe<NumberOperators>;
-  helpfulNo?: InputMaybe<NumberOperators>;
-  helpfulYes?: InputMaybe<NumberOperators>;
-  id?: InputMaybe<IdOperators>;
-  languageCode?: InputMaybe<StringOperators>;
-  metaDescription?: InputMaybe<StringOperators>;
-  metaTitle?: InputMaybe<StringOperators>;
-  published?: InputMaybe<BooleanOperators>;
-  shortDesc?: InputMaybe<StringOperators>;
-  showOnTop?: InputMaybe<BooleanOperators>;
-  slug?: InputMaybe<StringOperators>;
-  title?: InputMaybe<StringOperators>;
-  updatedAt?: InputMaybe<DateOperators>;
-};
-
-export type HelpCenterHotSearch = Node & {
-  __typename?: 'HelpCenterHotSearch';
-  createdAt: Scalars['DateTime'];
-  displayOrder: Scalars['Int'];
-  id: Scalars['ID'];
-  keyword: Scalars['String'];
-  languageCode: LanguageCode;
-  published: Scalars['Boolean'];
-  updatedAt: Scalars['DateTime'];
-};
-
-export type HelpCenterHotSearchFilterParameter = {
-  createdAt?: InputMaybe<DateOperators>;
-  displayOrder?: InputMaybe<NumberOperators>;
-  id?: InputMaybe<IdOperators>;
-  keyword?: InputMaybe<StringOperators>;
-  languageCode?: InputMaybe<StringOperators>;
-  published?: InputMaybe<BooleanOperators>;
-  updatedAt?: InputMaybe<DateOperators>;
-};
-
-export type HelpCenterHotSearchList = PaginatedList & {
-  __typename?: 'HelpCenterHotSearchList';
-  items: Array<HelpCenterHotSearch>;
-  totalItems: Scalars['Int'];
-};
-
-export type HelpCenterHotSearchListOptions = {
-  /** Allows the results to be filtered */
-  filter?: InputMaybe<HelpCenterHotSearchFilterParameter>;
-  /** Specifies whether multiple "filter" arguments should be combines with a logical AND or OR operation. Defaults to AND. */
-  filterOperator?: InputMaybe<LogicalOperator>;
-  /** Skips the first n results, for use in pagination */
-  skip?: InputMaybe<Scalars['Int']>;
-  /** Specifies which properties to sort the results by */
-  sort?: InputMaybe<HelpCenterHotSearchSortParameter>;
-  /** Takes n results, for use in pagination */
-  take?: InputMaybe<Scalars['Int']>;
-};
-
-export type HelpCenterHotSearchSortParameter = {
-  createdAt?: InputMaybe<SortOrder>;
-  displayOrder?: InputMaybe<SortOrder>;
-  id?: InputMaybe<SortOrder>;
-  keyword?: InputMaybe<SortOrder>;
-  updatedAt?: InputMaybe<SortOrder>;
-};
-
-export type HelpCenterList = PaginatedList & {
-  __typename?: 'HelpCenterList';
-  items: Array<HelpCenter>;
-  totalItems: Scalars['Int'];
-};
-
-export type HelpCenterListOptions = {
-  /** Allows the results to be filtered */
-  filter?: InputMaybe<HelpCenterFilterParameter>;
-  /** Specifies whether multiple "filter" arguments should be combines with a logical AND or OR operation. Defaults to AND. */
-  filterOperator?: InputMaybe<LogicalOperator>;
-  /** Skips the first n results, for use in pagination */
-  skip?: InputMaybe<Scalars['Int']>;
-  /** Specifies which properties to sort the results by */
-  sort?: InputMaybe<HelpCenterSortParameter>;
-  /** Takes n results, for use in pagination */
-  take?: InputMaybe<Scalars['Int']>;
-};
-
-export type HelpCenterSortParameter = {
-  body?: InputMaybe<SortOrder>;
-  createdAt?: InputMaybe<SortOrder>;
-  displayOrder?: InputMaybe<SortOrder>;
-  helpfulNo?: InputMaybe<SortOrder>;
-  helpfulYes?: InputMaybe<SortOrder>;
-  id?: InputMaybe<SortOrder>;
-  metaDescription?: InputMaybe<SortOrder>;
-  metaTitle?: InputMaybe<SortOrder>;
-  shortDesc?: InputMaybe<SortOrder>;
-  slug?: InputMaybe<SortOrder>;
-  title?: InputMaybe<SortOrder>;
-  updatedAt?: InputMaybe<SortOrder>;
-};
-
-export type HelpCenterTag = Node & {
-  __typename?: 'HelpCenterTag';
-  createdAt: Scalars['DateTime'];
-  displayOrder: Scalars['Int'];
-  helpArticles: HelpCenterList;
-  id: Scalars['ID'];
-  languageCode: LanguageCode;
-  metaDescription: Scalars['String'];
-  metaTitle: Scalars['String'];
-  name: Scalars['String'];
-  published: Scalars['Boolean'];
-  slug: Scalars['String'];
-  translations: Array<HelpCenterTagTranslation>;
-  updatedAt: Scalars['DateTime'];
-};
-
-export type HelpCenterTagHelpArticlesArgs = {
-  options?: InputMaybe<HelpCenterListOptions>;
-};
-
-export type HelpCenterTagFilterParameter = {
-  createdAt?: InputMaybe<DateOperators>;
-  displayOrder?: InputMaybe<NumberOperators>;
-  id?: InputMaybe<IdOperators>;
-  languageCode?: InputMaybe<StringOperators>;
-  metaDescription?: InputMaybe<StringOperators>;
-  metaTitle?: InputMaybe<StringOperators>;
-  name?: InputMaybe<StringOperators>;
-  published?: InputMaybe<BooleanOperators>;
-  slug?: InputMaybe<StringOperators>;
-  updatedAt?: InputMaybe<DateOperators>;
-};
-
-export type HelpCenterTagList = PaginatedList & {
-  __typename?: 'HelpCenterTagList';
-  items: Array<HelpCenterTag>;
-  totalItems: Scalars['Int'];
-};
-
-export type HelpCenterTagListOptions = {
-  /** Allows the results to be filtered */
-  filter?: InputMaybe<HelpCenterTagFilterParameter>;
-  /** Specifies whether multiple "filter" arguments should be combines with a logical AND or OR operation. Defaults to AND. */
-  filterOperator?: InputMaybe<LogicalOperator>;
-  /** Skips the first n results, for use in pagination */
-  skip?: InputMaybe<Scalars['Int']>;
-  /** Specifies which properties to sort the results by */
-  sort?: InputMaybe<HelpCenterTagSortParameter>;
-  /** Takes n results, for use in pagination */
-  take?: InputMaybe<Scalars['Int']>;
-};
-
-export type HelpCenterTagSortParameter = {
-  createdAt?: InputMaybe<SortOrder>;
-  displayOrder?: InputMaybe<SortOrder>;
-  id?: InputMaybe<SortOrder>;
-  metaDescription?: InputMaybe<SortOrder>;
-  metaTitle?: InputMaybe<SortOrder>;
-  name?: InputMaybe<SortOrder>;
-  slug?: InputMaybe<SortOrder>;
-  updatedAt?: InputMaybe<SortOrder>;
-};
-
-export type HelpCenterTagTranslation = {
-  __typename?: 'HelpCenterTagTranslation';
-  id: Scalars['ID'];
-  languageCode: LanguageCode;
-  metaDescription: Scalars['String'];
-  metaTitle: Scalars['String'];
-  name: Scalars['String'];
-  slug: Scalars['String'];
-};
-
-export type HelpCenterTranslation = {
-  __typename?: 'HelpCenterTranslation';
-  body: Scalars['String'];
-  id: Scalars['ID'];
-  languageCode: LanguageCode;
-  metaDescription: Scalars['String'];
-  metaTitle: Scalars['String'];
-  shortDesc?: Maybe<Scalars['String']>;
-  slug: Scalars['String'];
-  title: Scalars['String'];
-};
-
-export type HelpSummarize = {
-  __typename?: 'HelpSummarize';
-  topArticles: Array<HelpCenter>;
-  topCollections: Array<HelpCenterCollection>;
-  topHotSearchWords: Array<HelpCenterHotSearch>;
-};
-
-export type HelpSummarizeOptions = {
-  topArticleCount?: InputMaybe<Scalars['Int']>;
-  topCollectionCount?: InputMaybe<Scalars['Int']>;
-  topHotSearchWordCount?: InputMaybe<Scalars['Int']>;
-};
 
 export type HistoryEntry = Node & {
   __typename?: 'HistoryEntry';
@@ -2021,46 +1211,6 @@ export type InvalidCredentialsError = ErrorResult & {
   errorCode: ErrorCode;
   message: Scalars['String'];
 };
-
-export type Invoice = Node & {
-  __typename?: 'Invoice';
-  createdAt: Scalars['DateTime'];
-  customerEmail: Scalars['String'];
-  downloadUrl?: Maybe<Scalars['String']>;
-  id: Scalars['ID'];
-  invoiceNumber: Scalars['Int'];
-  orderCode: Scalars['String'];
-  orderId: Scalars['String'];
-  updatedAt: Scalars['DateTime'];
-};
-
-export type InvoiceConfig = Node & {
-  __typename?: 'InvoiceConfig';
-  channel: Channel;
-  createdAt: Scalars['DateTime'];
-  enabled: Scalars['Boolean'];
-  id: Scalars['ID'];
-  templateOrderString?: Maybe<Scalars['String']>;
-  templateString?: Maybe<Scalars['String']>;
-  updatedAt: Scalars['DateTime'];
-};
-
-export type InvoiceConfigList = PaginatedList & {
-  __typename?: 'InvoiceConfigList';
-  items: Array<InvoiceConfig>;
-  totalItems: Scalars['Int'];
-};
-
-export type InvoiceList = PaginatedList & {
-  __typename?: 'InvoiceList';
-  items: Array<Invoice>;
-  totalItems: Scalars['Int'];
-};
-
-export enum InvoiceType {
-  Invoice = 'Invoice',
-  Order = 'Order',
-}
 
 /**
  * @description
@@ -2388,783 +1538,6 @@ export enum LanguageCode {
   zu = 'zu',
 }
 
-export type LensOptionUiComponents = {
-  __typename?: 'LensOptionUiComponents';
-  /** 当前选项的孩子节点展示的UI控件,如color_box */
-  childComponentType?: Maybe<LensOptionUiComponentsType>;
-  /** UI显示空间类型 */
-  uiType?: Maybe<LensOptionUiComponentsType>;
-  /** UI显示空间类型对应的显示值 */
-  uiValue?: Maybe<Scalars['String']>;
-};
-
-export enum LensOptionUiComponentsType {
-  COLOR_BOX = 'COLOR_BOX',
-  TEXT = 'TEXT',
-}
-
-export type LensProcessConfigItem = Node & {
-  __typename?: 'LensProcessConfigItem';
-  disabled: Scalars['Boolean'];
-  displayOrder: Scalars['Int'];
-  id: Scalars['ID'];
-  lensProcessOption: LensProcessOption;
-  lensProcessOptionId: Scalars['ID'];
-  lensProcessTemplate: LensProcessTemplate;
-  lensProcessTemplateId: Scalars['ID'];
-  overridePrice?: Maybe<Scalars['Int']>;
-  overrideRecommendRuleConditions?: Maybe<Scalars['JSON']>;
-  overrideRuleConditions?: Maybe<Scalars['JSON']>;
-};
-
-export type LensProcessConfigItemFilterParameter = {
-  disabled?: InputMaybe<BooleanOperators>;
-  displayOrder?: InputMaybe<NumberOperators>;
-  id?: InputMaybe<IdOperators>;
-  lensProcessOptionId?: InputMaybe<IdOperators>;
-  lensProcessTemplateId?: InputMaybe<IdOperators>;
-  overridePrice?: InputMaybe<NumberOperators>;
-};
-
-export type LensProcessConfigItemList = PaginatedList & {
-  __typename?: 'LensProcessConfigItemList';
-  items: Array<LensProcessConfigItem>;
-  totalItems: Scalars['Int'];
-};
-
-export type LensProcessConfigItemListOptions = {
-  /** Allows the results to be filtered */
-  filter?: InputMaybe<LensProcessConfigItemFilterParameter>;
-  /** Specifies whether multiple "filter" arguments should be combines with a logical AND or OR operation. Defaults to AND. */
-  filterOperator?: InputMaybe<LogicalOperator>;
-  /** Skips the first n results, for use in pagination */
-  skip?: InputMaybe<Scalars['Int']>;
-  /** Specifies which properties to sort the results by */
-  sort?: InputMaybe<LensProcessConfigItemSortParameter>;
-  /** Takes n results, for use in pagination */
-  take?: InputMaybe<Scalars['Int']>;
-};
-
-export type LensProcessConfigItemSortParameter = {
-  displayOrder?: InputMaybe<SortOrder>;
-  id?: InputMaybe<SortOrder>;
-  lensProcessOptionId?: InputMaybe<SortOrder>;
-  lensProcessTemplateId?: InputMaybe<SortOrder>;
-  overridePrice?: InputMaybe<SortOrder>;
-};
-
-export type LensProcessOption = Node & {
-  __typename?: 'LensProcessOption';
-  /** 当前选项默认的需要调整的价格. +, - */
-  adjustPrice: Scalars['Int'];
-  createdAt: Scalars['DateTime'];
-  /**
-   * 针对购物车升级, 如果指定了依赖keys
-   * 1. 先验证当前的升级包规则满足条件之后
-   * 2. 我们从这个里面找到他T3的可能能够选择流程, 计算T3流程的价格.(从中选择最便宜并且价格比当前价格更高的一个选项)
-   */
-  dependentFromT3Key?: Maybe<LensProcessOptionKeys>;
-  /** 当前选项的默认在流程模板配置中的初始化排序值 */
-  displayOrder: Scalars['Int'];
-  /** 功能特点标识, Up to 20% thinner */
-  feature?: Maybe<Scalars['String']>;
-  /** 小图标地址, 可以是背景图, base64等. */
-  icon?: Maybe<Scalars['String']>;
-  id: Scalars['ID'];
-  /** 当前选项的详细注解, 详细标注当前选项包含的内容 */
-  introduction?: Maybe<Array<Scalars['String']>>;
-  /** 用来标识当前镜片流程模块的唯一ID值, 不是所有模块选项都需要模块标识, 核心稳定并且参与流程规则的模块才需要 */
-  key?: Maybe<LensProcessOptionKeys>;
-  languageCode: LanguageCode;
-  /** 当前选项的名称 */
-  name: Scalars['String'];
-  parent?: Maybe<LensProcessOptionParent>;
-  parentId?: Maybe<Scalars['ID']>;
-  /** 可视化数据, 图片资源地址存储, 选择当前项可能有对应图片展示. */
-  preview?: Maybe<LensProcessOptionPreview>;
-  /** 通过推荐规则, 动态计算,是否为推荐选项, 如果是, 可能需要高亮处理. */
-  recommend: Scalars['Boolean'];
-  /** 推荐规则引擎json-rules-engine的推荐规则条件默认配置, 如果满足条件,当前显示推荐,如果当前套餐包下面多个满足, 则取第一个, kzfoo-next前端不应该显示, 规则运算放后端 */
-  recommendRuleConditions?: Maybe<Scalars['JSON']>;
-  /** 可选值, 针对T4(变种条件可能有1000个), 考虑性能, 可以设置他依赖的T1,T3作为条件, 在查询T4的时候数据提取过滤掉不需要的item */
-  requiredPreSelectedKeys?: Maybe<Array<LensProcessOptionKeys>>;
-  /** 规则引擎json-rules-engine的规则条件(选项可用/不可用)默认配置, kzfoo-next前端不应该显示, 规则运算放后端 */
-  ruleConditions?: Maybe<Scalars['JSON']>;
-  /** 当前选项的短描述 */
-  shortDesc: Scalars['String'];
-  /** 当前流程模版的步骤标签, step1, step2, step3, step4 */
-  stepGroupName: LensStepGroups;
-  translations: Array<LensProcessOptionTranslation>;
-  uiComponents?: Maybe<LensOptionUiComponents>;
-  updatedAt: Scalars['DateTime'];
-  /** 升级选项名字, 可以在name基础上进行额外包装 */
-  upgradeText?: Maybe<Scalars['String']>;
-  /** T4套餐包升级到新的套餐包的KEY, 展示优先级, 就按照依赖KEY先后顺序 */
-  upgradeToKeys?: Maybe<Array<LensProcessOptionKeys>>;
-};
-
-export type LensProcessOptionFilterParameter = {
-  adjustPrice?: InputMaybe<NumberOperators>;
-  createdAt?: InputMaybe<DateOperators>;
-  dependentFromT3Key?: InputMaybe<StringOperators>;
-  displayOrder?: InputMaybe<NumberOperators>;
-  feature?: InputMaybe<StringOperators>;
-  icon?: InputMaybe<StringOperators>;
-  id?: InputMaybe<IdOperators>;
-  key?: InputMaybe<StringOperators>;
-  languageCode?: InputMaybe<StringOperators>;
-  name?: InputMaybe<StringOperators>;
-  parentId?: InputMaybe<IdOperators>;
-  recommend?: InputMaybe<BooleanOperators>;
-  shortDesc?: InputMaybe<StringOperators>;
-  stepGroupName?: InputMaybe<StringOperators>;
-  updatedAt?: InputMaybe<DateOperators>;
-  upgradeText?: InputMaybe<StringOperators>;
-};
-
-/** 镜片流程原子选项的唯一标识符号,部分无须参与规则运算的选项模块为可选项. */
-export enum LensProcessOptionKeys {
-  /** T1用途: 看远 */
-  T1_DISTANCE = 'T1_DISTANCE',
-  /** T1用途: 多焦点 */
-  T1_MULTIFOCAL = 'T1_MULTIFOCAL',
-  /** T1用途: 多焦点/双光 */
-  T1_MULTIFOCAL_BIFOCAL = 'T1_MULTIFOCAL_BIFOCAL',
-  /** T1用途: 多焦点/高级渐进 */
-  T1_MULTIFOCAL_PREMIUM_PROGRESSIVE = 'T1_MULTIFOCAL_PREMIUM_PROGRESSIVE',
-  /** T1用途: 多焦点/渐进 */
-  T1_MULTIFOCAL_PROGRESSIVE = 'T1_MULTIFOCAL_PROGRESSIVE',
-  /** T1用途: 平光 */
-  T1_NON_PRESCRIPTION = 'T1_NON_PRESCRIPTION',
-  /** T1用途: 老花 */
-  T1_READING = 'T1_READING',
-  /** T1用途: 老花/看中 */
-  T1_READING_INTERMEDIATE = 'T1_READING_INTERMEDIATE',
-  /** T1用途: 老花/看近 */
-  T1_READING_READERS = 'T1_READING_READERS',
-  /** T2游泳镜, 项链镜等直接选度数的处方模块 */
-  T2_RX_DEGREES = 'T2_RX_DEGREES',
-  /** T2直接选度数-项链镜-仅仅用到'DIRECT_DEGREES'规则动态选项数据源匹配 */
-  T2_RX_DEGREES_NECK = 'T2_RX_DEGREES_NECK',
-  /** T2直接选度数-游泳镜-仅仅用到'DIRECT_DEGREES'规则动态选项数据源匹配 */
-  T2_RX_DEGREES_SWIMMING = 'T2_RX_DEGREES_SWIMMING',
-  /** T2用户标准处方模块 */
-  T2_RX_STANDARD = 'T2_RX_STANDARD',
-  /** T3防蓝光 */
-  T3_BLUE = 'T3_BLUE',
-  /** T3防蓝光-普通 */
-  T3_BLUE_BASIC = 'T3_BLUE_BASIC',
-  /** T3透明镜片 */
-  T3_CLEAR = 'T3_CLEAR',
-  /** T3透明镜片-普通 */
-  T3_CLEAR_BASIC = 'T3_CLEAR_BASIC',
-  /** T3变色镜片 */
-  T3_LIGHT = 'T3_LIGHT',
-  /** T3普通变色 */
-  T3_LIGHT_PHOTOCHROMIC = 'T3_LIGHT_PHOTOCHROMIC',
-  /** T3普通变色-棕色 */
-  T3_LIGHT_PHOTOCHROMIC_BROWN = 'T3_LIGHT_PHOTOCHROMIC_BROWN',
-  /** T3普通变色-灰色 */
-  T3_LIGHT_PHOTOCHROMIC_GRAY = 'T3_LIGHT_PHOTOCHROMIC_GRAY',
-  /** T3全视线变色 */
-  T3_LIGHT_TRANSPHOTO = 'T3_LIGHT_TRANSPHOTO',
-  /** T3全视线变色-棕色 */
-  T3_LIGHT_TRANSPHOTO_BROWN = 'T3_LIGHT_TRANSPHOTO_BROWN',
-  /** T3全视线变色-灰色 */
-  T3_LIGHT_TRANSPHOTO_GRAY = 'T3_LIGHT_TRANSPHOTO_GRAY',
-  /** T3太阳镜 */
-  T3_SUN = 'T3_SUN',
-  /** T3太阳镜-普通全染镜片 */
-  T3_SUN_BASIC = 'T3_SUN_BASIC',
-  /** T3太阳镜-普通全染镜片-蓝色 */
-  T3_SUN_BASIC_BLUE = 'T3_SUN_BASIC_BLUE',
-  /** T3太阳镜-普通全染镜片-棕色 */
-  T3_SUN_BASIC_BROWN = 'T3_SUN_BASIC_BROWN',
-  /** T3太阳镜-普通全染镜片-灰色 */
-  T3_SUN_BASIC_GRAY = 'T3_SUN_BASIC_GRAY',
-  /** T3太阳镜-普通全染镜片-绿色 */
-  T3_SUN_BASIC_GREEN = 'T3_SUN_BASIC_GREEN',
-  /** T3太阳镜-普通全染镜片-橘色 */
-  T3_SUN_BASIC_ORANGE = 'T3_SUN_BASIC_ORANGE',
-  /** T3太阳镜-普通全染镜片-粉红色 */
-  T3_SUN_BASIC_PINK = 'T3_SUN_BASIC_PINK',
-  /** T3太阳镜-普通全染镜片-黄色 */
-  T3_SUN_BASIC_YELLOW = 'T3_SUN_BASIC_YELLOW',
-  /** T3太阳镜-梯度渐染镜片 */
-  T3_SUN_GRADIENT = 'T3_SUN_GRADIENT',
-  /** T3太阳镜-梯度渐染镜片-蓝色 */
-  T3_SUN_GRADIENT_BLUE = 'T3_SUN_GRADIENT_BLUE',
-  /** T3太阳镜-梯度渐染镜片-棕色 */
-  T3_SUN_GRADIENT_BROWN = 'T3_SUN_GRADIENT_BROWN',
-  /** T3太阳镜-梯度渐染镜片-灰色 */
-  T3_SUN_GRADIENT_GRAY = 'T3_SUN_GRADIENT_GRAY',
-  /** T3太阳镜-梯度渐染镜片-绿色 */
-  T3_SUN_GRADIENT_GREEN = 'T3_SUN_GRADIENT_GREEN',
-  /** T3太阳镜-梯度渐染镜片-紫色 */
-  T3_SUN_GRADIENT_PURPLE = 'T3_SUN_GRADIENT_PURPLE',
-  /** T3太阳镜-镜面镜片 */
-  T3_SUN_MIRRORED = 'T3_SUN_MIRRORED',
-  /** T3太阳镜-镜面镜片-琥珀色的玫瑰 */
-  T3_SUN_MIRRORED_AMBERROSE = 'T3_SUN_MIRRORED_AMBERROSE',
-  /** T3太阳镜-镜面镜片-蓝色 */
-  T3_SUN_MIRRORED_BLUE = 'T3_SUN_MIRRORED_BLUE',
-  /** T3太阳镜-镜面镜片-银色 */
-  T3_SUN_MIRRORED_SLIVER = 'T3_SUN_MIRRORED_SLIVER',
-  /** T3太阳镜-偏光镜片 */
-  T3_SUN_POLARIZED = 'T3_SUN_POLARIZED',
-  /** T3太阳镜-偏光镜片-普通染色 */
-  T3_SUN_POLARIZED_BASIC = 'T3_SUN_POLARIZED_BASIC',
-  /** T3太阳镜-偏光镜片-普通染色-棕色 */
-  T3_SUN_POLARIZED_BASIC_BROWN = 'T3_SUN_POLARIZED_BASIC_BROWN',
-  /** T3太阳镜-偏光镜片-普通染色-灰色 */
-  T3_SUN_POLARIZED_BASIC_GRAY = 'T3_SUN_POLARIZED_BASIC_GRAY',
-  /** T3太阳镜-偏光镜片-普通染色-绿色 */
-  T3_SUN_POLARIZED_BASIC_GREEN = 'T3_SUN_POLARIZED_BASIC_GREEN',
-  /** T3太阳镜-偏光镜片-镜面染色 */
-  T3_SUN_POLARIZED_MIRRORED = 'T3_SUN_POLARIZED_MIRRORED',
-  /** T3太阳镜-偏光镜片-镜面染色-琥珀色的玫瑰 */
-  T3_SUN_POLARIZED_MIRRORED_AMBERROSE = 'T3_SUN_POLARIZED_MIRRORED_AMBERROSE',
-  /** T3太阳镜-偏光镜片-镜面染色-蓝色 */
-  T3_SUN_POLARIZED_MIRRORED_BLUE = 'T3_SUN_POLARIZED_MIRRORED_BLUE',
-  /** T3太阳镜-偏光镜片-镜面染色-银色 */
-  T3_SUN_POLARIZED_MIRRORED_SLIVER = 'T3_SUN_POLARIZED_MIRRORED_SLIVER',
-  /** T4折射率套餐-premium-progressive-blue-1.56高级 */
-  T4_PREMIUM_PROGRESSIVE_BLUE_BASIC_1_56A = 'T4_PREMIUM_PROGRESSIVE_BLUE_BASIC_1_56A',
-  /** T4折射率套餐-premium-progressive-blue-1.56标准 */
-  T4_PREMIUM_PROGRESSIVE_BLUE_BASIC_1_56S = 'T4_PREMIUM_PROGRESSIVE_BLUE_BASIC_1_56S',
-  /** T4折射率套餐-premium-progressive-blue-1.60高级 */
-  T4_PREMIUM_PROGRESSIVE_BLUE_BASIC_1_60A = 'T4_PREMIUM_PROGRESSIVE_BLUE_BASIC_1_60A',
-  /** T4折射率套餐-premium-progressive-blue-1.60标准 */
-  T4_PREMIUM_PROGRESSIVE_BLUE_BASIC_1_60S = 'T4_PREMIUM_PROGRESSIVE_BLUE_BASIC_1_60S',
-  /** T4折射率套餐-premium-progressive-blue-1.67高级 */
-  T4_PREMIUM_PROGRESSIVE_BLUE_BASIC_1_67A = 'T4_PREMIUM_PROGRESSIVE_BLUE_BASIC_1_67A',
-  /** T4折射率套餐-premium-progressive-blue-1.67标准 */
-  T4_PREMIUM_PROGRESSIVE_BLUE_BASIC_1_67S = 'T4_PREMIUM_PROGRESSIVE_BLUE_BASIC_1_67S',
-  /** T4折射率套餐-premium-progressive-clear-1.56高级 */
-  T4_PREMIUM_PROGRESSIVE_CLEAR_BASIC_1_56A = 'T4_PREMIUM_PROGRESSIVE_CLEAR_BASIC_1_56A',
-  /** T4折射率套餐-premium-progressive-clear-1.56标准 */
-  T4_PREMIUM_PROGRESSIVE_CLEAR_BASIC_1_56S = 'T4_PREMIUM_PROGRESSIVE_CLEAR_BASIC_1_56S',
-  /** T4折射率套餐-premium-progressive-clear-1.60高级 */
-  T4_PREMIUM_PROGRESSIVE_CLEAR_BASIC_1_60A = 'T4_PREMIUM_PROGRESSIVE_CLEAR_BASIC_1_60A',
-  /** T4折射率套餐-premium-progressive-clear-1.60标准 */
-  T4_PREMIUM_PROGRESSIVE_CLEAR_BASIC_1_60S = 'T4_PREMIUM_PROGRESSIVE_CLEAR_BASIC_1_60S',
-  /** T4折射率套餐-premium-progressive-clear-1.67高级 */
-  T4_PREMIUM_PROGRESSIVE_CLEAR_BASIC_1_67A = 'T4_PREMIUM_PROGRESSIVE_CLEAR_BASIC_1_67A',
-  /** T4折射率套餐-premium-progressive-clear-1.67标准 */
-  T4_PREMIUM_PROGRESSIVE_CLEAR_BASIC_1_67S = 'T4_PREMIUM_PROGRESSIVE_CLEAR_BASIC_1_67S',
-  /** T4折射率套餐-premium-progressive-photochromic-1.56高级 */
-  T4_PREMIUM_PROGRESSIVE_PHOTOCHROMIC_1_56A = 'T4_PREMIUM_PROGRESSIVE_PHOTOCHROMIC_1_56A',
-  /** T4折射率套餐-premium-progressive-photochromic-1.56标准 */
-  T4_PREMIUM_PROGRESSIVE_PHOTOCHROMIC_1_56S = 'T4_PREMIUM_PROGRESSIVE_PHOTOCHROMIC_1_56S',
-  /** T4折射率套餐-premium-progressive-photochromic-1.60高级 */
-  T4_PREMIUM_PROGRESSIVE_PHOTOCHROMIC_1_60A = 'T4_PREMIUM_PROGRESSIVE_PHOTOCHROMIC_1_60A',
-  /** T4折射率套餐-premium-progressive-photochromic-1.60标准 */
-  T4_PREMIUM_PROGRESSIVE_PHOTOCHROMIC_1_60S = 'T4_PREMIUM_PROGRESSIVE_PHOTOCHROMIC_1_60S',
-  /** T4折射率套餐-premium-progressive-photochromic-1.67高级 */
-  T4_PREMIUM_PROGRESSIVE_PHOTOCHROMIC_1_67A = 'T4_PREMIUM_PROGRESSIVE_PHOTOCHROMIC_1_67A',
-  /** T4折射率套餐-premium-progressive-photochromic-1.67标准 */
-  T4_PREMIUM_PROGRESSIVE_PHOTOCHROMIC_1_67S = 'T4_PREMIUM_PROGRESSIVE_PHOTOCHROMIC_1_67S',
-  /** T4折射率套餐-premium-progressive-polarizedtint-1.56高级 */
-  T4_PREMIUM_PROGRESSIVE_POLARIZEDTINT_1_56A = 'T4_PREMIUM_PROGRESSIVE_POLARIZEDTINT_1_56A',
-  /** T4折射率套餐-premium-progressive-polarizedtint-1.56标准 */
-  T4_PREMIUM_PROGRESSIVE_POLARIZEDTINT_1_56S = 'T4_PREMIUM_PROGRESSIVE_POLARIZEDTINT_1_56S',
-  /** T4折射率套餐-premium-progressive-polarizedtint-1.60高级 */
-  T4_PREMIUM_PROGRESSIVE_POLARIZEDTINT_1_60A = 'T4_PREMIUM_PROGRESSIVE_POLARIZEDTINT_1_60A',
-  /** T4折射率套餐-premium-progressive-polarizedtint-1.60标准 */
-  T4_PREMIUM_PROGRESSIVE_POLARIZEDTINT_1_60S = 'T4_PREMIUM_PROGRESSIVE_POLARIZEDTINT_1_60S',
-  /** T4折射率套餐-premium-progressive-polarizedtint-1.67高级 */
-  T4_PREMIUM_PROGRESSIVE_POLARIZEDTINT_1_67A = 'T4_PREMIUM_PROGRESSIVE_POLARIZEDTINT_1_67A',
-  /** T4折射率套餐-premium-progressive-polarizedtint-1.67标准 */
-  T4_PREMIUM_PROGRESSIVE_POLARIZEDTINT_1_67S = 'T4_PREMIUM_PROGRESSIVE_POLARIZEDTINT_1_67S',
-  /** T4折射率套餐-premium-progressive-tint-1.56高级 */
-  T4_PREMIUM_PROGRESSIVE_TINT_1_56A = 'T4_PREMIUM_PROGRESSIVE_TINT_1_56A',
-  /** T4折射率套餐-premium-progressive-tint-1.56标准 */
-  T4_PREMIUM_PROGRESSIVE_TINT_1_56S = 'T4_PREMIUM_PROGRESSIVE_TINT_1_56S',
-  /** T4折射率套餐-premium-progressive-tint-1.60高级 */
-  T4_PREMIUM_PROGRESSIVE_TINT_1_60A = 'T4_PREMIUM_PROGRESSIVE_TINT_1_60A',
-  /** T4折射率套餐-premium-progressive-tint-1.60标准 */
-  T4_PREMIUM_PROGRESSIVE_TINT_1_60S = 'T4_PREMIUM_PROGRESSIVE_TINT_1_60S',
-  /** T4折射率套餐-premium-progressive-tint-1.67高级 */
-  T4_PREMIUM_PROGRESSIVE_TINT_1_67A = 'T4_PREMIUM_PROGRESSIVE_TINT_1_67A',
-  /** T4折射率套餐-premium-progressive-tint-1.67标准 */
-  T4_PREMIUM_PROGRESSIVE_TINT_1_67S = 'T4_PREMIUM_PROGRESSIVE_TINT_1_67S',
-  /** T4折射率套餐-premium-progressive-transphoto-1.50高级 */
-  T4_PREMIUM_PROGRESSIVE_TRANSPHOTO_1_50A = 'T4_PREMIUM_PROGRESSIVE_TRANSPHOTO_1_50A',
-  /** T4折射率套餐-premium-progressive-transphoto-1.50标准 */
-  T4_PREMIUM_PROGRESSIVE_TRANSPHOTO_1_50S = 'T4_PREMIUM_PROGRESSIVE_TRANSPHOTO_1_50S',
-  /** T4折射率套餐-premium-progressive-transphoto-1.60高级 */
-  T4_PREMIUM_PROGRESSIVE_TRANSPHOTO_1_60A = 'T4_PREMIUM_PROGRESSIVE_TRANSPHOTO_1_60A',
-  /** T4折射率套餐-premium-progressive-transphoto-1.60标准 */
-  T4_PREMIUM_PROGRESSIVE_TRANSPHOTO_1_60S = 'T4_PREMIUM_PROGRESSIVE_TRANSPHOTO_1_60S',
-  /** T4折射率套餐-progressive-blue-1.56高级 */
-  T4_PROGRESSIVE_BLUE_BASIC_1_56A = 'T4_PROGRESSIVE_BLUE_BASIC_1_56A',
-  /** T4折射率套餐-progressive-blue-1.56标准 */
-  T4_PROGRESSIVE_BLUE_BASIC_1_56S = 'T4_PROGRESSIVE_BLUE_BASIC_1_56S',
-  /** T4折射率套餐-progressive-blue-1.60高级 */
-  T4_PROGRESSIVE_BLUE_BASIC_1_60A = 'T4_PROGRESSIVE_BLUE_BASIC_1_60A',
-  /** T4折射率套餐-progressive-blue-1.60标准 */
-  T4_PROGRESSIVE_BLUE_BASIC_1_60S = 'T4_PROGRESSIVE_BLUE_BASIC_1_60S',
-  /** T4折射率套餐-progressive-blue-1.67高级 */
-  T4_PROGRESSIVE_BLUE_BASIC_1_67A = 'T4_PROGRESSIVE_BLUE_BASIC_1_67A',
-  /** T4折射率套餐-progressive-blue-1.67标准 */
-  T4_PROGRESSIVE_BLUE_BASIC_1_67S = 'T4_PROGRESSIVE_BLUE_BASIC_1_67S',
-  /** T4折射率套餐-progressive-clear-1.56高级 */
-  T4_PROGRESSIVE_CLEAR_BASIC_1_56A = 'T4_PROGRESSIVE_CLEAR_BASIC_1_56A',
-  /** T4折射率套餐-progressive-clear-1.56标准 */
-  T4_PROGRESSIVE_CLEAR_BASIC_1_56S = 'T4_PROGRESSIVE_CLEAR_BASIC_1_56S',
-  /** T4折射率套餐-progressive-clear-1.60高级 */
-  T4_PROGRESSIVE_CLEAR_BASIC_1_60A = 'T4_PROGRESSIVE_CLEAR_BASIC_1_60A',
-  /** T4折射率套餐-progressive-clear-1.60标准 */
-  T4_PROGRESSIVE_CLEAR_BASIC_1_60S = 'T4_PROGRESSIVE_CLEAR_BASIC_1_60S',
-  /** T4折射率套餐-progressive-clear-1.67高级 */
-  T4_PROGRESSIVE_CLEAR_BASIC_1_67A = 'T4_PROGRESSIVE_CLEAR_BASIC_1_67A',
-  /** T4折射率套餐-progressive-clear-1.67标准 */
-  T4_PROGRESSIVE_CLEAR_BASIC_1_67S = 'T4_PROGRESSIVE_CLEAR_BASIC_1_67S',
-  /** T4折射率套餐-progressive-photochromic-1.56高级 */
-  T4_PROGRESSIVE_PHOTOCHROMIC_1_56A = 'T4_PROGRESSIVE_PHOTOCHROMIC_1_56A',
-  /** T4折射率套餐-progressive-photochromic-1.56标准 */
-  T4_PROGRESSIVE_PHOTOCHROMIC_1_56S = 'T4_PROGRESSIVE_PHOTOCHROMIC_1_56S',
-  /** T4折射率套餐-progressive-photochromic-1.60高级 */
-  T4_PROGRESSIVE_PHOTOCHROMIC_1_60A = 'T4_PROGRESSIVE_PHOTOCHROMIC_1_60A',
-  /** T4折射率套餐-progressive-photochromic-1.60标准 */
-  T4_PROGRESSIVE_PHOTOCHROMIC_1_60S = 'T4_PROGRESSIVE_PHOTOCHROMIC_1_60S',
-  /** T4折射率套餐-progressive-photochromic-1.67高级 */
-  T4_PROGRESSIVE_PHOTOCHROMIC_1_67A = 'T4_PROGRESSIVE_PHOTOCHROMIC_1_67A',
-  /** T4折射率套餐-progressive-photochromic-1.67标准 */
-  T4_PROGRESSIVE_PHOTOCHROMIC_1_67S = 'T4_PROGRESSIVE_PHOTOCHROMIC_1_67S',
-  /** T4折射率套餐-progressive-polarizedtint-1.56高级 */
-  T4_PROGRESSIVE_POLARIZEDTINT_1_56A = 'T4_PROGRESSIVE_POLARIZEDTINT_1_56A',
-  /** T4折射率套餐-progressive-polarizedtint-1.56标准 */
-  T4_PROGRESSIVE_POLARIZEDTINT_1_56S = 'T4_PROGRESSIVE_POLARIZEDTINT_1_56S',
-  /** T4折射率套餐-progressive-polarizedtint-1.60高级 */
-  T4_PROGRESSIVE_POLARIZEDTINT_1_60A = 'T4_PROGRESSIVE_POLARIZEDTINT_1_60A',
-  /** T4折射率套餐-progressive-polarizedtint-1.60标准 */
-  T4_PROGRESSIVE_POLARIZEDTINT_1_60S = 'T4_PROGRESSIVE_POLARIZEDTINT_1_60S',
-  /** T4折射率套餐-progressive-polarizedtint-1.67高级 */
-  T4_PROGRESSIVE_POLARIZEDTINT_1_67A = 'T4_PROGRESSIVE_POLARIZEDTINT_1_67A',
-  /** T4折射率套餐-progressive-polarizedtint-1.67标准 */
-  T4_PROGRESSIVE_POLARIZEDTINT_1_67S = 'T4_PROGRESSIVE_POLARIZEDTINT_1_67S',
-  /** T4折射率套餐-progressive-tint-1.56高级 */
-  T4_PROGRESSIVE_TINT_1_56A = 'T4_PROGRESSIVE_TINT_1_56A',
-  /** T4折射率套餐-progressive-tint-1.56标准 */
-  T4_PROGRESSIVE_TINT_1_56S = 'T4_PROGRESSIVE_TINT_1_56S',
-  /** T4折射率套餐-progressive-tint-1.60高级 */
-  T4_PROGRESSIVE_TINT_1_60A = 'T4_PROGRESSIVE_TINT_1_60A',
-  /** T4折射率套餐-progressive-tint-1.60标准 */
-  T4_PROGRESSIVE_TINT_1_60S = 'T4_PROGRESSIVE_TINT_1_60S',
-  /** T4折射率套餐-progressive-tint-1.67高级 */
-  T4_PROGRESSIVE_TINT_1_67A = 'T4_PROGRESSIVE_TINT_1_67A',
-  /** T4折射率套餐-progressive-tint-1.67标准 */
-  T4_PROGRESSIVE_TINT_1_67S = 'T4_PROGRESSIVE_TINT_1_67S',
-  /** T4折射率套餐-progressive-transphoto-1.50高级 */
-  T4_PROGRESSIVE_TRANSPHOTO_1_50A = 'T4_PROGRESSIVE_TRANSPHOTO_1_50A',
-  /** T4折射率套餐-progressive-transphoto-1.50标准 */
-  T4_PROGRESSIVE_TRANSPHOTO_1_50S = 'T4_PROGRESSIVE_TRANSPHOTO_1_50S',
-  /** T4折射率套餐-progressive-transphoto-1.60高级 */
-  T4_PROGRESSIVE_TRANSPHOTO_1_60A = 'T4_PROGRESSIVE_TRANSPHOTO_1_60A',
-  /** T4折射率套餐-progressive-transphoto-1.60标准 */
-  T4_PROGRESSIVE_TRANSPHOTO_1_60S = 'T4_PROGRESSIVE_TRANSPHOTO_1_60S',
-  /** T4折射率套餐-single-blue-1.56高级 */
-  T4_SINGLE_BLUE_BASIC_1_56A = 'T4_SINGLE_BLUE_BASIC_1_56A',
-  /** T4折射率套餐-single-blue-1.56标准 */
-  T4_SINGLE_BLUE_BASIC_1_56S = 'T4_SINGLE_BLUE_BASIC_1_56S',
-  /** T4折射率套餐-single-blue-1.60高级 */
-  T4_SINGLE_BLUE_BASIC_1_60A = 'T4_SINGLE_BLUE_BASIC_1_60A',
-  /** T4折射率套餐-single-blue-1.60标准 */
-  T4_SINGLE_BLUE_BASIC_1_60S = 'T4_SINGLE_BLUE_BASIC_1_60S',
-  /** T4折射率套餐-single-blue-1.67高级 */
-  T4_SINGLE_BLUE_BASIC_1_67A = 'T4_SINGLE_BLUE_BASIC_1_67A',
-  /** T4折射率套餐-single-blue-1.67标准 */
-  T4_SINGLE_BLUE_BASIC_1_67S = 'T4_SINGLE_BLUE_BASIC_1_67S',
-  /** T4折射率套餐-single-blue-1.71高级 */
-  T4_SINGLE_BLUE_BASIC_1_71A = 'T4_SINGLE_BLUE_BASIC_1_71A',
-  /** T4折射率套餐-single-blue-1.71标准 */
-  T4_SINGLE_BLUE_BASIC_1_71S = 'T4_SINGLE_BLUE_BASIC_1_71S',
-  /** T4折射率套餐-single-clear-1.56高级 */
-  T4_SINGLE_CLEAR_BASIC_1_56A = 'T4_SINGLE_CLEAR_BASIC_1_56A',
-  /** T4折射率套餐-single-clear-1.56标准 */
-  T4_SINGLE_CLEAR_BASIC_1_56S = 'T4_SINGLE_CLEAR_BASIC_1_56S',
-  /** T4折射率套餐-single-clear-1.59高级 */
-  T4_SINGLE_CLEAR_BASIC_1_59A = 'T4_SINGLE_CLEAR_BASIC_1_59A',
-  /** T4折射率套餐-single-clear-1.59标准 */
-  T4_SINGLE_CLEAR_BASIC_1_59S = 'T4_SINGLE_CLEAR_BASIC_1_59S',
-  /** T4折射率套餐-single-clear-1.60高级 */
-  T4_SINGLE_CLEAR_BASIC_1_60A = 'T4_SINGLE_CLEAR_BASIC_1_60A',
-  /** T4折射率套餐-single-clear-1.60标准 */
-  T4_SINGLE_CLEAR_BASIC_1_60S = 'T4_SINGLE_CLEAR_BASIC_1_60S',
-  /** T4折射率套餐-single-clear-1.67高级 */
-  T4_SINGLE_CLEAR_BASIC_1_67A = 'T4_SINGLE_CLEAR_BASIC_1_67A',
-  /** T4折射率套餐-single-clear-1.67标准 */
-  T4_SINGLE_CLEAR_BASIC_1_67S = 'T4_SINGLE_CLEAR_BASIC_1_67S',
-  /** T4折射率套餐-single-clear-1.71高级 */
-  T4_SINGLE_CLEAR_BASIC_1_71A = 'T4_SINGLE_CLEAR_BASIC_1_71A',
-  /** T4折射率套餐-single-clear-1.71标准 */
-  T4_SINGLE_CLEAR_BASIC_1_71S = 'T4_SINGLE_CLEAR_BASIC_1_71S',
-  /** T4折射率套餐-single-clear-1.71高级 */
-  T4_SINGLE_CLEAR_BASIC_1_74A = 'T4_SINGLE_CLEAR_BASIC_1_74A',
-  /** T4折射率套餐-single-clear-1.71标准 */
-  T4_SINGLE_CLEAR_BASIC_1_74S = 'T4_SINGLE_CLEAR_BASIC_1_74S',
-  /** T4折射率套餐-single-gradient-1.56高级 */
-  T4_SINGLE_GRADIENT_1_56A = 'T4_SINGLE_GRADIENT_1_56A',
-  /** T4折射率套餐-single-gradient-1.56标准 */
-  T4_SINGLE_GRADIENT_1_56S = 'T4_SINGLE_GRADIENT_1_56S',
-  /** T4折射率套餐-single-gradient-1.60高级 */
-  T4_SINGLE_GRADIENT_1_60A = 'T4_SINGLE_GRADIENT_1_60A',
-  /** T4折射率套餐-single-gradient-1.60标准 */
-  T4_SINGLE_GRADIENT_1_60S = 'T4_SINGLE_GRADIENT_1_60S',
-  /** T4折射率套餐-single-gradient-1.67高级 */
-  T4_SINGLE_GRADIENT_1_67A = 'T4_SINGLE_GRADIENT_1_67A',
-  /** T4折射率套餐-single-gradient-1.67标准 */
-  T4_SINGLE_GRADIENT_1_67S = 'T4_SINGLE_GRADIENT_1_67S',
-  /** T4折射率套餐-single-mirrored-1.56高级 */
-  T4_SINGLE_MIRRORED_1_56A = 'T4_SINGLE_MIRRORED_1_56A',
-  /** T4折射率套餐-single-mirrored-1.56标准 */
-  T4_SINGLE_MIRRORED_1_56S = 'T4_SINGLE_MIRRORED_1_56S',
-  /** T4折射率套餐-single-mirrored-1.60高级 */
-  T4_SINGLE_MIRRORED_1_60A = 'T4_SINGLE_MIRRORED_1_60A',
-  /** T4折射率套餐-single-mirrored-1.60标准 */
-  T4_SINGLE_MIRRORED_1_60S = 'T4_SINGLE_MIRRORED_1_60S',
-  /** T4折射率套餐-single-mirrored-1.67高级 */
-  T4_SINGLE_MIRRORED_1_67A = 'T4_SINGLE_MIRRORED_1_67A',
-  /** T4折射率套餐-single-mirrored-1.67标准 */
-  T4_SINGLE_MIRRORED_1_67S = 'T4_SINGLE_MIRRORED_1_67S',
-  /** T4折射率套餐-single-photochromic-1.56高级 */
-  T4_SINGLE_PHOTOCHROMIC_1_56A = 'T4_SINGLE_PHOTOCHROMIC_1_56A',
-  /** T4折射率套餐-single-photochromic-1.56标准 */
-  T4_SINGLE_PHOTOCHROMIC_1_56S = 'T4_SINGLE_PHOTOCHROMIC_1_56S',
-  /** T4折射率套餐-single-photochromic-1.60高级 */
-  T4_SINGLE_PHOTOCHROMIC_1_60A = 'T4_SINGLE_PHOTOCHROMIC_1_60A',
-  /** T4折射率套餐-single-photochromic-1.60标准 */
-  T4_SINGLE_PHOTOCHROMIC_1_60S = 'T4_SINGLE_PHOTOCHROMIC_1_60S',
-  /** T4折射率套餐-single-photochromic-1.67高级 */
-  T4_SINGLE_PHOTOCHROMIC_1_67A = 'T4_SINGLE_PHOTOCHROMIC_1_67A',
-  /** T4折射率套餐-single-photochromic-1.67标准 */
-  T4_SINGLE_PHOTOCHROMIC_1_67S = 'T4_SINGLE_PHOTOCHROMIC_1_67S',
-  /** T4折射率套餐-single-photochromic-1.71高级 */
-  T4_SINGLE_PHOTOCHROMIC_1_71A = 'T4_SINGLE_PHOTOCHROMIC_1_71A',
-  /** T4折射率套餐-single-photochromic-1.71标准 */
-  T4_SINGLE_PHOTOCHROMIC_1_71S = 'T4_SINGLE_PHOTOCHROMIC_1_71S',
-  /** T4折射率套餐-single-polarizedmirrored-1.56高级 */
-  T4_SINGLE_POLARIZEDMIRRORED_1_56A = 'T4_SINGLE_POLARIZEDMIRRORED_1_56A',
-  /** T4折射率套餐-single-polarizedmirrored-1.56标准 */
-  T4_SINGLE_POLARIZEDMIRRORED_1_56S = 'T4_SINGLE_POLARIZEDMIRRORED_1_56S',
-  /** T4折射率套餐-single-polarizedmirrored-1.60高级 */
-  T4_SINGLE_POLARIZEDMIRRORED_1_60A = 'T4_SINGLE_POLARIZEDMIRRORED_1_60A',
-  /** T4折射率套餐-single-polarizedmirrored-1.60标准 */
-  T4_SINGLE_POLARIZEDMIRRORED_1_60S = 'T4_SINGLE_POLARIZEDMIRRORED_1_60S',
-  /** T4折射率套餐-single-polarizedmirrored-1.67高级 */
-  T4_SINGLE_POLARIZEDMIRRORED_1_67A = 'T4_SINGLE_POLARIZEDMIRRORED_1_67A',
-  /** T4折射率套餐-single-polarizedmirrored-1.67标准 */
-  T4_SINGLE_POLARIZEDMIRRORED_1_67S = 'T4_SINGLE_POLARIZEDMIRRORED_1_67S',
-  /** T4折射率套餐-single-polarizedtint-1.56高级 */
-  T4_SINGLE_POLARIZEDTINT_1_56A = 'T4_SINGLE_POLARIZEDTINT_1_56A',
-  /** T4折射率套餐-single-polarizedtint-1.56标准 */
-  T4_SINGLE_POLARIZEDTINT_1_56S = 'T4_SINGLE_POLARIZEDTINT_1_56S',
-  /** T4折射率套餐-single-polarizedtint-1.60高级 */
-  T4_SINGLE_POLARIZEDTINT_1_60A = 'T4_SINGLE_POLARIZEDTINT_1_60A',
-  /** T4折射率套餐-single-polarizedtint-1.60标准 */
-  T4_SINGLE_POLARIZEDTINT_1_60S = 'T4_SINGLE_POLARIZEDTINT_1_60S',
-  /** T4折射率套餐-single-polarizedtint-1.67高级 */
-  T4_SINGLE_POLARIZEDTINT_1_67A = 'T4_SINGLE_POLARIZEDTINT_1_67A',
-  /** T4折射率套餐-single-polarizedtint-1.67标准 */
-  T4_SINGLE_POLARIZEDTINT_1_67S = 'T4_SINGLE_POLARIZEDTINT_1_67S',
-  /** T4折射率套餐-single-tint-1.56高级 */
-  T4_SINGLE_TINT_1_56A = 'T4_SINGLE_TINT_1_56A',
-  /** T4折射率套餐-single-tint-1.56标准 */
-  T4_SINGLE_TINT_1_56S = 'T4_SINGLE_TINT_1_56S',
-  /** T4折射率套餐-single-tint-1.60高级 */
-  T4_SINGLE_TINT_1_60A = 'T4_SINGLE_TINT_1_60A',
-  /** T4折射率套餐-single-tint-1.60标准 */
-  T4_SINGLE_TINT_1_60S = 'T4_SINGLE_TINT_1_60S',
-  /** T4折射率套餐-single-tint-1.67高级 */
-  T4_SINGLE_TINT_1_67A = 'T4_SINGLE_TINT_1_67A',
-  /** T4折射率套餐-single-tint-1.67标准 */
-  T4_SINGLE_TINT_1_67S = 'T4_SINGLE_TINT_1_67S',
-  /** T4折射率套餐-single-transphoto-1.50高级 */
-  T4_SINGLE_TRANSPHOTO_1_50A = 'T4_SINGLE_TRANSPHOTO_1_50A',
-  /** T4折射率套餐-single-transphoto-1.50标准 */
-  T4_SINGLE_TRANSPHOTO_1_50S = 'T4_SINGLE_TRANSPHOTO_1_50S',
-  /** T4折射率套餐-single-transphoto-1.60高级 */
-  T4_SINGLE_TRANSPHOTO_1_60A = 'T4_SINGLE_TRANSPHOTO_1_60A',
-  /** T4折射率套餐-single-transphoto-1.60标准 */
-  T4_SINGLE_TRANSPHOTO_1_60S = 'T4_SINGLE_TRANSPHOTO_1_60S',
-}
-
-export type LensProcessOptionList = PaginatedList & {
-  __typename?: 'LensProcessOptionList';
-  items: Array<LensProcessOption>;
-  totalItems: Scalars['Int'];
-};
-
-export type LensProcessOptionListOptions = {
-  /** Allows the results to be filtered */
-  filter?: InputMaybe<LensProcessOptionFilterParameter>;
-  /** Specifies whether multiple "filter" arguments should be combines with a logical AND or OR operation. Defaults to AND. */
-  filterOperator?: InputMaybe<LogicalOperator>;
-  /** Skips the first n results, for use in pagination */
-  skip?: InputMaybe<Scalars['Int']>;
-  /** Specifies which properties to sort the results by */
-  sort?: InputMaybe<LensProcessOptionSortParameter>;
-  /** Takes n results, for use in pagination */
-  take?: InputMaybe<Scalars['Int']>;
-};
-
-export type LensProcessOptionParent = {
-  __typename?: 'LensProcessOptionParent';
-  id: Scalars['ID'];
-};
-
-export type LensProcessOptionPreview = {
-  __typename?: 'LensProcessOptionPreview';
-  isPhotochromic?: Maybe<Scalars['Boolean']>;
-  opacity?: Maybe<Scalars['Float']>;
-  visualMask?: Maybe<Scalars['String']>;
-};
-
-export type LensProcessOptionSortParameter = {
-  adjustPrice?: InputMaybe<SortOrder>;
-  createdAt?: InputMaybe<SortOrder>;
-  displayOrder?: InputMaybe<SortOrder>;
-  feature?: InputMaybe<SortOrder>;
-  icon?: InputMaybe<SortOrder>;
-  id?: InputMaybe<SortOrder>;
-  name?: InputMaybe<SortOrder>;
-  parentId?: InputMaybe<SortOrder>;
-  shortDesc?: InputMaybe<SortOrder>;
-  updatedAt?: InputMaybe<SortOrder>;
-  upgradeText?: InputMaybe<SortOrder>;
-};
-
-export type LensProcessOptionTranslation = Node & {
-  __typename?: 'LensProcessOptionTranslation';
-  /** 功能特点标识, Up to 20% thinner */
-  feature?: Maybe<Scalars['String']>;
-  id: Scalars['ID'];
-  /** 当前选项的详细注解, 详细标注当前选项包含的内容 */
-  introduction?: Maybe<Array<Scalars['String']>>;
-  /** 当前语言 */
-  languageCode: LanguageCode;
-  /** 当前选项的名称 */
-  name: Scalars['String'];
-  /** 当前选项的短描述 */
-  shortDesc: Scalars['String'];
-  /** 升级选项名字, 可以在name基础上进行额外包装 */
-  upgradeText?: Maybe<Scalars['String']>;
-};
-
-/** 针对专题集合页: 镜片流程中标识专题集合页面的唯一KEY, 如果特定专题页需要高光规则, 需要指定如下的1个或者多个KEY */
-export enum LensProcessProductCollectionKeys {
-  /** 专题页: T3_BLUE作为默认高光选项 */
-  TOPIC_PAGE_BLUE_LIGHT = 'TOPIC_PAGE_BLUE_LIGHT',
-  /** 专题页: T1_NON_PRESCRIPTION作为默认高光选项 */
-  TOPIC_PAGE_NON_PRESCRIPTION = 'TOPIC_PAGE_NON_PRESCRIPTION',
-  /** 专题页: T3_LIGHT作为默认高光选项 */
-  TOPIC_PAGE_PHOTOCHROMIC = 'TOPIC_PAGE_PHOTOCHROMIC',
-  /** 专题页: T1_MULTIFOCAL作为默认高光选项 */
-  TOPIC_PAGE_PROGRESSIVE = 'TOPIC_PAGE_PROGRESSIVE',
-  /** 专题页: T1_READING作为默认高光选项 */
-  TOPIC_PAGE_READING = 'TOPIC_PAGE_READING',
-}
-
-export type LensProcessStepInputs = {
-  /** T0镜架的商品基础信息 */
-  T0: LensProcessT0Inputs;
-  /** T1用途大类/用途子类途, 用户的选择数据输入 */
-  T1?: InputMaybe<LensProcessT1Inputs>;
-  /** T2填处方, 用户的输入数据输入 */
-  T2?: InputMaybe<LensProcessT2Inputs>;
-  /** T3功能大类/功能二级子类/功能三级子类 */
-  T3?: InputMaybe<LensProcessT3Inputs>;
-  /** T4折射率及膜层/自定义 */
-  T4?: InputMaybe<LensProcessT4Inputs>;
-};
-
-export type LensProcessStepQueryResult = {
-  __typename?: 'LensProcessStepQueryResult';
-  /** Step1下面的流程选项 */
-  T1?: Maybe<Array<LensProcessOption>>;
-  /** Step2下面的流程选项 */
-  T2?: Maybe<Array<LensProcessOption>>;
-  /** Step3下面的流程选项 */
-  T3?: Maybe<Array<LensProcessOption>>;
-  /** Step4下面的流程选项 */
-  T4?: Maybe<Array<LensProcessOption>>;
-};
-
-export type LensProcessT0Inputs = {
-  /** 产品来源的那一个分类或者专题页的集合ID */
-  collectionId?: InputMaybe<Scalars['ID']>;
-  /** 当前用户的UA parser结果辅助判断用户群体 */
-  deviceInfo?: InputMaybe<Scalars['JSON']>;
-  /** 镜架产品ID */
-  productId: Scalars['ID'];
-  /** 镜架产品变量ID */
-  productVariantId: Scalars['ID'];
-};
-
-export type LensProcessT1Inputs = {
-  /** 用户选择的用途选项模块对应的ID */
-  lensProcessOptionId: Scalars['ID'];
-  /** 用户选择的用户选项模块对应的选项Key */
-  lensProcessOptionKey?: InputMaybe<LensProcessOptionKeys>;
-};
-
-export type LensProcessT2Inputs = {
-  /** 左右眼视力: 老花, Distance 不展示 */
-  add?: InputMaybe<Scalars['String']>;
-  /** 用户年龄 */
-  age?: InputMaybe<Scalars['String']>;
-  /** 针对游泳镜, 项链镜, 用户可以只输入度数即可加入购物车. */
-  directDegrees?: InputMaybe<Scalars['String']>;
-  /** 右眼视力: 散光轴度。散光度数在眼球发生的角度，0-180度之间 */
-  odAxis?: InputMaybe<Scalars['String']>;
-  /** 右眼视力: 柱镜度数（即散光）+正的指的是远视散光, -负指的是近视散光 */
-  odCyl?: InputMaybe<Scalars['String']>;
-  /** 右眼视力: 球镜（近视、远视度数) +表示远视， —表示近视 */
-  odSph?: InputMaybe<Scalars['String']>;
-  /** 左眼视力: 散光轴度。散光度数在眼球发生的角度，0-180度之间 */
-  osAxis?: InputMaybe<Scalars['String']>;
-  /** 左眼视力: 柱镜度数（即散光）+正的指的是远视散光, -负指的是近视散光 */
-  osCyl?: InputMaybe<Scalars['String']>;
-  /** 左眼视力: 球镜（近视、远视度数) +表示远视， —表示近视 */
-  osSph?: InputMaybe<Scalars['String']>;
-  /** 双眼PD,单位为1 */
-  pd?: InputMaybe<Scalars['String']>;
-  /** 左眼瞳距, 单眼PD, 单位为0.5 */
-  pdLeft?: InputMaybe<Scalars['String']>;
-  /** 右眼瞳距, 单眼PD, 单位为0.5 */
-  pdRight?: InputMaybe<Scalars['String']>;
-  /** 棱镜, 标准处方可选值 */
-  prism?: InputMaybe<PrismItemInput>;
-  /** 当针对老花的时候,可以允许用户直接选择一个度数 */
-  reading?: InputMaybe<Scalars['String']>;
-  /** 处方的备注信息 */
-  rxComments?: InputMaybe<Scalars['String']>;
-  /** 处方类型, 老花处方/标准处方 */
-  rxType: RxType;
-};
-
-export type LensProcessT2UserActionData = {
-  __typename?: 'LensProcessT2UserActionData';
-  /** 当前action项的名称, 如加钱, 当成唯一KEY来使用 */
-  actionItemKey: Scalars['String'];
-  /** 选择当前action行为的价格调整 */
-  adjustPrice: Scalars['Int'];
-  /** 当前action项的名称, 如加钱项, 多国语言的翻译名称, 会显示到加价理由上. 有的选项不需要消息提示. */
-  i18nName?: Maybe<Scalars['String']>;
-  /** 当前action 配置项目配置变量, 比如专题页面URL */
-  variables: UserActionOptionItemsVariablesData;
-};
-
-export type LensProcessT2UserActionInput = {
-  /** 当前action项的名称, 如加钱, 当成唯一KEY来使用 */
-  actionItemKey: Scalars['String'];
-  /** 选择当前action行为的价格调整 */
-  adjustPrice: Scalars['Int'];
-  /** 当前action项的名称, 如加钱项, 多国语言的翻译名称, 会显示到加价理由上. 有的选项不需要消息提示. */
-  i18nName?: InputMaybe<Scalars['String']>;
-  /** 当前action 配置项目配置变量, 比如专题页面URL */
-  variables: UserActionOptionItemsVariablesInput;
-};
-
-export type LensProcessT2UserInputtedRxData = {
-  __typename?: 'LensProcessT2UserInputtedRxData';
-  /** 左右眼视力: 老花, Distance 不展示 */
-  add?: Maybe<Scalars['String']>;
-  /** 用户年龄 */
-  age?: Maybe<Scalars['String']>;
-  /** 针对游泳镜, 项链镜, 用户可以只输入度数即可加入购物车. */
-  directDegrees?: Maybe<Scalars['String']>;
-  /** 右眼视力: 散光轴度。散光度数在眼球发生的角度，0-180度之间 */
-  odAxis?: Maybe<Scalars['String']>;
-  /** 右眼视力: 柱镜度数（即散光）+正的指的是远视散光, -负指的是近视散光 */
-  odCyl?: Maybe<Scalars['String']>;
-  /** 右眼视力: 球镜（近视、远视度数) +表示远视， —表示近视 */
-  odSph?: Maybe<Scalars['String']>;
-  /** 左眼视力: 散光轴度。散光度数在眼球发生的角度，0-180度之间 */
-  osAxis?: Maybe<Scalars['String']>;
-  /** 左眼视力: 柱镜度数（即散光）+正的指的是远视散光, -负指的是近视散光 */
-  osCyl?: Maybe<Scalars['String']>;
-  /** 左眼视力: 球镜（近视、远视度数) +表示远视， —表示近视 */
-  osSph?: Maybe<Scalars['String']>;
-  /** 双眼PD,单位为1 */
-  pd?: Maybe<Scalars['String']>;
-  /** 左眼瞳距, 单眼PD, 单位为0.5 */
-  pdLeft?: Maybe<Scalars['String']>;
-  /** 右眼瞳距, 单眼PD, 单位为0.5 */
-  pdRight?: Maybe<Scalars['String']>;
-  /** 棱镜, 标准处方可选值 */
-  prism?: Maybe<PrismItem>;
-  /** 当针对老花的时候,可以允许用户直接选择一个度数 */
-  reading?: Maybe<Scalars['String']>;
-  /** 处方的备注信息 */
-  rxComments?: Maybe<Scalars['String']>;
-  /** 处方类型, 老花处方/标准处方 */
-  rxType: RxType;
-};
-
-export type LensProcessT3Inputs = {
-  /** 用户选择的用途选项模块对应的ID */
-  lensProcessOptionId: Scalars['ID'];
-  /** 用户选择的用户选项模块对应的选项Key */
-  lensProcessOptionKey?: InputMaybe<LensProcessOptionKeys>;
-};
-
-export type LensProcessT4Inputs = {
-  /** 用户选择的用途选项模块对应的ID */
-  lensProcessOptionId: Scalars['ID'];
-  /** 用户选择的用户选项模块对应的选项Key */
-  lensProcessOptionKey?: InputMaybe<LensProcessOptionKeys>;
-};
-
-export type LensProcessTemplate = Node & {
-  __typename?: 'LensProcessTemplate';
-  description: Scalars['String'];
-  id: Scalars['ID'];
-  name: Scalars['String'];
-};
-
-export type LensProcessTemplateList = PaginatedList & {
-  __typename?: 'LensProcessTemplateList';
-  items: Array<LensProcessTemplate>;
-  totalItems: Scalars['Int'];
-};
-
-/** 镜片流程步骤枚举T1...T4, PREVIEW */
-export enum LensStepGroups {
-  /** 最后一步, 预览, 确认页 */
-  PREVIEW = 'PREVIEW',
-  /** 上下文步骤, 当前镜片步骤, 前置信息 */
-  T0 = 'T0',
-  /** 用途大类/用途子类 */
-  T1 = 'T1',
-  /** 填处方模块 */
-  T2 = 'T2',
-  /** 功能大类/功能二级子类/功能三级子类 */
-  T3 = 'T3',
-  /** 折射率及膜层/自定义 */
-  T4 = 'T4',
-}
-
-/** 查询并验证处方配置项输入参数 */
-export type ListAndValidateRxConfigsInput = {
-  /** T0镜架的商品基础信息 */
-  T0: LensProcessT0Inputs;
-  /** T1用途大类/用途子类途, 用户的选择数据输入 */
-  T1?: InputMaybe<LensProcessT1Inputs>;
-  /** T2填处方, 用户的输入数据输入 */
-  T2?: InputMaybe<LensProcessT2Inputs>;
-  /** 当前接口调用模式, 可选, 用来区别调用是点击了save 按钮还是其他 */
-  eventType?: InputMaybe<ListAndValidateRxEventType>;
-};
-
-export enum ListAndValidateRxEventType {
-  /** 当前处方选项onChange */
-  ON_RX_ITEM_CHANGE = 'ON_RX_ITEM_CHANGE',
-  /** 保存整个处方onSave */
-  ON_RX_SAVE_VERIFICATION = 'ON_RX_SAVE_VERIFICATION',
-}
-
 export type LocaleStringCustomFieldConfig = CustomField & {
   __typename?: 'LocaleStringCustomFieldConfig';
   description?: Maybe<Array<LocalizedString>>;
@@ -3204,33 +1577,16 @@ export type Mutation = {
   addItemToOrder: UpdateOrderItemsResult;
   /** Add a Payment to the Order */
   addPaymentToOrder: AddPaymentToOrderResult;
-  addSubscriptionEmail: Subscription;
-  addSubscriptionPhone: Subscription;
   /** Adjusts an OrderLine. If custom fields are defined on the OrderLine entity, a third argument 'customFields' of type `OrderLineCustomFieldsInput` will be available. */
   adjustOrderLine: UpdateOrderItemsResult;
   /** Applies the given coupon code to the active Order */
   applyCouponCode: ApplyCouponCodeResult;
-  /** 申请特定活动的优惠码, 返回申请的优惠券信息 */
-  applyForCouponCode?: Maybe<CampaignCoupon>;
   /** Authenticates the user using a named authentication strategy */
   authenticate: AuthenticationResult;
   /** Create a new Customer Address */
   createCustomerAddress: Address;
-  createInvitedCustomerProductReview?: Maybe<ProductReview>;
-  /** Create a new invoice */
-  createInvoice?: Maybe<Invoice>;
-  /** Create a new ProductQa */
-  createProductQa: ProductQa;
-  createProductReview?: Maybe<ProductReview>;
-  createTicket?: Maybe<Ticket>;
-  /** Create a new user tryon face model */
-  createTryonFaceModels: Array<TryonFaceModel>;
   /** Delete an existing Address */
   deleteCustomerAddress: Success;
-  /** Delete own rx item */
-  deleteRx: DeletionResponse;
-  /** Delete an existing user tryon face model */
-  deleteTryonFaceModel: DeletionResponse;
   /** Authenticates the user using the native authentication strategy. This mutation is an alias for `authenticate({ native: { ... }})` */
   login: NativeAuthenticationResult;
   /** End the current authenticated session */
@@ -3271,10 +1627,6 @@ export type Mutation = {
   requestUpdateCustomerEmailAddress: RequestUpdateCustomerEmailAddressResult;
   /** Resets a Customer's password based on the provided token */
   resetPassword: ResetPasswordResult;
-  /** Create a new Rx */
-  saveRx: Rx;
-  /** 保存当前STEP的数据, 并返回激活订单的详细信息 */
-  saveUserProcessConfigStep: UpdateOrderItemsResult;
   /** Set the Customer for the Order. Required only if the Customer is not currently logged in */
   setCustomerForOrder: SetCustomerForOrderResult;
   /** Sets the billing address for this order */
@@ -3285,11 +1637,8 @@ export type Mutation = {
   setOrderShippingAddress: ActiveOrderResult;
   /** Sets the shipping method by id, which can be obtained with the `eligibleShippingMethods` query */
   setOrderShippingMethod: SetOrderShippingMethodResult;
-  settlePayment: Scalars['Boolean'];
-  toggleFavorite?: Maybe<ToggleFavoriteResult>;
   /** Transitions an Order to a new state. Valid next states can be found by querying `nextOrderStates` */
   transitionOrderToState?: Maybe<TransitionOrderToStateResult>;
-  updateCrossSellingProducts: Scalars['Boolean'];
   /** Update an existing Customer */
   updateCustomer: Customer;
   /** Update an existing Address */
@@ -3301,16 +1650,6 @@ export type Mutation = {
   updateCustomerEmailAddress: UpdateCustomerEmailAddressResult;
   /** Update the password of the active Customer */
   updateCustomerPassword: UpdateCustomerPasswordResult;
-  /** Create a new help center helpful yes/no */
-  updateHelpCenterHelpful: HelpCenter;
-  /** Create a new product qa helpful yes/no */
-  updateProductQaHelpful: ProductQa;
-  updateProductReview?: Maybe<ProductReview>;
-  /** Update an existing Rx */
-  updateRx: Rx;
-  /** Create a new Topic helpful yes/no */
-  updateTopicHelpful: Topic;
-  updateUpSellingProducts: Scalars['Boolean'];
   /**
    * Verify a Customer email address with the token sent to that address. Only applicable if `authOptions.requireVerification` is set to true.
    *
@@ -3318,11 +1657,9 @@ export type Mutation = {
    * provided here.
    */
   verifyCustomerAccount: VerifyCustomerAccountResult;
-  voteOnReview: ProductReview;
 };
 
 export type MutationAddItemToOrderArgs = {
-  customFields?: InputMaybe<OrderLineCustomFieldsInput>;
   productVariantId: Scalars['ID'];
   quantity: Scalars['Int'];
 };
@@ -3331,27 +1668,13 @@ export type MutationAddPaymentToOrderArgs = {
   input: PaymentInput;
 };
 
-export type MutationAddSubscriptionEmailArgs = {
-  input: EmailAddInput;
-};
-
-export type MutationAddSubscriptionPhoneArgs = {
-  input: PhoneAddInput;
-};
-
 export type MutationAdjustOrderLineArgs = {
-  customFields?: InputMaybe<OrderLineCustomFieldsInput>;
   orderLineId: Scalars['ID'];
   quantity: Scalars['Int'];
 };
 
 export type MutationApplyCouponCodeArgs = {
   couponCode: Scalars['String'];
-};
-
-export type MutationApplyForCouponCodeArgs = {
-  code: Scalars['String'];
-  emailAddress: Scalars['String'];
 };
 
 export type MutationAuthenticateArgs = {
@@ -3363,39 +1686,7 @@ export type MutationCreateCustomerAddressArgs = {
   input: CreateAddressInput;
 };
 
-export type MutationCreateInvitedCustomerProductReviewArgs = {
-  input: CreateInvitedCustomerProductReviewInput;
-};
-
-export type MutationCreateInvoiceArgs = {
-  input: CreateInvoiceInput;
-};
-
-export type MutationCreateProductQaArgs = {
-  input: CreateProductQaInput;
-};
-
-export type MutationCreateProductReviewArgs = {
-  input: CreateProductReviewInput;
-};
-
-export type MutationCreateTicketArgs = {
-  input: CreateTicketInput;
-};
-
-export type MutationCreateTryonFaceModelsArgs = {
-  input: Array<CreateTryonFaceModelInput>;
-};
-
 export type MutationDeleteCustomerAddressArgs = {
-  id: Scalars['ID'];
-};
-
-export type MutationDeleteRxArgs = {
-  id: Scalars['ID'];
-};
-
-export type MutationDeleteTryonFaceModelArgs = {
   id: Scalars['ID'];
 };
 
@@ -3435,14 +1726,6 @@ export type MutationResetPasswordArgs = {
   token: Scalars['String'];
 };
 
-export type MutationSaveRxArgs = {
-  input: CreateRxInput;
-};
-
-export type MutationSaveUserProcessConfigStepArgs = {
-  input: SaveUserProcessConfigStepInput;
-};
-
 export type MutationSetCustomerForOrderArgs = {
   input: CreateCustomerInput;
 };
@@ -3463,21 +1746,8 @@ export type MutationSetOrderShippingMethodArgs = {
   shippingMethodId: Scalars['ID'];
 };
 
-export type MutationSettlePaymentArgs = {
-  input: SettlePaymentInput;
-};
-
-export type MutationToggleFavoriteArgs = {
-  productVariantId: Scalars['ID'];
-};
-
 export type MutationTransitionOrderToStateArgs = {
   state: Scalars['String'];
-};
-
-export type MutationUpdateCrossSellingProductsArgs = {
-  productId: Scalars['ID'];
-  productIds: Array<Scalars['ID']>;
 };
 
 export type MutationUpdateCustomerArgs = {
@@ -3497,39 +1767,9 @@ export type MutationUpdateCustomerPasswordArgs = {
   newPassword: Scalars['String'];
 };
 
-export type MutationUpdateHelpCenterHelpfulArgs = {
-  input: UpdateHelpCenterHelpfulInput;
-};
-
-export type MutationUpdateProductQaHelpfulArgs = {
-  input: UpdateProductQaHelpfulInput;
-};
-
-export type MutationUpdateProductReviewArgs = {
-  input: UpdateProductReviewInput;
-};
-
-export type MutationUpdateRxArgs = {
-  input: UpdateRxInput;
-};
-
-export type MutationUpdateTopicHelpfulArgs = {
-  input: UpdateTopicHelpfulInput;
-};
-
-export type MutationUpdateUpSellingProductsArgs = {
-  productId: Scalars['ID'];
-  productIds: Array<Scalars['ID']>;
-};
-
 export type MutationVerifyCustomerAccountArgs = {
   password?: InputMaybe<Scalars['String']>;
   token: Scalars['String'];
-};
-
-export type MutationVoteOnReviewArgs = {
-  id: Scalars['ID'];
-  vote: Scalars['Boolean'];
 };
 
 export type NativeAuthInput = {
@@ -3571,79 +1811,6 @@ export type Node = {
   id: Scalars['ID'];
 };
 
-export type NormalizedRx = {
-  __typename?: 'NormalizedRx';
-  /** 左右眼视力: 老花, Distance 不展示 */
-  add?: Maybe<Scalars['String']>;
-  /** 用户年龄 */
-  age?: Maybe<Scalars['String']>;
-  /** 针对游泳镜, 项链镜, 用户可以只输入度数即可加入购物车. */
-  directDegrees?: Maybe<Scalars['String']>;
-  /** 是否为默认处方 */
-  isDefault?: Maybe<Scalars['Boolean']>;
-  /** 右眼视力: 散光轴度。散光度数在眼球发生的角度，0-180度之间 */
-  odAxis?: Maybe<Scalars['String']>;
-  /** 右眼视力: 柱镜度数（即散光）+正的指的是远视散光, -负指的是近视散光 */
-  odCyl?: Maybe<Scalars['String']>;
-  /** 右眼视力: 球镜（近视、远视度数) +表示远视， —表示近视 */
-  odSph?: Maybe<Scalars['String']>;
-  /** 左眼视力: 散光轴度。散光度数在眼球发生的角度，0-180度之间 */
-  osAxis?: Maybe<Scalars['String']>;
-  /** 左眼视力: 柱镜度数（即散光）+正的指的是远视散光, -负指的是近视散光 */
-  osCyl?: Maybe<Scalars['String']>;
-  /** 左眼视力: 球镜（近视、远视度数) +表示远视， —表示近视 */
-  osSph?: Maybe<Scalars['String']>;
-  /** 双眼PD,单位为1 */
-  pd?: Maybe<Scalars['String']>;
-  /** 左眼瞳距, 单眼PD, 单位为0.5 */
-  pdLeft?: Maybe<Scalars['String']>;
-  /** 右眼瞳距, 单眼PD, 单位为0.5 */
-  pdRight?: Maybe<Scalars['String']>;
-  /** 棱镜, 标准处方可选值 */
-  prism?: Maybe<PrismItem>;
-  /** 当针对老花的时候,可以允许用户直接选择一个度数 */
-  reading?: Maybe<Scalars['String']>;
-  /** 处方的备注信息 */
-  rxComments?: Maybe<Scalars['String']>;
-  /** 处方类型, 老花处方/标准处方 */
-  rxType: RxType;
-};
-
-export type NormalizedRxInput = {
-  /** 左右眼视力: 老花, Distance 不展示 */
-  add?: InputMaybe<Scalars['String']>;
-  /** 用户年龄 */
-  age?: InputMaybe<Scalars['String']>;
-  /** 针对游泳镜, 项链镜, 用户可以只输入度数即可加入购物车. */
-  directDegrees?: InputMaybe<Scalars['String']>;
-  /** 是否标记为默认处方 */
-  isDefault?: InputMaybe<Scalars['Boolean']>;
-  /** 右眼视力: 散光轴度。散光度数在眼球发生的角度，0-180度之间 */
-  odAxis?: InputMaybe<Scalars['String']>;
-  /** 右眼视力: 柱镜度数（即散光）+正的指的是远视散光, -负指的是近视散光 */
-  odCyl?: InputMaybe<Scalars['String']>;
-  /** 右眼视力: 球镜（近视、远视度数) +表示远视， —表示近视 */
-  odSph?: InputMaybe<Scalars['String']>;
-  /** 左眼视力: 散光轴度。散光度数在眼球发生的角度，0-180度之间 */
-  osAxis?: InputMaybe<Scalars['String']>;
-  /** 左眼视力: 柱镜度数（即散光）+正的指的是远视散光, -负指的是近视散光 */
-  osCyl?: InputMaybe<Scalars['String']>;
-  /** 左眼视力: 球镜（近视、远视度数) +表示远视， —表示近视 */
-  osSph?: InputMaybe<Scalars['String']>;
-  /** 双眼PD,单位为1 */
-  pd?: InputMaybe<Scalars['String']>;
-  /** 左眼瞳距, 单眼PD, 单位为0.5 */
-  pdLeft?: InputMaybe<Scalars['String']>;
-  /** 右眼瞳距, 单眼PD, 单位为0.5 */
-  pdRight?: InputMaybe<Scalars['String']>;
-  /** 棱镜, 标准处方可选值 */
-  prism?: InputMaybe<PrismItemInput>;
-  /** 当针对老花的时候,可以允许用户直接选择一个度数, 用户也可以切换到标准处方自定义. */
-  reading?: InputMaybe<Scalars['String']>;
-  /** 处方类型, 老花处方/标准处方 */
-  rxType: RxType;
-};
-
 /**
  * Returned if `authOptions.requireVerification` is set to `true` (which is the default)
  * and an unverified user attempts to authenticate.
@@ -3678,8 +1845,6 @@ export type Order = Node & {
   __typename?: 'Order';
   /** An order is active as long as the payment process has not been completed */
   active: Scalars['Boolean'];
-  /** 当前激活订单可用的优惠券列表 */
-  availableCoupons: Array<CampaignCoupon>;
   billingAddress?: Maybe<OrderAddress>;
   /** A unique code for the Order */
   code: Scalars['String'];
@@ -3687,14 +1852,12 @@ export type Order = Node & {
   couponCodes: Array<Scalars['String']>;
   createdAt: Scalars['DateTime'];
   currencyCode: CurrencyCode;
-  customFields?: Maybe<OrderCustomFields>;
+  customFields?: Maybe<Scalars['JSON']>;
   customer?: Maybe<Customer>;
   discounts: Array<Discount>;
   fulfillments?: Maybe<Array<Fulfillment>>;
   history: HistoryEntryList;
   id: Scalars['ID'];
-  /** Use this in your Storefront to show in order page if user order */
-  invoice?: Maybe<Invoice>;
   lines: Array<OrderLine>;
   /**
    * The date & time that the Order was placed, i.e. the Customer
@@ -3754,18 +1917,12 @@ export type OrderAddress = {
   streetLine2?: Maybe<Scalars['String']>;
 };
 
-export type OrderCustomFields = {
-  __typename?: 'OrderCustomFields';
-  languageCode?: Maybe<Scalars['String']>;
-};
-
 export type OrderFilterParameter = {
   active?: InputMaybe<BooleanOperators>;
   code?: InputMaybe<StringOperators>;
   createdAt?: InputMaybe<DateOperators>;
   currencyCode?: InputMaybe<StringOperators>;
   id?: InputMaybe<IdOperators>;
-  languageCode?: InputMaybe<StringOperators>;
   orderPlacedAt?: InputMaybe<DateOperators>;
   shipping?: InputMaybe<NumberOperators>;
   shippingWithTax?: InputMaybe<NumberOperators>;
@@ -3826,7 +1983,7 @@ export type OrderLimitError = ErrorResult & {
 export type OrderLine = Node & {
   __typename?: 'OrderLine';
   createdAt: Scalars['DateTime'];
-  customFields?: Maybe<OrderLineCustomFields>;
+  customFields?: Maybe<Scalars['JSON']>;
   /** The price of the line including discounts, excluding tax */
   discountedLinePrice: Scalars['Int'];
   /** The price of the line including discounts and tax */
@@ -3847,8 +2004,6 @@ export type OrderLine = Node & {
   fulfillments?: Maybe<Array<Fulfillment>>;
   id: Scalars['ID'];
   items: Array<OrderItem>;
-  /** 扩展的订单镜片流程配置流程, 可能为null */
-  lensConfigs?: Maybe<OrderLineLensConfigs>;
   /** The total price of the line excluding tax and discounts. */
   linePrice: Scalars['Int'];
   /** The total price of the line including tax but excluding discounts. */
@@ -3885,86 +2040,6 @@ export type OrderLine = Node & {
   /** Non-zero if the unitPriceWithTax has changed since it was initially added to Order */
   unitPriceWithTaxChangeSinceAdded: Scalars['Int'];
   updatedAt: Scalars['DateTime'];
-};
-
-export type OrderLineCustomFields = {
-  __typename?: 'OrderLineCustomFields';
-  lensConfigs?: Maybe<Scalars['String']>;
-};
-
-export type OrderLineCustomFieldsInput = {
-  lensConfigs?: InputMaybe<Scalars['String']>;
-};
-
-export type OrderLineLensCampaignView = {
-  __typename?: 'OrderLineLensCampaignView';
-  endsAt?: Maybe<Scalars['DateTime']>;
-  framePromotionText?: Maybe<Scalars['String']>;
-  lensPrice?: Maybe<Scalars['String']>;
-  lensPromotionText?: Maybe<Scalars['String']>;
-};
-
-export type OrderLineLensConfigRxStep = {
-  __typename?: 'OrderLineLensConfigRxStep';
-  /** 当前STEP选项下的选中的ID列表 */
-  lensOptionInputs: Array<UserProcessConfigStepLensOptionItem>;
-  /** 当前STEP存储的用户选择的选项列表数据(价格override之后),显示在购物车, 包含prism加价, 以及偏心加价. */
-  lensUserConfigItems: Array<OrderLineLensUserConfigItem>;
-  /** 当前步骤 */
-  step?: Maybe<LensStepGroups>;
-  /** T2处方用户输入的数据 */
-  t2LensRxInput?: Maybe<LensProcessT2UserInputtedRxData>;
-  /** T2用户特殊的ACTION自定义选项, 如加偏心等行为的集合 */
-  t2UserActionInputs?: Maybe<Array<LensProcessT2UserActionData>>;
-};
-
-export type OrderLineLensConfigStep = {
-  __typename?: 'OrderLineLensConfigStep';
-  /** 当前STEP选项下的选中的ID列表 */
-  lensOptionInputs: Array<UserProcessConfigStepLensOptionItem>;
-  /** 当前STEP存储的用户选择的选项列表数据(价格override之后), 显示在购物车 */
-  lensUserConfigItems: Array<OrderLineLensUserConfigItem>;
-  /** 当前步骤 */
-  step?: Maybe<LensStepGroups>;
-};
-
-export type OrderLineLensConfigT0Context = {
-  __typename?: 'OrderLineLensConfigT0Context';
-  /** 产品来源的那一个分类或者专题页的集合ID */
-  collectionId?: Maybe<Scalars['ID']>;
-  /** 镜架产品ID */
-  productId: Scalars['ID'];
-  /** 镜架产品变量ID */
-  productVariantId: Scalars['ID'];
-  /** 当前步骤 */
-  step?: Maybe<LensStepGroups>;
-};
-
-/** 镜片流程保存到OrderLine下的数据 */
-export type OrderLineLensConfigs = {
-  __typename?: 'OrderLineLensConfigs';
-  T0?: Maybe<OrderLineLensConfigT0Context>;
-  T1?: Maybe<OrderLineLensConfigStep>;
-  T2?: Maybe<OrderLineLensConfigRxStep>;
-  T3?: Maybe<OrderLineLensConfigStep>;
-  T4?: Maybe<OrderLineLensConfigStep>;
-  /** 当前配置了直降活动, 在镜片上的折扣, 显示信息 */
-  campaignView?: Maybe<OrderLineLensCampaignView>;
-  /** 当前镜片是否已经是配置完成状态. */
-  lensStepsDone?: Maybe<Scalars['Boolean']>;
-  /** 当前orderLine 镜片部分的单价 */
-  lensUnitPrice?: Maybe<Scalars['Int']>;
-};
-
-export type OrderLineLensUserConfigItem = {
-  __typename?: 'OrderLineLensUserConfigItem';
-  adjustPrice: Scalars['Int'];
-  i18nName: Scalars['String'];
-  introduction?: Maybe<Array<Scalars['String']>>;
-  preview?: Maybe<LensProcessOptionPreview>;
-  shortDesc?: Maybe<Scalars['String']>;
-  /** T3如果有颜色值, 则放此处 */
-  uiComponents?: Maybe<LensOptionUiComponents>;
 };
 
 export type OrderList = PaginatedList & {
@@ -4004,7 +2079,6 @@ export type OrderSortParameter = {
   code?: InputMaybe<SortOrder>;
   createdAt?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
-  languageCode?: InputMaybe<SortOrder>;
   orderPlacedAt?: InputMaybe<SortOrder>;
   shipping?: InputMaybe<SortOrder>;
   shippingWithTax?: InputMaybe<SortOrder>;
@@ -4130,7 +2204,7 @@ export type PaymentMethod = Node & {
   checker?: Maybe<ConfigurableOperation>;
   code: Scalars['String'];
   createdAt: Scalars['DateTime'];
-  customFields?: Maybe<PaymentMethodCustomFields>;
+  customFields?: Maybe<Scalars['JSON']>;
   description: Scalars['String'];
   enabled: Scalars['Boolean'];
   handler: ConfigurableOperation;
@@ -4139,27 +2213,15 @@ export type PaymentMethod = Node & {
   updatedAt: Scalars['DateTime'];
 };
 
-export type PaymentMethodCustomFields = {
-  __typename?: 'PaymentMethodCustomFields';
-  paypalClientConfig?: Maybe<Scalars['String']>;
-};
-
-export type PaymentMethodPaypalClientConfig = {
-  __typename?: 'PaymentMethodPaypalClientConfig';
-  clientId: Scalars['String'];
-};
-
 export type PaymentMethodQuote = {
   __typename?: 'PaymentMethodQuote';
   code: Scalars['String'];
-  customFields?: Maybe<PaymentMethodCustomFields>;
+  customFields?: Maybe<Scalars['JSON']>;
   description: Scalars['String'];
   eligibilityMessage?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
   isEligible: Scalars['Boolean'];
   name: Scalars['String'];
-  /** 扩展一个字段配置为paypal客户端支付SDK集成 */
-  paypalClientConfig?: Maybe<PaymentMethodPaypalClientConfig>;
 };
 
 /**
@@ -4195,22 +2257,12 @@ export type PaymentMethodQuote = {
  * @docsCategory common
  */
 export enum Permission {
-  /** Allow this user to enable invoice generation */
-  AllowInvoicesPermission = 'AllowInvoicesPermission',
-  /** Allow this user to enable reporting */
-  AllowReportingPermission = 'AllowReportingPermission',
-  /** Allow this user to enable sitemap generation */
-  AllowSitemapPermission = 'AllowSitemapPermission',
   /** Authenticated means simply that the user is logged in */
   Authenticated = 'Authenticated',
   /** Grants permission to create Administrator */
   CreateAdministrator = 'CreateAdministrator',
   /** Grants permission to create Asset */
   CreateAsset = 'CreateAsset',
-  /** Grants permission to create Banner */
-  CreateBanner = 'CreateBanner',
-  /** Grants permission to create Campaign */
-  CreateCampaign = 'CreateCampaign',
   /** Grants permission to create Products, Facets, Assets, Collections */
   CreateCatalog = 'CreateCatalog',
   /** Grants permission to create Channel */
@@ -4223,38 +2275,20 @@ export enum Permission {
   CreateCustomer = 'CreateCustomer',
   /** Grants permission to create CustomerGroup */
   CreateCustomerGroup = 'CreateCustomerGroup',
-  /** Grants permission to create EDM */
-  CreateEDM = 'CreateEDM',
   /** Grants permission to create Facet */
   CreateFacet = 'CreateFacet',
-  /** Grants permission to create HelpCenter */
-  CreateHelpCenter = 'CreateHelpCenter',
-  /** Grants permission to create LensProcess */
-  CreateLensProcess = 'CreateLensProcess',
   /** Grants permission to create Order */
   CreateOrder = 'CreateOrder',
   /** Grants permission to create PaymentMethod */
   CreatePaymentMethod = 'CreatePaymentMethod',
-  /** Grants permission to create ProdcutQA */
-  CreateProdcutQA = 'CreateProdcutQA',
   /** Grants permission to create Product */
   CreateProduct = 'CreateProduct',
   /** Grants permission to create Promotion */
   CreatePromotion = 'CreatePromotion',
-  /** Grants permission to create ReviewsPermission */
-  CreateReviewsPermission = 'CreateReviewsPermission',
-  /** Grants permission to create Risk */
-  CreateRisk = 'CreateRisk',
-  /** Grants permission to create Setting */
-  CreateSetting = 'CreateSetting',
   /** Grants permission to create PaymentMethods, ShippingMethods, TaxCategories, TaxRates, Zones, Countries, System & GlobalSettings */
   CreateSettings = 'CreateSettings',
   /** Grants permission to create ShippingMethod */
   CreateShippingMethod = 'CreateShippingMethod',
-  /** Grants permission to create Subscription */
-  CreateSubscription = 'CreateSubscription',
-  /** Grants permission to create Supplier */
-  CreateSupplier = 'CreateSupplier',
   /** Grants permission to create System */
   CreateSystem = 'CreateSystem',
   /** Grants permission to create Tag */
@@ -4263,18 +2297,12 @@ export enum Permission {
   CreateTaxCategory = 'CreateTaxCategory',
   /** Grants permission to create TaxRate */
   CreateTaxRate = 'CreateTaxRate',
-  /** Grants permission to create Topic */
-  CreateTopic = 'CreateTopic',
   /** Grants permission to create Zone */
   CreateZone = 'CreateZone',
   /** Grants permission to delete Administrator */
   DeleteAdministrator = 'DeleteAdministrator',
   /** Grants permission to delete Asset */
   DeleteAsset = 'DeleteAsset',
-  /** Grants permission to delete Banner */
-  DeleteBanner = 'DeleteBanner',
-  /** Grants permission to delete Campaign */
-  DeleteCampaign = 'DeleteCampaign',
   /** Grants permission to delete Products, Facets, Assets, Collections */
   DeleteCatalog = 'DeleteCatalog',
   /** Grants permission to delete Channel */
@@ -4287,38 +2315,20 @@ export enum Permission {
   DeleteCustomer = 'DeleteCustomer',
   /** Grants permission to delete CustomerGroup */
   DeleteCustomerGroup = 'DeleteCustomerGroup',
-  /** Grants permission to delete EDM */
-  DeleteEDM = 'DeleteEDM',
   /** Grants permission to delete Facet */
   DeleteFacet = 'DeleteFacet',
-  /** Grants permission to delete HelpCenter */
-  DeleteHelpCenter = 'DeleteHelpCenter',
-  /** Grants permission to delete LensProcess */
-  DeleteLensProcess = 'DeleteLensProcess',
   /** Grants permission to delete Order */
   DeleteOrder = 'DeleteOrder',
   /** Grants permission to delete PaymentMethod */
   DeletePaymentMethod = 'DeletePaymentMethod',
-  /** Grants permission to delete ProdcutQA */
-  DeleteProdcutQA = 'DeleteProdcutQA',
   /** Grants permission to delete Product */
   DeleteProduct = 'DeleteProduct',
   /** Grants permission to delete Promotion */
   DeletePromotion = 'DeletePromotion',
-  /** Grants permission to delete ReviewsPermission */
-  DeleteReviewsPermission = 'DeleteReviewsPermission',
-  /** Grants permission to delete Risk */
-  DeleteRisk = 'DeleteRisk',
-  /** Grants permission to delete Setting */
-  DeleteSetting = 'DeleteSetting',
   /** Grants permission to delete PaymentMethods, ShippingMethods, TaxCategories, TaxRates, Zones, Countries, System & GlobalSettings */
   DeleteSettings = 'DeleteSettings',
   /** Grants permission to delete ShippingMethod */
   DeleteShippingMethod = 'DeleteShippingMethod',
-  /** Grants permission to delete Subscription */
-  DeleteSubscription = 'DeleteSubscription',
-  /** Grants permission to delete Supplier */
-  DeleteSupplier = 'DeleteSupplier',
   /** Grants permission to delete System */
   DeleteSystem = 'DeleteSystem',
   /** Grants permission to delete Tag */
@@ -4327,8 +2337,6 @@ export enum Permission {
   DeleteTaxCategory = 'DeleteTaxCategory',
   /** Grants permission to delete TaxRate */
   DeleteTaxRate = 'DeleteTaxRate',
-  /** Grants permission to delete Topic */
-  DeleteTopic = 'DeleteTopic',
   /** Grants permission to delete Zone */
   DeleteZone = 'DeleteZone',
   /** Owner means the user owns this entity, e.g. a Customer's own Order */
@@ -4339,10 +2347,6 @@ export enum Permission {
   ReadAdministrator = 'ReadAdministrator',
   /** Grants permission to read Asset */
   ReadAsset = 'ReadAsset',
-  /** Grants permission to read Banner */
-  ReadBanner = 'ReadBanner',
-  /** Grants permission to read Campaign */
-  ReadCampaign = 'ReadCampaign',
   /** Grants permission to read Products, Facets, Assets, Collections */
   ReadCatalog = 'ReadCatalog',
   /** Grants permission to read Channel */
@@ -4355,38 +2359,20 @@ export enum Permission {
   ReadCustomer = 'ReadCustomer',
   /** Grants permission to read CustomerGroup */
   ReadCustomerGroup = 'ReadCustomerGroup',
-  /** Grants permission to read EDM */
-  ReadEDM = 'ReadEDM',
   /** Grants permission to read Facet */
   ReadFacet = 'ReadFacet',
-  /** Grants permission to read HelpCenter */
-  ReadHelpCenter = 'ReadHelpCenter',
-  /** Grants permission to read LensProcess */
-  ReadLensProcess = 'ReadLensProcess',
   /** Grants permission to read Order */
   ReadOrder = 'ReadOrder',
   /** Grants permission to read PaymentMethod */
   ReadPaymentMethod = 'ReadPaymentMethod',
-  /** Grants permission to read ProdcutQA */
-  ReadProdcutQA = 'ReadProdcutQA',
   /** Grants permission to read Product */
   ReadProduct = 'ReadProduct',
   /** Grants permission to read Promotion */
   ReadPromotion = 'ReadPromotion',
-  /** Grants permission to read ReviewsPermission */
-  ReadReviewsPermission = 'ReadReviewsPermission',
-  /** Grants permission to read Risk */
-  ReadRisk = 'ReadRisk',
-  /** Grants permission to read Setting */
-  ReadSetting = 'ReadSetting',
   /** Grants permission to read PaymentMethods, ShippingMethods, TaxCategories, TaxRates, Zones, Countries, System & GlobalSettings */
   ReadSettings = 'ReadSettings',
   /** Grants permission to read ShippingMethod */
   ReadShippingMethod = 'ReadShippingMethod',
-  /** Grants permission to read Subscription */
-  ReadSubscription = 'ReadSubscription',
-  /** Grants permission to read Supplier */
-  ReadSupplier = 'ReadSupplier',
   /** Grants permission to read System */
   ReadSystem = 'ReadSystem',
   /** Grants permission to read Tag */
@@ -4395,8 +2381,6 @@ export enum Permission {
   ReadTaxCategory = 'ReadTaxCategory',
   /** Grants permission to read TaxRate */
   ReadTaxRate = 'ReadTaxRate',
-  /** Grants permission to read Topic */
-  ReadTopic = 'ReadTopic',
   /** Grants permission to read Zone */
   ReadZone = 'ReadZone',
   /** SuperAdmin has unrestricted access to all operations */
@@ -4405,10 +2389,6 @@ export enum Permission {
   UpdateAdministrator = 'UpdateAdministrator',
   /** Grants permission to update Asset */
   UpdateAsset = 'UpdateAsset',
-  /** Grants permission to update Banner */
-  UpdateBanner = 'UpdateBanner',
-  /** Grants permission to update Campaign */
-  UpdateCampaign = 'UpdateCampaign',
   /** Grants permission to update Products, Facets, Assets, Collections */
   UpdateCatalog = 'UpdateCatalog',
   /** Grants permission to update Channel */
@@ -4421,40 +2401,22 @@ export enum Permission {
   UpdateCustomer = 'UpdateCustomer',
   /** Grants permission to update CustomerGroup */
   UpdateCustomerGroup = 'UpdateCustomerGroup',
-  /** Grants permission to update EDM */
-  UpdateEDM = 'UpdateEDM',
   /** Grants permission to update Facet */
   UpdateFacet = 'UpdateFacet',
   /** Grants permission to update GlobalSettings */
   UpdateGlobalSettings = 'UpdateGlobalSettings',
-  /** Grants permission to update HelpCenter */
-  UpdateHelpCenter = 'UpdateHelpCenter',
-  /** Grants permission to update LensProcess */
-  UpdateLensProcess = 'UpdateLensProcess',
   /** Grants permission to update Order */
   UpdateOrder = 'UpdateOrder',
   /** Grants permission to update PaymentMethod */
   UpdatePaymentMethod = 'UpdatePaymentMethod',
-  /** Grants permission to update ProdcutQA */
-  UpdateProdcutQA = 'UpdateProdcutQA',
   /** Grants permission to update Product */
   UpdateProduct = 'UpdateProduct',
   /** Grants permission to update Promotion */
   UpdatePromotion = 'UpdatePromotion',
-  /** Grants permission to update ReviewsPermission */
-  UpdateReviewsPermission = 'UpdateReviewsPermission',
-  /** Grants permission to update Risk */
-  UpdateRisk = 'UpdateRisk',
-  /** Grants permission to update Setting */
-  UpdateSetting = 'UpdateSetting',
   /** Grants permission to update PaymentMethods, ShippingMethods, TaxCategories, TaxRates, Zones, Countries, System & GlobalSettings */
   UpdateSettings = 'UpdateSettings',
   /** Grants permission to update ShippingMethod */
   UpdateShippingMethod = 'UpdateShippingMethod',
-  /** Grants permission to update Subscription */
-  UpdateSubscription = 'UpdateSubscription',
-  /** Grants permission to update Supplier */
-  UpdateSupplier = 'UpdateSupplier',
   /** Grants permission to update System */
   UpdateSystem = 'UpdateSystem',
   /** Grants permission to update Tag */
@@ -4463,15 +2425,9 @@ export enum Permission {
   UpdateTaxCategory = 'UpdateTaxCategory',
   /** Grants permission to update TaxRate */
   UpdateTaxRate = 'UpdateTaxRate',
-  /** Grants permission to update Topic */
-  UpdateTopic = 'UpdateTopic',
   /** Grants permission to update Zone */
   UpdateZone = 'UpdateZone',
 }
-
-export type PhoneAddInput = {
-  phone: Scalars['String'];
-};
 
 /** The price range where the result has more than one price */
 export type PriceRange = {
@@ -4480,77 +2436,19 @@ export type PriceRange = {
   min: Scalars['Int'];
 };
 
-/** 棱镜, 标准处方配置 */
-export type PrismItem = {
-  __typename?: 'PrismItem';
-  /** OD(Right eye) */
-  odHorizontal?: Maybe<Scalars['String']>;
-  /** ODHorizontal  (Δ) Base Direction */
-  odHorizontalDirection?: Maybe<Scalars['String']>;
-  /** OD(Right eye) */
-  odVertical?: Maybe<Scalars['String']>;
-  /** ODVertical (Δ) Base Direction */
-  odVerticalDirection?: Maybe<Scalars['String']>;
-  /** OS(Left eye) */
-  osHorizontal?: Maybe<Scalars['String']>;
-  /** OS Horizontal  (Δ) Base Direction */
-  osHorizontalDirection?: Maybe<Scalars['String']>;
-  /** OS(Left eye) */
-  osVertical?: Maybe<Scalars['String']>;
-  /** OS Vertical (Δ) Base Direction */
-  osVerticalDirection?: Maybe<Scalars['String']>;
-};
-
-/** 棱镜, 标准处方配置 */
-export type PrismItemInput = {
-  /** OD(Right eye) */
-  odHorizontal?: InputMaybe<Scalars['String']>;
-  /** ODHorizontal  (Δ) Base Direction */
-  odHorizontalDirection?: InputMaybe<Scalars['String']>;
-  /** OD(Right eye) */
-  odVertical?: InputMaybe<Scalars['String']>;
-  /** ODVertical (Δ) Base Direction */
-  odVerticalDirection?: InputMaybe<Scalars['String']>;
-  /** OS(Left eye) */
-  osHorizontal?: InputMaybe<Scalars['String']>;
-  /** OS Horizontal  (Δ) Base Direction */
-  osHorizontalDirection?: InputMaybe<Scalars['String']>;
-  /** OS(Left eye) */
-  osVertical?: InputMaybe<Scalars['String']>;
-  /** OS Vertical (Δ) Base Direction */
-  osVerticalDirection?: InputMaybe<Scalars['String']>;
-};
-
-export type ProcessConfigsOfStepInput = {
-  /** 当前用户的(T0...T4)流程输入数据 */
-  lensProcessStepInputs: LensProcessStepInputs;
-  /** 当前查询的流程步骤, 只返回当前步骤下的流程配置选项 */
-  step: LensStepGroups;
-};
-
 export type Product = Node & {
   __typename?: 'Product';
   assets: Array<Asset>;
   collections: Array<Collection>;
   createdAt: Scalars['DateTime'];
-  customFields?: Maybe<ProductCustomFields>;
+  customFields?: Maybe<Scalars['JSON']>;
   description: Scalars['String'];
   facetValues: Array<FacetValue>;
   featuredAsset?: Maybe<Asset>;
-  /** 扩展的镜架商品信息, 可能为null */
-  frameFields?: Maybe<ProductFrame>;
   id: Scalars['ID'];
   languageCode: LanguageCode;
   name: Scalars['String'];
   optionGroups: Array<ProductOptionGroup>;
-  /** 扩展的商品类型, frame | accessory */
-  productType: Scalars['String'];
-  /** Query questionAnsers property field questionAnsers */
-  questionAnswers: ProductQaList;
-  recommendations: Array<ProductRecommendation>;
-  reviewAvg: Scalars['Float'];
-  reviews: ProductReviewList;
-  reviewsHistogram: Array<ProductReviewHistogramItem>;
   slug: Scalars['String'];
   translations: Array<ProductTranslation>;
   updatedAt: Scalars['DateTime'];
@@ -4560,92 +2458,18 @@ export type Product = Node & {
   variants: Array<ProductVariant>;
 };
 
-export type ProductQuestionAnswersArgs = {
-  options?: InputMaybe<ProductQaListOptions>;
-};
-
-export type ProductReviewsArgs = {
-  options?: InputMaybe<ProductReviewListOptions>;
-};
-
 export type ProductVariantListArgs = {
   options?: InputMaybe<ProductVariantListOptions>;
 };
 
-export type ProductCustomFields = {
-  __typename?: 'ProductCustomFields';
-  bridge?: Maybe<Scalars['Int']>;
-  dimensionModelConfig?: Maybe<Scalars['String']>;
-  isFinishProduct?: Maybe<Scalars['Boolean']>;
-  lensDiagonalSize?: Maybe<Scalars['Int']>;
-  lensHeight?: Maybe<Scalars['Int']>;
-  lensProcessTemplate?: Maybe<LensProcessTemplate>;
-  lensWidth?: Maybe<Scalars['Int']>;
-  metaDescription?: Maybe<Scalars['String']>;
-  metaTitle?: Maybe<Scalars['String']>;
-  minLensDiam?: Maybe<Scalars['Int']>;
-  reviewCount?: Maybe<Scalars['Int']>;
-  reviewRating?: Maybe<Scalars['Float']>;
-  templeLength?: Maybe<Scalars['Int']>;
-  totalWidth?: Maybe<Scalars['Int']>;
-  weight?: Maybe<Scalars['Int']>;
-};
-
 export type ProductFilterParameter = {
-  bridge?: InputMaybe<NumberOperators>;
   createdAt?: InputMaybe<DateOperators>;
   description?: InputMaybe<StringOperators>;
-  dimensionModelConfig?: InputMaybe<StringOperators>;
   id?: InputMaybe<IdOperators>;
-  isFinishProduct?: InputMaybe<BooleanOperators>;
   languageCode?: InputMaybe<StringOperators>;
-  lensDiagonalSize?: InputMaybe<NumberOperators>;
-  lensHeight?: InputMaybe<NumberOperators>;
-  lensWidth?: InputMaybe<NumberOperators>;
-  metaDescription?: InputMaybe<StringOperators>;
-  metaTitle?: InputMaybe<StringOperators>;
-  minLensDiam?: InputMaybe<NumberOperators>;
   name?: InputMaybe<StringOperators>;
-  productType?: InputMaybe<StringOperators>;
-  reviewAvg?: InputMaybe<NumberOperators>;
-  reviewCount?: InputMaybe<NumberOperators>;
-  reviewRating?: InputMaybe<NumberOperators>;
   slug?: InputMaybe<StringOperators>;
-  templeLength?: InputMaybe<NumberOperators>;
-  totalWidth?: InputMaybe<NumberOperators>;
   updatedAt?: InputMaybe<DateOperators>;
-  weight?: InputMaybe<NumberOperators>;
-};
-
-/** 产品基础信息中扩展的镜架信息 */
-export type ProductFrame = {
-  __typename?: 'ProductFrame';
-  /** 中梁 */
-  bridge: Scalars['Int'];
-  /** 镜架/镜腿显示的可视化尺寸画线配置数据, 所有的variant都是公用一个模型 */
-  dimensionModelConfig?: Maybe<DimensionModelConfig>;
-  /** 镜架/镜腿显示的尺寸mm/in */
-  dimensionModelData?: Maybe<DimensionModelData>;
-  /** 镜架PD */
-  framePd: Scalars['Int'];
-  /** 是否是成品眼镜, 如成品太阳镜可能自带镜片, 无须镜片流程 */
-  isFinishProduct: Scalars['Boolean'];
-  /** 对角线 */
-  lensDiagonalSize: Scalars['Int'];
-  /** 框高 */
-  lensHeight: Scalars['Int'];
-  /** 当前的镜片流程模版配置 */
-  lensProcessTemplate?: Maybe<LensProcessTemplate>;
-  /** 框宽 */
-  lensWidth: Scalars['Int'];
-  /** 最小镜片直径 */
-  minLensDiam: Scalars['Int'];
-  /** 腿长 */
-  templeLength: Scalars['Int'];
-  /** 整宽 */
-  totalWidth: Scalars['Int'];
-  /** 重量 */
-  weight: Scalars['Int'];
 };
 
 export type ProductList = PaginatedList & {
@@ -4712,216 +2536,18 @@ export type ProductOptionTranslation = {
   updatedAt: Scalars['DateTime'];
 };
 
-export type ProductQa = Node & {
-  __typename?: 'ProductQa';
-  createdAt: Scalars['DateTime'];
-  customer?: Maybe<Customer>;
-  helpful: Scalars['Int'];
-  id: Scalars['ID'];
-  languageCode: LanguageCode;
-  product: Product;
-  productId: Scalars['ID'];
-  question: Scalars['String'];
-  reply?: Maybe<Scalars['String']>;
-  replyCreatedAt?: Maybe<Scalars['DateTime']>;
-  updatedAt: Scalars['DateTime'];
-};
-
-export type ProductQaFilterParameter = {
-  createdAt?: InputMaybe<DateOperators>;
-  helpful?: InputMaybe<NumberOperators>;
-  id?: InputMaybe<IdOperators>;
-  languageCode?: InputMaybe<StringOperators>;
-  productId?: InputMaybe<IdOperators>;
-  question?: InputMaybe<StringOperators>;
-  reply?: InputMaybe<StringOperators>;
-  replyCreatedAt?: InputMaybe<DateOperators>;
-  updatedAt?: InputMaybe<DateOperators>;
-};
-
-export type ProductQaList = PaginatedList & {
-  __typename?: 'ProductQaList';
-  items: Array<ProductQa>;
-  totalItems: Scalars['Int'];
-};
-
-export type ProductQaListOptions = {
-  /** Allows the results to be filtered */
-  filter?: InputMaybe<ProductQaFilterParameter>;
-  /** Specifies whether multiple "filter" arguments should be combines with a logical AND or OR operation. Defaults to AND. */
-  filterOperator?: InputMaybe<LogicalOperator>;
-  /** Skips the first n results, for use in pagination */
-  skip?: InputMaybe<Scalars['Int']>;
-  /** Specifies which properties to sort the results by */
-  sort?: InputMaybe<ProductQaSortParameter>;
-  /** Takes n results, for use in pagination */
-  take?: InputMaybe<Scalars['Int']>;
-};
-
-export type ProductQaSortParameter = {
-  createdAt?: InputMaybe<SortOrder>;
-  helpful?: InputMaybe<SortOrder>;
-  id?: InputMaybe<SortOrder>;
-  productId?: InputMaybe<SortOrder>;
-  question?: InputMaybe<SortOrder>;
-  reply?: InputMaybe<SortOrder>;
-  replyCreatedAt?: InputMaybe<SortOrder>;
-  updatedAt?: InputMaybe<SortOrder>;
-};
-
-export type ProductRecommendation = {
-  __typename?: 'ProductRecommendation';
-  productId: Scalars['ID'];
-  recommendation: Product;
-  type: RecommendationType;
-};
-
-export type ProductReview = Node & {
-  __typename?: 'ProductReview';
-  adminCreatedCustomerName?: Maybe<Scalars['String']>;
-  content: Scalars['String'];
-  createdAt: Scalars['DateTime'];
-  customer?: Maybe<Customer>;
-  customerId?: Maybe<Scalars['ID']>;
-  customerName?: Maybe<Scalars['String']>;
-  customerNameIsPublic: Scalars['Boolean'];
-  downVotes: Scalars['Int'];
-  id: Scalars['ID'];
-  languageCode: LanguageCode;
-  /** mata title 180 characters */
-  metaDescription?: Maybe<Scalars['String']>;
-  /** mata title 90 characters */
-  metaTitle?: Maybe<Scalars['String']>;
-  /** current review of related orderLine */
-  orderLineId?: Maybe<Scalars['ID']>;
-  product?: Maybe<Product>;
-  productId: Scalars['ID'];
-  productVariant?: Maybe<ProductVariant>;
-  productVariantId: Scalars['ID'];
-  rating: Scalars['Int'];
-  /** extends new property relatedReviews */
-  relatedReviews: Array<ProductReview>;
-  reply?: Maybe<Scalars['String']>;
-  replyCreatedAt?: Maybe<Scalars['DateTime']>;
-  reviewAsset?: Maybe<Asset>;
-  showAsTestimonial?: Maybe<Scalars['Boolean']>;
-  slug?: Maybe<Scalars['String']>;
-  state: Scalars['String'];
-  suggestions?: Maybe<Scalars['String']>;
-  /** If system auto created */
-  systemAutoCreated: Scalars['Boolean'];
-  title?: Maybe<Scalars['String']>;
-  upVotes: Scalars['Int'];
-  updatedAt: Scalars['DateTime'];
-};
-
-export type ProductReviewFilterParameter = {
-  adminCreatedCustomerName?: InputMaybe<StringOperators>;
-  content?: InputMaybe<StringOperators>;
-  createdAt?: InputMaybe<DateOperators>;
-  customerId?: InputMaybe<IdOperators>;
-  customerName?: InputMaybe<StringOperators>;
-  customerNameIsPublic?: InputMaybe<BooleanOperators>;
-  downVotes?: InputMaybe<NumberOperators>;
-  id?: InputMaybe<IdOperators>;
-  languageCode?: InputMaybe<StringOperators>;
-  metaDescription?: InputMaybe<StringOperators>;
-  metaTitle?: InputMaybe<StringOperators>;
-  orderLineId?: InputMaybe<IdOperators>;
-  productId?: InputMaybe<IdOperators>;
-  productVariantId?: InputMaybe<IdOperators>;
-  rating?: InputMaybe<NumberOperators>;
-  reply?: InputMaybe<StringOperators>;
-  replyCreatedAt?: InputMaybe<DateOperators>;
-  showAsTestimonial?: InputMaybe<BooleanOperators>;
-  slug?: InputMaybe<StringOperators>;
-  state?: InputMaybe<StringOperators>;
-  suggestions?: InputMaybe<StringOperators>;
-  systemAutoCreated?: InputMaybe<BooleanOperators>;
-  title?: InputMaybe<StringOperators>;
-  upVotes?: InputMaybe<NumberOperators>;
-  updatedAt?: InputMaybe<DateOperators>;
-};
-
-export type ProductReviewHistogramItem = {
-  __typename?: 'ProductReviewHistogramItem';
-  bin: Scalars['Int'];
-  frequency: Scalars['Int'];
-};
-
-export type ProductReviewList = PaginatedList & {
-  __typename?: 'ProductReviewList';
-  items: Array<ProductReview>;
-  totalItems: Scalars['Int'];
-};
-
-export type ProductReviewListOptions = {
-  /** Allows the results to be filtered */
-  filter?: InputMaybe<ProductReviewFilterParameter>;
-  /** Specifies whether multiple "filter" arguments should be combines with a logical AND or OR operation. Defaults to AND. */
-  filterOperator?: InputMaybe<LogicalOperator>;
-  /** Skips the first n results, for use in pagination */
-  skip?: InputMaybe<Scalars['Int']>;
-  /** Specifies which properties to sort the results by */
-  sort?: InputMaybe<ProductReviewSortParameter>;
-  /** Takes n results, for use in pagination */
-  take?: InputMaybe<Scalars['Int']>;
-};
-
-export type ProductReviewSortParameter = {
-  adminCreatedCustomerName?: InputMaybe<SortOrder>;
-  content?: InputMaybe<SortOrder>;
-  createdAt?: InputMaybe<SortOrder>;
-  customerId?: InputMaybe<SortOrder>;
-  customerName?: InputMaybe<SortOrder>;
-  downVotes?: InputMaybe<SortOrder>;
-  id?: InputMaybe<SortOrder>;
-  metaDescription?: InputMaybe<SortOrder>;
-  metaTitle?: InputMaybe<SortOrder>;
-  orderLineId?: InputMaybe<SortOrder>;
-  productId?: InputMaybe<SortOrder>;
-  productVariantId?: InputMaybe<SortOrder>;
-  rating?: InputMaybe<SortOrder>;
-  reply?: InputMaybe<SortOrder>;
-  replyCreatedAt?: InputMaybe<SortOrder>;
-  slug?: InputMaybe<SortOrder>;
-  state?: InputMaybe<SortOrder>;
-  suggestions?: InputMaybe<SortOrder>;
-  title?: InputMaybe<SortOrder>;
-  upVotes?: InputMaybe<SortOrder>;
-  updatedAt?: InputMaybe<SortOrder>;
-};
-
 export type ProductSortParameter = {
-  bridge?: InputMaybe<SortOrder>;
   createdAt?: InputMaybe<SortOrder>;
   description?: InputMaybe<SortOrder>;
-  dimensionModelConfig?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
-  isFinishProduct?: InputMaybe<SortOrder>;
-  lensDiagonalSize?: InputMaybe<SortOrder>;
-  lensHeight?: InputMaybe<SortOrder>;
-  lensProcessTemplate?: InputMaybe<SortOrder>;
-  lensWidth?: InputMaybe<SortOrder>;
-  metaDescription?: InputMaybe<SortOrder>;
-  metaTitle?: InputMaybe<SortOrder>;
-  minLensDiam?: InputMaybe<SortOrder>;
   name?: InputMaybe<SortOrder>;
-  productType?: InputMaybe<SortOrder>;
-  reviewAvg?: InputMaybe<SortOrder>;
-  reviewCount?: InputMaybe<SortOrder>;
-  reviewRating?: InputMaybe<SortOrder>;
   slug?: InputMaybe<SortOrder>;
-  templeLength?: InputMaybe<SortOrder>;
-  totalWidth?: InputMaybe<SortOrder>;
   updatedAt?: InputMaybe<SortOrder>;
-  weight?: InputMaybe<SortOrder>;
 };
 
 export type ProductTranslation = {
   __typename?: 'ProductTranslation';
   createdAt: Scalars['DateTime'];
-  customFields?: Maybe<ProductTranslationCustomFields>;
   description: Scalars['String'];
   id: Scalars['ID'];
   languageCode: LanguageCode;
@@ -4930,30 +2556,14 @@ export type ProductTranslation = {
   updatedAt: Scalars['DateTime'];
 };
 
-export type ProductTranslationCustomFields = {
-  __typename?: 'ProductTranslationCustomFields';
-  metaDescription?: Maybe<Scalars['String']>;
-  metaTitle?: Maybe<Scalars['String']>;
-};
-
 export type ProductVariant = Node & {
   __typename?: 'ProductVariant';
   assets: Array<Asset>;
-  /** 当前配置了直降活动扩展字段, 展示显示辅助, 并不参与实际价格折扣, 实际价格通过优惠券实现进行直降 */
-  campaignView?: Maybe<ProductVariantCampaignView>;
-  /** Indicates product page if user can create a review, return reviewOrderLine/undefined */
-  canReview?: Maybe<ReviewOrderLine>;
   createdAt: Scalars['DateTime'];
   currencyCode: CurrencyCode;
-  customFields?: Maybe<ProductVariantCustomFields>;
+  customFields?: Maybe<Scalars['JSON']>;
   facetValues: Array<FacetValue>;
-  /** Use this in your Storefront to show in product page if user favorite */
-  favorite?: Maybe<Favorite>;
-  /** Total favorite count of variant item */
-  favoriteCount: Scalars['Int'];
   featuredAsset?: Maybe<Asset>;
-  /** 扩展的镜架商品信息, 可能为null */
-  frameFields?: Maybe<ProductVariantFrame>;
   id: Scalars['ID'];
   languageCode: LanguageCode;
   name: Scalars['String'];
@@ -4970,57 +2580,18 @@ export type ProductVariant = Node & {
   updatedAt: Scalars['DateTime'];
 };
 
-export type ProductVariantCampaignView = {
-  __typename?: 'ProductVariantCampaignView';
-  endsAt?: Maybe<Scalars['DateTime']>;
-  framePrice?: Maybe<Scalars['String']>;
-  framePromotionText?: Maybe<Scalars['String']>;
-  lensPromotionText?: Maybe<Scalars['String']>;
-};
-
-export type ProductVariantCustomFields = {
-  __typename?: 'ProductVariantCustomFields';
-  dimensionFrameAsset?: Maybe<Asset>;
-  dimensionTempleAsset?: Maybe<Asset>;
-  position?: Maybe<Scalars['Int']>;
-  tryonFrameAsset?: Maybe<Asset>;
-  tryonFrameModelConfig?: Maybe<Scalars['String']>;
-  tryonTempleAsset?: Maybe<Asset>;
-  visualFrameAsset?: Maybe<Asset>;
-};
-
 export type ProductVariantFilterParameter = {
   createdAt?: InputMaybe<DateOperators>;
   currencyCode?: InputMaybe<StringOperators>;
-  favoriteCount?: InputMaybe<NumberOperators>;
   id?: InputMaybe<IdOperators>;
   languageCode?: InputMaybe<StringOperators>;
   name?: InputMaybe<StringOperators>;
-  position?: InputMaybe<NumberOperators>;
   price?: InputMaybe<NumberOperators>;
   priceWithTax?: InputMaybe<NumberOperators>;
   productId?: InputMaybe<IdOperators>;
   sku?: InputMaybe<StringOperators>;
   stockLevel?: InputMaybe<StringOperators>;
-  tryonFrameModelConfig?: InputMaybe<StringOperators>;
   updatedAt?: InputMaybe<DateOperators>;
-};
-
-/** 产品Variant(SKU)扩展的镜架信息 */
-export type ProductVariantFrame = {
-  __typename?: 'ProductVariantFrame';
-  /** 单SKU镜架尺寸frame资源图片 */
-  dimensionFrameAsset?: Maybe<Asset>;
-  /** 单SKU镜架尺寸temple资源图片 */
-  dimensionTempleAsset?: Maybe<Asset>;
-  /** 单SKU镜架试戴frame资源图片 */
-  tryonFrameAsset?: Maybe<Asset>;
-  /** 试戴模型的资源配置数据, 每个色号的variant都是一个独立的模型 */
-  tryonFrameModelConfig?: Maybe<TryonModelConfig>;
-  /** 单SKU镜架试戴temple资源图片 */
-  tryonTempleAsset?: Maybe<Asset>;
-  /** 镜片流程中的可视化展示的透明镜框正面图 */
-  visualFrameAsset?: Maybe<Asset>;
 };
 
 export type ProductVariantList = PaginatedList & {
@@ -5044,22 +2615,14 @@ export type ProductVariantListOptions = {
 
 export type ProductVariantSortParameter = {
   createdAt?: InputMaybe<SortOrder>;
-  dimensionFrameAsset?: InputMaybe<SortOrder>;
-  dimensionTempleAsset?: InputMaybe<SortOrder>;
-  favoriteCount?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
   name?: InputMaybe<SortOrder>;
-  position?: InputMaybe<SortOrder>;
   price?: InputMaybe<SortOrder>;
   priceWithTax?: InputMaybe<SortOrder>;
   productId?: InputMaybe<SortOrder>;
   sku?: InputMaybe<SortOrder>;
   stockLevel?: InputMaybe<SortOrder>;
-  tryonFrameAsset?: InputMaybe<SortOrder>;
-  tryonFrameModelConfig?: InputMaybe<SortOrder>;
-  tryonTempleAsset?: InputMaybe<SortOrder>;
   updatedAt?: InputMaybe<SortOrder>;
-  visualFrameAsset?: InputMaybe<SortOrder>;
 };
 
 export type ProductVariantTranslation = {
@@ -5107,20 +2670,10 @@ export type Query = {
   activeOrder?: Maybe<Order>;
   /** An array of supported Countries */
   availableCountries: Array<Country>;
-  /** A list of available order lines to user review */
-  availableOrderLinesToReview: ReviewOrderLineList;
-  /** Query detail of banner entity */
-  banner?: Maybe<Banner>;
-  /** Query all banner list */
-  banners: BannerList;
-  /** customer can review this product variant, return reviewOrderLine/undefined */
-  canReviewProductVariant?: Maybe<ReviewOrderLine>;
   /** Returns a Collection either by its id or slug. If neither 'id' nor 'slug' is specified, an error will result. */
   collection?: Maybe<Collection>;
   /** A list of Collections available to the shop */
   collections: CollectionList;
-  /** Query all tryon face models list of customer (builtin, self owns) */
-  customerTryonFaceModels: Array<TryonFaceModel>;
   /** Returns a list of payment methods and their eligibility based on the current active Order */
   eligiblePaymentMethods: Array<PaymentMethodQuote>;
   /** Returns a list of eligible shipping methods based on the current active Order */
@@ -5129,40 +2682,8 @@ export type Query = {
   facet?: Maybe<Facet>;
   /** A list of Facets available to the shop */
   facets: FacetList;
-  favorite?: Maybe<Favorite>;
-  favorites: FavoriteList;
-  /** 根据活动标识获取特定的优惠信息 */
-  getCampaignInfo?: Maybe<Campaign>;
-  /** Query detail of help center entity */
-  helpCenter?: Maybe<HelpCenter>;
-  /** Query detail of help center collection entity */
-  helpCenterCollection?: Maybe<HelpCenterCollection>;
-  /** Query all help center collections */
-  helpCenterCollections: HelpCenterCollectionList;
-  /** Query all help center hot searches */
-  helpCenterHotSearches: HelpCenterHotSearchList;
-  /** Query detail of help center tag entity */
-  helpCenterTag?: Maybe<HelpCenterTag>;
-  /** Query all help center tags */
-  helpCenterTags: HelpCenterTagList;
-  /** Query all help centers */
-  helpCenters: HelpCenterList;
-  /** Help summarize */
-  helpSummarize?: Maybe<HelpSummarize>;
-  /** Query customer review order lines information, list order lines review information (if can review, editing, creating) */
-  invitedCustomerReviewOrderLines?: Maybe<CustomerReviewOrderLines>;
-  /** Query all lens process template config item list */
-  lensProcessConfigItems: LensProcessConfigItemList;
-  /** Query all lens process options list */
-  lensProcessOptions: LensProcessOptionList;
-  /** 查询当前处方的每一个处方配置的选项列表, 并根据用户的输入给出错误/警告等提示信息. */
-  listAndValidateRxConfigs: Array<RxValidatedConfigItem>;
   /** Returns information about the current authenticated User */
   me?: Maybe<CurrentUser>;
-  /** query customer product review */
-  myProductReview?: Maybe<ProductReview>;
-  /** query customer all commented product review records */
-  myProductReviews: ProductReviewList;
   /** Returns the possible next states that the activeOrder can transition to */
   nextOrderStates: Array<Scalars['String']>;
   /**
@@ -5177,68 +2698,12 @@ export type Query = {
    * general anonymous access to Order data.
    */
   orderByCode?: Maybe<Order>;
-  /** 查询指定流程步骤下的可用流程选项配置列表 */
-  processConfigsOfStep: LensProcessStepQueryResult;
   /** Get a Product either by id or slug. If neither 'id' nor 'slug' is specified, an error will result. */
   product?: Maybe<Product>;
-  /** 查询当前产品配置的模版可用的steps步骤 */
-  productConfiguredProcessSteps: Array<LensStepGroups>;
-  /** Query detail of product qa entity */
-  productQa?: Maybe<ProductQa>;
-  /** Query all product qas */
-  productQas: ProductQaList;
-  productRecommendations: Array<ProductRecommendation>;
-  /** Get a ProductReview either by id or slug. If neither 'id' nor 'slug' is specified, an error will result. */
-  productReview?: Maybe<ProductReview>;
-  /** query all reviews of this product */
-  productReviews: ProductReviewList;
-  /** query product reviews witch contains images */
-  productWithImageReviews: ProductReviewList;
   /** Get a list of Products */
   products: ProductList;
-  /** Get related reviews of specificed product review */
-  relatedReviews: Array<ProductReview>;
-  /** Query detail of risk entity */
-  risk?: Maybe<Risk>;
-  /** Query all risk list */
-  risks: RiskList;
-  /** Query all lens user rx list */
-  rxList: RxList;
   /** Search Products based on the criteria set by the `SearchInput` */
   search: SearchResponse;
-  /** Query detail of setting entity */
-  setting?: Maybe<Setting>;
-  /** Query all setting list */
-  settings: SettingList;
-  /** Get testimonials from reviews */
-  testimonialReviews: Array<ProductReview>;
-  ticket?: Maybe<Ticket>;
-  tickets: TicketList;
-  /** Query detail of topic entity */
-  topic?: Maybe<Topic>;
-  /** Query all topiclinks */
-  topicLinks: TopicLinkList;
-  /** Query all topics */
-  topics: TopicList;
-  unionMain: UnionMain;
-};
-
-export type QueryAvailableOrderLinesToReviewArgs = {
-  options?: InputMaybe<ReviewOrderLineListOptions>;
-};
-
-export type QueryBannerArgs = {
-  id?: InputMaybe<Scalars['ID']>;
-  key?: InputMaybe<Scalars['String']>;
-};
-
-export type QueryBannersArgs = {
-  options?: InputMaybe<BannerListOptions>;
-};
-
-export type QueryCanReviewProductVariantArgs = {
-  orderLineId?: InputMaybe<Scalars['ID']>;
-  productVariantId: Scalars['ID'];
 };
 
 export type QueryCollectionArgs = {
@@ -5250,90 +2715,12 @@ export type QueryCollectionsArgs = {
   options?: InputMaybe<CollectionListOptions>;
 };
 
-export type QueryCustomerTryonFaceModelsArgs = {
-  count?: InputMaybe<Scalars['Int']>;
-};
-
 export type QueryFacetArgs = {
   id: Scalars['ID'];
 };
 
 export type QueryFacetsArgs = {
   options?: InputMaybe<FacetListOptions>;
-};
-
-export type QueryFavoriteArgs = {
-  productVariantId: Scalars['ID'];
-};
-
-export type QueryFavoritesArgs = {
-  options?: InputMaybe<FavoriteListOptions>;
-  productVariantNameFilter?: InputMaybe<Scalars['String']>;
-};
-
-export type QueryGetCampaignInfoArgs = {
-  code: Scalars['String'];
-};
-
-export type QueryHelpCenterArgs = {
-  id?: InputMaybe<Scalars['ID']>;
-  slug?: InputMaybe<Scalars['String']>;
-};
-
-export type QueryHelpCenterCollectionArgs = {
-  id?: InputMaybe<Scalars['ID']>;
-  slug?: InputMaybe<Scalars['String']>;
-};
-
-export type QueryHelpCenterCollectionsArgs = {
-  options?: InputMaybe<HelpCenterCollectionListOptions>;
-};
-
-export type QueryHelpCenterHotSearchesArgs = {
-  options?: InputMaybe<HelpCenterHotSearchListOptions>;
-};
-
-export type QueryHelpCenterTagArgs = {
-  id?: InputMaybe<Scalars['ID']>;
-  slug?: InputMaybe<Scalars['String']>;
-};
-
-export type QueryHelpCenterTagsArgs = {
-  options?: InputMaybe<HelpCenterTagListOptions>;
-};
-
-export type QueryHelpCentersArgs = {
-  collectionIds?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
-  options?: InputMaybe<HelpCenterListOptions>;
-  tagIds?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
-};
-
-export type QueryHelpSummarizeArgs = {
-  options?: InputMaybe<HelpSummarizeOptions>;
-};
-
-export type QueryInvitedCustomerReviewOrderLinesArgs = {
-  encryptedOrderId: Scalars['String'];
-};
-
-export type QueryLensProcessConfigItemsArgs = {
-  options?: InputMaybe<LensProcessConfigItemListOptions>;
-};
-
-export type QueryLensProcessOptionsArgs = {
-  options?: InputMaybe<LensProcessOptionListOptions>;
-};
-
-export type QueryListAndValidateRxConfigsArgs = {
-  input: ListAndValidateRxConfigsInput;
-};
-
-export type QueryMyProductReviewArgs = {
-  id: Scalars['ID'];
-};
-
-export type QueryMyProductReviewsArgs = {
-  options?: InputMaybe<ProductReviewListOptions>;
 };
 
 export type QueryOrderArgs = {
@@ -5344,110 +2731,18 @@ export type QueryOrderByCodeArgs = {
   code: Scalars['String'];
 };
 
-export type QueryProcessConfigsOfStepArgs = {
-  input: ProcessConfigsOfStepInput;
-};
-
 export type QueryProductArgs = {
   id?: InputMaybe<Scalars['ID']>;
   slug?: InputMaybe<Scalars['String']>;
-};
-
-export type QueryProductConfiguredProcessStepsArgs = {
-  productId: Scalars['ID'];
-};
-
-export type QueryProductQaArgs = {
-  id: Scalars['ID'];
-};
-
-export type QueryProductQasArgs = {
-  options?: InputMaybe<ProductQaListOptions>;
-  productId: Scalars['ID'];
-};
-
-export type QueryProductRecommendationsArgs = {
-  productId: Scalars['ID'];
-};
-
-export type QueryProductReviewArgs = {
-  id?: InputMaybe<Scalars['ID']>;
-  slug?: InputMaybe<Scalars['String']>;
-};
-
-export type QueryProductReviewsArgs = {
-  options?: InputMaybe<ProductReviewListOptions>;
-  productId: Scalars['ID'];
-};
-
-export type QueryProductWithImageReviewsArgs = {
-  options?: InputMaybe<ProductReviewListOptions>;
-  productId: Scalars['ID'];
 };
 
 export type QueryProductsArgs = {
   options?: InputMaybe<ProductListOptions>;
 };
 
-export type QueryRelatedReviewsArgs = {
-  id: Scalars['ID'];
-  productId: Scalars['ID'];
-};
-
-export type QueryRiskArgs = {
-  id?: InputMaybe<Scalars['ID']>;
-};
-
-export type QueryRisksArgs = {
-  options?: InputMaybe<RiskListOptions>;
-};
-
-export type QueryRxListArgs = {
-  options?: InputMaybe<RxListOptions>;
-};
-
 export type QuerySearchArgs = {
   input: SearchInput;
 };
-
-export type QuerySettingArgs = {
-  id?: InputMaybe<Scalars['ID']>;
-  key?: InputMaybe<Scalars['String']>;
-};
-
-export type QuerySettingsArgs = {
-  options?: InputMaybe<SettingListOptions>;
-};
-
-export type QueryTestimonialReviewsArgs = {
-  count?: InputMaybe<Scalars['Int']>;
-};
-
-export type QueryTicketArgs = {
-  ticketId: Scalars['ID'];
-};
-
-export type QueryTicketsArgs = {
-  options?: InputMaybe<TicketListOptions>;
-};
-
-export type QueryTopicArgs = {
-  id?: InputMaybe<Scalars['ID']>;
-  slug?: InputMaybe<Scalars['String']>;
-};
-
-export type QueryTopicLinksArgs = {
-  options?: InputMaybe<TopicLinkListOptions>;
-};
-
-export type QueryTopicsArgs = {
-  options?: InputMaybe<TopicListOptions>;
-};
-
-export enum RecommendationType {
-  CROSSSELL = 'CROSSSELL',
-  UPSELL = 'UPSELL',
-}
 
 export type RefreshCustomerVerificationResult =
   | NativeAuthStrategyError
@@ -5477,14 +2772,7 @@ export type RegisterCustomerAccountResult =
   | PasswordValidationError
   | Success;
 
-export type RegisterCustomerCustomFieldsInput = {
-  birthday?: InputMaybe<Scalars['String']>;
-  faceshape?: InputMaybe<Scalars['String']>;
-  languageCode?: InputMaybe<Scalars['String']>;
-};
-
 export type RegisterCustomerInput = {
-  customFields?: InputMaybe<RegisterCustomerCustomFieldsInput>;
   emailAddress: Scalars['String'];
   firstName?: InputMaybe<Scalars['String']>;
   lastName?: InputMaybe<Scalars['String']>;
@@ -5526,119 +2814,6 @@ export type ResetPasswordResult =
   | PasswordResetTokenInvalidError
   | PasswordValidationError;
 
-export type ReviewOrderLine = Node & {
-  __typename?: 'ReviewOrderLine';
-  id: Scalars['ID'];
-  orderLineId: Scalars['ID'];
-  productId: Scalars['ID'];
-  productReview?: Maybe<ProductReview>;
-  productSlug: Scalars['String'];
-  productVariantAsset?: Maybe<Asset>;
-  productVariantId: Scalars['ID'];
-  productVariantName: Scalars['String'];
-  productVariantSku: Scalars['String'];
-};
-
-export type ReviewOrderLineFilterParameter = {
-  id?: InputMaybe<IdOperators>;
-  orderLineId?: InputMaybe<IdOperators>;
-  productId?: InputMaybe<IdOperators>;
-  productSlug?: InputMaybe<StringOperators>;
-  productVariantId?: InputMaybe<IdOperators>;
-  productVariantName?: InputMaybe<StringOperators>;
-  productVariantSku?: InputMaybe<StringOperators>;
-};
-
-export type ReviewOrderLineList = PaginatedList & {
-  __typename?: 'ReviewOrderLineList';
-  items: Array<ReviewOrderLine>;
-  totalItems: Scalars['Int'];
-};
-
-export type ReviewOrderLineListOptions = {
-  /** Allows the results to be filtered */
-  filter?: InputMaybe<ReviewOrderLineFilterParameter>;
-  /** Specifies whether multiple "filter" arguments should be combines with a logical AND or OR operation. Defaults to AND. */
-  filterOperator?: InputMaybe<LogicalOperator>;
-  /** Skips the first n results, for use in pagination */
-  skip?: InputMaybe<Scalars['Int']>;
-  /** Specifies which properties to sort the results by */
-  sort?: InputMaybe<ReviewOrderLineSortParameter>;
-  /** Takes n results, for use in pagination */
-  take?: InputMaybe<Scalars['Int']>;
-};
-
-export type ReviewOrderLineSortParameter = {
-  id?: InputMaybe<SortOrder>;
-  orderLineId?: InputMaybe<SortOrder>;
-  productId?: InputMaybe<SortOrder>;
-  productSlug?: InputMaybe<SortOrder>;
-  productVariantId?: InputMaybe<SortOrder>;
-  productVariantName?: InputMaybe<SortOrder>;
-  productVariantSku?: InputMaybe<SortOrder>;
-};
-
-export enum ReviewStateEnum {
-  Authorized = 'Authorized',
-  Created = 'Created',
-  Denied = 'Denied',
-  Updated = 'Updated',
-}
-
-export type Risk = Node & {
-  __typename?: 'Risk';
-  address?: Maybe<Scalars['String']>;
-  comment?: Maybe<Scalars['String']>;
-  createdAt: Scalars['DateTime'];
-  customer?: Maybe<Customer>;
-  customerId?: Maybe<Scalars['ID']>;
-  email: Scalars['String'];
-  id: Scalars['ID'];
-  riskScore: Scalars['Int'];
-  updatedAt: Scalars['DateTime'];
-};
-
-export type RiskFilterParameter = {
-  address?: InputMaybe<StringOperators>;
-  comment?: InputMaybe<StringOperators>;
-  createdAt?: InputMaybe<DateOperators>;
-  customerId?: InputMaybe<IdOperators>;
-  email?: InputMaybe<StringOperators>;
-  id?: InputMaybe<IdOperators>;
-  riskScore?: InputMaybe<NumberOperators>;
-  updatedAt?: InputMaybe<DateOperators>;
-};
-
-export type RiskList = PaginatedList & {
-  __typename?: 'RiskList';
-  items: Array<Risk>;
-  totalItems: Scalars['Int'];
-};
-
-export type RiskListOptions = {
-  /** Allows the results to be filtered */
-  filter?: InputMaybe<RiskFilterParameter>;
-  /** Specifies whether multiple "filter" arguments should be combines with a logical AND or OR operation. Defaults to AND. */
-  filterOperator?: InputMaybe<LogicalOperator>;
-  /** Skips the first n results, for use in pagination */
-  skip?: InputMaybe<Scalars['Int']>;
-  /** Specifies which properties to sort the results by */
-  sort?: InputMaybe<RiskSortParameter>;
-  /** Takes n results, for use in pagination */
-  take?: InputMaybe<Scalars['Int']>;
-};
-
-export type RiskSortParameter = {
-  address?: InputMaybe<SortOrder>;
-  comment?: InputMaybe<SortOrder>;
-  createdAt?: InputMaybe<SortOrder>;
-  customerId?: InputMaybe<SortOrder>;
-  email?: InputMaybe<SortOrder>;
-  id?: InputMaybe<SortOrder>;
-  riskScore?: InputMaybe<SortOrder>;
-  updatedAt?: InputMaybe<SortOrder>;
-};
-
 export type Role = Node & {
   __typename?: 'Role';
   channels: Array<Channel>;
@@ -5656,331 +2831,6 @@ export type RoleList = PaginatedList & {
   totalItems: Scalars['Int'];
 };
 
-export type Rx = Node & {
-  __typename?: 'Rx';
-  /** 左右眼视力: 老花, Distance 不展示 */
-  add?: Maybe<Scalars['String']>;
-  /** 用户年龄 */
-  age?: Maybe<Scalars['String']>;
-  createdAt: Scalars['DateTime'];
-  /** 处方单对应的客户信息 */
-  customer?: Maybe<Customer>;
-  /** 针对游泳镜, 项链镜, 用户可以只输入度数即可加入购物车. */
-  directDegrees?: Maybe<Scalars['String']>;
-  id: Scalars['ID'];
-  /** 是否标记为默认处方 */
-  isDefault: Scalars['Boolean'];
-  /** 处方单名称 */
-  name?: Maybe<Scalars['String']>;
-  /** 处方一般情况下需要将用户处方转换成标准处方数据, 此处用来存储标准转换之后的处方数据 */
-  normalizedRx?: Maybe<NormalizedRx>;
-  /** 右眼视力: 散光轴度。散光度数在眼球发生的角度，0-180度之间 */
-  odAxis?: Maybe<Scalars['String']>;
-  /** 右眼视力: 柱镜度数（即散光）+正的指的是远视散光, -负指的是近视散光 */
-  odCyl?: Maybe<Scalars['String']>;
-  /** 右眼视力: 球镜（近视、远视度数) +表示远视， —表示近视 */
-  odSph?: Maybe<Scalars['String']>;
-  /** 左眼视力: 散光轴度。散光度数在眼球发生的角度，0-180度之间 */
-  osAxis?: Maybe<Scalars['String']>;
-  /** 左眼视力: 柱镜度数（即散光）+正的指的是远视散光, -负指的是近视散光 */
-  osCyl?: Maybe<Scalars['String']>;
-  /** 左眼视力: 球镜（近视、远视度数) +表示远视， —表示近视 */
-  osSph?: Maybe<Scalars['String']>;
-  /** 双眼PD,单位为1 */
-  pd?: Maybe<Scalars['String']>;
-  /** 左眼瞳距, 单眼PD, 单位为0.5 */
-  pdLeft?: Maybe<Scalars['String']>;
-  /** 右眼瞳距, 单眼PD, 单位为0.5 */
-  pdRight?: Maybe<Scalars['String']>;
-  /** 棱镜, 标准处方可选值 */
-  prism?: Maybe<PrismItem>;
-  /** 当针对老花的时候,可以允许用户直接选择一个度数 */
-  reading?: Maybe<Scalars['String']>;
-  /** 处方的备注信息 */
-  rxComments?: Maybe<Scalars['String']>;
-  /** 处方类型, 老花处方/标准处方 */
-  rxType: RxType;
-  updatedAt: Scalars['DateTime'];
-};
-
-export type RxFilterParameter = {
-  add?: InputMaybe<StringOperators>;
-  age?: InputMaybe<StringOperators>;
-  createdAt?: InputMaybe<DateOperators>;
-  directDegrees?: InputMaybe<StringOperators>;
-  id?: InputMaybe<IdOperators>;
-  isDefault?: InputMaybe<BooleanOperators>;
-  name?: InputMaybe<StringOperators>;
-  odAxis?: InputMaybe<StringOperators>;
-  odCyl?: InputMaybe<StringOperators>;
-  odSph?: InputMaybe<StringOperators>;
-  osAxis?: InputMaybe<StringOperators>;
-  osCyl?: InputMaybe<StringOperators>;
-  osSph?: InputMaybe<StringOperators>;
-  pd?: InputMaybe<StringOperators>;
-  pdLeft?: InputMaybe<StringOperators>;
-  pdRight?: InputMaybe<StringOperators>;
-  reading?: InputMaybe<StringOperators>;
-  rxComments?: InputMaybe<StringOperators>;
-  rxType?: InputMaybe<StringOperators>;
-  updatedAt?: InputMaybe<DateOperators>;
-};
-
-export type RxItemConfig = Node & {
-  __typename?: 'RxItemConfig';
-  /** 配置项的加价 */
-  adjustPrice: Scalars['Int'];
-  id: Scalars['ID'];
-  /** 当前选项的详细注解, 详细标注当前选项包含的内容 */
-  introduction?: Maybe<Array<Scalars['String']>>;
-  languageCode: LanguageCode;
-  /** 处方配置项展示名 */
-  name: Scalars['String'];
-  /** 处方匹配数据源默认的选中值, 可被规则引擎执行结果动态覆盖. */
-  rxDefaultValue: Scalars['String'];
-  /** 当前数据源匹配的输入规则, 标识当前选项在在获取其数据源的时候产生的数据规则校验. */
-  rxInputRules?: Maybe<Array<Scalars['JSON']>>;
-  /** 处方数据配置项名称 */
-  rxItemName: RxItemName;
-  /** 用来存放消息当前配置想所有用到的消息体 */
-  rxMessages?: Maybe<Scalars['JSON']>;
-  /** 当前rxItemName的选择项数据源配置, 处方里面每一项的数据都是下拉框数据源展示模式. */
-  rxOptions?: Maybe<Scalars['JSON']>;
-  /** 处方类型, 标准处方/老花处方 */
-  rxType?: Maybe<RxType>;
-  translations: Array<RxItemConfigTranslation>;
-};
-
-export type RxItemConfigList = PaginatedList & {
-  __typename?: 'RxItemConfigList';
-  items: Array<RxItemConfig>;
-  totalItems: Scalars['Int'];
-};
-
-export type RxItemConfigTranslation = {
-  __typename?: 'RxItemConfigTranslation';
-  id: Scalars['ID'];
-  /** 当前选项的详细注解, 详细标注当前选项包含的内容 */
-  introduction?: Maybe<Array<Scalars['String']>>;
-  languageCode: LanguageCode;
-  /** 处方配置项展示名 */
-  name: Scalars['String'];
-  /** 用来存放消息当前配置想所有用到的消息体 */
-  rxMessages?: Maybe<Scalars['JSON']>;
-};
-
-export enum RxItemMessageType {
-  /** 错误信息, 用户必须要解决掉重新验证, 才能进入下一步 */
-  error = 'error',
-  /** 其他提示文本信息 */
-  info = 'info',
-  /** 其他标签文本信息 */
-  label = 'label',
-  /** 警告错误, 用户可以选择同意忽略在前端 */
-  warn = 'warn',
-}
-
-/** 处方单项指标数据类型名称标识 */
-export enum RxItemName {
-  /** 特殊:此特殊的配置规则仅仅用来当保存按钮的时候校验, 不做其他用途 */
-  ACTION_SAVE_VERIFICATION = 'ACTION_SAVE_VERIFICATION',
-  /** 当用户选择镜片类型为: 渐进(multifocal), 老花(reading)才展示给用户选择 */
-  ADD = 'ADD',
-  /** 用户年龄, 7-79, 80+ */
-  AGE = 'AGE',
-  /** 针对游泳镜, 项链镜, 用户可以只输入度数即可加入购物车. */
-  DIRECT_DEGREES = 'DIRECT_DEGREES',
-  /** 右眼视力: 散光轴度。散光度数在眼球发生的角度，0-180度之间 */
-  OD_AXIS = 'OD_AXIS',
-  /** 右眼视力: 柱镜度数（即散光）+正的指的是远视散光, -负指的是近视散光 */
-  OD_CYL = 'OD_CYL',
-  /** 右眼视力: 球镜（近视、远视度数) +表示远视， —表示近视 */
-  OD_SPH = 'OD_SPH',
-  /** 左眼视力: 散光轴度。散光度数在眼球发生的角度，0-180度之间 */
-  OS_AXIS = 'OS_AXIS',
-  /** 左眼视力: 柱镜度数（即散光）+正的指的是远视散光, -负指的是近视散光 */
-  OS_CYL = 'OS_CYL',
-  /** 左眼视力: 球镜（近视、远视度数) +表示远视， —表示近视 */
-  OS_SPH = 'OS_SPH',
-  /** 双眼PD, 单位为1 */
-  PD = 'PD',
-  /** 左眼瞳距, 单眼PD，单位为0.5 */
-  PD_LEFT = 'PD_LEFT',
-  /** 右眼瞳距, 单眼PD，单位为0.5 */
-  PD_RIGHT = 'PD_RIGHT',
-  /** 棱镜, 标准处方可选配置 */
-  PRISM = 'PRISM',
-  /** 当针对老花的时候,可以允许用户直接选择一个度数, 用户也可以切换到标准处方自定义. */
-  READING = 'READING',
-}
-
-export type RxList = PaginatedList & {
-  __typename?: 'RxList';
-  items: Array<Rx>;
-  totalItems: Scalars['Int'];
-};
-
-export type RxListOptions = {
-  /** Allows the results to be filtered */
-  filter?: InputMaybe<RxFilterParameter>;
-  /** Specifies whether multiple "filter" arguments should be combines with a logical AND or OR operation. Defaults to AND. */
-  filterOperator?: InputMaybe<LogicalOperator>;
-  /** Skips the first n results, for use in pagination */
-  skip?: InputMaybe<Scalars['Int']>;
-  /** Specifies which properties to sort the results by */
-  sort?: InputMaybe<RxSortParameter>;
-  /** Takes n results, for use in pagination */
-  take?: InputMaybe<Scalars['Int']>;
-};
-
-export type RxRuleDefineValidateAction = {
-  __typename?: 'RxRuleDefineValidateAction';
-  /** 规则验证信息的i18n多国语言消息KEY */
-  actionMessageKey?: Maybe<Scalars['String']>;
-  /** 规则验证的结果类型, 此处类型如果为error,则需要强制选择 */
-  actionMessageType?: Maybe<RxItemMessageType>;
-  /** 当前的action对应的action可选数据对象items对象结构 */
-  actionOptionItems?: Maybe<Array<RxValidatedResultActionOptionItem>>;
-  /** 可选值, 当前如果进行全局验证触发特殊的action规则, 比如popup/流程切换, 切换平光流程等. */
-  actionType?: Maybe<RxValidatedResultActionType>;
-  /** 当前action的显示顺序, 越大越优先显示, 最终显示给用户时, 如果同时存在多action, 需要排序. */
-  displayOrder: Scalars['Int'];
-};
-
-export type RxSortParameter = {
-  add?: InputMaybe<SortOrder>;
-  age?: InputMaybe<SortOrder>;
-  createdAt?: InputMaybe<SortOrder>;
-  directDegrees?: InputMaybe<SortOrder>;
-  id?: InputMaybe<SortOrder>;
-  name?: InputMaybe<SortOrder>;
-  odAxis?: InputMaybe<SortOrder>;
-  odCyl?: InputMaybe<SortOrder>;
-  odSph?: InputMaybe<SortOrder>;
-  osAxis?: InputMaybe<SortOrder>;
-  osCyl?: InputMaybe<SortOrder>;
-  osSph?: InputMaybe<SortOrder>;
-  pd?: InputMaybe<SortOrder>;
-  pdLeft?: InputMaybe<SortOrder>;
-  pdRight?: InputMaybe<SortOrder>;
-  reading?: InputMaybe<SortOrder>;
-  rxComments?: InputMaybe<SortOrder>;
-  updatedAt?: InputMaybe<SortOrder>;
-};
-
-/** 处方类型, 老花处方/标准处方 */
-export enum RxType {
-  /** 针对游泳镜, 项链镜, 用户可以只输入度数即可加入购物车. */
-  DIRECT_DEGREES = 'DIRECT_DEGREES',
-  /** 标准处方: 老花处方 */
-  READING = 'READING',
-  /** 标准处方: 自定义选项 */
-  STANDARD = 'STANDARD',
-}
-
-/** 每一项规则验证处理之后的配置项数据 */
-export type RxValidatedConfigItem = {
-  __typename?: 'RxValidatedConfigItem';
-  /** 选择当前action行为的价格调整 */
-  adjustPrice: Scalars['Int'];
-  /** 当前选项是否处于disabled状态 */
-  disabled: Scalars['Boolean'];
-  /** 当前选项的详细注解, 详细标注当前选项包含的内容 */
-  introduction: Array<Scalars['String']>;
-  /** 处方配置项展示名 */
-  name: Scalars['String'];
-  /** 当前处方配置项的默认选中的值 */
-  rxDefaultValue: Scalars['String'];
-  /** 处方数据配置项名称 */
-  rxItemName: RxItemName;
-  /** 当前rxItemName的选择项数据源配置, 处方里面每一项的数据都是下拉框数据源展示模式. */
-  rxOptions: Array<Scalars['String']>;
-  /** 处方类型, 老花处方/标准处方/直接选度数(游泳镜,项链镜)的处方 */
-  rxType: RxType;
-  /** 当前规则验证结果之后, 可能会携带的数据. */
-  rxValidateAction: Array<RxValidatedResultAction>;
-  /** 当前配置项目规则校验结果 */
-  rxValidateResult: Array<RxValidatedResult>;
-};
-
-/** 规则验证结果 */
-export type RxValidatedResult = {
-  __typename?: 'RxValidatedResult';
-  /** 规则验证结果国际化消息提示 */
-  messageText?: Maybe<Scalars['String']>;
-  /** 规则验证的结果类型 */
-  messageType?: Maybe<RxItemMessageType>;
-  /** 处方数据配置项名称 */
-  rxItemName: RxItemName;
-  /** 当前的校验的规则名 */
-  rxRuleName: Scalars['String'];
-};
-
-export type RxValidatedResultAction = {
-  __typename?: 'RxValidatedResultAction';
-  /** 规则验证信息的i18n多国语言消息 */
-  actionMessageText?: Maybe<Scalars['String']>;
-  /** 规则验证的结果类型 */
-  actionMessageType?: Maybe<RxItemMessageType>;
-  /** 当前的action对应的action可选数据对象items对象结构 */
-  actionOptionItems?: Maybe<Array<RxValidatedResultActionOptionItem>>;
-  /** 可选值, 当前如果进行全局验证触发特殊的action规则, 比如popup/流程切换, 切换平光流程等. */
-  actionType?: Maybe<RxValidatedResultActionType>;
-  /** 当前action的显示顺序, 越大越优先显示, 最终显示给用户时, 如果同时存在多action, 需要排序. */
-  displayOrder: Scalars['Int'];
-};
-
-export type RxValidatedResultActionOptionItem = {
-  __typename?: 'RxValidatedResultActionOptionItem';
-  /** 当前action项的名称, 如加钱, 当成唯一KEY来使用 */
-  actionItemKey: Scalars['String'];
-  /** 选择当前action行为的价格调整 */
-  adjustPrice: Scalars['Int'];
-  /** 当前action项的名称, 如加钱项, 多国语言的翻译名称, 会显示到加价理由上. 有的选项不需要消息提示. */
-  i18nName?: Maybe<Scalars['String']>;
-  /** 当前action 配置项目配置变量, 比如专题页面URL */
-  variables: RxValidatedResultActionOptionItemVariables;
-};
-
-export type RxValidatedResultActionOptionItemVariables = {
-  __typename?: 'RxValidatedResultActionOptionItemVariables';
-  /** 搜索选项facet的特征列表.可根据产品查询出来, 动态匹配. */
-  facets?: Maybe<Array<RxValidatedResultActionOptionItemVariablesFacet>>;
-  /** 搜索选项minLensDiam必须<=如下值+PD */
-  maxMinLensDiam?: Maybe<Scalars['Int']>;
-};
-
-export type RxValidatedResultActionOptionItemVariablesFacet = {
-  __typename?: 'RxValidatedResultActionOptionItemVariablesFacet';
-  name: Scalars['String'];
-  values: Array<Scalars['String']>;
-};
-
-/** 当前处方save进行联合校验, 返回特殊actionType */
-export enum RxValidatedResultActionType {
-  /** 弹窗提示用户进行流程切换到平光 */
-  POPUP_CONFIRM_PROCESS_CHANGE_TO_NON_PRESCRIPTION = 'POPUP_CONFIRM_PROCESS_CHANGE_TO_NON_PRESCRIPTION',
-  /** 跳转到高处方的对应分类过滤页面: 'High prescription frames' */
-  POPUP_FILTER_FRAME_WITH_HIGHT_PRESCRIPTION = 'POPUP_FILTER_FRAME_WITH_HIGHT_PRESCRIPTION',
-  /** 双眼PD偏心或换镜架弹窗(新处方), 加偏心费10$或者按照规则重新筛选产品 */
-  POPUP_FILTER_FRAME_WITH_MIN_LENS_DIAM = 'POPUP_FILTER_FRAME_WITH_MIN_LENS_DIAM',
-}
-
-export type SaveUserProcessConfigStepInput = {
-  /** 当前STEP选项下的选中的ID列表 */
-  lensOptionInputs: Array<UserProcessConfigStepLensOptionInput>;
-  orderLineId: Scalars['ID'];
-  quantity: Scalars['Int'];
-  /** 当前步骤 */
-  step: LensStepGroups;
-  /** T0进入镜片流程用户上下文, 来源某一个分类等上下文信息 */
-  t0LensCtxInput?: InputMaybe<LensProcessT0Inputs>;
-  /** T2处方用户输入的数据 */
-  t2LensRxInput?: InputMaybe<LensProcessT2Inputs>;
-  /** T2用户特殊的ACTION自定义选项, 如加偏心等行为的集合 */
-  t2UserActionInputs?: InputMaybe<Array<LensProcessT2UserActionInput>>;
-};
-
 export type SearchInput = {
   collectionId?: InputMaybe<Scalars['ID']>;
   collectionSlug?: InputMaybe<Scalars['String']>;
@@ -5988,7 +2838,6 @@ export type SearchInput = {
   facetValueIds?: InputMaybe<Array<Scalars['ID']>>;
   facetValueOperator?: InputMaybe<LogicalOperator>;
   groupByProduct?: InputMaybe<Scalars['Boolean']>;
-  inStock?: InputMaybe<Scalars['Boolean']>;
   skip?: InputMaybe<Scalars['Int']>;
   sort?: InputMaybe<SearchResultSortParameter>;
   take?: InputMaybe<Scalars['Int']>;
@@ -6016,7 +2865,6 @@ export type SearchResult = {
   description: Scalars['String'];
   facetIds: Array<Scalars['ID']>;
   facetValueIds: Array<Scalars['ID']>;
-  inStock: Scalars['Boolean'];
   price: SearchResultPrice;
   priceWithTax: SearchResultPrice;
   productAsset?: Maybe<SearchResultAsset>;
@@ -6043,9 +2891,7 @@ export type SearchResultPrice = PriceRange | SinglePrice;
 
 export type SearchResultSortParameter = {
   name?: InputMaybe<SortOrder>;
-  position?: InputMaybe<SortOrder>;
   price?: InputMaybe<SortOrder>;
-  variantCreatedAt?: InputMaybe<SortOrder>;
 };
 
 export type SetCustomerForOrderResult =
@@ -6059,55 +2905,6 @@ export type SetOrderShippingMethodResult =
   | NoActiveOrderError
   | Order
   | OrderModificationError;
-
-export type Setting = Node & {
-  __typename?: 'Setting';
-  createdAt: Scalars['DateTime'];
-  enabled: Scalars['Boolean'];
-  id: Scalars['ID'];
-  key: Scalars['String'];
-  updatedAt: Scalars['DateTime'];
-  value: Scalars['JSON'];
-};
-
-export type SettingFilterParameter = {
-  createdAt?: InputMaybe<DateOperators>;
-  enabled?: InputMaybe<BooleanOperators>;
-  id?: InputMaybe<IdOperators>;
-  key?: InputMaybe<StringOperators>;
-  updatedAt?: InputMaybe<DateOperators>;
-};
-
-export type SettingList = PaginatedList & {
-  __typename?: 'SettingList';
-  items: Array<Setting>;
-  totalItems: Scalars['Int'];
-};
-
-export type SettingListOptions = {
-  /** Allows the results to be filtered */
-  filter?: InputMaybe<SettingFilterParameter>;
-  /** Specifies whether multiple "filter" arguments should be combines with a logical AND or OR operation. Defaults to AND. */
-  filterOperator?: InputMaybe<LogicalOperator>;
-  /** Skips the first n results, for use in pagination */
-  skip?: InputMaybe<Scalars['Int']>;
-  /** Specifies which properties to sort the results by */
-  sort?: InputMaybe<SettingSortParameter>;
-  /** Takes n results, for use in pagination */
-  take?: InputMaybe<Scalars['Int']>;
-};
-
-export type SettingSortParameter = {
-  createdAt?: InputMaybe<SortOrder>;
-  id?: InputMaybe<SortOrder>;
-  key?: InputMaybe<SortOrder>;
-  updatedAt?: InputMaybe<SortOrder>;
-};
-
-export type SettlePaymentInput = {
-  orderId: Scalars['ID'];
-  transactionId: Scalars['String'];
-};
 
 export type ShippingLine = {
   __typename?: 'ShippingLine';
@@ -6214,62 +3011,6 @@ export type StringOperators = {
   regex?: InputMaybe<Scalars['String']>;
 };
 
-export type Subscription = Node & {
-  __typename?: 'Subscription';
-  createdAt: Scalars['DateTime'];
-  enabled: Scalars['Boolean'];
-  facetValues: Array<SubscriptionFacetValue>;
-  id: Scalars['ID'];
-  languageCode: LanguageCode;
-  subscribeFrom: Scalars['String'];
-  type: SubscriptionType;
-  updatedAt: Scalars['DateTime'];
-  value: Scalars['String'];
-};
-
-export type SubscriptionFacet = Node & {
-  __typename?: 'SubscriptionFacet';
-  code: Scalars['String'];
-  createdAt: Scalars['DateTime'];
-  id: Scalars['ID'];
-  name: Scalars['String'];
-  updatedAt: Scalars['DateTime'];
-  values: Array<SubscriptionFacetValue>;
-};
-
-export type SubscriptionFacetList = PaginatedList & {
-  __typename?: 'SubscriptionFacetList';
-  items: Array<SubscriptionFacet>;
-  totalItems: Scalars['Int'];
-};
-
-export type SubscriptionFacetValue = Node & {
-  __typename?: 'SubscriptionFacetValue';
-  code: Scalars['String'];
-  createdAt: Scalars['DateTime'];
-  facet: Facet;
-  id: Scalars['ID'];
-  name: Scalars['String'];
-  updatedAt: Scalars['DateTime'];
-};
-
-export type SubscriptionFacetValueList = PaginatedList & {
-  __typename?: 'SubscriptionFacetValueList';
-  items: Array<SubscriptionFacetValue>;
-  totalItems: Scalars['Int'];
-};
-
-export type SubscriptionList = PaginatedList & {
-  __typename?: 'SubscriptionList';
-  items: Array<Subscription>;
-  totalItems: Scalars['Int'];
-};
-
-export enum SubscriptionType {
-  email = 'email',
-  phone = 'phone',
-}
-
 /** Indicates that an operation succeeded, where we do not want to return any more specific information. */
 export type Success = {
   __typename?: 'Success';
@@ -6352,445 +3093,7 @@ export type TextCustomFieldConfig = CustomField & {
   ui?: Maybe<Scalars['JSON']>;
 };
 
-export type Ticket = Node & {
-  __typename?: 'Ticket';
-  code: Scalars['String'];
-  createdAt: Scalars['DateTime'];
-  id: Scalars['ID'];
-  issue: Scalars['String'];
-  languageCode: LanguageCode;
-  owner: Customer;
-  subject: Scalars['String'];
-  updatedAt: Scalars['DateTime'];
-};
-
-export type TicketCollection = Node & {
-  __typename?: 'TicketCollection';
-  createdAt: Scalars['DateTime'];
-  id: Scalars['ID'];
-  languageCode: LanguageCode;
-  metaDescription?: Maybe<Scalars['String']>;
-  metaTitle?: Maybe<Scalars['String']>;
-  name: Scalars['String'];
-  slug: Scalars['String'];
-  translations: Array<TicketCollectionTranslation>;
-  updatedAt: Scalars['DateTime'];
-};
-
-export type TicketCollectionList = PaginatedList & {
-  __typename?: 'TicketCollectionList';
-  items: Array<TicketCollection>;
-  totalItems: Scalars['Int'];
-};
-
-export type TicketCollectionTranslation = Node & {
-  __typename?: 'TicketCollectionTranslation';
-  id: Scalars['ID'];
-  /** 当前语言 */
-  languageCode: LanguageCode;
-  metaDescription?: Maybe<Scalars['String']>;
-  metaTitle?: Maybe<Scalars['String']>;
-  /** 当前选项的名称 */
-  name: Scalars['String'];
-  slug: Scalars['String'];
-};
-
-export type TicketComment = Node & {
-  __typename?: 'TicketComment';
-  comment: Scalars['String'];
-  createdAt: Scalars['DateTime'];
-  deletedAt?: Maybe<Scalars['DateTime']>;
-  id: Scalars['ID'];
-  owner: Customer;
-  ticket: Ticket;
-  updatedAt: Scalars['DateTime'];
-};
-
-export type TicketFilterParameter = {
-  code?: InputMaybe<StringOperators>;
-  createdAt?: InputMaybe<DateOperators>;
-  id?: InputMaybe<IdOperators>;
-  issue?: InputMaybe<StringOperators>;
-  languageCode?: InputMaybe<StringOperators>;
-  subject?: InputMaybe<StringOperators>;
-  updatedAt?: InputMaybe<DateOperators>;
-};
-
-export type TicketGroup = Node & {
-  __typename?: 'TicketGroup';
-  createdAt: Scalars['DateTime'];
-  id: Scalars['ID'];
-  members: Array<Customer>;
-  name: Scalars['String'];
-  public: Scalars['Boolean'];
-  sendMailTo: Array<Customer>;
-  updatedAt: Scalars['DateTime'];
-};
-
-export type TicketHistory = Node & {
-  __typename?: 'TicketHistory';
-  action: Scalars['String'];
-  createdAt: Scalars['DateTime'];
-  description: Scalars['String'];
-  id: Scalars['ID'];
-  owner: Customer;
-  ticket: Ticket;
-  updatedAt: Scalars['DateTime'];
-};
-
-export type TicketList = PaginatedList & {
-  __typename?: 'TicketList';
-  items: Array<Ticket>;
-  totalItems: Scalars['Int'];
-};
-
-export type TicketListOptions = {
-  /** Allows the results to be filtered */
-  filter?: InputMaybe<TicketFilterParameter>;
-  /** Specifies whether multiple "filter" arguments should be combines with a logical AND or OR operation. Defaults to AND. */
-  filterOperator?: InputMaybe<LogicalOperator>;
-  /** Skips the first n results, for use in pagination */
-  skip?: InputMaybe<Scalars['Int']>;
-  /** Specifies which properties to sort the results by */
-  sort?: InputMaybe<TicketSortParameter>;
-  /** Takes n results, for use in pagination */
-  take?: InputMaybe<Scalars['Int']>;
-};
-
-export type TicketNote = Node & {
-  __typename?: 'TicketNote';
-  createdAt: Scalars['DateTime'];
-  deletedAt?: Maybe<Scalars['DateTime']>;
-  id: Scalars['ID'];
-  note: Scalars['String'];
-  owner: Customer;
-  ticket: Ticket;
-  updatedAt: Scalars['DateTime'];
-};
-
-export type TicketPriority = Node & {
-  __typename?: 'TicketPriority';
-  createdAt: Scalars['DateTime'];
-  htmlColor: Scalars['String'];
-  id: Scalars['ID'];
-  overdueIn: Scalars['Int'];
-  updatedAt: Scalars['DateTime'];
-};
-
-export type TicketSortParameter = {
-  code?: InputMaybe<SortOrder>;
-  createdAt?: InputMaybe<SortOrder>;
-  id?: InputMaybe<SortOrder>;
-  issue?: InputMaybe<SortOrder>;
-  subject?: InputMaybe<SortOrder>;
-  updatedAt?: InputMaybe<SortOrder>;
-};
-
-export type TicketTag = Node & {
-  __typename?: 'TicketTag';
-  createdAt: Scalars['DateTime'];
-  id: Scalars['ID'];
-  name: Scalars['String'];
-  updatedAt: Scalars['DateTime'];
-};
-
-export type TicketType = Node & {
-  __typename?: 'TicketType';
-  createdAt: Scalars['DateTime'];
-  id: Scalars['ID'];
-  name: Scalars['String'];
-  priorities: Array<TicketPriority>;
-  updatedAt: Scalars['DateTime'];
-};
-
-export type ToggleFavoriteResult = {
-  __typename?: 'ToggleFavoriteResult';
-  favorite?: Maybe<Favorite>;
-  favoriteCount: Scalars['Int'];
-};
-
-export type Topic = Node & {
-  __typename?: 'Topic';
-  body: Scalars['String'];
-  createdAt: Scalars['DateTime'];
-  helpfulNo: Scalars['Int'];
-  helpfulYes: Scalars['Int'];
-  id: Scalars['ID'];
-  metaDescription: Scalars['String'];
-  metaTitle: Scalars['String'];
-  name: Scalars['String'];
-  published: Scalars['Boolean'];
-  slug: Scalars['String'];
-  title: Scalars['String'];
-  updatedAt: Scalars['DateTime'];
-};
-
-export type TopicFilterParameter = {
-  body?: InputMaybe<StringOperators>;
-  createdAt?: InputMaybe<DateOperators>;
-  helpfulNo?: InputMaybe<NumberOperators>;
-  helpfulYes?: InputMaybe<NumberOperators>;
-  id?: InputMaybe<IdOperators>;
-  metaDescription?: InputMaybe<StringOperators>;
-  metaTitle?: InputMaybe<StringOperators>;
-  name?: InputMaybe<StringOperators>;
-  published?: InputMaybe<BooleanOperators>;
-  slug?: InputMaybe<StringOperators>;
-  title?: InputMaybe<StringOperators>;
-  updatedAt?: InputMaybe<DateOperators>;
-};
-
-export type TopicLink = Node & {
-  __typename?: 'TopicLink';
-  coverImage?: Maybe<Scalars['String']>;
-  createdAt: Scalars['DateTime'];
-  displayOrder: Scalars['Int'];
-  id: Scalars['ID'];
-  name: Scalars['String'];
-  parentId?: Maybe<Scalars['Int']>;
-  position: Scalars['String'];
-  published: Scalars['Boolean'];
-  redirectTo: Scalars['String'];
-  updatedAt: Scalars['DateTime'];
-};
-
-export type TopicLinkFilterParameter = {
-  coverImage?: InputMaybe<StringOperators>;
-  createdAt?: InputMaybe<DateOperators>;
-  displayOrder?: InputMaybe<NumberOperators>;
-  id?: InputMaybe<IdOperators>;
-  name?: InputMaybe<StringOperators>;
-  parentId?: InputMaybe<NumberOperators>;
-  position?: InputMaybe<StringOperators>;
-  published?: InputMaybe<BooleanOperators>;
-  redirectTo?: InputMaybe<StringOperators>;
-  updatedAt?: InputMaybe<DateOperators>;
-};
-
-export type TopicLinkList = PaginatedList & {
-  __typename?: 'TopicLinkList';
-  items: Array<TopicLink>;
-  totalItems: Scalars['Int'];
-};
-
-export type TopicLinkListOptions = {
-  /** Allows the results to be filtered */
-  filter?: InputMaybe<TopicLinkFilterParameter>;
-  /** Specifies whether multiple "filter" arguments should be combines with a logical AND or OR operation. Defaults to AND. */
-  filterOperator?: InputMaybe<LogicalOperator>;
-  /** Skips the first n results, for use in pagination */
-  skip?: InputMaybe<Scalars['Int']>;
-  /** Specifies which properties to sort the results by */
-  sort?: InputMaybe<TopicLinkSortParameter>;
-  /** Takes n results, for use in pagination */
-  take?: InputMaybe<Scalars['Int']>;
-};
-
-export enum TopicLinkPosition {
-  SiteFooter = 'SiteFooter',
-  SiteHelperCenter = 'SiteHelperCenter',
-  SiteTopNav = 'SiteTopNav',
-  SiteVideoGuide = 'SiteVideoGuide',
-}
-
-export type TopicLinkSortParameter = {
-  coverImage?: InputMaybe<SortOrder>;
-  createdAt?: InputMaybe<SortOrder>;
-  displayOrder?: InputMaybe<SortOrder>;
-  id?: InputMaybe<SortOrder>;
-  name?: InputMaybe<SortOrder>;
-  parentId?: InputMaybe<SortOrder>;
-  position?: InputMaybe<SortOrder>;
-  redirectTo?: InputMaybe<SortOrder>;
-  updatedAt?: InputMaybe<SortOrder>;
-};
-
-export type TopicList = PaginatedList & {
-  __typename?: 'TopicList';
-  items: Array<Topic>;
-  totalItems: Scalars['Int'];
-};
-
-export type TopicListOptions = {
-  /** Allows the results to be filtered */
-  filter?: InputMaybe<TopicFilterParameter>;
-  /** Specifies whether multiple "filter" arguments should be combines with a logical AND or OR operation. Defaults to AND. */
-  filterOperator?: InputMaybe<LogicalOperator>;
-  /** Skips the first n results, for use in pagination */
-  skip?: InputMaybe<Scalars['Int']>;
-  /** Specifies which properties to sort the results by */
-  sort?: InputMaybe<TopicSortParameter>;
-  /** Takes n results, for use in pagination */
-  take?: InputMaybe<Scalars['Int']>;
-};
-
-export type TopicSortParameter = {
-  body?: InputMaybe<SortOrder>;
-  createdAt?: InputMaybe<SortOrder>;
-  helpfulNo?: InputMaybe<SortOrder>;
-  helpfulYes?: InputMaybe<SortOrder>;
-  id?: InputMaybe<SortOrder>;
-  metaDescription?: InputMaybe<SortOrder>;
-  metaTitle?: InputMaybe<SortOrder>;
-  name?: InputMaybe<SortOrder>;
-  slug?: InputMaybe<SortOrder>;
-  title?: InputMaybe<SortOrder>;
-  updatedAt?: InputMaybe<SortOrder>;
-};
-
 export type TransitionOrderToStateResult = Order | OrderStateTransitionError;
-
-/** 轮廓第一个点位置百分比信息 */
-export type TryonFaceContourEarPoints = {
-  __typename?: 'TryonFaceContourEarPoints';
-  /** 左轮廓第一个点(轮廓到左耳朵)占据人脸图片的位置百分比信息 */
-  left: TryonFacePoint;
-  /** 右轮廓第一个点(轮廓到右耳朵)占据人脸图片的位置百分比信息 */
-  right: TryonFacePoint;
-};
-
-/** 双眼中心点位置百分比信息 */
-export type TryonFaceEyeCenterPoints = {
-  __typename?: 'TryonFaceEyeCenterPoints';
-  /** 左眼中心点占据人脸图片的位置百分比信息 */
-  left: TryonFacePoint;
-  /** 右眼中心点占据人脸图片的位置百分比信息 */
-  right: TryonFacePoint;
-};
-
-/** 缩放之后最终进行人脸识别的真实模特照片大小尺寸 */
-export type TryonFaceImageRealSize = {
-  __typename?: 'TryonFaceImageRealSize';
-  /** 模特照片高 */
-  height: Scalars['Int'];
-  /** 模特照片宽 */
-  width: Scalars['Int'];
-};
-
-/** 模特照片人脸模型 */
-export type TryonFaceModel = Node & {
-  __typename?: 'TryonFaceModel';
-  /** 用户信息 */
-  customerId?: Maybe<Scalars['ID']>;
-  /** 人脸特征识别关键点位置 */
-  facePoints: TryonFacePoints;
-  /** 人脸框的宽度占据整个真实图片的百分比 */
-  faceRectWidthRatio: Scalars['Float'];
-  /** 人脸姿势分析结果。返回值包含以下属性，每个属性的值为一个 [-180, 180] 的浮点数，小数点后 6 位有效数字。单位为角度。 */
-  headPose: TryonHeadPosePoints;
-  id: Scalars['ID'];
-  /** 上传的进行人脸识别的图片ID */
-  imageId: Scalars['String'];
-  /** 缩放之后的真实模特真实图片大小 */
-  imageRealSize: TryonFaceImageRealSize;
-  /** 模特图片信息 */
-  modelAsset?: Maybe<Asset>;
-  /** 模特PD, 男性: 66, 女性60, 可根据实际情况调整模特的效果. */
-  userPd?: Maybe<Scalars['Int']>;
-};
-
-export type TryonFaceModelList = PaginatedList & {
-  __typename?: 'TryonFaceModelList';
-  items: Array<TryonFaceModel>;
-  totalItems: Scalars['Int'];
-};
-
-/** 相对左上角为原点, 人脸特征点Point(x,y) */
-export type TryonFacePoint = {
-  __typename?: 'TryonFacePoint';
-  /** 点的x位置占据的百分比 */
-  x: Scalars['Float'];
-  /** 点的y位置占据的百分比 */
-  y: Scalars['Float'];
-};
-
-/** 人脸特征识别关键点位置 */
-export type TryonFacePoints = {
-  __typename?: 'TryonFacePoints';
-  /** 轮廓第一个点位置百分比信息 */
-  contourEar: TryonFaceContourEarPoints;
-  /** 双眼中心点位置百分比信息 */
-  eyeCenter: TryonFaceEyeCenterPoints;
-};
-
-/** 人脸姿势分析结果。返回值包含以下属性，每个属性的值为一个 [-180, 180] 的浮点数，小数点后 6 位有效数字。单位为角度。 */
-export type TryonHeadPosePoints = {
-  __typename?: 'TryonHeadPosePoints';
-  /** 人头”真实“ 抬头 下正上负 */
-  pitch: Scalars['Float'];
-  /** 摆头（歪头）人头”真实“ 左偏头为正, 右偏头为负 */
-  roll: Scalars['Float'];
-  /** 人头”真实“ 摇头, 左正右负 */
-  yaw: Scalars['Float'];
-};
-
-/** 图片真实尺寸 */
-export type TryonImageRealSize = {
-  __typename?: 'TryonImageRealSize';
-  height: Scalars['Int'];
-  width: Scalars['Int'];
-};
-
-/** 链接点数据 */
-export type TryonJoint = {
-  __typename?: 'TryonJoint';
-  /** 左链接点 */
-  left: TryonPoint;
-  /** 右链接点 */
-  right: TryonPoint;
-};
-
-/** 试戴模型图片百分比位置配置数据 */
-export type TryonModelConfig = {
-  __typename?: 'TryonModelConfig';
-  /** 试戴模型frame配置数据 */
-  frame: TryonModelConfigFrame;
-  /** 试戴模型temple配置数据 */
-  temple: TryonModelConfigTemple;
-};
-
-export type TryonModelConfigFrame = {
-  __typename?: 'TryonModelConfigFrame';
-  /** frame图片连接点位置百分比 */
-  frameJoint: TryonJoint;
-  framePd: Scalars['Int'];
-  /** frame图片真实的尺寸大小 */
-  imageRealSize: TryonImageRealSize;
-};
-
-export type TryonModelConfigTemple = {
-  __typename?: 'TryonModelConfigTemple';
-  /** temple图片真实的尺寸大小 */
-  imageRealSize: TryonImageRealSize;
-  /** temple图片链接点位置百分比 */
-  templeJoint: TryonJoint;
-};
-
-export type TryonPoint = {
-  __typename?: 'TryonPoint';
-  x: Scalars['Float'];
-  y: Scalars['Float'];
-};
-
-export type UnionMain = {
-  __typename?: 'UnionMain';
-  /** All settings from plugin-banner */
-  banners: Array<Banner>;
-  /** Best seller products of home page */
-  bestSellerProducts: Array<SearchResult>;
-  /** All collections */
-  collections: Array<Collection>;
-  /** All footer topic links */
-  footerTopicLinks: Array<TopicLink>;
-  /** New Arrivals products of home page */
-  newArrivalsProducts: Array<SearchResult>;
-  /** All settings from plugin-setting */
-  settings: Array<Setting>;
-  /** testimonial reviews of aboutus page */
-  testimonialReviews: Array<ProductReview>;
-  /** All video guide topic links */
-  videoGuideTopicLinks: Array<TopicLink>;
-};
 
 export type UpdateAddressInput = {
   city?: InputMaybe<Scalars['String']>;
@@ -6808,12 +3111,6 @@ export type UpdateAddressInput = {
   streetLine2?: InputMaybe<Scalars['String']>;
 };
 
-export type UpdateCustomerCustomFieldsInput = {
-  birthday?: InputMaybe<Scalars['String']>;
-  faceshape?: InputMaybe<Scalars['String']>;
-  languageCode?: InputMaybe<Scalars['String']>;
-};
-
 export type UpdateCustomerEmailAddressResult =
   | IdentifierChangeTokenExpiredError
   | IdentifierChangeTokenInvalidError
@@ -6821,7 +3118,7 @@ export type UpdateCustomerEmailAddressResult =
   | Success;
 
 export type UpdateCustomerInput = {
-  customFields?: InputMaybe<UpdateCustomerCustomFieldsInput>;
+  customFields?: InputMaybe<Scalars['JSON']>;
   firstName?: InputMaybe<Scalars['String']>;
   lastName?: InputMaybe<Scalars['String']>;
   phoneNumber?: InputMaybe<Scalars['String']>;
@@ -6834,18 +3131,8 @@ export type UpdateCustomerPasswordResult =
   | PasswordValidationError
   | Success;
 
-export type UpdateHelpCenterHelpfulInput = {
-  helpfulNo?: InputMaybe<Scalars['Boolean']>;
-  helpfulYes?: InputMaybe<Scalars['Boolean']>;
-  id: Scalars['ID'];
-};
-
-export type UpdateOrderCustomFieldsInput = {
-  languageCode?: InputMaybe<Scalars['String']>;
-};
-
 export type UpdateOrderInput = {
-  customFields?: InputMaybe<UpdateOrderCustomFieldsInput>;
+  customFields?: InputMaybe<Scalars['JSON']>;
 };
 
 export type UpdateOrderItemsResult =
@@ -6854,66 +3141,6 @@ export type UpdateOrderItemsResult =
   | Order
   | OrderLimitError
   | OrderModificationError;
-
-export type UpdateProductQaHelpfulInput = {
-  helpfulYes?: InputMaybe<Scalars['Boolean']>;
-  id: Scalars['ID'];
-};
-
-export type UpdateProductReviewInput = {
-  content?: InputMaybe<Scalars['String']>;
-  customerNameIsPublic?: InputMaybe<Scalars['Boolean']>;
-  id: Scalars['ID'];
-  rating?: InputMaybe<Scalars['Int']>;
-  suggestions?: InputMaybe<Scalars['String']>;
-  title?: InputMaybe<Scalars['String']>;
-};
-
-export type UpdateRxInput = {
-  /** 左右眼视力: 老花, Distance 不展示 */
-  add?: InputMaybe<Scalars['String']>;
-  /** 用户年龄 */
-  age?: InputMaybe<Scalars['String']>;
-  /** 针对游泳镜, 项链镜, 用户可以只输入度数即可加入购物车. */
-  directDegrees?: InputMaybe<Scalars['String']>;
-  id: Scalars['ID'];
-  /** 是否标记为默认处方 */
-  isDefault?: InputMaybe<Scalars['Boolean']>;
-  /** 处方单名称 */
-  name?: InputMaybe<Scalars['String']>;
-  /** 右眼视力: 散光轴度。散光度数在眼球发生的角度，0-180度之间 */
-  odAxis?: InputMaybe<Scalars['String']>;
-  /** 右眼视力: 柱镜度数（即散光）+正的指的是远视散光, -负指的是近视散光 */
-  odCyl?: InputMaybe<Scalars['String']>;
-  /** 右眼视力: 球镜（近视、远视度数) +表示远视， —表示近视 */
-  odSph?: InputMaybe<Scalars['String']>;
-  /** 左眼视力: 散光轴度。散光度数在眼球发生的角度，0-180度之间 */
-  osAxis?: InputMaybe<Scalars['String']>;
-  /** 左眼视力: 柱镜度数（即散光）+正的指的是远视散光, -负指的是近视散光 */
-  osCyl?: InputMaybe<Scalars['String']>;
-  /** 左眼视力: 球镜（近视、远视度数) +表示远视， —表示近视 */
-  osSph?: InputMaybe<Scalars['String']>;
-  /** 双眼PD,单位为1 */
-  pd?: InputMaybe<Scalars['String']>;
-  /** 左眼瞳距, 单眼PD, 单位为0.5 */
-  pdLeft?: InputMaybe<Scalars['String']>;
-  /** 右眼瞳距, 单眼PD, 单位为0.5 */
-  pdRight?: InputMaybe<Scalars['String']>;
-  /** 棱镜, 标准处方可选值 */
-  prism?: InputMaybe<PrismItemInput>;
-  /** 当针对老花的时候,可以允许用户直接选择一个度数, 用户也可以切换到标准处方自定义. */
-  reading?: InputMaybe<Scalars['String']>;
-  /** 处方的备注信息 */
-  rxComments?: InputMaybe<Scalars['String']>;
-  /** 处方类型, 老花处方/标准处方 */
-  rxType: RxType;
-};
-
-export type UpdateTopicHelpfulInput = {
-  helpfulNo?: InputMaybe<Scalars['Boolean']>;
-  helpfulYes?: InputMaybe<Scalars['Boolean']>;
-  id: Scalars['ID'];
-};
 
 export type User = Node & {
   __typename?: 'User';
@@ -6926,47 +3153,6 @@ export type User = Node & {
   roles: Array<Role>;
   updatedAt: Scalars['DateTime'];
   verified: Scalars['Boolean'];
-};
-
-export type UserActionOptionItemsVariablesData = {
-  __typename?: 'UserActionOptionItemsVariablesData';
-  /** 搜索选项facet的特征列表.可根据产品查询出来, 动态匹配. */
-  facets?: Maybe<Array<UserActionOptionItemsVariablesInputFacetData>>;
-  /** 搜索选项minLensDiam必须<=如下值+PD */
-  maxMinLensDiam?: Maybe<Scalars['Int']>;
-};
-
-export type UserActionOptionItemsVariablesInput = {
-  /** 搜索选项facet的特征列表.可根据产品查询出来, 动态匹配. */
-  facets?: InputMaybe<Array<UserActionOptionItemsVariablesInputFacetInput>>;
-  /** 搜索选项minLensDiam必须<=如下值+PD */
-  maxMinLensDiam?: InputMaybe<Scalars['Int']>;
-};
-
-export type UserActionOptionItemsVariablesInputFacetData = {
-  __typename?: 'UserActionOptionItemsVariablesInputFacetData';
-  name: Scalars['String'];
-  values: Array<Scalars['String']>;
-};
-
-export type UserActionOptionItemsVariablesInputFacetInput = {
-  name: Scalars['String'];
-  values: Array<Scalars['String']>;
-};
-
-export type UserProcessConfigStepLensOptionInput = {
-  /** 用户选择的用途选项模块对应的ID */
-  lensProcessOptionId: Scalars['ID'];
-  /** 用户选择的用户选项模块对应的选项Key */
-  lensProcessOptionKey?: InputMaybe<LensProcessOptionKeys>;
-};
-
-export type UserProcessConfigStepLensOptionItem = {
-  __typename?: 'UserProcessConfigStepLensOptionItem';
-  /** 用户选择的用途选项模块对应的ID */
-  lensProcessOptionId: Scalars['ID'];
-  /** 用户选择的用户选项模块对应的选项Key */
-  lensProcessOptionKey?: Maybe<LensProcessOptionKeys>;
 };
 
 /**
