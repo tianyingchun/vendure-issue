@@ -12,11 +12,11 @@ import {
   Importer,
   Populator,
   ChannelService,
+  ProductService,
 } from '@vendure/core';
 import { LOGGER_CTX } from '../../../constants';
 import { SupplierStockInTransit } from '../../../entities/supplier-stock-in-transit.entity';
 import { SupplierStock } from '../../../entities/supplier-stock.entity';
-import { Supplier } from '../../../entities/supplier.entity';
 import { QuerySupplierStocksArgs } from '../../../generated-admin-types';
 import { initialData } from '../../schema/admin-api/initial-data';
 import { SupplierStockService } from '../../services/supplier-stock.service';
@@ -28,6 +28,7 @@ export class SupplierStockAdminResolver {
     private readonly connection: TransactionalConnection,
     private readonly populator: Populator,
     private readonly channelService: ChannelService,
+    private readonly productService: ProductService,
     private readonly importer: Importer
   ) {}
 
@@ -44,8 +45,7 @@ export class SupplierStockAdminResolver {
     return this.supplierStockService.findAll(ctx, args.options, relations);
   }
 
-  @Mutation()
-  async initializeData(@Ctx() ctx: RequestContext) {
+  private async initVendureData(@Ctx() ctx: RequestContext) {
     const channel = await this.channelService.getDefaultChannel();
     await this.populator.populateInitialData(initialData, channel);
 
@@ -71,29 +71,26 @@ export class SupplierStockAdminResolver {
 
   @Mutation()
   async initializeDemo(@Ctx() ctx: RequestContext) {
-    const supplier = await this.connection.getRepository(ctx, Supplier).save({
-      comment: 'blabala comment',
-      supplierType: `supplierType`,
-      supplierName: 'supplier name',
-      supplierNo: 'supplier no',
-    });
+    const { totalItems } = await this.productService.findAll(ctx, {});
+    if (totalItems === 0) {
+      await this.initVendureData(ctx);
+    }
 
     const supplierStock = await this.connection
       .getRepository(ctx, SupplierStock)
       .save({
-        comment: 'supllier stock command',
+        comment: 'stock comment',
         enabled: true,
-        link: '',
+        link: 'stock link',
         inTransitsStock: 10,
-        stockArea: '',
+        stockArea: 'stock area',
         productId: 1,
-        supplierId: supplier.id,
         productVariantId: 1,
       });
 
     await this.connection.getRepository(ctx, SupplierStockInTransit).save({
-      channelName: '1111',
-      channelOrderNo: 'sfs',
+      channelName: 'channel name',
+      channelOrderNo: 'channel order number',
       quantity: 5,
       supplierStockId: supplierStock.id,
     });

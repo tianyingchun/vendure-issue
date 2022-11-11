@@ -8,7 +8,6 @@ export const supplierStockApi = gql`
 
   extend type Mutation {
     initializeDemo: Boolean
-    initializeData: Boolean
   }
 
   input SupplierStockListOptions

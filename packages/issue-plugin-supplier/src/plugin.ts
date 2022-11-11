@@ -6,16 +6,16 @@ import { adminApiExtensions } from './api/schema/admin-api';
 import { SupplierStockInTransitService } from './api/services/supplier-stock-in-transit.service';
 import { SupplierStockService } from './api/services/supplier-stock.service';
 import { PLUGIN_INIT_OPTIONS } from './constants';
+import { productVariantCustomFields } from './custom-fields/product-variant-custom-fields';
 import { SupplierStockInTransit } from './entities/supplier-stock-in-transit.entity';
 import { SupplierStock } from './entities/supplier-stock.entity';
-import { Supplier } from './entities/supplier.entity';
 import type { PluginInitOptions } from './types';
 
 const services = [SupplierStockInTransitService, SupplierStockService];
 
 @VendurePlugin({
   imports: [PluginCommonModule],
-  entities: [SupplierStock, Supplier, SupplierStockInTransit],
+  entities: [SupplierStock, SupplierStockInTransit],
   adminApiExtensions: {
     schema: adminApiExtensions,
     resolvers: [
@@ -35,6 +35,7 @@ const services = [SupplierStockInTransitService, SupplierStockService];
     },
   ],
   configuration: (config) => {
+    config.customFields.ProductVariant.push(...productVariantCustomFields);
     return config;
   },
 })

@@ -16,7 +16,14 @@ module.exports = {
     tsconfigRootDir: __dirname,
     project: 'tsconfig.json',
   },
-  ignorePatterns: [...getDefaultIgnorePatterns()],
+  ignorePatterns: [
+    ...getDefaultIgnorePatterns(),
+    '**/generated-admin-types.ts',
+    '**/generated-shop-types.ts',
+    '**/generated-graphql-errors.ts',
+    '**/schema-admin.json',
+    '**/schema-shop.json',
+  ],
   extends: [
     '@armit/eslint-config-bases/typescript',
     '@armit/eslint-config-bases/sonar',
@@ -29,5 +36,11 @@ module.exports = {
   },
   overrides: [
     // optional overrides per project file match
+    {
+      files: ['codegen.json'],
+      rules: {
+        '@typescript-eslint/naming-convention': 'off',
+      },
+    },
   ],
 };
