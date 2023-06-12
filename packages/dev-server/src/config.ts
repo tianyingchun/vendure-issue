@@ -1,6 +1,4 @@
 /* eslint-disable @typescript-eslint/naming-convention */
-import { IssueSupplierPlugin } from '@issue/plugin-supplier';
-import { AdminUiPlugin } from '@vendure/admin-ui-plugin';
 import type { VendureConfig } from '@vendure/core';
 import { DefaultLogger, LogLevel } from '@vendure/core';
 
@@ -51,11 +49,5 @@ export const config: VendureConfig = {
   logger: new DefaultLogger({
     level: LogLevel.Debug,
   }),
-  plugins: [
-    AdminUiPlugin.init({
-      port: 3002,
-      route: 'oldAdmin',
-    }),
-    IssueSupplierPlugin.init({}),
-  ],
+  plugins: [],
 };

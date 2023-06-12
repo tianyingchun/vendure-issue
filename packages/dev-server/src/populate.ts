@@ -1,6 +1,6 @@
 import { join } from 'path';
 import type { INestApplicationContext } from '@nestjs/common';
-import { populate } from '@vendure/core/cli';
+import { populate } from '@vendure/core/cli/index.js';
 
 export const populateData = async (app: INestApplicationContext) => {
   const dataSources = join(__dirname, '../mock-data/data-sources');

@@ -1,6 +1,6 @@
 import { bootstrap, JobQueueService } from '@vendure/core';
-import { config } from './config';
-import { populateData } from './populate';
+import { config } from './config.js';
+import { populateData } from './populate.js';
 
 /**
  * This bootstraps the dev server, used for testing Vendure during development.

@@ -15,8 +15,8 @@
     "typecheck": "tsc --project ./tsconfig.json --noEmit"
   },
   "dependencies": {
-    "@vendure/common": "1.8.2",
-    "@vendure/core": "1.8.2"
+    "@vendure/common": "2.0.0",
+    "@vendure/core": "2.0.0"
   },
   "devDependencies": {
     "@graphql-codegen/add": "3.2.1",
@@ -26,7 +26,7 @@
     "@jest/types": "29.2.1",
     "@types/jest": "29.2.1",
     "@types/node": "18.11.9",
-    "@vendure/testing": "1.8.2",
+    "@vendure/testing": "2.0.0",
     "graphql": "15.5.1",
     "jest": "29.2.2",
     "prettier": "2.7.1",

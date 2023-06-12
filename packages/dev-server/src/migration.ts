@@ -1,12 +1,12 @@
 import fs from 'fs';
-import { join } from 'path';
 import {
   generateMigration,
   revertLastMigration,
   runMigrations,
 } from '@vendure/core';
 import { program } from 'commander';
-import { config } from './config';
+import { config } from './config.js';
+import { getDirname } from './get-dir-name.js';
 
 program
   .command('generate <name>')
@@ -30,7 +30,7 @@ program
   });
 
 function exec() {
-  fs.rmSync(join(__dirname, '../migrations'), {
+  fs.rmSync(getDirname(import.meta.url, '../migrations'), {
     recursive: true,
     force: true,
   });
