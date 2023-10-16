@@ -8,8 +8,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var PluginIssue_1;
-import { ConfigService, PluginCommonModule, VendurePlugin, } from '@vendure/core';
-import { adminApiExtensions } from './api/schema/index.js';
+import { PluginCommonModule, VendurePlugin } from '@vendure/core';
+import { CampaignAdminResolver } from './api/resolvers/campaign.resolver.js';
+import { adminApiExtensions, shopApiExtensions } from './api/schema/index.js';
 import { PLUGIN_INIT_OPTIONS } from './constants.js';
 import { CampaignTranslation } from './entities/campaign-translation.entity.js';
 import { Campaign } from './entities/campaign.entity.js';
@@ -17,9 +18,8 @@ import { collectionCustomFields } from './entities/custom-fields-collection.enti
 import { CampaignService } from './services/campaign.service.js';
 const services = [CampaignService];
 let PluginIssue = PluginIssue_1 = class PluginIssue {
-    constructor(configService) {
-        this.configService = configService;
-        //
+    constructor(campaignService) {
+        this.campaignService = campaignService;
     }
     /**
      * The static `init()` method is a convention used by Vendure plugins which allows options
@@ -28,6 +28,9 @@ let PluginIssue = PluginIssue_1 = class PluginIssue {
     static init(options) {
         this.options = { ...PluginIssue_1.options, ...options };
         return PluginIssue_1;
+    }
+    async onApplicationBootstrap() {
+        await this.campaignService.initCampaigns();
     }
 };
 PluginIssue.options = {
@@ -38,9 +41,11 @@ PluginIssue = PluginIssue_1 = __decorate([
         imports: [PluginCommonModule],
         entities: [Campaign, CampaignTranslation],
         adminApiExtensions: {
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             schema: adminApiExtensions,
-            // resolvers: [CampaignAdminResolver],
+            resolvers: [CampaignAdminResolver],
+        },
+        shopApiExtensions: {
+            schema: shopApiExtensions,
         },
         compatibility: '>=2.0.0',
         providers: [
@@ -49,7 +54,7 @@ PluginIssue = PluginIssue_1 = __decorate([
             // user-defined options into other classes, such as the {@link ExampleService}.
             {
                 provide: PLUGIN_INIT_OPTIONS,
-                useFactory: () => PluginIssue_1.options,
+                useFactory: () => PluginIssue.options,
             },
         ],
         configuration: (config) => {
@@ -57,6 +62,6 @@ PluginIssue = PluginIssue_1 = __decorate([
             return config;
         },
     }),
-    __metadata("design:paramtypes", [ConfigService])
+    __metadata("design:paramtypes", [CampaignService])
 ], PluginIssue);
 export { PluginIssue };

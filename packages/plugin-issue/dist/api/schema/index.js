@@ -5,3 +5,6 @@ export const adminApiExtensions = gql `
   ${campaignType}
   ${campaignAdminApi}
 `;
+export const shopApiExtensions = gql `
+  ${campaignType}
+`;

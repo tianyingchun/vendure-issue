@@ -24,34 +24,45 @@
     "start": "lerna run start --stream"
   },
   "resolutions": {
-    "@vendure/common": "2.1.0",
-    "@vendure/core": "2.1.0",
-    "@vendure/admin-ui-plugin": "2.1.0",
-    "graphql": "16.8.0",
-    "graphql-tag": "^2.12.6",
     "@nestjs/common": "10.2.1",
     "@nestjs/core": "10.2.1",
-    "@nestjs/graphql": "12.0.8"
+    "@nestjs/graphql": "12.0.8",
+    "express": "^4.18.2",
+    "graphql": "16.8.0",
+    "graphql-tag": "^2.12.6",
+    "rxjs": "7.8.1",
+    "typescript": "5.2.2",
+    "vite": "4.4.11"
+  },
+  "dependencies": {
+    "cross-env": "7.0.3"
   },
   "devDependencies": {
-    "@armit/eslint-config-bases": "0.0.7",
-    "@babel/core": "^7.19.6",
-    "@tsconfig/node16": "^1.0.3",
-    "@types/lodash": "^4.14.187",
-    "@types/prettier": "2.7.1",
-    "@types/rimraf": "^3.0.2",
-    "cross-env": "^7.0.3",
-    "eslint": "^8.26.0",
-    "jsdom": "^20.0.2",
-    "lodash": "^4.17.21",
-    "madge": "^5.0.1",
-    "prettier": "^2.7.1",
-    "rimraf": "^3.0.2"
+    "@armit/eslint-config-bases": "0.0.27",
+    "@changesets/changelog-git": "0.1.14",
+    "@changesets/cli": "2.26.2",
+    "@commitlint/cli": "17.7.2",
+    "@commitlint/config-conventional": "17.7.0",
+    "@types/prettier": "2.7.3",
+    "@types/shell-quote": "1.7.2",
+    "commitizen": "4.3.0",
+    "cz-conventional-changelog": "3.3.0",
+    "eslint": "8.51.0",
+    "husky": "8.0.3",
+    "is-ci": "3.0.1",
+    "lint-staged": "14.0.1",
+    "minimist": "1.2.8",
+    "npm-run-all": "4.1.5",
+    "prettier": "3.0.3",
+    "rimraf": "5.0.5",
+    "shell-quote": "1.8.1",
+    "terser": "5.21.0",
+    "typescript": "5.2.2"
   },
   "engines": {
     "node": ">=16.0.0",
     "npm": "please-use-yarn",
     "yarn": ">=1.22.0"
   },
-  "packageManager": "yarn@3.2.3"
+  "packageManager": "yarn@3.2.4"
 }

@@ -4,8 +4,10 @@
 2. npm run build
 3. goto `dev-server`
 4. yarn serve
-5. open `http://localhost:3001/admin-api`
-6. execute query using below
+5. http://localhost:3001/admin/catalog/collections
+
+6. open `http://localhost:3001/admin-api`
+7. execute query using below
 
 ```gql
 {

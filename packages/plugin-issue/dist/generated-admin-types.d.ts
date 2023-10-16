@@ -1,18 +1,18 @@
-export declare type Maybe<T> = T;
-export declare type InputMaybe<T> = T;
-export declare type Exact<T extends {
+export type Maybe<T> = T;
+export type InputMaybe<T> = T;
+export type Exact<T extends {
     [key: string]: unknown;
 }> = {
     [K in keyof T]: T[K];
 };
-export declare type MakeOptional<T, K extends keyof T> = Omit<T, K> & {
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & {
     [SubKey in K]?: Maybe<T[SubKey]>;
 };
-export declare type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {
     [SubKey in K]: Maybe<T[SubKey]>;
 };
 /** All built-in and custom scalars, mapped to their actual values */
-export declare type Scalars = {
+export type Scalars = {
     ID: string | number;
     String: string;
     Boolean: boolean;
@@ -23,27 +23,27 @@ export declare type Scalars = {
     Money: any;
     Upload: any;
 };
-export declare type AddFulfillmentToOrderResult = CreateFulfillmentError | EmptyOrderLineSelectionError | Fulfillment | FulfillmentStateTransitionError | InsufficientStockOnHandError | InvalidFulfillmentHandlerError | ItemsAlreadyFulfilledError;
-export declare type AddItemInput = {
+export type AddFulfillmentToOrderResult = CreateFulfillmentError | EmptyOrderLineSelectionError | Fulfillment | FulfillmentStateTransitionError | InsufficientStockOnHandError | InvalidFulfillmentHandlerError | ItemsAlreadyFulfilledError;
+export type AddItemInput = {
     productVariantId: Scalars['ID'];
     quantity: Scalars['Int'];
 };
-export declare type AddItemToDraftOrderInput = {
+export type AddItemToDraftOrderInput = {
     productVariantId: Scalars['ID'];
     quantity: Scalars['Int'];
 };
-export declare type AddManualPaymentToOrderResult = ManualPaymentStateError | Order;
-export declare type AddNoteToCustomerInput = {
+export type AddManualPaymentToOrderResult = ManualPaymentStateError | Order;
+export type AddNoteToCustomerInput = {
     id: Scalars['ID'];
     isPublic: Scalars['Boolean'];
     note: Scalars['String'];
 };
-export declare type AddNoteToOrderInput = {
+export type AddNoteToOrderInput = {
     id: Scalars['ID'];
     isPublic: Scalars['Boolean'];
     note: Scalars['String'];
 };
-export declare type Address = Node & {
+export type Address = Node & {
     __typename?: 'Address';
     city?: Maybe<Scalars['String']>;
     company?: Maybe<Scalars['String']>;
@@ -61,11 +61,11 @@ export declare type Address = Node & {
     streetLine2?: Maybe<Scalars['String']>;
     updatedAt: Scalars['DateTime'];
 };
-export declare type AdjustDraftOrderLineInput = {
+export type AdjustDraftOrderLineInput = {
     orderLineId: Scalars['ID'];
     quantity: Scalars['Int'];
 };
-export declare type Adjustment = {
+export type Adjustment = {
     __typename?: 'Adjustment';
     adjustmentSource: Scalars['String'];
     amount: Scalars['Money'];
@@ -78,7 +78,7 @@ export declare enum AdjustmentType {
     OTHER = "OTHER",
     PROMOTION = "PROMOTION"
 }
-export declare type Administrator = Node & {
+export type Administrator = Node & {
     __typename?: 'Administrator';
     createdAt: Scalars['DateTime'];
     customFields?: Maybe<Scalars['JSON']>;
@@ -89,7 +89,7 @@ export declare type Administrator = Node & {
     updatedAt: Scalars['DateTime'];
     user: User;
 };
-export declare type AdministratorFilterParameter = {
+export type AdministratorFilterParameter = {
     createdAt?: InputMaybe<DateOperators>;
     emailAddress?: InputMaybe<StringOperators>;
     firstName?: InputMaybe<StringOperators>;
@@ -97,12 +97,12 @@ export declare type AdministratorFilterParameter = {
     lastName?: InputMaybe<StringOperators>;
     updatedAt?: InputMaybe<DateOperators>;
 };
-export declare type AdministratorList = PaginatedList & {
+export type AdministratorList = PaginatedList & {
     __typename?: 'AdministratorList';
     items: Array<Administrator>;
     totalItems: Scalars['Int'];
 };
-export declare type AdministratorListOptions = {
+export type AdministratorListOptions = {
     /** Allows the results to be filtered */
     filter?: InputMaybe<AdministratorFilterParameter>;
     /** Specifies whether multiple "filter" arguments should be combines with a logical AND or OR operation. Defaults to AND. */
@@ -114,15 +114,15 @@ export declare type AdministratorListOptions = {
     /** Takes n results, for use in pagination */
     take?: InputMaybe<Scalars['Int']>;
 };
-export declare type AdministratorPaymentInput = {
+export type AdministratorPaymentInput = {
     metadata?: InputMaybe<Scalars['JSON']>;
     paymentMethod?: InputMaybe<Scalars['String']>;
 };
-export declare type AdministratorRefundInput = {
+export type AdministratorRefundInput = {
     paymentId: Scalars['ID'];
     reason?: InputMaybe<Scalars['String']>;
 };
-export declare type AdministratorSortParameter = {
+export type AdministratorSortParameter = {
     createdAt?: InputMaybe<SortOrder>;
     emailAddress?: InputMaybe<SortOrder>;
     firstName?: InputMaybe<SortOrder>;
@@ -130,7 +130,7 @@ export declare type AdministratorSortParameter = {
     lastName?: InputMaybe<SortOrder>;
     updatedAt?: InputMaybe<SortOrder>;
 };
-export declare type Allocation = Node & StockMovement & {
+export type Allocation = Node & StockMovement & {
     __typename?: 'Allocation';
     createdAt: Scalars['DateTime'];
     id: Scalars['ID'];
@@ -141,14 +141,14 @@ export declare type Allocation = Node & StockMovement & {
     updatedAt: Scalars['DateTime'];
 };
 /** Returned if an attempting to refund an OrderItem which has already been refunded */
-export declare type AlreadyRefundedError = ErrorResult & {
+export type AlreadyRefundedError = ErrorResult & {
     __typename?: 'AlreadyRefundedError';
     errorCode: ErrorCode;
     message: Scalars['String'];
     refundId: Scalars['ID'];
 };
-export declare type ApplyCouponCodeResult = CouponCodeExpiredError | CouponCodeInvalidError | CouponCodeLimitError | Order;
-export declare type Asset = Node & {
+export type ApplyCouponCodeResult = CouponCodeExpiredError | CouponCodeInvalidError | CouponCodeLimitError | Order;
+export type Asset = Node & {
     __typename?: 'Asset';
     createdAt: Scalars['DateTime'];
     customFields?: Maybe<Scalars['JSON']>;
@@ -165,7 +165,7 @@ export declare type Asset = Node & {
     updatedAt: Scalars['DateTime'];
     width: Scalars['Int'];
 };
-export declare type AssetFilterParameter = {
+export type AssetFilterParameter = {
     createdAt?: InputMaybe<DateOperators>;
     fileSize?: InputMaybe<NumberOperators>;
     height?: InputMaybe<NumberOperators>;
@@ -178,12 +178,12 @@ export declare type AssetFilterParameter = {
     updatedAt?: InputMaybe<DateOperators>;
     width?: InputMaybe<NumberOperators>;
 };
-export declare type AssetList = PaginatedList & {
+export type AssetList = PaginatedList & {
     __typename?: 'AssetList';
     items: Array<Asset>;
     totalItems: Scalars['Int'];
 };
-export declare type AssetListOptions = {
+export type AssetListOptions = {
     /** Allows the results to be filtered */
     filter?: InputMaybe<AssetFilterParameter>;
     /** Specifies whether multiple "filter" arguments should be combines with a logical AND or OR operation. Defaults to AND. */
@@ -197,7 +197,7 @@ export declare type AssetListOptions = {
     /** Takes n results, for use in pagination */
     take?: InputMaybe<Scalars['Int']>;
 };
-export declare type AssetSortParameter = {
+export type AssetSortParameter = {
     createdAt?: InputMaybe<SortOrder>;
     fileSize?: InputMaybe<SortOrder>;
     height?: InputMaybe<SortOrder>;
@@ -214,44 +214,44 @@ export declare enum AssetType {
     IMAGE = "IMAGE",
     VIDEO = "VIDEO"
 }
-export declare type AssignAssetsToChannelInput = {
+export type AssignAssetsToChannelInput = {
     assetIds: Array<Scalars['ID']>;
     channelId: Scalars['ID'];
 };
-export declare type AssignCollectionsToChannelInput = {
+export type AssignCollectionsToChannelInput = {
     channelId: Scalars['ID'];
     collectionIds: Array<Scalars['ID']>;
 };
-export declare type AssignFacetsToChannelInput = {
+export type AssignFacetsToChannelInput = {
     channelId: Scalars['ID'];
     facetIds: Array<Scalars['ID']>;
 };
-export declare type AssignProductVariantsToChannelInput = {
+export type AssignProductVariantsToChannelInput = {
     channelId: Scalars['ID'];
     priceFactor?: InputMaybe<Scalars['Float']>;
     productVariantIds: Array<Scalars['ID']>;
 };
-export declare type AssignProductsToChannelInput = {
+export type AssignProductsToChannelInput = {
     channelId: Scalars['ID'];
     priceFactor?: InputMaybe<Scalars['Float']>;
     productIds: Array<Scalars['ID']>;
 };
-export declare type AssignPromotionsToChannelInput = {
+export type AssignPromotionsToChannelInput = {
     channelId: Scalars['ID'];
     promotionIds: Array<Scalars['ID']>;
 };
-export declare type AuthenticationInput = {
+export type AuthenticationInput = {
     native?: InputMaybe<NativeAuthInput>;
 };
-export declare type AuthenticationMethod = Node & {
+export type AuthenticationMethod = Node & {
     __typename?: 'AuthenticationMethod';
     createdAt: Scalars['DateTime'];
     id: Scalars['ID'];
     strategy: Scalars['String'];
     updatedAt: Scalars['DateTime'];
 };
-export declare type AuthenticationResult = CurrentUser | InvalidCredentialsError;
-export declare type BooleanCustomFieldConfig = CustomField & {
+export type AuthenticationResult = CurrentUser | InvalidCredentialsError;
+export type BooleanCustomFieldConfig = CustomField & {
     __typename?: 'BooleanCustomFieldConfig';
     description?: Maybe<Array<LocalizedString>>;
     internal?: Maybe<Scalars['Boolean']>;
@@ -264,15 +264,15 @@ export declare type BooleanCustomFieldConfig = CustomField & {
     ui?: Maybe<Scalars['JSON']>;
 };
 /** Operators for filtering on a list of Boolean fields */
-export declare type BooleanListOperators = {
+export type BooleanListOperators = {
     inList: Scalars['Boolean'];
 };
 /** Operators for filtering on a Boolean field */
-export declare type BooleanOperators = {
+export type BooleanOperators = {
     eq?: InputMaybe<Scalars['Boolean']>;
     isNull?: InputMaybe<Scalars['Boolean']>;
 };
-export declare type Campaign = Node & {
+export type Campaign = Node & {
     __typename?: 'Campaign';
     applyForBeforeData: CampaignApplyForBeforeData;
     /** 针对不需要领券的活动, 可能无resut配置 */
@@ -295,7 +295,7 @@ export declare type Campaign = Node & {
     /** Mobile活动bannner */
     xsImage?: Maybe<Scalars['String']>;
 };
-export declare type CampaignApplyForBeforeData = {
+export type CampaignApplyForBeforeData = {
     __typename?: 'CampaignApplyForBeforeData';
     /** 按钮文字 */
     buttonText?: Maybe<Scalars['String']>;
@@ -310,7 +310,7 @@ export declare type CampaignApplyForBeforeData = {
     /** 标题（加粗文字） */
     title: Scalars['String'];
 };
-export declare type CampaignApplyForBeforeDataInput = {
+export type CampaignApplyForBeforeDataInput = {
     /** 按钮文字 */
     buttonText?: InputMaybe<Scalars['String']>;
     /** 政策小字 */
@@ -324,7 +324,7 @@ export declare type CampaignApplyForBeforeDataInput = {
     /** 标题（加粗文字） */
     title: Scalars['String'];
 };
-export declare type CampaignApplyForResultData = {
+export type CampaignApplyForResultData = {
     __typename?: 'CampaignApplyForResultData';
     /** Expiry Date */
     expiryLabel: Scalars['String'];
@@ -333,7 +333,7 @@ export declare type CampaignApplyForResultData = {
     /** Terms条款label */
     termsCondition: Scalars['String'];
 };
-export declare type CampaignApplyForResultDataInput = {
+export type CampaignApplyForResultDataInput = {
     /** Expiry Date */
     expiryLabel: Scalars['String'];
     /** 规则小字 */
@@ -341,7 +341,7 @@ export declare type CampaignApplyForResultDataInput = {
     /** Terms条款label */
     termsCondition: Scalars['String'];
 };
-export declare type CampaignCoupon = Node & {
+export type CampaignCoupon = Node & {
     __typename?: 'CampaignCoupon';
     campaign: Campaign;
     couponCode: Scalars['String'];
@@ -351,7 +351,7 @@ export declare type CampaignCoupon = Node & {
     id: Scalars['ID'];
     updatedAt: Scalars['DateTime'];
 };
-export declare type CampaignCouponFilterParameter = {
+export type CampaignCouponFilterParameter = {
     couponCode?: InputMaybe<StringOperators>;
     createdAt?: InputMaybe<DateOperators>;
     emailAddress?: InputMaybe<StringOperators>;
@@ -359,12 +359,12 @@ export declare type CampaignCouponFilterParameter = {
     id?: InputMaybe<IdOperators>;
     updatedAt?: InputMaybe<DateOperators>;
 };
-export declare type CampaignCouponList = PaginatedList & {
+export type CampaignCouponList = PaginatedList & {
     __typename?: 'CampaignCouponList';
     items: Array<CampaignCoupon>;
     totalItems: Scalars['Int'];
 };
-export declare type CampaignCouponListOptions = {
+export type CampaignCouponListOptions = {
     /** Allows the results to be filtered */
     filter?: InputMaybe<CampaignCouponFilterParameter>;
     /** Specifies whether multiple "filter" arguments should be combines with a logical AND or OR operation. Defaults to AND. */
@@ -376,7 +376,7 @@ export declare type CampaignCouponListOptions = {
     /** Takes n results, for use in pagination */
     take?: InputMaybe<Scalars['Int']>;
 };
-export declare type CampaignCouponSortParameter = {
+export type CampaignCouponSortParameter = {
     couponCode?: InputMaybe<SortOrder>;
     createdAt?: InputMaybe<SortOrder>;
     emailAddress?: InputMaybe<SortOrder>;
@@ -384,7 +384,7 @@ export declare type CampaignCouponSortParameter = {
     id?: InputMaybe<SortOrder>;
     updatedAt?: InputMaybe<SortOrder>;
 };
-export declare type CampaignFilterParameter = {
+export type CampaignFilterParameter = {
     campaignType?: InputMaybe<StringOperators>;
     code?: InputMaybe<StringOperators>;
     createdAt?: InputMaybe<DateOperators>;
@@ -398,12 +398,12 @@ export declare type CampaignFilterParameter = {
     updatedAt?: InputMaybe<DateOperators>;
     xsImage?: InputMaybe<StringOperators>;
 };
-export declare type CampaignList = PaginatedList & {
+export type CampaignList = PaginatedList & {
     __typename?: 'CampaignList';
     items: Array<Campaign>;
     totalItems: Scalars['Int'];
 };
-export declare type CampaignListOptions = {
+export type CampaignListOptions = {
     /** Allows the results to be filtered */
     filter?: InputMaybe<CampaignFilterParameter>;
     /** Specifies whether multiple "filter" arguments should be combines with a logical AND or OR operation. Defaults to AND. */
@@ -415,7 +415,7 @@ export declare type CampaignListOptions = {
     /** Takes n results, for use in pagination */
     take?: InputMaybe<Scalars['Int']>;
 };
-export declare type CampaignSortParameter = {
+export type CampaignSortParameter = {
     code?: InputMaybe<SortOrder>;
     createdAt?: InputMaybe<SortOrder>;
     id?: InputMaybe<SortOrder>;
@@ -426,7 +426,7 @@ export declare type CampaignSortParameter = {
     updatedAt?: InputMaybe<SortOrder>;
     xsImage?: InputMaybe<SortOrder>;
 };
-export declare type CampaignTranslationInput = {
+export type CampaignTranslationInput = {
     applyForBeforeData: CampaignApplyForBeforeDataInput;
     applyForResultData?: InputMaybe<CampaignApplyForResultDataInput>;
     id?: InputMaybe<Scalars['ID']>;
@@ -449,13 +449,13 @@ export declare enum CampaignType {
     NewUserFixedAmount = "NewUserFixedAmount"
 }
 /** Returned if an attempting to cancel lines from an Order which is still active */
-export declare type CancelActiveOrderError = ErrorResult & {
+export type CancelActiveOrderError = ErrorResult & {
     __typename?: 'CancelActiveOrderError';
     errorCode: ErrorCode;
     message: Scalars['String'];
     orderState: Scalars['String'];
 };
-export declare type CancelOrderInput = {
+export type CancelOrderInput = {
     /** Specify whether the shipping charges should also be cancelled. Defaults to false */
     cancelShipping?: InputMaybe<Scalars['Boolean']>;
     /** Optionally specify which OrderLines to cancel. If not provided, all OrderLines will be cancelled */
@@ -464,16 +464,16 @@ export declare type CancelOrderInput = {
     orderId: Scalars['ID'];
     reason?: InputMaybe<Scalars['String']>;
 };
-export declare type CancelOrderResult = CancelActiveOrderError | EmptyOrderLineSelectionError | MultipleOrderError | Order | OrderStateTransitionError | QuantityTooGreatError;
+export type CancelOrderResult = CancelActiveOrderError | EmptyOrderLineSelectionError | MultipleOrderError | Order | OrderStateTransitionError | QuantityTooGreatError;
 /** Returned if the Payment cancellation fails */
-export declare type CancelPaymentError = ErrorResult & {
+export type CancelPaymentError = ErrorResult & {
     __typename?: 'CancelPaymentError';
     errorCode: ErrorCode;
     message: Scalars['String'];
     paymentErrorMessage: Scalars['String'];
 };
-export declare type CancelPaymentResult = CancelPaymentError | Payment | PaymentStateTransitionError;
-export declare type Cancellation = Node & StockMovement & {
+export type CancelPaymentResult = CancelPaymentError | Payment | PaymentStateTransitionError;
+export type Cancellation = Node & StockMovement & {
     __typename?: 'Cancellation';
     createdAt: Scalars['DateTime'];
     id: Scalars['ID'];
@@ -483,7 +483,7 @@ export declare type Cancellation = Node & StockMovement & {
     type: StockMovementType;
     updatedAt: Scalars['DateTime'];
 };
-export declare type Channel = Node & {
+export type Channel = Node & {
     __typename?: 'Channel';
     code: Scalars['String'];
     createdAt: Scalars['DateTime'];
@@ -502,14 +502,14 @@ export declare type Channel = Node & {
  * Returned when the default LanguageCode of a Channel is no longer found in the `availableLanguages`
  * of the GlobalSettings
  */
-export declare type ChannelDefaultLanguageError = ErrorResult & {
+export type ChannelDefaultLanguageError = ErrorResult & {
     __typename?: 'ChannelDefaultLanguageError';
     channelCode: Scalars['String'];
     errorCode: ErrorCode;
     language: Scalars['String'];
     message: Scalars['String'];
 };
-export declare type Collection = Node & {
+export type Collection = Node & {
     __typename?: 'Collection';
     assets: Array<Asset>;
     breadcrumbs: Array<CollectionBreadcrumb>;
@@ -531,20 +531,20 @@ export declare type Collection = Node & {
     translations: Array<CollectionTranslation>;
     updatedAt: Scalars['DateTime'];
 };
-export declare type CollectionProductVariantsArgs = {
+export type CollectionProductVariantsArgs = {
     options?: InputMaybe<ProductVariantListOptions>;
 };
-export declare type CollectionBreadcrumb = {
+export type CollectionBreadcrumb = {
     __typename?: 'CollectionBreadcrumb';
     id: Scalars['ID'];
     name: Scalars['String'];
     slug: Scalars['String'];
 };
-export declare type CollectionCustomFields = {
+export type CollectionCustomFields = {
     __typename?: 'CollectionCustomFields';
     campaign?: Maybe<Campaign>;
 };
-export declare type CollectionFilterParameter = {
+export type CollectionFilterParameter = {
     createdAt?: InputMaybe<DateOperators>;
     description?: InputMaybe<StringOperators>;
     id?: InputMaybe<IdOperators>;
@@ -556,12 +556,12 @@ export declare type CollectionFilterParameter = {
     slug?: InputMaybe<StringOperators>;
     updatedAt?: InputMaybe<DateOperators>;
 };
-export declare type CollectionList = PaginatedList & {
+export type CollectionList = PaginatedList & {
     __typename?: 'CollectionList';
     items: Array<Collection>;
     totalItems: Scalars['Int'];
 };
-export declare type CollectionListOptions = {
+export type CollectionListOptions = {
     /** Allows the results to be filtered */
     filter?: InputMaybe<CollectionFilterParameter>;
     /** Specifies whether multiple "filter" arguments should be combines with a logical AND or OR operation. Defaults to AND. */
@@ -577,12 +577,12 @@ export declare type CollectionListOptions = {
  * Which Collections are present in the products returned
  * by the search, and in what quantity.
  */
-export declare type CollectionResult = {
+export type CollectionResult = {
     __typename?: 'CollectionResult';
     collection: Collection;
     count: Scalars['Int'];
 };
-export declare type CollectionSortParameter = {
+export type CollectionSortParameter = {
     campaign?: InputMaybe<SortOrder>;
     createdAt?: InputMaybe<SortOrder>;
     description?: InputMaybe<SortOrder>;
@@ -592,7 +592,7 @@ export declare type CollectionSortParameter = {
     slug?: InputMaybe<SortOrder>;
     updatedAt?: InputMaybe<SortOrder>;
 };
-export declare type CollectionTranslation = {
+export type CollectionTranslation = {
     __typename?: 'CollectionTranslation';
     createdAt: Scalars['DateTime'];
     description: Scalars['String'];
@@ -602,12 +602,12 @@ export declare type CollectionTranslation = {
     slug: Scalars['String'];
     updatedAt: Scalars['DateTime'];
 };
-export declare type ConfigArg = {
+export type ConfigArg = {
     __typename?: 'ConfigArg';
     name: Scalars['String'];
     value: Scalars['String'];
 };
-export declare type ConfigArgDefinition = {
+export type ConfigArgDefinition = {
     __typename?: 'ConfigArgDefinition';
     defaultValue?: Maybe<Scalars['JSON']>;
     description?: Maybe<Scalars['String']>;
@@ -618,36 +618,36 @@ export declare type ConfigArgDefinition = {
     type: Scalars['String'];
     ui?: Maybe<Scalars['JSON']>;
 };
-export declare type ConfigArgInput = {
+export type ConfigArgInput = {
     name: Scalars['String'];
     /** A JSON stringified representation of the actual value */
     value: Scalars['String'];
 };
-export declare type ConfigurableOperation = {
+export type ConfigurableOperation = {
     __typename?: 'ConfigurableOperation';
     args: Array<ConfigArg>;
     code: Scalars['String'];
 };
-export declare type ConfigurableOperationDefinition = {
+export type ConfigurableOperationDefinition = {
     __typename?: 'ConfigurableOperationDefinition';
     args: Array<ConfigArgDefinition>;
     code: Scalars['String'];
     description: Scalars['String'];
 };
-export declare type ConfigurableOperationInput = {
+export type ConfigurableOperationInput = {
     arguments: Array<ConfigArgInput>;
     code: Scalars['String'];
 };
-export declare type Coordinate = {
+export type Coordinate = {
     __typename?: 'Coordinate';
     x: Scalars['Float'];
     y: Scalars['Float'];
 };
-export declare type CoordinateInput = {
+export type CoordinateInput = {
     x: Scalars['Float'];
     y: Scalars['Float'];
 };
-export declare type Country = Node & {
+export type Country = Node & {
     __typename?: 'Country';
     code: Scalars['String'];
     createdAt: Scalars['DateTime'];
@@ -659,7 +659,7 @@ export declare type Country = Node & {
     translations: Array<CountryTranslation>;
     updatedAt: Scalars['DateTime'];
 };
-export declare type CountryFilterParameter = {
+export type CountryFilterParameter = {
     code?: InputMaybe<StringOperators>;
     createdAt?: InputMaybe<DateOperators>;
     enabled?: InputMaybe<BooleanOperators>;
@@ -668,12 +668,12 @@ export declare type CountryFilterParameter = {
     name?: InputMaybe<StringOperators>;
     updatedAt?: InputMaybe<DateOperators>;
 };
-export declare type CountryList = PaginatedList & {
+export type CountryList = PaginatedList & {
     __typename?: 'CountryList';
     items: Array<Country>;
     totalItems: Scalars['Int'];
 };
-export declare type CountryListOptions = {
+export type CountryListOptions = {
     /** Allows the results to be filtered */
     filter?: InputMaybe<CountryFilterParameter>;
     /** Specifies whether multiple "filter" arguments should be combines with a logical AND or OR operation. Defaults to AND. */
@@ -685,14 +685,14 @@ export declare type CountryListOptions = {
     /** Takes n results, for use in pagination */
     take?: InputMaybe<Scalars['Int']>;
 };
-export declare type CountrySortParameter = {
+export type CountrySortParameter = {
     code?: InputMaybe<SortOrder>;
     createdAt?: InputMaybe<SortOrder>;
     id?: InputMaybe<SortOrder>;
     name?: InputMaybe<SortOrder>;
     updatedAt?: InputMaybe<SortOrder>;
 };
-export declare type CountryTranslation = {
+export type CountryTranslation = {
     __typename?: 'CountryTranslation';
     createdAt: Scalars['DateTime'];
     id: Scalars['ID'];
@@ -700,35 +700,35 @@ export declare type CountryTranslation = {
     name: Scalars['String'];
     updatedAt: Scalars['DateTime'];
 };
-export declare type CountryTranslationInput = {
+export type CountryTranslationInput = {
     customFields?: InputMaybe<Scalars['JSON']>;
     id?: InputMaybe<Scalars['ID']>;
     languageCode: LanguageCode;
     name?: InputMaybe<Scalars['String']>;
 };
 /** Returned if the provided coupon code is invalid */
-export declare type CouponCodeExpiredError = ErrorResult & {
+export type CouponCodeExpiredError = ErrorResult & {
     __typename?: 'CouponCodeExpiredError';
     couponCode: Scalars['String'];
     errorCode: ErrorCode;
     message: Scalars['String'];
 };
 /** Returned if the provided coupon code is invalid */
-export declare type CouponCodeInvalidError = ErrorResult & {
+export type CouponCodeInvalidError = ErrorResult & {
     __typename?: 'CouponCodeInvalidError';
     couponCode: Scalars['String'];
     errorCode: ErrorCode;
     message: Scalars['String'];
 };
 /** Returned if the provided coupon code is invalid */
-export declare type CouponCodeLimitError = ErrorResult & {
+export type CouponCodeLimitError = ErrorResult & {
     __typename?: 'CouponCodeLimitError';
     couponCode: Scalars['String'];
     errorCode: ErrorCode;
     limit: Scalars['Int'];
     message: Scalars['String'];
 };
-export declare type CreateAddressInput = {
+export type CreateAddressInput = {
     city?: InputMaybe<Scalars['String']>;
     company?: InputMaybe<Scalars['String']>;
     countryCode: Scalars['String'];
@@ -742,7 +742,7 @@ export declare type CreateAddressInput = {
     streetLine1: Scalars['String'];
     streetLine2?: InputMaybe<Scalars['String']>;
 };
-export declare type CreateAdministratorInput = {
+export type CreateAdministratorInput = {
     customFields?: InputMaybe<Scalars['JSON']>;
     emailAddress: Scalars['String'];
     firstName: Scalars['String'];
@@ -750,19 +750,19 @@ export declare type CreateAdministratorInput = {
     password: Scalars['String'];
     roleIds: Array<Scalars['ID']>;
 };
-export declare type CreateAssetInput = {
+export type CreateAssetInput = {
     customFields?: InputMaybe<Scalars['JSON']>;
     file: Scalars['Upload'];
     tags?: InputMaybe<Array<Scalars['String']>>;
 };
-export declare type CreateAssetResult = Asset | MimeTypeError;
-export declare type CreateCampaignCouponInput = {
+export type CreateAssetResult = Asset | MimeTypeError;
+export type CreateCampaignCouponInput = {
     campaignId: Scalars['ID'];
     couponCode: Scalars['String'];
     emailAddress: Scalars['String'];
     endsAt?: InputMaybe<Scalars['DateTime']>;
 };
-export declare type CreateCampaignInput = {
+export type CreateCampaignInput = {
     campaignType: CampaignType;
     code: Scalars['String'];
     enabled: Scalars['Boolean'];
@@ -771,7 +771,7 @@ export declare type CreateCampaignInput = {
     promotionId?: InputMaybe<Scalars['Int']>;
     translations: Array<CampaignTranslationInput>;
 };
-export declare type CreateChannelInput = {
+export type CreateChannelInput = {
     code: Scalars['String'];
     currencyCode: CurrencyCode;
     customFields?: InputMaybe<Scalars['JSON']>;
@@ -782,11 +782,11 @@ export declare type CreateChannelInput = {
     sellerId?: InputMaybe<Scalars['ID']>;
     token: Scalars['String'];
 };
-export declare type CreateChannelResult = Channel | LanguageNotAvailableError;
-export declare type CreateCollectionCustomFieldsInput = {
+export type CreateChannelResult = Channel | LanguageNotAvailableError;
+export type CreateCollectionCustomFieldsInput = {
     campaignId?: InputMaybe<Scalars['ID']>;
 };
-export declare type CreateCollectionInput = {
+export type CreateCollectionInput = {
     assetIds?: InputMaybe<Array<Scalars['ID']>>;
     customFields?: InputMaybe<CreateCollectionCustomFieldsInput>;
     featuredAssetId?: InputMaybe<Scalars['ID']>;
@@ -796,25 +796,25 @@ export declare type CreateCollectionInput = {
     parentId?: InputMaybe<Scalars['ID']>;
     translations: Array<CreateCollectionTranslationInput>;
 };
-export declare type CreateCollectionTranslationInput = {
+export type CreateCollectionTranslationInput = {
     customFields?: InputMaybe<Scalars['JSON']>;
     description: Scalars['String'];
     languageCode: LanguageCode;
     name: Scalars['String'];
     slug: Scalars['String'];
 };
-export declare type CreateCountryInput = {
+export type CreateCountryInput = {
     code: Scalars['String'];
     customFields?: InputMaybe<Scalars['JSON']>;
     enabled: Scalars['Boolean'];
     translations: Array<CountryTranslationInput>;
 };
-export declare type CreateCustomerGroupInput = {
+export type CreateCustomerGroupInput = {
     customFields?: InputMaybe<Scalars['JSON']>;
     customerIds?: InputMaybe<Array<Scalars['ID']>>;
     name: Scalars['String'];
 };
-export declare type CreateCustomerInput = {
+export type CreateCustomerInput = {
     customFields?: InputMaybe<Scalars['JSON']>;
     emailAddress: Scalars['String'];
     firstName: Scalars['String'];
@@ -822,36 +822,36 @@ export declare type CreateCustomerInput = {
     phoneNumber?: InputMaybe<Scalars['String']>;
     title?: InputMaybe<Scalars['String']>;
 };
-export declare type CreateCustomerResult = Customer | EmailAddressConflictError;
-export declare type CreateFacetInput = {
+export type CreateCustomerResult = Customer | EmailAddressConflictError;
+export type CreateFacetInput = {
     code: Scalars['String'];
     customFields?: InputMaybe<Scalars['JSON']>;
     isPrivate: Scalars['Boolean'];
     translations: Array<FacetTranslationInput>;
     values?: InputMaybe<Array<CreateFacetValueWithFacetInput>>;
 };
-export declare type CreateFacetValueInput = {
+export type CreateFacetValueInput = {
     code: Scalars['String'];
     customFields?: InputMaybe<Scalars['JSON']>;
     facetId: Scalars['ID'];
     translations: Array<FacetValueTranslationInput>;
 };
-export declare type CreateFacetValueWithFacetInput = {
+export type CreateFacetValueWithFacetInput = {
     code: Scalars['String'];
     translations: Array<FacetValueTranslationInput>;
 };
 /** Returned if an error is thrown in a FulfillmentHandler's createFulfillment method */
-export declare type CreateFulfillmentError = ErrorResult & {
+export type CreateFulfillmentError = ErrorResult & {
     __typename?: 'CreateFulfillmentError';
     errorCode: ErrorCode;
     fulfillmentHandlerError: Scalars['String'];
     message: Scalars['String'];
 };
-export declare type CreateGroupOptionInput = {
+export type CreateGroupOptionInput = {
     code: Scalars['String'];
     translations: Array<ProductOptionGroupTranslationInput>;
 };
-export declare type CreatePaymentMethodInput = {
+export type CreatePaymentMethodInput = {
     checker?: InputMaybe<ConfigurableOperationInput>;
     code: Scalars['String'];
     customFields?: InputMaybe<Scalars['JSON']>;
@@ -859,7 +859,7 @@ export declare type CreatePaymentMethodInput = {
     handler: ConfigurableOperationInput;
     translations: Array<PaymentMethodTranslationInput>;
 };
-export declare type CreateProductInput = {
+export type CreateProductInput = {
     assetIds?: InputMaybe<Array<Scalars['ID']>>;
     customFields?: InputMaybe<Scalars['JSON']>;
     enabled?: InputMaybe<Scalars['Boolean']>;
@@ -867,19 +867,19 @@ export declare type CreateProductInput = {
     featuredAssetId?: InputMaybe<Scalars['ID']>;
     translations: Array<ProductTranslationInput>;
 };
-export declare type CreateProductOptionGroupInput = {
+export type CreateProductOptionGroupInput = {
     code: Scalars['String'];
     customFields?: InputMaybe<Scalars['JSON']>;
     options: Array<CreateGroupOptionInput>;
     translations: Array<ProductOptionGroupTranslationInput>;
 };
-export declare type CreateProductOptionInput = {
+export type CreateProductOptionInput = {
     code: Scalars['String'];
     customFields?: InputMaybe<Scalars['JSON']>;
     productOptionGroupId: Scalars['ID'];
     translations: Array<ProductOptionGroupTranslationInput>;
 };
-export declare type CreateProductVariantInput = {
+export type CreateProductVariantInput = {
     assetIds?: InputMaybe<Array<Scalars['ID']>>;
     customFields?: InputMaybe<Scalars['JSON']>;
     facetValueIds?: InputMaybe<Array<Scalars['ID']>>;
@@ -896,12 +896,12 @@ export declare type CreateProductVariantInput = {
     translations: Array<ProductVariantTranslationInput>;
     useGlobalOutOfStockThreshold?: InputMaybe<Scalars['Boolean']>;
 };
-export declare type CreateProductVariantOptionInput = {
+export type CreateProductVariantOptionInput = {
     code: Scalars['String'];
     optionGroupId: Scalars['ID'];
     translations: Array<ProductOptionTranslationInput>;
 };
-export declare type CreatePromotionInput = {
+export type CreatePromotionInput = {
     actions: Array<ConfigurableOperationInput>;
     conditions: Array<ConfigurableOperationInput>;
     couponCode?: InputMaybe<Scalars['String']>;
@@ -912,23 +912,23 @@ export declare type CreatePromotionInput = {
     startsAt?: InputMaybe<Scalars['DateTime']>;
     translations: Array<PromotionTranslationInput>;
 };
-export declare type CreatePromotionResult = MissingConditionsError | Promotion;
-export declare type CreateRoleInput = {
+export type CreatePromotionResult = MissingConditionsError | Promotion;
+export type CreateRoleInput = {
     channelIds?: InputMaybe<Array<Scalars['ID']>>;
     code: Scalars['String'];
     description: Scalars['String'];
     permissions: Array<Permission>;
 };
-export declare type CreateSellerInput = {
+export type CreateSellerInput = {
     customFields?: InputMaybe<Scalars['JSON']>;
     name: Scalars['String'];
 };
-export declare type CreateSettingInput = {
+export type CreateSettingInput = {
     enabled?: InputMaybe<Scalars['Boolean']>;
     key: Scalars['String'];
     translations: Array<SettingTranslationInput>;
 };
-export declare type CreateShippingMethodInput = {
+export type CreateShippingMethodInput = {
     calculator: ConfigurableOperationInput;
     checker: ConfigurableOperationInput;
     code: Scalars['String'];
@@ -936,26 +936,26 @@ export declare type CreateShippingMethodInput = {
     fulfillmentHandler: Scalars['String'];
     translations: Array<ShippingMethodTranslationInput>;
 };
-export declare type CreateStockLocationInput = {
+export type CreateStockLocationInput = {
     customFields?: InputMaybe<Scalars['JSON']>;
     description?: InputMaybe<Scalars['String']>;
     name: Scalars['String'];
 };
-export declare type CreateSubscriptionFacetInput = {
+export type CreateSubscriptionFacetInput = {
     code: Scalars['String'];
     name: Scalars['String'];
     values?: InputMaybe<Array<CreateSubscriptionFacetValueWithFacetInput>>;
 };
-export declare type CreateSubscriptionFacetValueInput = {
+export type CreateSubscriptionFacetValueInput = {
     code: Scalars['String'];
     facetId: Scalars['ID'];
     name: Scalars['String'];
 };
-export declare type CreateSubscriptionFacetValueWithFacetInput = {
+export type CreateSubscriptionFacetValueWithFacetInput = {
     code: Scalars['String'];
     name: Scalars['String'];
 };
-export declare type CreateSubscriptionInput = {
+export type CreateSubscriptionInput = {
     enabled: Scalars['Boolean'];
     facetValueIds?: InputMaybe<Array<Scalars['ID']>>;
     languageCode: LanguageCode;
@@ -963,15 +963,15 @@ export declare type CreateSubscriptionInput = {
     type: SubscriptionType;
     value: Scalars['String'];
 };
-export declare type CreateTagInput = {
+export type CreateTagInput = {
     value: Scalars['String'];
 };
-export declare type CreateTaxCategoryInput = {
+export type CreateTaxCategoryInput = {
     customFields?: InputMaybe<Scalars['JSON']>;
     isDefault?: InputMaybe<Scalars['Boolean']>;
     name: Scalars['String'];
 };
-export declare type CreateTaxRateInput = {
+export type CreateTaxRateInput = {
     categoryId: Scalars['ID'];
     customFields?: InputMaybe<Scalars['JSON']>;
     customerGroupId?: InputMaybe<Scalars['ID']>;
@@ -980,7 +980,7 @@ export declare type CreateTaxRateInput = {
     value: Scalars['Float'];
     zoneId: Scalars['ID'];
 };
-export declare type CreateZoneInput = {
+export type CreateZoneInput = {
     customFields?: InputMaybe<Scalars['JSON']>;
     memberIds?: InputMaybe<Array<Scalars['ID']>>;
     name: Scalars['String'];
@@ -1307,20 +1307,20 @@ export declare enum CurrencyCode {
     /** Zimbabwean dollar */
     ZWL = "ZWL"
 }
-export declare type CurrentUser = {
+export type CurrentUser = {
     __typename?: 'CurrentUser';
     channels: Array<CurrentUserChannel>;
     id: Scalars['ID'];
     identifier: Scalars['String'];
 };
-export declare type CurrentUserChannel = {
+export type CurrentUserChannel = {
     __typename?: 'CurrentUserChannel';
     code: Scalars['String'];
     id: Scalars['ID'];
     permissions: Array<Permission>;
     token: Scalars['String'];
 };
-export declare type CustomField = {
+export type CustomField = {
     description?: Maybe<Array<LocalizedString>>;
     internal?: Maybe<Scalars['Boolean']>;
     label?: Maybe<Array<LocalizedString>>;
@@ -1331,8 +1331,8 @@ export declare type CustomField = {
     type: Scalars['String'];
     ui?: Maybe<Scalars['JSON']>;
 };
-export declare type CustomFieldConfig = BooleanCustomFieldConfig | DateTimeCustomFieldConfig | FloatCustomFieldConfig | IntCustomFieldConfig | LocaleStringCustomFieldConfig | LocaleTextCustomFieldConfig | RelationCustomFieldConfig | StringCustomFieldConfig | TextCustomFieldConfig;
-export declare type CustomFields = {
+export type CustomFieldConfig = BooleanCustomFieldConfig | DateTimeCustomFieldConfig | FloatCustomFieldConfig | IntCustomFieldConfig | LocaleStringCustomFieldConfig | LocaleTextCustomFieldConfig | RelationCustomFieldConfig | StringCustomFieldConfig | TextCustomFieldConfig;
+export type CustomFields = {
     __typename?: 'CustomFields';
     Address: Array<CustomFieldConfig>;
     Administrator: Array<CustomFieldConfig>;
@@ -1362,7 +1362,7 @@ export declare type CustomFields = {
     User: Array<CustomFieldConfig>;
     Zone: Array<CustomFieldConfig>;
 };
-export declare type Customer = Node & {
+export type Customer = Node & {
     __typename?: 'Customer';
     addresses?: Maybe<Array<Address>>;
     createdAt: Scalars['DateTime'];
@@ -1379,13 +1379,13 @@ export declare type Customer = Node & {
     updatedAt: Scalars['DateTime'];
     user?: Maybe<User>;
 };
-export declare type CustomerHistoryArgs = {
+export type CustomerHistoryArgs = {
     options?: InputMaybe<HistoryEntryListOptions>;
 };
-export declare type CustomerOrdersArgs = {
+export type CustomerOrdersArgs = {
     options?: InputMaybe<OrderListOptions>;
 };
-export declare type CustomerFilterParameter = {
+export type CustomerFilterParameter = {
     createdAt?: InputMaybe<DateOperators>;
     emailAddress?: InputMaybe<StringOperators>;
     firstName?: InputMaybe<StringOperators>;
@@ -1396,7 +1396,7 @@ export declare type CustomerFilterParameter = {
     title?: InputMaybe<StringOperators>;
     updatedAt?: InputMaybe<DateOperators>;
 };
-export declare type CustomerGroup = Node & {
+export type CustomerGroup = Node & {
     __typename?: 'CustomerGroup';
     createdAt: Scalars['DateTime'];
     customFields?: Maybe<Scalars['JSON']>;
@@ -1405,21 +1405,21 @@ export declare type CustomerGroup = Node & {
     name: Scalars['String'];
     updatedAt: Scalars['DateTime'];
 };
-export declare type CustomerGroupCustomersArgs = {
+export type CustomerGroupCustomersArgs = {
     options?: InputMaybe<CustomerListOptions>;
 };
-export declare type CustomerGroupFilterParameter = {
+export type CustomerGroupFilterParameter = {
     createdAt?: InputMaybe<DateOperators>;
     id?: InputMaybe<IdOperators>;
     name?: InputMaybe<StringOperators>;
     updatedAt?: InputMaybe<DateOperators>;
 };
-export declare type CustomerGroupList = PaginatedList & {
+export type CustomerGroupList = PaginatedList & {
     __typename?: 'CustomerGroupList';
     items: Array<CustomerGroup>;
     totalItems: Scalars['Int'];
 };
-export declare type CustomerGroupListOptions = {
+export type CustomerGroupListOptions = {
     /** Allows the results to be filtered */
     filter?: InputMaybe<CustomerGroupFilterParameter>;
     /** Specifies whether multiple "filter" arguments should be combines with a logical AND or OR operation. Defaults to AND. */
@@ -1431,18 +1431,18 @@ export declare type CustomerGroupListOptions = {
     /** Takes n results, for use in pagination */
     take?: InputMaybe<Scalars['Int']>;
 };
-export declare type CustomerGroupSortParameter = {
+export type CustomerGroupSortParameter = {
     createdAt?: InputMaybe<SortOrder>;
     id?: InputMaybe<SortOrder>;
     name?: InputMaybe<SortOrder>;
     updatedAt?: InputMaybe<SortOrder>;
 };
-export declare type CustomerList = PaginatedList & {
+export type CustomerList = PaginatedList & {
     __typename?: 'CustomerList';
     items: Array<Customer>;
     totalItems: Scalars['Int'];
 };
-export declare type CustomerListOptions = {
+export type CustomerListOptions = {
     /** Allows the results to be filtered */
     filter?: InputMaybe<CustomerFilterParameter>;
     /** Specifies whether multiple "filter" arguments should be combines with a logical AND or OR operation. Defaults to AND. */
@@ -1454,7 +1454,7 @@ export declare type CustomerListOptions = {
     /** Takes n results, for use in pagination */
     take?: InputMaybe<Scalars['Int']>;
 };
-export declare type CustomerSortParameter = {
+export type CustomerSortParameter = {
     createdAt?: InputMaybe<SortOrder>;
     emailAddress?: InputMaybe<SortOrder>;
     firstName?: InputMaybe<SortOrder>;
@@ -1465,18 +1465,18 @@ export declare type CustomerSortParameter = {
     updatedAt?: InputMaybe<SortOrder>;
 };
 /** Operators for filtering on a list of Date fields */
-export declare type DateListOperators = {
+export type DateListOperators = {
     inList: Scalars['DateTime'];
 };
 /** Operators for filtering on a DateTime field */
-export declare type DateOperators = {
+export type DateOperators = {
     after?: InputMaybe<Scalars['DateTime']>;
     before?: InputMaybe<Scalars['DateTime']>;
     between?: InputMaybe<DateRange>;
     eq?: InputMaybe<Scalars['DateTime']>;
     isNull?: InputMaybe<Scalars['Boolean']>;
 };
-export declare type DateRange = {
+export type DateRange = {
     end: Scalars['DateTime'];
     start: Scalars['DateTime'];
 };
@@ -1484,7 +1484,7 @@ export declare type DateRange = {
  * Expects the same validation formats as the `<input type="datetime-local">` HTML element.
  * See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/datetime-local#Additional_attributes
  */
-export declare type DateTimeCustomFieldConfig = CustomField & {
+export type DateTimeCustomFieldConfig = CustomField & {
     __typename?: 'DateTimeCustomFieldConfig';
     description?: Maybe<Array<LocalizedString>>;
     internal?: Maybe<Scalars['Boolean']>;
@@ -1499,21 +1499,21 @@ export declare type DateTimeCustomFieldConfig = CustomField & {
     type: Scalars['String'];
     ui?: Maybe<Scalars['JSON']>;
 };
-export declare type DeleteAssetInput = {
+export type DeleteAssetInput = {
     assetId: Scalars['ID'];
     deleteFromAllChannels?: InputMaybe<Scalars['Boolean']>;
     force?: InputMaybe<Scalars['Boolean']>;
 };
-export declare type DeleteAssetsInput = {
+export type DeleteAssetsInput = {
     assetIds: Array<Scalars['ID']>;
     deleteFromAllChannels?: InputMaybe<Scalars['Boolean']>;
     force?: InputMaybe<Scalars['Boolean']>;
 };
-export declare type DeleteStockLocationInput = {
+export type DeleteStockLocationInput = {
     id: Scalars['ID'];
     transferToLocationId?: InputMaybe<Scalars['ID']>;
 };
-export declare type DeletionResponse = {
+export type DeletionResponse = {
     __typename?: 'DeletionResponse';
     message?: Maybe<Scalars['String']>;
     result: DeletionResult;
@@ -1524,7 +1524,7 @@ export declare enum DeletionResult {
     /** Deletion did not take place, reason given in message */
     NOT_DELETED = "NOT_DELETED"
 }
-export declare type Discount = {
+export type Discount = {
     __typename?: 'Discount';
     adjustmentSource: Scalars['String'];
     amount: Scalars['Money'];
@@ -1533,13 +1533,13 @@ export declare type Discount = {
     type: AdjustmentType;
 };
 /** Returned when attempting to create a Customer with an email address already registered to an existing User. */
-export declare type EmailAddressConflictError = ErrorResult & {
+export type EmailAddressConflictError = ErrorResult & {
     __typename?: 'EmailAddressConflictError';
     errorCode: ErrorCode;
     message: Scalars['String'];
 };
 /** Returned if no OrderLines have been specified for the operation */
-export declare type EmptyOrderLineSelectionError = ErrorResult & {
+export type EmptyOrderLineSelectionError = ErrorResult & {
     __typename?: 'EmptyOrderLineSelectionError';
     errorCode: ErrorCode;
     message: Scalars['String'];
@@ -1588,11 +1588,11 @@ export declare enum ErrorCode {
     SETTLE_PAYMENT_ERROR = "SETTLE_PAYMENT_ERROR",
     UNKNOWN_ERROR = "UNKNOWN_ERROR"
 }
-export declare type ErrorResult = {
+export type ErrorResult = {
     errorCode: ErrorCode;
     message: Scalars['String'];
 };
-export declare type Facet = Node & {
+export type Facet = Node & {
     __typename?: 'Facet';
     code: Scalars['String'];
     createdAt: Scalars['DateTime'];
@@ -1605,7 +1605,7 @@ export declare type Facet = Node & {
     updatedAt: Scalars['DateTime'];
     values: Array<FacetValue>;
 };
-export declare type FacetFilterParameter = {
+export type FacetFilterParameter = {
     code?: InputMaybe<StringOperators>;
     createdAt?: InputMaybe<DateOperators>;
     id?: InputMaybe<IdOperators>;
@@ -1614,7 +1614,7 @@ export declare type FacetFilterParameter = {
     name?: InputMaybe<StringOperators>;
     updatedAt?: InputMaybe<DateOperators>;
 };
-export declare type FacetInUseError = ErrorResult & {
+export type FacetInUseError = ErrorResult & {
     __typename?: 'FacetInUseError';
     errorCode: ErrorCode;
     facetCode: Scalars['String'];
@@ -1622,12 +1622,12 @@ export declare type FacetInUseError = ErrorResult & {
     productCount: Scalars['Int'];
     variantCount: Scalars['Int'];
 };
-export declare type FacetList = PaginatedList & {
+export type FacetList = PaginatedList & {
     __typename?: 'FacetList';
     items: Array<Facet>;
     totalItems: Scalars['Int'];
 };
-export declare type FacetListOptions = {
+export type FacetListOptions = {
     /** Allows the results to be filtered */
     filter?: InputMaybe<FacetFilterParameter>;
     /** Specifies whether multiple "filter" arguments should be combines with a logical AND or OR operation. Defaults to AND. */
@@ -1639,14 +1639,14 @@ export declare type FacetListOptions = {
     /** Takes n results, for use in pagination */
     take?: InputMaybe<Scalars['Int']>;
 };
-export declare type FacetSortParameter = {
+export type FacetSortParameter = {
     code?: InputMaybe<SortOrder>;
     createdAt?: InputMaybe<SortOrder>;
     id?: InputMaybe<SortOrder>;
     name?: InputMaybe<SortOrder>;
     updatedAt?: InputMaybe<SortOrder>;
 };
-export declare type FacetTranslation = {
+export type FacetTranslation = {
     __typename?: 'FacetTranslation';
     createdAt: Scalars['DateTime'];
     id: Scalars['ID'];
@@ -1654,13 +1654,13 @@ export declare type FacetTranslation = {
     name: Scalars['String'];
     updatedAt: Scalars['DateTime'];
 };
-export declare type FacetTranslationInput = {
+export type FacetTranslationInput = {
     customFields?: InputMaybe<Scalars['JSON']>;
     id?: InputMaybe<Scalars['ID']>;
     languageCode: LanguageCode;
     name?: InputMaybe<Scalars['String']>;
 };
-export declare type FacetValue = Node & {
+export type FacetValue = Node & {
     __typename?: 'FacetValue';
     code: Scalars['String'];
     createdAt: Scalars['DateTime'];
@@ -1680,11 +1680,11 @@ export declare type FacetValue = Node & {
  * * ID=1 AND ID=2: `{ facetValueFilters: [{ and: 1 }, { and: 2 }] }`
  * * ID=1 AND (ID=2 OR ID=3): `{ facetValueFilters: [{ and: 1 }, { or: [2,3] }] }`
  */
-export declare type FacetValueFilterInput = {
+export type FacetValueFilterInput = {
     and?: InputMaybe<Scalars['ID']>;
     or?: InputMaybe<Array<Scalars['ID']>>;
 };
-export declare type FacetValueFilterParameter = {
+export type FacetValueFilterParameter = {
     code?: InputMaybe<StringOperators>;
     createdAt?: InputMaybe<DateOperators>;
     id?: InputMaybe<IdOperators>;
@@ -1692,12 +1692,12 @@ export declare type FacetValueFilterParameter = {
     name?: InputMaybe<StringOperators>;
     updatedAt?: InputMaybe<DateOperators>;
 };
-export declare type FacetValueList = PaginatedList & {
+export type FacetValueList = PaginatedList & {
     __typename?: 'FacetValueList';
     items: Array<FacetValue>;
     totalItems: Scalars['Int'];
 };
-export declare type FacetValueListOptions = {
+export type FacetValueListOptions = {
     /** Allows the results to be filtered */
     filter?: InputMaybe<FacetValueFilterParameter>;
     /** Specifies whether multiple "filter" arguments should be combines with a logical AND or OR operation. Defaults to AND. */
@@ -1713,19 +1713,19 @@ export declare type FacetValueListOptions = {
  * Which FacetValues are present in the products returned
  * by the search, and in what quantity.
  */
-export declare type FacetValueResult = {
+export type FacetValueResult = {
     __typename?: 'FacetValueResult';
     count: Scalars['Int'];
     facetValue: FacetValue;
 };
-export declare type FacetValueSortParameter = {
+export type FacetValueSortParameter = {
     code?: InputMaybe<SortOrder>;
     createdAt?: InputMaybe<SortOrder>;
     id?: InputMaybe<SortOrder>;
     name?: InputMaybe<SortOrder>;
     updatedAt?: InputMaybe<SortOrder>;
 };
-export declare type FacetValueTranslation = {
+export type FacetValueTranslation = {
     __typename?: 'FacetValueTranslation';
     createdAt: Scalars['DateTime'];
     id: Scalars['ID'];
@@ -1733,13 +1733,13 @@ export declare type FacetValueTranslation = {
     name: Scalars['String'];
     updatedAt: Scalars['DateTime'];
 };
-export declare type FacetValueTranslationInput = {
+export type FacetValueTranslationInput = {
     customFields?: InputMaybe<Scalars['JSON']>;
     id?: InputMaybe<Scalars['ID']>;
     languageCode: LanguageCode;
     name?: InputMaybe<Scalars['String']>;
 };
-export declare type FloatCustomFieldConfig = CustomField & {
+export type FloatCustomFieldConfig = CustomField & {
     __typename?: 'FloatCustomFieldConfig';
     description?: Maybe<Array<LocalizedString>>;
     internal?: Maybe<Scalars['Boolean']>;
@@ -1754,11 +1754,11 @@ export declare type FloatCustomFieldConfig = CustomField & {
     type: Scalars['String'];
     ui?: Maybe<Scalars['JSON']>;
 };
-export declare type FulfillOrderInput = {
+export type FulfillOrderInput = {
     handler: ConfigurableOperationInput;
     lines: Array<OrderLineInput>;
 };
-export declare type Fulfillment = Node & {
+export type Fulfillment = Node & {
     __typename?: 'Fulfillment';
     createdAt: Scalars['DateTime'];
     customFields?: Maybe<Scalars['JSON']>;
@@ -1772,7 +1772,7 @@ export declare type Fulfillment = Node & {
     trackingCode?: Maybe<Scalars['String']>;
     updatedAt: Scalars['DateTime'];
 };
-export declare type FulfillmentLine = {
+export type FulfillmentLine = {
     __typename?: 'FulfillmentLine';
     fulfillment: Fulfillment;
     fulfillmentId: Scalars['ID'];
@@ -1781,7 +1781,7 @@ export declare type FulfillmentLine = {
     quantity: Scalars['Int'];
 };
 /** Returned when there is an error in transitioning the Fulfillment state */
-export declare type FulfillmentStateTransitionError = ErrorResult & {
+export type FulfillmentStateTransitionError = ErrorResult & {
     __typename?: 'FulfillmentStateTransitionError';
     errorCode: ErrorCode;
     fromState: Scalars['String'];
@@ -1794,7 +1794,7 @@ export declare enum GlobalFlag {
     INHERIT = "INHERIT",
     TRUE = "TRUE"
 }
-export declare type GlobalSettings = {
+export type GlobalSettings = {
     __typename?: 'GlobalSettings';
     availableLanguages: Array<LanguageCode>;
     createdAt: Scalars['DateTime'];
@@ -1805,7 +1805,7 @@ export declare type GlobalSettings = {
     trackInventory: Scalars['Boolean'];
     updatedAt: Scalars['DateTime'];
 };
-export declare type HistoryEntry = Node & {
+export type HistoryEntry = Node & {
     __typename?: 'HistoryEntry';
     administrator?: Maybe<Administrator>;
     createdAt: Scalars['DateTime'];
@@ -1815,19 +1815,19 @@ export declare type HistoryEntry = Node & {
     type: HistoryEntryType;
     updatedAt: Scalars['DateTime'];
 };
-export declare type HistoryEntryFilterParameter = {
+export type HistoryEntryFilterParameter = {
     createdAt?: InputMaybe<DateOperators>;
     id?: InputMaybe<IdOperators>;
     isPublic?: InputMaybe<BooleanOperators>;
     type?: InputMaybe<StringOperators>;
     updatedAt?: InputMaybe<DateOperators>;
 };
-export declare type HistoryEntryList = PaginatedList & {
+export type HistoryEntryList = PaginatedList & {
     __typename?: 'HistoryEntryList';
     items: Array<HistoryEntry>;
     totalItems: Scalars['Int'];
 };
-export declare type HistoryEntryListOptions = {
+export type HistoryEntryListOptions = {
     /** Allows the results to be filtered */
     filter?: InputMaybe<HistoryEntryFilterParameter>;
     /** Specifies whether multiple "filter" arguments should be combines with a logical AND or OR operation. Defaults to AND. */
@@ -1839,7 +1839,7 @@ export declare type HistoryEntryListOptions = {
     /** Takes n results, for use in pagination */
     take?: InputMaybe<Scalars['Int']>;
 };
-export declare type HistoryEntrySortParameter = {
+export type HistoryEntrySortParameter = {
     createdAt?: InputMaybe<SortOrder>;
     id?: InputMaybe<SortOrder>;
     updatedAt?: InputMaybe<SortOrder>;
@@ -1871,31 +1871,31 @@ export declare enum HistoryEntryType {
     ORDER_STATE_TRANSITION = "ORDER_STATE_TRANSITION"
 }
 /** Operators for filtering on a list of ID fields */
-export declare type IdListOperators = {
+export type IdListOperators = {
     inList: Scalars['ID'];
 };
 /** Operators for filtering on an ID field */
-export declare type IdOperators = {
+export type IdOperators = {
     eq?: InputMaybe<Scalars['String']>;
     in?: InputMaybe<Array<Scalars['String']>>;
     isNull?: InputMaybe<Scalars['Boolean']>;
     notEq?: InputMaybe<Scalars['String']>;
     notIn?: InputMaybe<Array<Scalars['String']>>;
 };
-export declare type ImportInfo = {
+export type ImportInfo = {
     __typename?: 'ImportInfo';
     errors?: Maybe<Array<Scalars['String']>>;
     imported: Scalars['Int'];
     processed: Scalars['Int'];
 };
 /** Returned when attempting to set a ShippingMethod for which the Order is not eligible */
-export declare type IneligibleShippingMethodError = ErrorResult & {
+export type IneligibleShippingMethodError = ErrorResult & {
     __typename?: 'IneligibleShippingMethodError';
     errorCode: ErrorCode;
     message: Scalars['String'];
 };
 /** Returned when attempting to add more items to the Order than are available */
-export declare type InsufficientStockError = ErrorResult & {
+export type InsufficientStockError = ErrorResult & {
     __typename?: 'InsufficientStockError';
     errorCode: ErrorCode;
     message: Scalars['String'];
@@ -1906,7 +1906,7 @@ export declare type InsufficientStockError = ErrorResult & {
  * Returned if attempting to create a Fulfillment when there is insufficient
  * stockOnHand of a ProductVariant to satisfy the requested quantity.
  */
-export declare type InsufficientStockOnHandError = ErrorResult & {
+export type InsufficientStockOnHandError = ErrorResult & {
     __typename?: 'InsufficientStockOnHandError';
     errorCode: ErrorCode;
     message: Scalars['String'];
@@ -1914,7 +1914,7 @@ export declare type InsufficientStockOnHandError = ErrorResult & {
     productVariantName: Scalars['String'];
     stockOnHand: Scalars['Int'];
 };
-export declare type IntCustomFieldConfig = CustomField & {
+export type IntCustomFieldConfig = CustomField & {
     __typename?: 'IntCustomFieldConfig';
     description?: Maybe<Array<LocalizedString>>;
     internal?: Maybe<Scalars['Boolean']>;
@@ -1930,25 +1930,25 @@ export declare type IntCustomFieldConfig = CustomField & {
     ui?: Maybe<Scalars['JSON']>;
 };
 /** Returned if the user authentication credentials are not valid */
-export declare type InvalidCredentialsError = ErrorResult & {
+export type InvalidCredentialsError = ErrorResult & {
     __typename?: 'InvalidCredentialsError';
     authenticationError: Scalars['String'];
     errorCode: ErrorCode;
     message: Scalars['String'];
 };
 /** Returned if the specified FulfillmentHandler code is not valid */
-export declare type InvalidFulfillmentHandlerError = ErrorResult & {
+export type InvalidFulfillmentHandlerError = ErrorResult & {
     __typename?: 'InvalidFulfillmentHandlerError';
     errorCode: ErrorCode;
     message: Scalars['String'];
 };
 /** Returned if the specified items are already part of a Fulfillment */
-export declare type ItemsAlreadyFulfilledError = ErrorResult & {
+export type ItemsAlreadyFulfilledError = ErrorResult & {
     __typename?: 'ItemsAlreadyFulfilledError';
     errorCode: ErrorCode;
     message: Scalars['String'];
 };
-export declare type Job = Node & {
+export type Job = Node & {
     __typename?: 'Job';
     attempts: Scalars['Int'];
     createdAt: Scalars['DateTime'];
@@ -1965,12 +1965,12 @@ export declare type Job = Node & {
     startedAt?: Maybe<Scalars['DateTime']>;
     state: JobState;
 };
-export declare type JobBufferSize = {
+export type JobBufferSize = {
     __typename?: 'JobBufferSize';
     bufferId: Scalars['String'];
     size: Scalars['Int'];
 };
-export declare type JobFilterParameter = {
+export type JobFilterParameter = {
     attempts?: InputMaybe<NumberOperators>;
     createdAt?: InputMaybe<DateOperators>;
     duration?: InputMaybe<NumberOperators>;
@@ -1983,12 +1983,12 @@ export declare type JobFilterParameter = {
     startedAt?: InputMaybe<DateOperators>;
     state?: InputMaybe<StringOperators>;
 };
-export declare type JobList = PaginatedList & {
+export type JobList = PaginatedList & {
     __typename?: 'JobList';
     items: Array<Job>;
     totalItems: Scalars['Int'];
 };
-export declare type JobListOptions = {
+export type JobListOptions = {
     /** Allows the results to be filtered */
     filter?: InputMaybe<JobFilterParameter>;
     /** Specifies whether multiple "filter" arguments should be combines with a logical AND or OR operation. Defaults to AND. */
@@ -2000,12 +2000,12 @@ export declare type JobListOptions = {
     /** Takes n results, for use in pagination */
     take?: InputMaybe<Scalars['Int']>;
 };
-export declare type JobQueue = {
+export type JobQueue = {
     __typename?: 'JobQueue';
     name: Scalars['String'];
     running: Scalars['Boolean'];
 };
-export declare type JobSortParameter = {
+export type JobSortParameter = {
     attempts?: InputMaybe<SortOrder>;
     createdAt?: InputMaybe<SortOrder>;
     duration?: InputMaybe<SortOrder>;
@@ -2356,13 +2356,13 @@ export declare enum LanguageCode {
     zu = "zu"
 }
 /** Returned if attempting to set a Channel's defaultLanguageCode to a language which is not enabled in GlobalSettings */
-export declare type LanguageNotAvailableError = ErrorResult & {
+export type LanguageNotAvailableError = ErrorResult & {
     __typename?: 'LanguageNotAvailableError';
     errorCode: ErrorCode;
     languageCode: Scalars['String'];
     message: Scalars['String'];
 };
-export declare type LocaleStringCustomFieldConfig = CustomField & {
+export type LocaleStringCustomFieldConfig = CustomField & {
     __typename?: 'LocaleStringCustomFieldConfig';
     description?: Maybe<Array<LocalizedString>>;
     internal?: Maybe<Scalars['Boolean']>;
@@ -2376,7 +2376,7 @@ export declare type LocaleStringCustomFieldConfig = CustomField & {
     type: Scalars['String'];
     ui?: Maybe<Scalars['JSON']>;
 };
-export declare type LocaleTextCustomFieldConfig = CustomField & {
+export type LocaleTextCustomFieldConfig = CustomField & {
     __typename?: 'LocaleTextCustomFieldConfig';
     description?: Maybe<Array<LocalizedString>>;
     internal?: Maybe<Scalars['Boolean']>;
@@ -2388,7 +2388,7 @@ export declare type LocaleTextCustomFieldConfig = CustomField & {
     type: Scalars['String'];
     ui?: Maybe<Scalars['JSON']>;
 };
-export declare type LocalizedString = {
+export type LocalizedString = {
     __typename?: 'LocalizedString';
     languageCode: LanguageCode;
     value: Scalars['String'];
@@ -2397,7 +2397,7 @@ export declare enum LogicalOperator {
     AND = "AND",
     OR = "OR"
 }
-export declare type ManualPaymentInput = {
+export type ManualPaymentInput = {
     metadata?: InputMaybe<Scalars['JSON']>;
     method: Scalars['String'];
     orderId: Scalars['ID'];
@@ -2407,12 +2407,12 @@ export declare type ManualPaymentInput = {
  * Returned when a call to addManualPaymentToOrder is made but the Order
  * is not in the required state.
  */
-export declare type ManualPaymentStateError = ErrorResult & {
+export type ManualPaymentStateError = ErrorResult & {
     __typename?: 'ManualPaymentStateError';
     errorCode: ErrorCode;
     message: Scalars['String'];
 };
-export declare type MimeTypeError = ErrorResult & {
+export type MimeTypeError = ErrorResult & {
     __typename?: 'MimeTypeError';
     errorCode: ErrorCode;
     fileName: Scalars['String'];
@@ -2420,12 +2420,12 @@ export declare type MimeTypeError = ErrorResult & {
     mimeType: Scalars['String'];
 };
 /** Returned if a PromotionCondition has neither a couponCode nor any conditions set */
-export declare type MissingConditionsError = ErrorResult & {
+export type MissingConditionsError = ErrorResult & {
     __typename?: 'MissingConditionsError';
     errorCode: ErrorCode;
     message: Scalars['String'];
 };
-export declare type ModifyOrderInput = {
+export type ModifyOrderInput = {
     addItems?: InputMaybe<Array<AddItemInput>>;
     adjustOrderLines?: InputMaybe<Array<OrderLineInput>>;
     couponCodes?: InputMaybe<Array<Scalars['String']>>;
@@ -2438,23 +2438,23 @@ export declare type ModifyOrderInput = {
     updateBillingAddress?: InputMaybe<UpdateOrderAddressInput>;
     updateShippingAddress?: InputMaybe<UpdateOrderAddressInput>;
 };
-export declare type ModifyOrderOptions = {
+export type ModifyOrderOptions = {
     freezePromotions?: InputMaybe<Scalars['Boolean']>;
     recalculateShipping?: InputMaybe<Scalars['Boolean']>;
 };
-export declare type ModifyOrderResult = CouponCodeExpiredError | CouponCodeInvalidError | CouponCodeLimitError | InsufficientStockError | NegativeQuantityError | NoChangesSpecifiedError | Order | OrderLimitError | OrderModificationStateError | PaymentMethodMissingError | RefundPaymentIdMissingError;
-export declare type MoveCollectionInput = {
+export type ModifyOrderResult = CouponCodeExpiredError | CouponCodeInvalidError | CouponCodeLimitError | InsufficientStockError | NegativeQuantityError | NoChangesSpecifiedError | Order | OrderLimitError | OrderModificationStateError | PaymentMethodMissingError | RefundPaymentIdMissingError;
+export type MoveCollectionInput = {
     collectionId: Scalars['ID'];
     index: Scalars['Int'];
     parentId: Scalars['ID'];
 };
 /** Returned if an operation has specified OrderLines from multiple Orders */
-export declare type MultipleOrderError = ErrorResult & {
+export type MultipleOrderError = ErrorResult & {
     __typename?: 'MultipleOrderError';
     errorCode: ErrorCode;
     message: Scalars['String'];
 };
-export declare type Mutation = {
+export type Mutation = {
     __typename?: 'Mutation';
     /** Add Customers to a CustomerGroup */
     addCustomersToGroup: CustomerGroup;
@@ -2758,513 +2758,513 @@ export declare type Mutation = {
     /** Update an existing Zone */
     updateZone: Zone;
 };
-export declare type MutationAddCustomersToGroupArgs = {
+export type MutationAddCustomersToGroupArgs = {
     customerGroupId: Scalars['ID'];
     customerIds: Array<Scalars['ID']>;
 };
-export declare type MutationAddFulfillmentToOrderArgs = {
+export type MutationAddFulfillmentToOrderArgs = {
     input: FulfillOrderInput;
 };
-export declare type MutationAddItemToDraftOrderArgs = {
+export type MutationAddItemToDraftOrderArgs = {
     input: AddItemToDraftOrderInput;
     orderId: Scalars['ID'];
 };
-export declare type MutationAddManualPaymentToOrderArgs = {
+export type MutationAddManualPaymentToOrderArgs = {
     input: ManualPaymentInput;
 };
-export declare type MutationAddMembersToZoneArgs = {
+export type MutationAddMembersToZoneArgs = {
     memberIds: Array<Scalars['ID']>;
     zoneId: Scalars['ID'];
 };
-export declare type MutationAddNoteToCustomerArgs = {
+export type MutationAddNoteToCustomerArgs = {
     input: AddNoteToCustomerInput;
 };
-export declare type MutationAddNoteToOrderArgs = {
+export type MutationAddNoteToOrderArgs = {
     input: AddNoteToOrderInput;
 };
-export declare type MutationAddOptionGroupToProductArgs = {
+export type MutationAddOptionGroupToProductArgs = {
     optionGroupId: Scalars['ID'];
     productId: Scalars['ID'];
 };
-export declare type MutationAdjustDraftOrderLineArgs = {
+export type MutationAdjustDraftOrderLineArgs = {
     input: AdjustDraftOrderLineInput;
     orderId: Scalars['ID'];
 };
-export declare type MutationApplyCouponCodeToDraftOrderArgs = {
+export type MutationApplyCouponCodeToDraftOrderArgs = {
     couponCode: Scalars['String'];
     orderId: Scalars['ID'];
 };
-export declare type MutationAssignAssetsToChannelArgs = {
+export type MutationAssignAssetsToChannelArgs = {
     input: AssignAssetsToChannelInput;
 };
-export declare type MutationAssignCollectionsToChannelArgs = {
+export type MutationAssignCollectionsToChannelArgs = {
     input: AssignCollectionsToChannelInput;
 };
-export declare type MutationAssignFacetsToChannelArgs = {
+export type MutationAssignFacetsToChannelArgs = {
     input: AssignFacetsToChannelInput;
 };
-export declare type MutationAssignProductVariantsToChannelArgs = {
+export type MutationAssignProductVariantsToChannelArgs = {
     input: AssignProductVariantsToChannelInput;
 };
-export declare type MutationAssignProductsToChannelArgs = {
+export type MutationAssignProductsToChannelArgs = {
     input: AssignProductsToChannelInput;
 };
-export declare type MutationAssignPromotionsToChannelArgs = {
+export type MutationAssignPromotionsToChannelArgs = {
     input: AssignPromotionsToChannelInput;
 };
-export declare type MutationAssignRoleToAdministratorArgs = {
+export type MutationAssignRoleToAdministratorArgs = {
     administratorId: Scalars['ID'];
     roleId: Scalars['ID'];
 };
-export declare type MutationAuthenticateArgs = {
+export type MutationAuthenticateArgs = {
     input: AuthenticationInput;
     rememberMe?: InputMaybe<Scalars['Boolean']>;
 };
-export declare type MutationCancelJobArgs = {
+export type MutationCancelJobArgs = {
     jobId: Scalars['ID'];
 };
-export declare type MutationCancelOrderArgs = {
+export type MutationCancelOrderArgs = {
     input: CancelOrderInput;
 };
-export declare type MutationCancelPaymentArgs = {
+export type MutationCancelPaymentArgs = {
     id: Scalars['ID'];
 };
-export declare type MutationCreateAdministratorArgs = {
+export type MutationCreateAdministratorArgs = {
     input: CreateAdministratorInput;
 };
-export declare type MutationCreateAssetsArgs = {
+export type MutationCreateAssetsArgs = {
     input: Array<CreateAssetInput>;
 };
-export declare type MutationCreateCampaignArgs = {
+export type MutationCreateCampaignArgs = {
     input: CreateCampaignInput;
 };
-export declare type MutationCreateCampaignCouponArgs = {
+export type MutationCreateCampaignCouponArgs = {
     input: CreateCampaignCouponInput;
 };
-export declare type MutationCreateChannelArgs = {
+export type MutationCreateChannelArgs = {
     input: CreateChannelInput;
 };
-export declare type MutationCreateCollectionArgs = {
+export type MutationCreateCollectionArgs = {
     input: CreateCollectionInput;
 };
-export declare type MutationCreateCountryArgs = {
+export type MutationCreateCountryArgs = {
     input: CreateCountryInput;
 };
-export declare type MutationCreateCustomerArgs = {
+export type MutationCreateCustomerArgs = {
     input: CreateCustomerInput;
     password?: InputMaybe<Scalars['String']>;
 };
-export declare type MutationCreateCustomerAddressArgs = {
+export type MutationCreateCustomerAddressArgs = {
     customerId: Scalars['ID'];
     input: CreateAddressInput;
 };
-export declare type MutationCreateCustomerGroupArgs = {
+export type MutationCreateCustomerGroupArgs = {
     input: CreateCustomerGroupInput;
 };
-export declare type MutationCreateFacetArgs = {
+export type MutationCreateFacetArgs = {
     input: CreateFacetInput;
 };
-export declare type MutationCreateFacetValuesArgs = {
+export type MutationCreateFacetValuesArgs = {
     input: Array<CreateFacetValueInput>;
 };
-export declare type MutationCreateMailerCampaignForUsersArgs = {
+export type MutationCreateMailerCampaignForUsersArgs = {
     campaignId: Scalars['Int'];
     emails: Array<Scalars['String']>;
     languageCode: LanguageCode;
 };
-export declare type MutationCreatePaymentMethodArgs = {
+export type MutationCreatePaymentMethodArgs = {
     input: CreatePaymentMethodInput;
 };
-export declare type MutationCreateProductArgs = {
+export type MutationCreateProductArgs = {
     input: CreateProductInput;
 };
-export declare type MutationCreateProductOptionArgs = {
+export type MutationCreateProductOptionArgs = {
     input: CreateProductOptionInput;
 };
-export declare type MutationCreateProductOptionGroupArgs = {
+export type MutationCreateProductOptionGroupArgs = {
     input: CreateProductOptionGroupInput;
 };
-export declare type MutationCreateProductVariantsArgs = {
+export type MutationCreateProductVariantsArgs = {
     input: Array<CreateProductVariantInput>;
 };
-export declare type MutationCreatePromotionArgs = {
+export type MutationCreatePromotionArgs = {
     input: CreatePromotionInput;
 };
-export declare type MutationCreateRoleArgs = {
+export type MutationCreateRoleArgs = {
     input: CreateRoleInput;
 };
-export declare type MutationCreateSellerArgs = {
+export type MutationCreateSellerArgs = {
     input: CreateSellerInput;
 };
-export declare type MutationCreateSettingArgs = {
+export type MutationCreateSettingArgs = {
     input: CreateSettingInput;
 };
-export declare type MutationCreateShippingMethodArgs = {
+export type MutationCreateShippingMethodArgs = {
     input: CreateShippingMethodInput;
 };
-export declare type MutationCreateStockLocationArgs = {
+export type MutationCreateStockLocationArgs = {
     input: CreateStockLocationInput;
 };
-export declare type MutationCreateSubscriptionArgs = {
+export type MutationCreateSubscriptionArgs = {
     input: CreateSubscriptionInput;
 };
-export declare type MutationCreateSubscriptionFacetArgs = {
+export type MutationCreateSubscriptionFacetArgs = {
     input: CreateSubscriptionFacetInput;
 };
-export declare type MutationCreateSubscriptionFacetValuesArgs = {
+export type MutationCreateSubscriptionFacetValuesArgs = {
     input: Array<CreateSubscriptionFacetValueInput>;
 };
-export declare type MutationCreateTagArgs = {
+export type MutationCreateTagArgs = {
     input: CreateTagInput;
 };
-export declare type MutationCreateTaxCategoryArgs = {
+export type MutationCreateTaxCategoryArgs = {
     input: CreateTaxCategoryInput;
 };
-export declare type MutationCreateTaxRateArgs = {
+export type MutationCreateTaxRateArgs = {
     input: CreateTaxRateInput;
 };
-export declare type MutationCreateZoneArgs = {
+export type MutationCreateZoneArgs = {
     input: CreateZoneInput;
 };
-export declare type MutationDeleteAdministratorArgs = {
+export type MutationDeleteAdministratorArgs = {
     id: Scalars['ID'];
 };
-export declare type MutationDeleteAssetArgs = {
+export type MutationDeleteAssetArgs = {
     input: DeleteAssetInput;
 };
-export declare type MutationDeleteAssetsArgs = {
+export type MutationDeleteAssetsArgs = {
     input: DeleteAssetsInput;
 };
-export declare type MutationDeleteCampaignArgs = {
+export type MutationDeleteCampaignArgs = {
     id: Scalars['ID'];
 };
-export declare type MutationDeleteCampaignCouponArgs = {
+export type MutationDeleteCampaignCouponArgs = {
     id: Scalars['ID'];
 };
-export declare type MutationDeleteChannelArgs = {
+export type MutationDeleteChannelArgs = {
     id: Scalars['ID'];
 };
-export declare type MutationDeleteCollectionArgs = {
+export type MutationDeleteCollectionArgs = {
     id: Scalars['ID'];
 };
-export declare type MutationDeleteCollectionsArgs = {
+export type MutationDeleteCollectionsArgs = {
     ids: Array<Scalars['ID']>;
 };
-export declare type MutationDeleteCountryArgs = {
+export type MutationDeleteCountryArgs = {
     id: Scalars['ID'];
 };
-export declare type MutationDeleteCustomerArgs = {
+export type MutationDeleteCustomerArgs = {
     id: Scalars['ID'];
 };
-export declare type MutationDeleteCustomerAddressArgs = {
+export type MutationDeleteCustomerAddressArgs = {
     id: Scalars['ID'];
 };
-export declare type MutationDeleteCustomerGroupArgs = {
+export type MutationDeleteCustomerGroupArgs = {
     id: Scalars['ID'];
 };
-export declare type MutationDeleteCustomerNoteArgs = {
+export type MutationDeleteCustomerNoteArgs = {
     id: Scalars['ID'];
 };
-export declare type MutationDeleteDraftOrderArgs = {
+export type MutationDeleteDraftOrderArgs = {
     orderId: Scalars['ID'];
 };
-export declare type MutationDeleteFacetArgs = {
+export type MutationDeleteFacetArgs = {
     force?: InputMaybe<Scalars['Boolean']>;
     id: Scalars['ID'];
 };
-export declare type MutationDeleteFacetValuesArgs = {
+export type MutationDeleteFacetValuesArgs = {
     force?: InputMaybe<Scalars['Boolean']>;
     ids: Array<Scalars['ID']>;
 };
-export declare type MutationDeleteFacetsArgs = {
+export type MutationDeleteFacetsArgs = {
     force?: InputMaybe<Scalars['Boolean']>;
     ids: Array<Scalars['ID']>;
 };
-export declare type MutationDeleteOrderNoteArgs = {
+export type MutationDeleteOrderNoteArgs = {
     id: Scalars['ID'];
 };
-export declare type MutationDeletePaymentMethodArgs = {
+export type MutationDeletePaymentMethodArgs = {
     force?: InputMaybe<Scalars['Boolean']>;
     id: Scalars['ID'];
 };
-export declare type MutationDeleteProductArgs = {
+export type MutationDeleteProductArgs = {
     id: Scalars['ID'];
 };
-export declare type MutationDeleteProductOptionArgs = {
+export type MutationDeleteProductOptionArgs = {
     id: Scalars['ID'];
 };
-export declare type MutationDeleteProductVariantArgs = {
+export type MutationDeleteProductVariantArgs = {
     id: Scalars['ID'];
 };
-export declare type MutationDeleteProductVariantsArgs = {
+export type MutationDeleteProductVariantsArgs = {
     ids: Array<Scalars['ID']>;
 };
-export declare type MutationDeleteProductsArgs = {
+export type MutationDeleteProductsArgs = {
     ids: Array<Scalars['ID']>;
 };
-export declare type MutationDeletePromotionArgs = {
+export type MutationDeletePromotionArgs = {
     id: Scalars['ID'];
 };
-export declare type MutationDeleteRoleArgs = {
+export type MutationDeleteRoleArgs = {
     id: Scalars['ID'];
 };
-export declare type MutationDeleteSellerArgs = {
+export type MutationDeleteSellerArgs = {
     id: Scalars['ID'];
 };
-export declare type MutationDeleteSettingArgs = {
+export type MutationDeleteSettingArgs = {
     id: Scalars['ID'];
 };
-export declare type MutationDeleteShippingMethodArgs = {
+export type MutationDeleteShippingMethodArgs = {
     id: Scalars['ID'];
 };
-export declare type MutationDeleteStockLocationArgs = {
+export type MutationDeleteStockLocationArgs = {
     input: DeleteStockLocationInput;
 };
-export declare type MutationDeleteSubscriptionArgs = {
+export type MutationDeleteSubscriptionArgs = {
     id: Scalars['ID'];
 };
-export declare type MutationDeleteSubscriptionFacetArgs = {
+export type MutationDeleteSubscriptionFacetArgs = {
     force?: InputMaybe<Scalars['Boolean']>;
     id: Scalars['ID'];
 };
-export declare type MutationDeleteSubscriptionFacetValuesArgs = {
+export type MutationDeleteSubscriptionFacetValuesArgs = {
     force?: InputMaybe<Scalars['Boolean']>;
     ids: Array<Scalars['ID']>;
 };
-export declare type MutationDeleteTagArgs = {
+export type MutationDeleteTagArgs = {
     id: Scalars['ID'];
 };
-export declare type MutationDeleteTaxCategoryArgs = {
+export type MutationDeleteTaxCategoryArgs = {
     id: Scalars['ID'];
 };
-export declare type MutationDeleteTaxRateArgs = {
+export type MutationDeleteTaxRateArgs = {
     id: Scalars['ID'];
 };
-export declare type MutationDeleteZoneArgs = {
+export type MutationDeleteZoneArgs = {
     id: Scalars['ID'];
 };
-export declare type MutationFlushBufferedJobsArgs = {
+export type MutationFlushBufferedJobsArgs = {
     bufferIds?: InputMaybe<Array<Scalars['String']>>;
 };
-export declare type MutationImportProductsArgs = {
+export type MutationImportProductsArgs = {
     csvFile: Scalars['Upload'];
 };
-export declare type MutationLoginArgs = {
+export type MutationLoginArgs = {
     password: Scalars['String'];
     rememberMe?: InputMaybe<Scalars['Boolean']>;
     username: Scalars['String'];
 };
-export declare type MutationModifyOrderArgs = {
+export type MutationModifyOrderArgs = {
     input: ModifyOrderInput;
 };
-export declare type MutationMoveCollectionArgs = {
+export type MutationMoveCollectionArgs = {
     input: MoveCollectionInput;
 };
-export declare type MutationRefundOrderArgs = {
+export type MutationRefundOrderArgs = {
     input: RefundOrderInput;
 };
-export declare type MutationRemoveCollectionsFromChannelArgs = {
+export type MutationRemoveCollectionsFromChannelArgs = {
     input: RemoveCollectionsFromChannelInput;
 };
-export declare type MutationRemoveCouponCodeFromDraftOrderArgs = {
+export type MutationRemoveCouponCodeFromDraftOrderArgs = {
     couponCode: Scalars['String'];
     orderId: Scalars['ID'];
 };
-export declare type MutationRemoveCustomersFromGroupArgs = {
+export type MutationRemoveCustomersFromGroupArgs = {
     customerGroupId: Scalars['ID'];
     customerIds: Array<Scalars['ID']>;
 };
-export declare type MutationRemoveDraftOrderLineArgs = {
+export type MutationRemoveDraftOrderLineArgs = {
     orderId: Scalars['ID'];
     orderLineId: Scalars['ID'];
 };
-export declare type MutationRemoveFacetsFromChannelArgs = {
+export type MutationRemoveFacetsFromChannelArgs = {
     input: RemoveFacetsFromChannelInput;
 };
-export declare type MutationRemoveMembersFromZoneArgs = {
+export type MutationRemoveMembersFromZoneArgs = {
     memberIds: Array<Scalars['ID']>;
     zoneId: Scalars['ID'];
 };
-export declare type MutationRemoveOptionGroupFromProductArgs = {
+export type MutationRemoveOptionGroupFromProductArgs = {
     optionGroupId: Scalars['ID'];
     productId: Scalars['ID'];
 };
-export declare type MutationRemoveProductVariantsFromChannelArgs = {
+export type MutationRemoveProductVariantsFromChannelArgs = {
     input: RemoveProductVariantsFromChannelInput;
 };
-export declare type MutationRemoveProductsFromChannelArgs = {
+export type MutationRemoveProductsFromChannelArgs = {
     input: RemoveProductsFromChannelInput;
 };
-export declare type MutationRemovePromotionsFromChannelArgs = {
+export type MutationRemovePromotionsFromChannelArgs = {
     input: RemovePromotionsFromChannelInput;
 };
-export declare type MutationRemoveSettledJobsArgs = {
+export type MutationRemoveSettledJobsArgs = {
     olderThan?: InputMaybe<Scalars['DateTime']>;
     queueNames?: InputMaybe<Array<Scalars['String']>>;
 };
-export declare type MutationRevalidateSlugArgs = {
+export type MutationRevalidateSlugArgs = {
     slug: Scalars['String'];
 };
-export declare type MutationSetCustomerForDraftOrderArgs = {
+export type MutationSetCustomerForDraftOrderArgs = {
     customerId?: InputMaybe<Scalars['ID']>;
     input?: InputMaybe<CreateCustomerInput>;
     orderId: Scalars['ID'];
 };
-export declare type MutationSetDraftOrderBillingAddressArgs = {
+export type MutationSetDraftOrderBillingAddressArgs = {
     input: CreateAddressInput;
     orderId: Scalars['ID'];
 };
-export declare type MutationSetDraftOrderCustomFieldsArgs = {
+export type MutationSetDraftOrderCustomFieldsArgs = {
     input: UpdateOrderInput;
     orderId: Scalars['ID'];
 };
-export declare type MutationSetDraftOrderShippingAddressArgs = {
+export type MutationSetDraftOrderShippingAddressArgs = {
     input: CreateAddressInput;
     orderId: Scalars['ID'];
 };
-export declare type MutationSetDraftOrderShippingMethodArgs = {
+export type MutationSetDraftOrderShippingMethodArgs = {
     orderId: Scalars['ID'];
     shippingMethodId: Scalars['ID'];
 };
-export declare type MutationSetOrderCustomFieldsArgs = {
+export type MutationSetOrderCustomFieldsArgs = {
     input: UpdateOrderInput;
 };
-export declare type MutationSettlePaymentArgs = {
+export type MutationSettlePaymentArgs = {
     id: Scalars['ID'];
 };
-export declare type MutationSettleRefundArgs = {
+export type MutationSettleRefundArgs = {
     input: SettleRefundInput;
 };
-export declare type MutationTransitionFulfillmentToStateArgs = {
+export type MutationTransitionFulfillmentToStateArgs = {
     id: Scalars['ID'];
     state: Scalars['String'];
 };
-export declare type MutationTransitionOrderToStateArgs = {
+export type MutationTransitionOrderToStateArgs = {
     id: Scalars['ID'];
     state: Scalars['String'];
 };
-export declare type MutationTransitionPaymentToStateArgs = {
+export type MutationTransitionPaymentToStateArgs = {
     id: Scalars['ID'];
     state: Scalars['String'];
 };
-export declare type MutationUpdateActiveAdministratorArgs = {
+export type MutationUpdateActiveAdministratorArgs = {
     input: UpdateActiveAdministratorInput;
 };
-export declare type MutationUpdateAdministratorArgs = {
+export type MutationUpdateAdministratorArgs = {
     input: UpdateAdministratorInput;
 };
-export declare type MutationUpdateAssetArgs = {
+export type MutationUpdateAssetArgs = {
     input: UpdateAssetInput;
 };
-export declare type MutationUpdateCampaignArgs = {
+export type MutationUpdateCampaignArgs = {
     input: UpdateCampaignInput;
 };
-export declare type MutationUpdateCampaignCouponArgs = {
+export type MutationUpdateCampaignCouponArgs = {
     input: UpdateCampaignCouponInput;
 };
-export declare type MutationUpdateChannelArgs = {
+export type MutationUpdateChannelArgs = {
     input: UpdateChannelInput;
 };
-export declare type MutationUpdateCollectionArgs = {
+export type MutationUpdateCollectionArgs = {
     input: UpdateCollectionInput;
 };
-export declare type MutationUpdateCountryArgs = {
+export type MutationUpdateCountryArgs = {
     input: UpdateCountryInput;
 };
-export declare type MutationUpdateCustomerArgs = {
+export type MutationUpdateCustomerArgs = {
     input: UpdateCustomerInput;
 };
-export declare type MutationUpdateCustomerAddressArgs = {
+export type MutationUpdateCustomerAddressArgs = {
     input: UpdateAddressInput;
 };
-export declare type MutationUpdateCustomerGroupArgs = {
+export type MutationUpdateCustomerGroupArgs = {
     input: UpdateCustomerGroupInput;
 };
-export declare type MutationUpdateCustomerNoteArgs = {
+export type MutationUpdateCustomerNoteArgs = {
     input: UpdateCustomerNoteInput;
 };
-export declare type MutationUpdateFacetArgs = {
+export type MutationUpdateFacetArgs = {
     input: UpdateFacetInput;
 };
-export declare type MutationUpdateFacetValuesArgs = {
+export type MutationUpdateFacetValuesArgs = {
     input: Array<UpdateFacetValueInput>;
 };
-export declare type MutationUpdateGlobalSettingsArgs = {
+export type MutationUpdateGlobalSettingsArgs = {
     input: UpdateGlobalSettingsInput;
 };
-export declare type MutationUpdateOrderNoteArgs = {
+export type MutationUpdateOrderNoteArgs = {
     input: UpdateOrderNoteInput;
 };
-export declare type MutationUpdatePaymentMethodArgs = {
+export type MutationUpdatePaymentMethodArgs = {
     input: UpdatePaymentMethodInput;
 };
-export declare type MutationUpdateProductArgs = {
+export type MutationUpdateProductArgs = {
     input: UpdateProductInput;
 };
-export declare type MutationUpdateProductOptionArgs = {
+export type MutationUpdateProductOptionArgs = {
     input: UpdateProductOptionInput;
 };
-export declare type MutationUpdateProductOptionGroupArgs = {
+export type MutationUpdateProductOptionGroupArgs = {
     input: UpdateProductOptionGroupInput;
 };
-export declare type MutationUpdateProductVariantsArgs = {
+export type MutationUpdateProductVariantsArgs = {
     input: Array<UpdateProductVariantInput>;
 };
-export declare type MutationUpdateProductsArgs = {
+export type MutationUpdateProductsArgs = {
     input: Array<UpdateProductInput>;
 };
-export declare type MutationUpdatePromotionArgs = {
+export type MutationUpdatePromotionArgs = {
     input: UpdatePromotionInput;
 };
-export declare type MutationUpdateRoleArgs = {
+export type MutationUpdateRoleArgs = {
     input: UpdateRoleInput;
 };
-export declare type MutationUpdateSellerArgs = {
+export type MutationUpdateSellerArgs = {
     input: UpdateSellerInput;
 };
-export declare type MutationUpdateSettingArgs = {
+export type MutationUpdateSettingArgs = {
     input: UpdateSettingInput;
 };
-export declare type MutationUpdateShippingMethodArgs = {
+export type MutationUpdateShippingMethodArgs = {
     input: UpdateShippingMethodInput;
 };
-export declare type MutationUpdateStockLocationArgs = {
+export type MutationUpdateStockLocationArgs = {
     input: UpdateStockLocationInput;
 };
-export declare type MutationUpdateSubscriptionArgs = {
+export type MutationUpdateSubscriptionArgs = {
     input: UpdateSubscriptionInput;
 };
-export declare type MutationUpdateSubscriptionFacetArgs = {
+export type MutationUpdateSubscriptionFacetArgs = {
     input: UpdateSubscriptionFacetInput;
 };
-export declare type MutationUpdateSubscriptionFacetValuesArgs = {
+export type MutationUpdateSubscriptionFacetValuesArgs = {
     input: Array<UpdateSubscriptionFacetValueInput>;
 };
-export declare type MutationUpdateTagArgs = {
+export type MutationUpdateTagArgs = {
     input: UpdateTagInput;
 };
-export declare type MutationUpdateTaxCategoryArgs = {
+export type MutationUpdateTaxCategoryArgs = {
     input: UpdateTaxCategoryInput;
 };
-export declare type MutationUpdateTaxRateArgs = {
+export type MutationUpdateTaxRateArgs = {
     input: UpdateTaxRateInput;
 };
-export declare type MutationUpdateZoneArgs = {
+export type MutationUpdateZoneArgs = {
     input: UpdateZoneInput;
 };
-export declare type NativeAuthInput = {
+export type NativeAuthInput = {
     password: Scalars['String'];
     username: Scalars['String'];
 };
 /** Returned when attempting an operation that relies on the NativeAuthStrategy, if that strategy is not configured. */
-export declare type NativeAuthStrategyError = ErrorResult & {
+export type NativeAuthStrategyError = ErrorResult & {
     __typename?: 'NativeAuthStrategyError';
     errorCode: ErrorCode;
     message: Scalars['String'];
 };
-export declare type NativeAuthenticationResult = CurrentUser | InvalidCredentialsError | NativeAuthStrategyError;
+export type NativeAuthenticationResult = CurrentUser | InvalidCredentialsError | NativeAuthStrategyError;
 /** Returned when attempting to set a negative OrderLine quantity. */
-export declare type NegativeQuantityError = ErrorResult & {
+export type NegativeQuantityError = ErrorResult & {
     __typename?: 'NegativeQuantityError';
     errorCode: ErrorCode;
     message: Scalars['String'];
@@ -3273,32 +3273,32 @@ export declare type NegativeQuantityError = ErrorResult & {
  * Returned when invoking a mutation which depends on there being an active Order on the
  * current session.
  */
-export declare type NoActiveOrderError = ErrorResult & {
+export type NoActiveOrderError = ErrorResult & {
     __typename?: 'NoActiveOrderError';
     errorCode: ErrorCode;
     message: Scalars['String'];
 };
 /** Returned when a call to modifyOrder fails to specify any changes */
-export declare type NoChangesSpecifiedError = ErrorResult & {
+export type NoChangesSpecifiedError = ErrorResult & {
     __typename?: 'NoChangesSpecifiedError';
     errorCode: ErrorCode;
     message: Scalars['String'];
 };
-export declare type Node = {
+export type Node = {
     id: Scalars['ID'];
 };
 /** Returned if an attempting to refund an Order but neither items nor shipping refund was specified */
-export declare type NothingToRefundError = ErrorResult & {
+export type NothingToRefundError = ErrorResult & {
     __typename?: 'NothingToRefundError';
     errorCode: ErrorCode;
     message: Scalars['String'];
 };
 /** Operators for filtering on a list of Number fields */
-export declare type NumberListOperators = {
+export type NumberListOperators = {
     inList: Scalars['Float'];
 };
 /** Operators for filtering on a Int or Float field */
-export declare type NumberOperators = {
+export type NumberOperators = {
     between?: InputMaybe<NumberRange>;
     eq?: InputMaybe<Scalars['Float']>;
     gt?: InputMaybe<Scalars['Float']>;
@@ -3307,11 +3307,11 @@ export declare type NumberOperators = {
     lt?: InputMaybe<Scalars['Float']>;
     lte?: InputMaybe<Scalars['Float']>;
 };
-export declare type NumberRange = {
+export type NumberRange = {
     end: Scalars['Float'];
     start: Scalars['Float'];
 };
-export declare type Order = Node & {
+export type Order = Node & {
     __typename?: 'Order';
     /** An order is active as long as the payment process has not been completed */
     active: Scalars['Boolean'];
@@ -3374,10 +3374,10 @@ export declare type Order = Node & {
     type: OrderType;
     updatedAt: Scalars['DateTime'];
 };
-export declare type OrderHistoryArgs = {
+export type OrderHistoryArgs = {
     options?: InputMaybe<HistoryEntryListOptions>;
 };
-export declare type OrderAddress = {
+export type OrderAddress = {
     __typename?: 'OrderAddress';
     city?: Maybe<Scalars['String']>;
     company?: Maybe<Scalars['String']>;
@@ -3391,7 +3391,7 @@ export declare type OrderAddress = {
     streetLine1?: Maybe<Scalars['String']>;
     streetLine2?: Maybe<Scalars['String']>;
 };
-export declare type OrderFilterParameter = {
+export type OrderFilterParameter = {
     active?: InputMaybe<BooleanOperators>;
     aggregateOrderId?: InputMaybe<IdOperators>;
     code?: InputMaybe<StringOperators>;
@@ -3412,7 +3412,7 @@ export declare type OrderFilterParameter = {
     type?: InputMaybe<StringOperators>;
     updatedAt?: InputMaybe<DateOperators>;
 };
-export declare type OrderItem = Node & {
+export type OrderItem = Node & {
     __typename?: 'OrderItem';
     adjustments: Array<Adjustment>;
     cancelled: Scalars['Boolean'];
@@ -3449,13 +3449,13 @@ export declare type OrderItem = Node & {
     updatedAt: Scalars['DateTime'];
 };
 /** Returned when the maximum order size limit has been reached. */
-export declare type OrderLimitError = ErrorResult & {
+export type OrderLimitError = ErrorResult & {
     __typename?: 'OrderLimitError';
     errorCode: ErrorCode;
     maxItems: Scalars['Int'];
     message: Scalars['String'];
 };
-export declare type OrderLine = Node & {
+export type OrderLine = Node & {
     __typename?: 'OrderLine';
     createdAt: Scalars['DateTime'];
     customFields?: Maybe<Scalars['JSON']>;
@@ -3517,16 +3517,16 @@ export declare type OrderLine = Node & {
     unitPriceWithTaxChangeSinceAdded: Scalars['Money'];
     updatedAt: Scalars['DateTime'];
 };
-export declare type OrderLineInput = {
+export type OrderLineInput = {
     orderLineId: Scalars['ID'];
     quantity: Scalars['Int'];
 };
-export declare type OrderList = PaginatedList & {
+export type OrderList = PaginatedList & {
     __typename?: 'OrderList';
     items: Array<Order>;
     totalItems: Scalars['Int'];
 };
-export declare type OrderListOptions = {
+export type OrderListOptions = {
     /** Allows the results to be filtered */
     filter?: InputMaybe<OrderFilterParameter>;
     /** Specifies whether multiple "filter" arguments should be combines with a logical AND or OR operation. Defaults to AND. */
@@ -3538,7 +3538,7 @@ export declare type OrderListOptions = {
     /** Takes n results, for use in pagination */
     take?: InputMaybe<Scalars['Int']>;
 };
-export declare type OrderModification = Node & {
+export type OrderModification = Node & {
     __typename?: 'OrderModification';
     createdAt: Scalars['DateTime'];
     id: Scalars['ID'];
@@ -3552,12 +3552,12 @@ export declare type OrderModification = Node & {
     updatedAt: Scalars['DateTime'];
 };
 /** Returned when attempting to modify the contents of an Order that is not in the `AddingItems` state. */
-export declare type OrderModificationError = ErrorResult & {
+export type OrderModificationError = ErrorResult & {
     __typename?: 'OrderModificationError';
     errorCode: ErrorCode;
     message: Scalars['String'];
 };
-export declare type OrderModificationLine = {
+export type OrderModificationLine = {
     __typename?: 'OrderModificationLine';
     modification: OrderModification;
     modificationId: Scalars['ID'];
@@ -3566,17 +3566,17 @@ export declare type OrderModificationLine = {
     quantity: Scalars['Int'];
 };
 /** Returned when attempting to modify the contents of an Order that is not in the `Modifying` state. */
-export declare type OrderModificationStateError = ErrorResult & {
+export type OrderModificationStateError = ErrorResult & {
     __typename?: 'OrderModificationStateError';
     errorCode: ErrorCode;
     message: Scalars['String'];
 };
-export declare type OrderProcessState = {
+export type OrderProcessState = {
     __typename?: 'OrderProcessState';
     name: Scalars['String'];
     to: Array<Scalars['String']>;
 };
-export declare type OrderSortParameter = {
+export type OrderSortParameter = {
     aggregateOrderId?: InputMaybe<SortOrder>;
     code?: InputMaybe<SortOrder>;
     createdAt?: InputMaybe<SortOrder>;
@@ -3595,7 +3595,7 @@ export declare type OrderSortParameter = {
     updatedAt?: InputMaybe<SortOrder>;
 };
 /** Returned if there is an error in transitioning the Order state */
-export declare type OrderStateTransitionError = ErrorResult & {
+export type OrderStateTransitionError = ErrorResult & {
     __typename?: 'OrderStateTransitionError';
     errorCode: ErrorCode;
     fromState: Scalars['String'];
@@ -3607,7 +3607,7 @@ export declare type OrderStateTransitionError = ErrorResult & {
  * A summary of the taxes being applied to this order, grouped
  * by taxRate.
  */
-export declare type OrderTaxSummary = {
+export type OrderTaxSummary = {
     __typename?: 'OrderTaxSummary';
     /** A description of this tax */
     description: Scalars['String'];
@@ -3623,11 +3623,11 @@ export declare enum OrderType {
     Regular = "Regular",
     Seller = "Seller"
 }
-export declare type PaginatedList = {
+export type PaginatedList = {
     items: Array<Node>;
     totalItems: Scalars['Int'];
 };
-export declare type Payment = Node & {
+export type Payment = Node & {
     __typename?: 'Payment';
     amount: Scalars['Money'];
     createdAt: Scalars['DateTime'];
@@ -3641,7 +3641,7 @@ export declare type Payment = Node & {
     transactionId?: Maybe<Scalars['String']>;
     updatedAt: Scalars['DateTime'];
 };
-export declare type PaymentMethod = Node & {
+export type PaymentMethod = Node & {
     __typename?: 'PaymentMethod';
     checker?: Maybe<ConfigurableOperation>;
     code: Scalars['String'];
@@ -3655,7 +3655,7 @@ export declare type PaymentMethod = Node & {
     translations: Array<PaymentMethodTranslation>;
     updatedAt: Scalars['DateTime'];
 };
-export declare type PaymentMethodFilterParameter = {
+export type PaymentMethodFilterParameter = {
     code?: InputMaybe<StringOperators>;
     createdAt?: InputMaybe<DateOperators>;
     description?: InputMaybe<StringOperators>;
@@ -3664,12 +3664,12 @@ export declare type PaymentMethodFilterParameter = {
     name?: InputMaybe<StringOperators>;
     updatedAt?: InputMaybe<DateOperators>;
 };
-export declare type PaymentMethodList = PaginatedList & {
+export type PaymentMethodList = PaginatedList & {
     __typename?: 'PaymentMethodList';
     items: Array<PaymentMethod>;
     totalItems: Scalars['Int'];
 };
-export declare type PaymentMethodListOptions = {
+export type PaymentMethodListOptions = {
     /** Allows the results to be filtered */
     filter?: InputMaybe<PaymentMethodFilterParameter>;
     /** Specifies whether multiple "filter" arguments should be combines with a logical AND or OR operation. Defaults to AND. */
@@ -3685,12 +3685,12 @@ export declare type PaymentMethodListOptions = {
  * Returned when a call to modifyOrder fails to include a paymentMethod even
  * though the price has increased as a result of the changes.
  */
-export declare type PaymentMethodMissingError = ErrorResult & {
+export type PaymentMethodMissingError = ErrorResult & {
     __typename?: 'PaymentMethodMissingError';
     errorCode: ErrorCode;
     message: Scalars['String'];
 };
-export declare type PaymentMethodQuote = {
+export type PaymentMethodQuote = {
     __typename?: 'PaymentMethodQuote';
     code: Scalars['String'];
     customFields?: Maybe<Scalars['JSON']>;
@@ -3700,7 +3700,7 @@ export declare type PaymentMethodQuote = {
     isEligible: Scalars['Boolean'];
     name: Scalars['String'];
 };
-export declare type PaymentMethodSortParameter = {
+export type PaymentMethodSortParameter = {
     code?: InputMaybe<SortOrder>;
     createdAt?: InputMaybe<SortOrder>;
     description?: InputMaybe<SortOrder>;
@@ -3708,7 +3708,7 @@ export declare type PaymentMethodSortParameter = {
     name?: InputMaybe<SortOrder>;
     updatedAt?: InputMaybe<SortOrder>;
 };
-export declare type PaymentMethodTranslation = {
+export type PaymentMethodTranslation = {
     __typename?: 'PaymentMethodTranslation';
     createdAt: Scalars['DateTime'];
     description: Scalars['String'];
@@ -3717,7 +3717,7 @@ export declare type PaymentMethodTranslation = {
     name: Scalars['String'];
     updatedAt: Scalars['DateTime'];
 };
-export declare type PaymentMethodTranslationInput = {
+export type PaymentMethodTranslationInput = {
     customFields?: InputMaybe<Scalars['JSON']>;
     description?: InputMaybe<Scalars['String']>;
     id?: InputMaybe<Scalars['ID']>;
@@ -3725,13 +3725,13 @@ export declare type PaymentMethodTranslationInput = {
     name?: InputMaybe<Scalars['String']>;
 };
 /** Returned if an attempting to refund a Payment against OrderLines from a different Order */
-export declare type PaymentOrderMismatchError = ErrorResult & {
+export type PaymentOrderMismatchError = ErrorResult & {
     __typename?: 'PaymentOrderMismatchError';
     errorCode: ErrorCode;
     message: Scalars['String'];
 };
 /** Returned when there is an error in transitioning the Payment state */
-export declare type PaymentStateTransitionError = ErrorResult & {
+export type PaymentStateTransitionError = ErrorResult & {
     __typename?: 'PaymentStateTransitionError';
     errorCode: ErrorCode;
     fromState: Scalars['String'];
@@ -3975,24 +3975,24 @@ export declare enum Permission {
     /** Grants permission to update Zone */
     UpdateZone = "UpdateZone"
 }
-export declare type PermissionDefinition = {
+export type PermissionDefinition = {
     __typename?: 'PermissionDefinition';
     assignable: Scalars['Boolean'];
     description: Scalars['String'];
     name: Scalars['String'];
 };
-export declare type PreviewCollectionVariantsInput = {
+export type PreviewCollectionVariantsInput = {
     filters: Array<ConfigurableOperationInput>;
     inheritFilters: Scalars['Boolean'];
     parentId?: InputMaybe<Scalars['ID']>;
 };
 /** The price range where the result has more than one price */
-export declare type PriceRange = {
+export type PriceRange = {
     __typename?: 'PriceRange';
     max: Scalars['Money'];
     min: Scalars['Money'];
 };
-export declare type Product = Node & {
+export type Product = Node & {
     __typename?: 'Product';
     assets: Array<Asset>;
     channels: Array<Channel>;
@@ -4015,10 +4015,10 @@ export declare type Product = Node & {
     /** Returns all ProductVariants */
     variants: Array<ProductVariant>;
 };
-export declare type ProductVariantListArgs = {
+export type ProductVariantListArgs = {
     options?: InputMaybe<ProductVariantListOptions>;
 };
-export declare type ProductFilterParameter = {
+export type ProductFilterParameter = {
     createdAt?: InputMaybe<DateOperators>;
     description?: InputMaybe<StringOperators>;
     enabled?: InputMaybe<BooleanOperators>;
@@ -4028,12 +4028,12 @@ export declare type ProductFilterParameter = {
     slug?: InputMaybe<StringOperators>;
     updatedAt?: InputMaybe<DateOperators>;
 };
-export declare type ProductList = PaginatedList & {
+export type ProductList = PaginatedList & {
     __typename?: 'ProductList';
     items: Array<Product>;
     totalItems: Scalars['Int'];
 };
-export declare type ProductListOptions = {
+export type ProductListOptions = {
     /** Allows the results to be filtered */
     filter?: InputMaybe<ProductFilterParameter>;
     /** Specifies whether multiple "filter" arguments should be combines with a logical AND or OR operation. Defaults to AND. */
@@ -4045,7 +4045,7 @@ export declare type ProductListOptions = {
     /** Takes n results, for use in pagination */
     take?: InputMaybe<Scalars['Int']>;
 };
-export declare type ProductOption = Node & {
+export type ProductOption = Node & {
     __typename?: 'ProductOption';
     code: Scalars['String'];
     createdAt: Scalars['DateTime'];
@@ -4058,7 +4058,7 @@ export declare type ProductOption = Node & {
     translations: Array<ProductOptionTranslation>;
     updatedAt: Scalars['DateTime'];
 };
-export declare type ProductOptionGroup = Node & {
+export type ProductOptionGroup = Node & {
     __typename?: 'ProductOptionGroup';
     code: Scalars['String'];
     createdAt: Scalars['DateTime'];
@@ -4070,7 +4070,7 @@ export declare type ProductOptionGroup = Node & {
     translations: Array<ProductOptionGroupTranslation>;
     updatedAt: Scalars['DateTime'];
 };
-export declare type ProductOptionGroupTranslation = {
+export type ProductOptionGroupTranslation = {
     __typename?: 'ProductOptionGroupTranslation';
     createdAt: Scalars['DateTime'];
     id: Scalars['ID'];
@@ -4078,20 +4078,20 @@ export declare type ProductOptionGroupTranslation = {
     name: Scalars['String'];
     updatedAt: Scalars['DateTime'];
 };
-export declare type ProductOptionGroupTranslationInput = {
+export type ProductOptionGroupTranslationInput = {
     customFields?: InputMaybe<Scalars['JSON']>;
     id?: InputMaybe<Scalars['ID']>;
     languageCode: LanguageCode;
     name?: InputMaybe<Scalars['String']>;
 };
-export declare type ProductOptionInUseError = ErrorResult & {
+export type ProductOptionInUseError = ErrorResult & {
     __typename?: 'ProductOptionInUseError';
     errorCode: ErrorCode;
     message: Scalars['String'];
     optionGroupCode: Scalars['String'];
     productVariantCount: Scalars['Int'];
 };
-export declare type ProductOptionTranslation = {
+export type ProductOptionTranslation = {
     __typename?: 'ProductOptionTranslation';
     createdAt: Scalars['DateTime'];
     id: Scalars['ID'];
@@ -4099,13 +4099,13 @@ export declare type ProductOptionTranslation = {
     name: Scalars['String'];
     updatedAt: Scalars['DateTime'];
 };
-export declare type ProductOptionTranslationInput = {
+export type ProductOptionTranslationInput = {
     customFields?: InputMaybe<Scalars['JSON']>;
     id?: InputMaybe<Scalars['ID']>;
     languageCode: LanguageCode;
     name?: InputMaybe<Scalars['String']>;
 };
-export declare type ProductSortParameter = {
+export type ProductSortParameter = {
     createdAt?: InputMaybe<SortOrder>;
     description?: InputMaybe<SortOrder>;
     id?: InputMaybe<SortOrder>;
@@ -4113,7 +4113,7 @@ export declare type ProductSortParameter = {
     slug?: InputMaybe<SortOrder>;
     updatedAt?: InputMaybe<SortOrder>;
 };
-export declare type ProductTranslation = {
+export type ProductTranslation = {
     __typename?: 'ProductTranslation';
     createdAt: Scalars['DateTime'];
     description: Scalars['String'];
@@ -4123,7 +4123,7 @@ export declare type ProductTranslation = {
     slug: Scalars['String'];
     updatedAt: Scalars['DateTime'];
 };
-export declare type ProductTranslationInput = {
+export type ProductTranslationInput = {
     customFields?: InputMaybe<Scalars['JSON']>;
     description?: InputMaybe<Scalars['String']>;
     id?: InputMaybe<Scalars['ID']>;
@@ -4131,7 +4131,7 @@ export declare type ProductTranslationInput = {
     name?: InputMaybe<Scalars['String']>;
     slug?: InputMaybe<Scalars['String']>;
 };
-export declare type ProductVariant = Node & {
+export type ProductVariant = Node & {
     __typename?: 'ProductVariant';
     assets: Array<Asset>;
     channels: Array<Channel>;
@@ -4165,10 +4165,10 @@ export declare type ProductVariant = Node & {
     updatedAt: Scalars['DateTime'];
     useGlobalOutOfStockThreshold: Scalars['Boolean'];
 };
-export declare type ProductVariantStockMovementsArgs = {
+export type ProductVariantStockMovementsArgs = {
     options?: InputMaybe<StockMovementListOptions>;
 };
-export declare type ProductVariantFilterParameter = {
+export type ProductVariantFilterParameter = {
     createdAt?: InputMaybe<DateOperators>;
     currencyCode?: InputMaybe<StringOperators>;
     enabled?: InputMaybe<BooleanOperators>;
@@ -4187,12 +4187,12 @@ export declare type ProductVariantFilterParameter = {
     updatedAt?: InputMaybe<DateOperators>;
     useGlobalOutOfStockThreshold?: InputMaybe<BooleanOperators>;
 };
-export declare type ProductVariantList = PaginatedList & {
+export type ProductVariantList = PaginatedList & {
     __typename?: 'ProductVariantList';
     items: Array<ProductVariant>;
     totalItems: Scalars['Int'];
 };
-export declare type ProductVariantListOptions = {
+export type ProductVariantListOptions = {
     /** Allows the results to be filtered */
     filter?: InputMaybe<ProductVariantFilterParameter>;
     /** Specifies whether multiple "filter" arguments should be combines with a logical AND or OR operation. Defaults to AND. */
@@ -4204,7 +4204,7 @@ export declare type ProductVariantListOptions = {
     /** Takes n results, for use in pagination */
     take?: InputMaybe<Scalars['Int']>;
 };
-export declare type ProductVariantSortParameter = {
+export type ProductVariantSortParameter = {
     createdAt?: InputMaybe<SortOrder>;
     id?: InputMaybe<SortOrder>;
     name?: InputMaybe<SortOrder>;
@@ -4218,7 +4218,7 @@ export declare type ProductVariantSortParameter = {
     stockOnHand?: InputMaybe<SortOrder>;
     updatedAt?: InputMaybe<SortOrder>;
 };
-export declare type ProductVariantTranslation = {
+export type ProductVariantTranslation = {
     __typename?: 'ProductVariantTranslation';
     createdAt: Scalars['DateTime'];
     id: Scalars['ID'];
@@ -4226,13 +4226,13 @@ export declare type ProductVariantTranslation = {
     name: Scalars['String'];
     updatedAt: Scalars['DateTime'];
 };
-export declare type ProductVariantTranslationInput = {
+export type ProductVariantTranslationInput = {
     customFields?: InputMaybe<Scalars['JSON']>;
     id?: InputMaybe<Scalars['ID']>;
     languageCode: LanguageCode;
     name?: InputMaybe<Scalars['String']>;
 };
-export declare type Promotion = Node & {
+export type Promotion = Node & {
     __typename?: 'Promotion';
     actions: Array<ConfigurableOperation>;
     conditions: Array<ConfigurableOperation>;
@@ -4249,7 +4249,7 @@ export declare type Promotion = Node & {
     translations: Array<PromotionTranslation>;
     updatedAt: Scalars['DateTime'];
 };
-export declare type PromotionFilterParameter = {
+export type PromotionFilterParameter = {
     couponCode?: InputMaybe<StringOperators>;
     createdAt?: InputMaybe<DateOperators>;
     description?: InputMaybe<StringOperators>;
@@ -4261,12 +4261,12 @@ export declare type PromotionFilterParameter = {
     startsAt?: InputMaybe<DateOperators>;
     updatedAt?: InputMaybe<DateOperators>;
 };
-export declare type PromotionList = PaginatedList & {
+export type PromotionList = PaginatedList & {
     __typename?: 'PromotionList';
     items: Array<Promotion>;
     totalItems: Scalars['Int'];
 };
-export declare type PromotionListOptions = {
+export type PromotionListOptions = {
     /** Allows the results to be filtered */
     filter?: InputMaybe<PromotionFilterParameter>;
     /** Specifies whether multiple "filter" arguments should be combines with a logical AND or OR operation. Defaults to AND. */
@@ -4278,7 +4278,7 @@ export declare type PromotionListOptions = {
     /** Takes n results, for use in pagination */
     take?: InputMaybe<Scalars['Int']>;
 };
-export declare type PromotionSortParameter = {
+export type PromotionSortParameter = {
     couponCode?: InputMaybe<SortOrder>;
     createdAt?: InputMaybe<SortOrder>;
     description?: InputMaybe<SortOrder>;
@@ -4289,7 +4289,7 @@ export declare type PromotionSortParameter = {
     startsAt?: InputMaybe<SortOrder>;
     updatedAt?: InputMaybe<SortOrder>;
 };
-export declare type PromotionTranslation = {
+export type PromotionTranslation = {
     __typename?: 'PromotionTranslation';
     createdAt: Scalars['DateTime'];
     description: Scalars['String'];
@@ -4298,7 +4298,7 @@ export declare type PromotionTranslation = {
     name: Scalars['String'];
     updatedAt: Scalars['DateTime'];
 };
-export declare type PromotionTranslationInput = {
+export type PromotionTranslationInput = {
     customFields?: InputMaybe<Scalars['JSON']>;
     description?: InputMaybe<Scalars['String']>;
     id?: InputMaybe<Scalars['ID']>;
@@ -4306,12 +4306,12 @@ export declare type PromotionTranslationInput = {
     name?: InputMaybe<Scalars['String']>;
 };
 /** Returned if the specified quantity of an OrderLine is greater than the number of items in that line */
-export declare type QuantityTooGreatError = ErrorResult & {
+export type QuantityTooGreatError = ErrorResult & {
     __typename?: 'QuantityTooGreatError';
     errorCode: ErrorCode;
     message: Scalars['String'];
 };
-export declare type Query = {
+export type Query = {
     __typename?: 'Query';
     activeAdministrator?: Maybe<Administrator>;
     activeChannel: Channel;
@@ -4412,202 +4412,202 @@ export declare type Query = {
     zone?: Maybe<Zone>;
     zones: Array<Zone>;
 };
-export declare type QueryAdministratorArgs = {
+export type QueryAdministratorArgs = {
     id: Scalars['ID'];
 };
-export declare type QueryAdministratorsArgs = {
+export type QueryAdministratorsArgs = {
     options?: InputMaybe<AdministratorListOptions>;
 };
-export declare type QueryAssetArgs = {
+export type QueryAssetArgs = {
     id: Scalars['ID'];
 };
-export declare type QueryAssetsArgs = {
+export type QueryAssetsArgs = {
     options?: InputMaybe<AssetListOptions>;
 };
-export declare type QueryAuthenticatedSessionTokenArgs = {
+export type QueryAuthenticatedSessionTokenArgs = {
     customerId?: InputMaybe<Scalars['ID']>;
     email?: InputMaybe<Scalars['String']>;
 };
-export declare type QueryCampaignArgs = {
+export type QueryCampaignArgs = {
     id: Scalars['ID'];
 };
-export declare type QueryCampaignCouponArgs = {
+export type QueryCampaignCouponArgs = {
     id: Scalars['ID'];
 };
-export declare type QueryCampaignCouponsArgs = {
+export type QueryCampaignCouponsArgs = {
     options?: InputMaybe<CampaignCouponListOptions>;
 };
-export declare type QueryCampaignsArgs = {
+export type QueryCampaignsArgs = {
     options?: InputMaybe<CampaignListOptions>;
 };
-export declare type QueryChannelArgs = {
+export type QueryChannelArgs = {
     id: Scalars['ID'];
 };
-export declare type QueryCollectionArgs = {
+export type QueryCollectionArgs = {
     id?: InputMaybe<Scalars['ID']>;
     slug?: InputMaybe<Scalars['String']>;
 };
-export declare type QueryCollectionsArgs = {
+export type QueryCollectionsArgs = {
     options?: InputMaybe<CollectionListOptions>;
 };
-export declare type QueryCountriesArgs = {
+export type QueryCountriesArgs = {
     options?: InputMaybe<CountryListOptions>;
 };
-export declare type QueryCountryArgs = {
+export type QueryCountryArgs = {
     id: Scalars['ID'];
 };
-export declare type QueryCustomerArgs = {
+export type QueryCustomerArgs = {
     id: Scalars['ID'];
 };
-export declare type QueryCustomerGroupArgs = {
+export type QueryCustomerGroupArgs = {
     id: Scalars['ID'];
 };
-export declare type QueryCustomerGroupsArgs = {
+export type QueryCustomerGroupsArgs = {
     options?: InputMaybe<CustomerGroupListOptions>;
 };
-export declare type QueryCustomersArgs = {
+export type QueryCustomersArgs = {
     options?: InputMaybe<CustomerListOptions>;
 };
-export declare type QueryEligibleShippingMethodsForDraftOrderArgs = {
+export type QueryEligibleShippingMethodsForDraftOrderArgs = {
     orderId: Scalars['ID'];
 };
-export declare type QueryFacetArgs = {
+export type QueryFacetArgs = {
     id: Scalars['ID'];
 };
-export declare type QueryFacetValuesArgs = {
+export type QueryFacetValuesArgs = {
     options?: InputMaybe<FacetValueListOptions>;
 };
-export declare type QueryFacetsArgs = {
+export type QueryFacetsArgs = {
     options?: InputMaybe<FacetListOptions>;
 };
-export declare type QueryJobArgs = {
+export type QueryJobArgs = {
     jobId: Scalars['ID'];
 };
-export declare type QueryJobBufferSizeArgs = {
+export type QueryJobBufferSizeArgs = {
     bufferIds?: InputMaybe<Array<Scalars['String']>>;
 };
-export declare type QueryJobsArgs = {
+export type QueryJobsArgs = {
     options?: InputMaybe<JobListOptions>;
 };
-export declare type QueryJobsByIdArgs = {
+export type QueryJobsByIdArgs = {
     jobIds: Array<Scalars['ID']>;
 };
-export declare type QueryOrderArgs = {
+export type QueryOrderArgs = {
     id: Scalars['ID'];
 };
-export declare type QueryOrdersArgs = {
+export type QueryOrdersArgs = {
     options?: InputMaybe<OrderListOptions>;
 };
-export declare type QueryPaymentMethodArgs = {
+export type QueryPaymentMethodArgs = {
     id: Scalars['ID'];
 };
-export declare type QueryPaymentMethodsArgs = {
+export type QueryPaymentMethodsArgs = {
     options?: InputMaybe<PaymentMethodListOptions>;
 };
-export declare type QueryPreviewCollectionVariantsArgs = {
+export type QueryPreviewCollectionVariantsArgs = {
     input: PreviewCollectionVariantsInput;
     options?: InputMaybe<ProductVariantListOptions>;
 };
-export declare type QueryProductArgs = {
+export type QueryProductArgs = {
     id?: InputMaybe<Scalars['ID']>;
     slug?: InputMaybe<Scalars['String']>;
 };
-export declare type QueryProductOptionGroupArgs = {
+export type QueryProductOptionGroupArgs = {
     id: Scalars['ID'];
 };
-export declare type QueryProductOptionGroupsArgs = {
+export type QueryProductOptionGroupsArgs = {
     filterTerm?: InputMaybe<Scalars['String']>;
 };
-export declare type QueryProductVariantArgs = {
+export type QueryProductVariantArgs = {
     id: Scalars['ID'];
 };
-export declare type QueryProductVariantsArgs = {
+export type QueryProductVariantsArgs = {
     options?: InputMaybe<ProductVariantListOptions>;
     productId?: InputMaybe<Scalars['ID']>;
 };
-export declare type QueryProductsArgs = {
+export type QueryProductsArgs = {
     options?: InputMaybe<ProductListOptions>;
 };
-export declare type QueryPromotionArgs = {
+export type QueryPromotionArgs = {
     id: Scalars['ID'];
 };
-export declare type QueryPromotionsArgs = {
+export type QueryPromotionsArgs = {
     options?: InputMaybe<PromotionListOptions>;
 };
-export declare type QueryRoleArgs = {
+export type QueryRoleArgs = {
     id: Scalars['ID'];
 };
-export declare type QueryRolesArgs = {
+export type QueryRolesArgs = {
     options?: InputMaybe<RoleListOptions>;
 };
-export declare type QuerySearchArgs = {
+export type QuerySearchArgs = {
     input: SearchInput;
 };
-export declare type QuerySellerArgs = {
+export type QuerySellerArgs = {
     id: Scalars['ID'];
 };
-export declare type QuerySellersArgs = {
+export type QuerySellersArgs = {
     options?: InputMaybe<SellerListOptions>;
 };
-export declare type QuerySettingArgs = {
+export type QuerySettingArgs = {
     id: Scalars['ID'];
 };
-export declare type QuerySettingsArgs = {
+export type QuerySettingsArgs = {
     options?: InputMaybe<SettingListOptions>;
 };
-export declare type QueryShippingMethodArgs = {
+export type QueryShippingMethodArgs = {
     id: Scalars['ID'];
 };
-export declare type QueryShippingMethodsArgs = {
+export type QueryShippingMethodsArgs = {
     options?: InputMaybe<ShippingMethodListOptions>;
 };
-export declare type QueryStockLocationArgs = {
+export type QueryStockLocationArgs = {
     id: Scalars['ID'];
 };
-export declare type QueryStockLocationsArgs = {
+export type QueryStockLocationsArgs = {
     options?: InputMaybe<StockLocationListOptions>;
 };
-export declare type QuerySubscriptionArgs = {
+export type QuerySubscriptionArgs = {
     id: Scalars['ID'];
 };
-export declare type QuerySubscriptionFacetArgs = {
+export type QuerySubscriptionFacetArgs = {
     id: Scalars['ID'];
 };
-export declare type QuerySubscriptionFacetValuesArgs = {
+export type QuerySubscriptionFacetValuesArgs = {
     options?: InputMaybe<SubscriptionFacetValueListOptions>;
 };
-export declare type QuerySubscriptionFacetsArgs = {
+export type QuerySubscriptionFacetsArgs = {
     options?: InputMaybe<SubscriptionFacetListOptions>;
 };
-export declare type QuerySubscriptionsArgs = {
+export type QuerySubscriptionsArgs = {
     facetValueIds?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
     options?: InputMaybe<SubscriptionListOptions>;
 };
-export declare type QueryTagArgs = {
+export type QueryTagArgs = {
     id: Scalars['ID'];
 };
-export declare type QueryTagsArgs = {
+export type QueryTagsArgs = {
     options?: InputMaybe<TagListOptions>;
 };
-export declare type QueryTaxCategoryArgs = {
+export type QueryTaxCategoryArgs = {
     id: Scalars['ID'];
 };
-export declare type QueryTaxRateArgs = {
+export type QueryTaxRateArgs = {
     id: Scalars['ID'];
 };
-export declare type QueryTaxRatesArgs = {
+export type QueryTaxRatesArgs = {
     options?: InputMaybe<TaxRateListOptions>;
 };
-export declare type QueryTestEligibleShippingMethodsArgs = {
+export type QueryTestEligibleShippingMethodsArgs = {
     input: TestEligibleShippingMethodsInput;
 };
-export declare type QueryTestShippingMethodArgs = {
+export type QueryTestShippingMethodArgs = {
     input: TestShippingMethodInput;
 };
-export declare type QueryZoneArgs = {
+export type QueryZoneArgs = {
     id: Scalars['ID'];
 };
-export declare type Refund = Node & {
+export type Refund = Node & {
     __typename?: 'Refund';
     adjustment: Scalars['Money'];
     createdAt: Scalars['DateTime'];
@@ -4624,7 +4624,7 @@ export declare type Refund = Node & {
     transactionId?: Maybe<Scalars['String']>;
     updatedAt: Scalars['DateTime'];
 };
-export declare type RefundLine = {
+export type RefundLine = {
     __typename?: 'RefundLine';
     orderLine: OrderLine;
     orderLineId: Scalars['ID'];
@@ -4632,16 +4632,16 @@ export declare type RefundLine = {
     refund: Refund;
     refundId: Scalars['ID'];
 };
-export declare type RefundOrderInput = {
+export type RefundOrderInput = {
     adjustment: Scalars['Money'];
     lines: Array<OrderLineInput>;
     paymentId: Scalars['ID'];
     reason?: InputMaybe<Scalars['String']>;
     shipping: Scalars['Money'];
 };
-export declare type RefundOrderResult = AlreadyRefundedError | MultipleOrderError | NothingToRefundError | OrderStateTransitionError | PaymentOrderMismatchError | QuantityTooGreatError | Refund | RefundOrderStateError | RefundStateTransitionError;
+export type RefundOrderResult = AlreadyRefundedError | MultipleOrderError | NothingToRefundError | OrderStateTransitionError | PaymentOrderMismatchError | QuantityTooGreatError | Refund | RefundOrderStateError | RefundStateTransitionError;
 /** Returned if an attempting to refund an Order which is not in the expected state */
-export declare type RefundOrderStateError = ErrorResult & {
+export type RefundOrderStateError = ErrorResult & {
     __typename?: 'RefundOrderStateError';
     errorCode: ErrorCode;
     message: Scalars['String'];
@@ -4651,13 +4651,13 @@ export declare type RefundOrderStateError = ErrorResult & {
  * Returned when a call to modifyOrder fails to include a refundPaymentId even
  * though the price has decreased as a result of the changes.
  */
-export declare type RefundPaymentIdMissingError = ErrorResult & {
+export type RefundPaymentIdMissingError = ErrorResult & {
     __typename?: 'RefundPaymentIdMissingError';
     errorCode: ErrorCode;
     message: Scalars['String'];
 };
 /** Returned when there is an error in transitioning the Refund state */
-export declare type RefundStateTransitionError = ErrorResult & {
+export type RefundStateTransitionError = ErrorResult & {
     __typename?: 'RefundStateTransitionError';
     errorCode: ErrorCode;
     fromState: Scalars['String'];
@@ -4665,7 +4665,7 @@ export declare type RefundStateTransitionError = ErrorResult & {
     toState: Scalars['String'];
     transitionError: Scalars['String'];
 };
-export declare type RelationCustomFieldConfig = CustomField & {
+export type RelationCustomFieldConfig = CustomField & {
     __typename?: 'RelationCustomFieldConfig';
     description?: Maybe<Array<LocalizedString>>;
     entity: Scalars['String'];
@@ -4679,7 +4679,7 @@ export declare type RelationCustomFieldConfig = CustomField & {
     type: Scalars['String'];
     ui?: Maybe<Scalars['JSON']>;
 };
-export declare type Release = Node & StockMovement & {
+export type Release = Node & StockMovement & {
     __typename?: 'Release';
     createdAt: Scalars['DateTime'];
     id: Scalars['ID'];
@@ -4689,31 +4689,31 @@ export declare type Release = Node & StockMovement & {
     type: StockMovementType;
     updatedAt: Scalars['DateTime'];
 };
-export declare type RemoveCollectionsFromChannelInput = {
+export type RemoveCollectionsFromChannelInput = {
     channelId: Scalars['ID'];
     collectionIds: Array<Scalars['ID']>;
 };
-export declare type RemoveFacetFromChannelResult = Facet | FacetInUseError;
-export declare type RemoveFacetsFromChannelInput = {
+export type RemoveFacetFromChannelResult = Facet | FacetInUseError;
+export type RemoveFacetsFromChannelInput = {
     channelId: Scalars['ID'];
     facetIds: Array<Scalars['ID']>;
     force?: InputMaybe<Scalars['Boolean']>;
 };
-export declare type RemoveOptionGroupFromProductResult = Product | ProductOptionInUseError;
-export declare type RemoveOrderItemsResult = Order | OrderModificationError;
-export declare type RemoveProductVariantsFromChannelInput = {
+export type RemoveOptionGroupFromProductResult = Product | ProductOptionInUseError;
+export type RemoveOrderItemsResult = Order | OrderModificationError;
+export type RemoveProductVariantsFromChannelInput = {
     channelId: Scalars['ID'];
     productVariantIds: Array<Scalars['ID']>;
 };
-export declare type RemoveProductsFromChannelInput = {
+export type RemoveProductsFromChannelInput = {
     channelId: Scalars['ID'];
     productIds: Array<Scalars['ID']>;
 };
-export declare type RemovePromotionsFromChannelInput = {
+export type RemovePromotionsFromChannelInput = {
     channelId: Scalars['ID'];
     promotionIds: Array<Scalars['ID']>;
 };
-export declare type Return = Node & StockMovement & {
+export type Return = Node & StockMovement & {
     __typename?: 'Return';
     createdAt: Scalars['DateTime'];
     id: Scalars['ID'];
@@ -4723,7 +4723,7 @@ export declare type Return = Node & StockMovement & {
     type: StockMovementType;
     updatedAt: Scalars['DateTime'];
 };
-export declare type Role = Node & {
+export type Role = Node & {
     __typename?: 'Role';
     channels: Array<Channel>;
     code: Scalars['String'];
@@ -4733,19 +4733,19 @@ export declare type Role = Node & {
     permissions: Array<Permission>;
     updatedAt: Scalars['DateTime'];
 };
-export declare type RoleFilterParameter = {
+export type RoleFilterParameter = {
     code?: InputMaybe<StringOperators>;
     createdAt?: InputMaybe<DateOperators>;
     description?: InputMaybe<StringOperators>;
     id?: InputMaybe<IdOperators>;
     updatedAt?: InputMaybe<DateOperators>;
 };
-export declare type RoleList = PaginatedList & {
+export type RoleList = PaginatedList & {
     __typename?: 'RoleList';
     items: Array<Role>;
     totalItems: Scalars['Int'];
 };
-export declare type RoleListOptions = {
+export type RoleListOptions = {
     /** Allows the results to be filtered */
     filter?: InputMaybe<RoleFilterParameter>;
     /** Specifies whether multiple "filter" arguments should be combines with a logical AND or OR operation. Defaults to AND. */
@@ -4757,14 +4757,14 @@ export declare type RoleListOptions = {
     /** Takes n results, for use in pagination */
     take?: InputMaybe<Scalars['Int']>;
 };
-export declare type RoleSortParameter = {
+export type RoleSortParameter = {
     code?: InputMaybe<SortOrder>;
     createdAt?: InputMaybe<SortOrder>;
     description?: InputMaybe<SortOrder>;
     id?: InputMaybe<SortOrder>;
     updatedAt?: InputMaybe<SortOrder>;
 };
-export declare type Sale = Node & StockMovement & {
+export type Sale = Node & StockMovement & {
     __typename?: 'Sale';
     createdAt: Scalars['DateTime'];
     id: Scalars['ID'];
@@ -4774,7 +4774,7 @@ export declare type Sale = Node & StockMovement & {
     type: StockMovementType;
     updatedAt: Scalars['DateTime'];
 };
-export declare type SearchInput = {
+export type SearchInput = {
     collectionId?: InputMaybe<Scalars['ID']>;
     collectionSlug?: InputMaybe<Scalars['String']>;
     facetValueFilters?: InputMaybe<Array<FacetValueFilterInput>>;
@@ -4784,18 +4784,18 @@ export declare type SearchInput = {
     take?: InputMaybe<Scalars['Int']>;
     term?: InputMaybe<Scalars['String']>;
 };
-export declare type SearchReindexResponse = {
+export type SearchReindexResponse = {
     __typename?: 'SearchReindexResponse';
     success: Scalars['Boolean'];
 };
-export declare type SearchResponse = {
+export type SearchResponse = {
     __typename?: 'SearchResponse';
     collections: Array<CollectionResult>;
     facetValues: Array<FacetValueResult>;
     items: Array<SearchResult>;
     totalItems: Scalars['Int'];
 };
-export declare type SearchResult = {
+export type SearchResult = {
     __typename?: 'SearchResult';
     /** An array of ids of the Channels in which this result appears */
     channelIds: Array<Scalars['ID']>;
@@ -4819,19 +4819,19 @@ export declare type SearchResult = {
     sku: Scalars['String'];
     slug: Scalars['String'];
 };
-export declare type SearchResultAsset = {
+export type SearchResultAsset = {
     __typename?: 'SearchResultAsset';
     focalPoint?: Maybe<Coordinate>;
     id: Scalars['ID'];
     preview: Scalars['String'];
 };
 /** The price of a search result product, either as a range or as a single price */
-export declare type SearchResultPrice = PriceRange | SinglePrice;
-export declare type SearchResultSortParameter = {
+export type SearchResultPrice = PriceRange | SinglePrice;
+export type SearchResultSortParameter = {
     name?: InputMaybe<SortOrder>;
     price?: InputMaybe<SortOrder>;
 };
-export declare type Seller = Node & {
+export type Seller = Node & {
     __typename?: 'Seller';
     createdAt: Scalars['DateTime'];
     customFields?: Maybe<Scalars['JSON']>;
@@ -4839,18 +4839,18 @@ export declare type Seller = Node & {
     name: Scalars['String'];
     updatedAt: Scalars['DateTime'];
 };
-export declare type SellerFilterParameter = {
+export type SellerFilterParameter = {
     createdAt?: InputMaybe<DateOperators>;
     id?: InputMaybe<IdOperators>;
     name?: InputMaybe<StringOperators>;
     updatedAt?: InputMaybe<DateOperators>;
 };
-export declare type SellerList = PaginatedList & {
+export type SellerList = PaginatedList & {
     __typename?: 'SellerList';
     items: Array<Seller>;
     totalItems: Scalars['Int'];
 };
-export declare type SellerListOptions = {
+export type SellerListOptions = {
     /** Allows the results to be filtered */
     filter?: InputMaybe<SellerFilterParameter>;
     /** Specifies whether multiple "filter" arguments should be combines with a logical AND or OR operation. Defaults to AND. */
@@ -4862,22 +4862,22 @@ export declare type SellerListOptions = {
     /** Takes n results, for use in pagination */
     take?: InputMaybe<Scalars['Int']>;
 };
-export declare type SellerSortParameter = {
+export type SellerSortParameter = {
     createdAt?: InputMaybe<SortOrder>;
     id?: InputMaybe<SortOrder>;
     name?: InputMaybe<SortOrder>;
     updatedAt?: InputMaybe<SortOrder>;
 };
-export declare type ServerConfig = {
+export type ServerConfig = {
     __typename?: 'ServerConfig';
     customFieldConfig: CustomFields;
     orderProcess: Array<OrderProcessState>;
     permissions: Array<PermissionDefinition>;
     permittedAssetTypes: Array<Scalars['String']>;
 };
-export declare type SetCustomerForDraftOrderResult = EmailAddressConflictError | Order;
-export declare type SetOrderShippingMethodResult = IneligibleShippingMethodError | NoActiveOrderError | Order | OrderModificationError;
-export declare type Setting = Node & {
+export type SetCustomerForDraftOrderResult = EmailAddressConflictError | Order;
+export type SetOrderShippingMethodResult = IneligibleShippingMethodError | NoActiveOrderError | Order | OrderModificationError;
+export type Setting = Node & {
     __typename?: 'Setting';
     createdAt: Scalars['DateTime'];
     enabled: Scalars['Boolean'];
@@ -4886,19 +4886,19 @@ export declare type Setting = Node & {
     updatedAt: Scalars['DateTime'];
     value: Scalars['JSON'];
 };
-export declare type SettingFilterParameter = {
+export type SettingFilterParameter = {
     createdAt?: InputMaybe<DateOperators>;
     enabled?: InputMaybe<BooleanOperators>;
     id?: InputMaybe<IdOperators>;
     key?: InputMaybe<StringOperators>;
     updatedAt?: InputMaybe<DateOperators>;
 };
-export declare type SettingList = PaginatedList & {
+export type SettingList = PaginatedList & {
     __typename?: 'SettingList';
     items: Array<Setting>;
     totalItems: Scalars['Int'];
 };
-export declare type SettingListOptions = {
+export type SettingListOptions = {
     /** Allows the results to be filtered */
     filter?: InputMaybe<SettingFilterParameter>;
     /** Specifies whether multiple "filter" arguments should be combines with a logical AND or OR operation. Defaults to AND. */
@@ -4910,31 +4910,31 @@ export declare type SettingListOptions = {
     /** Takes n results, for use in pagination */
     take?: InputMaybe<Scalars['Int']>;
 };
-export declare type SettingSortParameter = {
+export type SettingSortParameter = {
     createdAt?: InputMaybe<SortOrder>;
     id?: InputMaybe<SortOrder>;
     key?: InputMaybe<SortOrder>;
     updatedAt?: InputMaybe<SortOrder>;
 };
-export declare type SettingTranslationInput = {
+export type SettingTranslationInput = {
     id?: InputMaybe<Scalars['ID']>;
     languageCode: LanguageCode;
     value: Scalars['JSON'];
 };
 /** Returned if the Payment settlement fails */
-export declare type SettlePaymentError = ErrorResult & {
+export type SettlePaymentError = ErrorResult & {
     __typename?: 'SettlePaymentError';
     errorCode: ErrorCode;
     message: Scalars['String'];
     paymentErrorMessage: Scalars['String'];
 };
-export declare type SettlePaymentResult = OrderStateTransitionError | Payment | PaymentStateTransitionError | SettlePaymentError;
-export declare type SettleRefundInput = {
+export type SettlePaymentResult = OrderStateTransitionError | Payment | PaymentStateTransitionError | SettlePaymentError;
+export type SettleRefundInput = {
     id: Scalars['ID'];
     transactionId: Scalars['String'];
 };
-export declare type SettleRefundResult = Refund | RefundStateTransitionError;
-export declare type ShippingLine = {
+export type SettleRefundResult = Refund | RefundStateTransitionError;
+export type ShippingLine = {
     __typename?: 'ShippingLine';
     discountedPrice: Scalars['Money'];
     discountedPriceWithTax: Scalars['Money'];
@@ -4944,7 +4944,7 @@ export declare type ShippingLine = {
     priceWithTax: Scalars['Money'];
     shippingMethod: ShippingMethod;
 };
-export declare type ShippingMethod = Node & {
+export type ShippingMethod = Node & {
     __typename?: 'ShippingMethod';
     calculator: ConfigurableOperation;
     checker: ConfigurableOperation;
@@ -4959,7 +4959,7 @@ export declare type ShippingMethod = Node & {
     translations: Array<ShippingMethodTranslation>;
     updatedAt: Scalars['DateTime'];
 };
-export declare type ShippingMethodFilterParameter = {
+export type ShippingMethodFilterParameter = {
     code?: InputMaybe<StringOperators>;
     createdAt?: InputMaybe<DateOperators>;
     description?: InputMaybe<StringOperators>;
@@ -4969,12 +4969,12 @@ export declare type ShippingMethodFilterParameter = {
     name?: InputMaybe<StringOperators>;
     updatedAt?: InputMaybe<DateOperators>;
 };
-export declare type ShippingMethodList = PaginatedList & {
+export type ShippingMethodList = PaginatedList & {
     __typename?: 'ShippingMethodList';
     items: Array<ShippingMethod>;
     totalItems: Scalars['Int'];
 };
-export declare type ShippingMethodListOptions = {
+export type ShippingMethodListOptions = {
     /** Allows the results to be filtered */
     filter?: InputMaybe<ShippingMethodFilterParameter>;
     /** Specifies whether multiple "filter" arguments should be combines with a logical AND or OR operation. Defaults to AND. */
@@ -4986,7 +4986,7 @@ export declare type ShippingMethodListOptions = {
     /** Takes n results, for use in pagination */
     take?: InputMaybe<Scalars['Int']>;
 };
-export declare type ShippingMethodQuote = {
+export type ShippingMethodQuote = {
     __typename?: 'ShippingMethodQuote';
     code: Scalars['String'];
     customFields?: Maybe<Scalars['JSON']>;
@@ -4998,7 +4998,7 @@ export declare type ShippingMethodQuote = {
     price: Scalars['Money'];
     priceWithTax: Scalars['Money'];
 };
-export declare type ShippingMethodSortParameter = {
+export type ShippingMethodSortParameter = {
     code?: InputMaybe<SortOrder>;
     createdAt?: InputMaybe<SortOrder>;
     description?: InputMaybe<SortOrder>;
@@ -5007,7 +5007,7 @@ export declare type ShippingMethodSortParameter = {
     name?: InputMaybe<SortOrder>;
     updatedAt?: InputMaybe<SortOrder>;
 };
-export declare type ShippingMethodTranslation = {
+export type ShippingMethodTranslation = {
     __typename?: 'ShippingMethodTranslation';
     createdAt: Scalars['DateTime'];
     description: Scalars['String'];
@@ -5016,7 +5016,7 @@ export declare type ShippingMethodTranslation = {
     name: Scalars['String'];
     updatedAt: Scalars['DateTime'];
 };
-export declare type ShippingMethodTranslationInput = {
+export type ShippingMethodTranslationInput = {
     customFields?: InputMaybe<Scalars['JSON']>;
     description?: InputMaybe<Scalars['String']>;
     id?: InputMaybe<Scalars['ID']>;
@@ -5024,7 +5024,7 @@ export declare type ShippingMethodTranslationInput = {
     name?: InputMaybe<Scalars['String']>;
 };
 /** The price value where the result has a single price */
-export declare type SinglePrice = {
+export type SinglePrice = {
     __typename?: 'SinglePrice';
     value: Scalars['Money'];
 };
@@ -5032,7 +5032,7 @@ export declare enum SortOrder {
     ASC = "ASC",
     DESC = "DESC"
 }
-export declare type StockAdjustment = Node & StockMovement & {
+export type StockAdjustment = Node & StockMovement & {
     __typename?: 'StockAdjustment';
     createdAt: Scalars['DateTime'];
     id: Scalars['ID'];
@@ -5041,7 +5041,7 @@ export declare type StockAdjustment = Node & StockMovement & {
     type: StockMovementType;
     updatedAt: Scalars['DateTime'];
 };
-export declare type StockLevel = Node & {
+export type StockLevel = Node & {
     __typename?: 'StockLevel';
     createdAt: Scalars['DateTime'];
     id: Scalars['ID'];
@@ -5051,11 +5051,11 @@ export declare type StockLevel = Node & {
     stockOnHand: Scalars['Int'];
     updatedAt: Scalars['DateTime'];
 };
-export declare type StockLevelInput = {
+export type StockLevelInput = {
     stockLocationId: Scalars['ID'];
     stockOnHand: Scalars['Int'];
 };
-export declare type StockLocation = Node & {
+export type StockLocation = Node & {
     __typename?: 'StockLocation';
     createdAt: Scalars['DateTime'];
     customFields?: Maybe<Scalars['JSON']>;
@@ -5064,19 +5064,19 @@ export declare type StockLocation = Node & {
     name: Scalars['String'];
     updatedAt: Scalars['DateTime'];
 };
-export declare type StockLocationFilterParameter = {
+export type StockLocationFilterParameter = {
     createdAt?: InputMaybe<DateOperators>;
     description?: InputMaybe<StringOperators>;
     id?: InputMaybe<IdOperators>;
     name?: InputMaybe<StringOperators>;
     updatedAt?: InputMaybe<DateOperators>;
 };
-export declare type StockLocationList = PaginatedList & {
+export type StockLocationList = PaginatedList & {
     __typename?: 'StockLocationList';
     items: Array<StockLocation>;
     totalItems: Scalars['Int'];
 };
-export declare type StockLocationListOptions = {
+export type StockLocationListOptions = {
     /** Allows the results to be filtered */
     filter?: InputMaybe<StockLocationFilterParameter>;
     /** Specifies whether multiple "filter" arguments should be combines with a logical AND or OR operation. Defaults to AND. */
@@ -5088,14 +5088,14 @@ export declare type StockLocationListOptions = {
     /** Takes n results, for use in pagination */
     take?: InputMaybe<Scalars['Int']>;
 };
-export declare type StockLocationSortParameter = {
+export type StockLocationSortParameter = {
     createdAt?: InputMaybe<SortOrder>;
     description?: InputMaybe<SortOrder>;
     id?: InputMaybe<SortOrder>;
     name?: InputMaybe<SortOrder>;
     updatedAt?: InputMaybe<SortOrder>;
 };
-export declare type StockMovement = {
+export type StockMovement = {
     createdAt: Scalars['DateTime'];
     id: Scalars['ID'];
     productVariant: ProductVariant;
@@ -5103,13 +5103,13 @@ export declare type StockMovement = {
     type: StockMovementType;
     updatedAt: Scalars['DateTime'];
 };
-export declare type StockMovementItem = Allocation | Cancellation | Release | Return | Sale | StockAdjustment;
-export declare type StockMovementList = {
+export type StockMovementItem = Allocation | Cancellation | Release | Return | Sale | StockAdjustment;
+export type StockMovementList = {
     __typename?: 'StockMovementList';
     items: Array<StockMovementItem>;
     totalItems: Scalars['Int'];
 };
-export declare type StockMovementListOptions = {
+export type StockMovementListOptions = {
     skip?: InputMaybe<Scalars['Int']>;
     take?: InputMaybe<Scalars['Int']>;
     type?: InputMaybe<StockMovementType>;
@@ -5122,7 +5122,7 @@ export declare enum StockMovementType {
     RETURN = "RETURN",
     SALE = "SALE"
 }
-export declare type StringCustomFieldConfig = CustomField & {
+export type StringCustomFieldConfig = CustomField & {
     __typename?: 'StringCustomFieldConfig';
     description?: Maybe<Array<LocalizedString>>;
     internal?: Maybe<Scalars['Boolean']>;
@@ -5137,17 +5137,17 @@ export declare type StringCustomFieldConfig = CustomField & {
     type: Scalars['String'];
     ui?: Maybe<Scalars['JSON']>;
 };
-export declare type StringFieldOption = {
+export type StringFieldOption = {
     __typename?: 'StringFieldOption';
     label?: Maybe<Array<LocalizedString>>;
     value: Scalars['String'];
 };
 /** Operators for filtering on a list of String fields */
-export declare type StringListOperators = {
+export type StringListOperators = {
     inList: Scalars['String'];
 };
 /** Operators for filtering on a String field */
-export declare type StringOperators = {
+export type StringOperators = {
     contains?: InputMaybe<Scalars['String']>;
     eq?: InputMaybe<Scalars['String']>;
     in?: InputMaybe<Array<Scalars['String']>>;
@@ -5157,7 +5157,7 @@ export declare type StringOperators = {
     notIn?: InputMaybe<Array<Scalars['String']>>;
     regex?: InputMaybe<Scalars['String']>;
 };
-export declare type Subscription = Node & {
+export type Subscription = Node & {
     __typename?: 'Subscription';
     createdAt: Scalars['DateTime'];
     enabled: Scalars['Boolean'];
@@ -5169,7 +5169,7 @@ export declare type Subscription = Node & {
     updatedAt: Scalars['DateTime'];
     value: Scalars['String'];
 };
-export declare type SubscriptionFacet = Node & {
+export type SubscriptionFacet = Node & {
     __typename?: 'SubscriptionFacet';
     code: Scalars['String'];
     createdAt: Scalars['DateTime'];
@@ -5178,19 +5178,19 @@ export declare type SubscriptionFacet = Node & {
     updatedAt: Scalars['DateTime'];
     values: Array<SubscriptionFacetValue>;
 };
-export declare type SubscriptionFacetFilterParameter = {
+export type SubscriptionFacetFilterParameter = {
     code?: InputMaybe<StringOperators>;
     createdAt?: InputMaybe<DateOperators>;
     id?: InputMaybe<IdOperators>;
     name?: InputMaybe<StringOperators>;
     updatedAt?: InputMaybe<DateOperators>;
 };
-export declare type SubscriptionFacetList = PaginatedList & {
+export type SubscriptionFacetList = PaginatedList & {
     __typename?: 'SubscriptionFacetList';
     items: Array<SubscriptionFacet>;
     totalItems: Scalars['Int'];
 };
-export declare type SubscriptionFacetListOptions = {
+export type SubscriptionFacetListOptions = {
     /** Allows the results to be filtered */
     filter?: InputMaybe<SubscriptionFacetFilterParameter>;
     /** Specifies whether multiple "filter" arguments should be combines with a logical AND or OR operation. Defaults to AND. */
@@ -5202,14 +5202,14 @@ export declare type SubscriptionFacetListOptions = {
     /** Takes n results, for use in pagination */
     take?: InputMaybe<Scalars['Int']>;
 };
-export declare type SubscriptionFacetSortParameter = {
+export type SubscriptionFacetSortParameter = {
     code?: InputMaybe<SortOrder>;
     createdAt?: InputMaybe<SortOrder>;
     id?: InputMaybe<SortOrder>;
     name?: InputMaybe<SortOrder>;
     updatedAt?: InputMaybe<SortOrder>;
 };
-export declare type SubscriptionFacetValue = Node & {
+export type SubscriptionFacetValue = Node & {
     __typename?: 'SubscriptionFacetValue';
     code: Scalars['String'];
     createdAt: Scalars['DateTime'];
@@ -5218,19 +5218,19 @@ export declare type SubscriptionFacetValue = Node & {
     name: Scalars['String'];
     updatedAt: Scalars['DateTime'];
 };
-export declare type SubscriptionFacetValueFilterParameter = {
+export type SubscriptionFacetValueFilterParameter = {
     code?: InputMaybe<StringOperators>;
     createdAt?: InputMaybe<DateOperators>;
     id?: InputMaybe<IdOperators>;
     name?: InputMaybe<StringOperators>;
     updatedAt?: InputMaybe<DateOperators>;
 };
-export declare type SubscriptionFacetValueList = PaginatedList & {
+export type SubscriptionFacetValueList = PaginatedList & {
     __typename?: 'SubscriptionFacetValueList';
     items: Array<SubscriptionFacetValue>;
     totalItems: Scalars['Int'];
 };
-export declare type SubscriptionFacetValueListOptions = {
+export type SubscriptionFacetValueListOptions = {
     /** Allows the results to be filtered */
     filter?: InputMaybe<SubscriptionFacetValueFilterParameter>;
     /** Specifies whether multiple "filter" arguments should be combines with a logical AND or OR operation. Defaults to AND. */
@@ -5242,14 +5242,14 @@ export declare type SubscriptionFacetValueListOptions = {
     /** Takes n results, for use in pagination */
     take?: InputMaybe<Scalars['Int']>;
 };
-export declare type SubscriptionFacetValueSortParameter = {
+export type SubscriptionFacetValueSortParameter = {
     code?: InputMaybe<SortOrder>;
     createdAt?: InputMaybe<SortOrder>;
     id?: InputMaybe<SortOrder>;
     name?: InputMaybe<SortOrder>;
     updatedAt?: InputMaybe<SortOrder>;
 };
-export declare type SubscriptionFilterParameter = {
+export type SubscriptionFilterParameter = {
     createdAt?: InputMaybe<DateOperators>;
     enabled?: InputMaybe<BooleanOperators>;
     id?: InputMaybe<IdOperators>;
@@ -5259,12 +5259,12 @@ export declare type SubscriptionFilterParameter = {
     updatedAt?: InputMaybe<DateOperators>;
     value?: InputMaybe<StringOperators>;
 };
-export declare type SubscriptionList = PaginatedList & {
+export type SubscriptionList = PaginatedList & {
     __typename?: 'SubscriptionList';
     items: Array<Subscription>;
     totalItems: Scalars['Int'];
 };
-export declare type SubscriptionListOptions = {
+export type SubscriptionListOptions = {
     /** Allows the results to be filtered */
     filter?: InputMaybe<SubscriptionFilterParameter>;
     /** Specifies whether multiple "filter" arguments should be combines with a logical AND or OR operation. Defaults to AND. */
@@ -5276,7 +5276,7 @@ export declare type SubscriptionListOptions = {
     /** Takes n results, for use in pagination */
     take?: InputMaybe<Scalars['Int']>;
 };
-export declare type SubscriptionReportingItem = {
+export type SubscriptionReportingItem = {
     __typename?: 'SubscriptionReportingItem';
     createdAt: Scalars['DateTime'];
     emailAddress: Scalars['String'];
@@ -5284,7 +5284,7 @@ export declare type SubscriptionReportingItem = {
     orderCode?: Maybe<Scalars['String']>;
     orderState?: Maybe<Scalars['String']>;
 };
-export declare type SubscriptionSortParameter = {
+export type SubscriptionSortParameter = {
     createdAt?: InputMaybe<SortOrder>;
     id?: InputMaybe<SortOrder>;
     subscribeFrom?: InputMaybe<SortOrder>;
@@ -5296,11 +5296,11 @@ export declare enum SubscriptionType {
     phone = "phone"
 }
 /** Indicates that an operation succeeded, where we do not want to return any more specific information. */
-export declare type Success = {
+export type Success = {
     __typename?: 'Success';
     success: Scalars['Boolean'];
 };
-export declare type Surcharge = Node & {
+export type Surcharge = Node & {
     __typename?: 'Surcharge';
     createdAt: Scalars['DateTime'];
     description: Scalars['String'];
@@ -5312,7 +5312,7 @@ export declare type Surcharge = Node & {
     taxRate: Scalars['Float'];
     updatedAt: Scalars['DateTime'];
 };
-export declare type SurchargeInput = {
+export type SurchargeInput = {
     description: Scalars['String'];
     price: Scalars['Money'];
     priceIncludesTax: Scalars['Boolean'];
@@ -5320,25 +5320,25 @@ export declare type SurchargeInput = {
     taxDescription?: InputMaybe<Scalars['String']>;
     taxRate?: InputMaybe<Scalars['Float']>;
 };
-export declare type Tag = Node & {
+export type Tag = Node & {
     __typename?: 'Tag';
     createdAt: Scalars['DateTime'];
     id: Scalars['ID'];
     updatedAt: Scalars['DateTime'];
     value: Scalars['String'];
 };
-export declare type TagFilterParameter = {
+export type TagFilterParameter = {
     createdAt?: InputMaybe<DateOperators>;
     id?: InputMaybe<IdOperators>;
     updatedAt?: InputMaybe<DateOperators>;
     value?: InputMaybe<StringOperators>;
 };
-export declare type TagList = PaginatedList & {
+export type TagList = PaginatedList & {
     __typename?: 'TagList';
     items: Array<Tag>;
     totalItems: Scalars['Int'];
 };
-export declare type TagListOptions = {
+export type TagListOptions = {
     /** Allows the results to be filtered */
     filter?: InputMaybe<TagFilterParameter>;
     /** Specifies whether multiple "filter" arguments should be combines with a logical AND or OR operation. Defaults to AND. */
@@ -5350,13 +5350,13 @@ export declare type TagListOptions = {
     /** Takes n results, for use in pagination */
     take?: InputMaybe<Scalars['Int']>;
 };
-export declare type TagSortParameter = {
+export type TagSortParameter = {
     createdAt?: InputMaybe<SortOrder>;
     id?: InputMaybe<SortOrder>;
     updatedAt?: InputMaybe<SortOrder>;
     value?: InputMaybe<SortOrder>;
 };
-export declare type TaxCategory = Node & {
+export type TaxCategory = Node & {
     __typename?: 'TaxCategory';
     createdAt: Scalars['DateTime'];
     customFields?: Maybe<Scalars['JSON']>;
@@ -5365,12 +5365,12 @@ export declare type TaxCategory = Node & {
     name: Scalars['String'];
     updatedAt: Scalars['DateTime'];
 };
-export declare type TaxLine = {
+export type TaxLine = {
     __typename?: 'TaxLine';
     description: Scalars['String'];
     taxRate: Scalars['Float'];
 };
-export declare type TaxRate = Node & {
+export type TaxRate = Node & {
     __typename?: 'TaxRate';
     category: TaxCategory;
     createdAt: Scalars['DateTime'];
@@ -5383,7 +5383,7 @@ export declare type TaxRate = Node & {
     value: Scalars['Float'];
     zone: Zone;
 };
-export declare type TaxRateFilterParameter = {
+export type TaxRateFilterParameter = {
     createdAt?: InputMaybe<DateOperators>;
     enabled?: InputMaybe<BooleanOperators>;
     id?: InputMaybe<IdOperators>;
@@ -5391,12 +5391,12 @@ export declare type TaxRateFilterParameter = {
     updatedAt?: InputMaybe<DateOperators>;
     value?: InputMaybe<NumberOperators>;
 };
-export declare type TaxRateList = PaginatedList & {
+export type TaxRateList = PaginatedList & {
     __typename?: 'TaxRateList';
     items: Array<TaxRate>;
     totalItems: Scalars['Int'];
 };
-export declare type TaxRateListOptions = {
+export type TaxRateListOptions = {
     /** Allows the results to be filtered */
     filter?: InputMaybe<TaxRateFilterParameter>;
     /** Specifies whether multiple "filter" arguments should be combines with a logical AND or OR operation. Defaults to AND. */
@@ -5408,39 +5408,39 @@ export declare type TaxRateListOptions = {
     /** Takes n results, for use in pagination */
     take?: InputMaybe<Scalars['Int']>;
 };
-export declare type TaxRateSortParameter = {
+export type TaxRateSortParameter = {
     createdAt?: InputMaybe<SortOrder>;
     id?: InputMaybe<SortOrder>;
     name?: InputMaybe<SortOrder>;
     updatedAt?: InputMaybe<SortOrder>;
     value?: InputMaybe<SortOrder>;
 };
-export declare type TestEligibleShippingMethodsInput = {
+export type TestEligibleShippingMethodsInput = {
     lines: Array<TestShippingMethodOrderLineInput>;
     shippingAddress: CreateAddressInput;
 };
-export declare type TestShippingMethodInput = {
+export type TestShippingMethodInput = {
     calculator: ConfigurableOperationInput;
     checker: ConfigurableOperationInput;
     lines: Array<TestShippingMethodOrderLineInput>;
     shippingAddress: CreateAddressInput;
 };
-export declare type TestShippingMethodOrderLineInput = {
+export type TestShippingMethodOrderLineInput = {
     productVariantId: Scalars['ID'];
     quantity: Scalars['Int'];
 };
-export declare type TestShippingMethodQuote = {
+export type TestShippingMethodQuote = {
     __typename?: 'TestShippingMethodQuote';
     metadata?: Maybe<Scalars['JSON']>;
     price: Scalars['Money'];
     priceWithTax: Scalars['Money'];
 };
-export declare type TestShippingMethodResult = {
+export type TestShippingMethodResult = {
     __typename?: 'TestShippingMethodResult';
     eligible: Scalars['Boolean'];
     quote?: Maybe<TestShippingMethodQuote>;
 };
-export declare type TextCustomFieldConfig = CustomField & {
+export type TextCustomFieldConfig = CustomField & {
     __typename?: 'TextCustomFieldConfig';
     description?: Maybe<Array<LocalizedString>>;
     internal?: Maybe<Scalars['Boolean']>;
@@ -5452,17 +5452,17 @@ export declare type TextCustomFieldConfig = CustomField & {
     type: Scalars['String'];
     ui?: Maybe<Scalars['JSON']>;
 };
-export declare type TransitionFulfillmentToStateResult = Fulfillment | FulfillmentStateTransitionError;
-export declare type TransitionOrderToStateResult = Order | OrderStateTransitionError;
-export declare type TransitionPaymentToStateResult = Payment | PaymentStateTransitionError;
-export declare type UpdateActiveAdministratorInput = {
+export type TransitionFulfillmentToStateResult = Fulfillment | FulfillmentStateTransitionError;
+export type TransitionOrderToStateResult = Order | OrderStateTransitionError;
+export type TransitionPaymentToStateResult = Payment | PaymentStateTransitionError;
+export type UpdateActiveAdministratorInput = {
     customFields?: InputMaybe<Scalars['JSON']>;
     emailAddress?: InputMaybe<Scalars['String']>;
     firstName?: InputMaybe<Scalars['String']>;
     lastName?: InputMaybe<Scalars['String']>;
     password?: InputMaybe<Scalars['String']>;
 };
-export declare type UpdateAddressInput = {
+export type UpdateAddressInput = {
     city?: InputMaybe<Scalars['String']>;
     company?: InputMaybe<Scalars['String']>;
     countryCode?: InputMaybe<Scalars['String']>;
@@ -5477,7 +5477,7 @@ export declare type UpdateAddressInput = {
     streetLine1?: InputMaybe<Scalars['String']>;
     streetLine2?: InputMaybe<Scalars['String']>;
 };
-export declare type UpdateAdministratorInput = {
+export type UpdateAdministratorInput = {
     customFields?: InputMaybe<Scalars['JSON']>;
     emailAddress?: InputMaybe<Scalars['String']>;
     firstName?: InputMaybe<Scalars['String']>;
@@ -5486,21 +5486,21 @@ export declare type UpdateAdministratorInput = {
     password?: InputMaybe<Scalars['String']>;
     roleIds?: InputMaybe<Array<Scalars['ID']>>;
 };
-export declare type UpdateAssetInput = {
+export type UpdateAssetInput = {
     customFields?: InputMaybe<Scalars['JSON']>;
     focalPoint?: InputMaybe<CoordinateInput>;
     id: Scalars['ID'];
     name?: InputMaybe<Scalars['String']>;
     tags?: InputMaybe<Array<Scalars['String']>>;
 };
-export declare type UpdateCampaignCouponInput = {
+export type UpdateCampaignCouponInput = {
     campaignId?: InputMaybe<Scalars['ID']>;
     couponCode?: InputMaybe<Scalars['String']>;
     emailAddress?: InputMaybe<Scalars['String']>;
     endsAt?: InputMaybe<Scalars['DateTime']>;
     id: Scalars['ID'];
 };
-export declare type UpdateCampaignInput = {
+export type UpdateCampaignInput = {
     campaignType?: InputMaybe<CampaignType>;
     code?: InputMaybe<Scalars['String']>;
     enabled?: InputMaybe<Scalars['Boolean']>;
@@ -5510,7 +5510,7 @@ export declare type UpdateCampaignInput = {
     promotionId?: InputMaybe<Scalars['Int']>;
     translations?: InputMaybe<Array<CampaignTranslationInput>>;
 };
-export declare type UpdateChannelInput = {
+export type UpdateChannelInput = {
     code?: InputMaybe<Scalars['String']>;
     currencyCode?: InputMaybe<CurrencyCode>;
     customFields?: InputMaybe<Scalars['JSON']>;
@@ -5522,11 +5522,11 @@ export declare type UpdateChannelInput = {
     sellerId?: InputMaybe<Scalars['ID']>;
     token?: InputMaybe<Scalars['String']>;
 };
-export declare type UpdateChannelResult = Channel | LanguageNotAvailableError;
-export declare type UpdateCollectionCustomFieldsInput = {
+export type UpdateChannelResult = Channel | LanguageNotAvailableError;
+export type UpdateCollectionCustomFieldsInput = {
     campaignId?: InputMaybe<Scalars['ID']>;
 };
-export declare type UpdateCollectionInput = {
+export type UpdateCollectionInput = {
     assetIds?: InputMaybe<Array<Scalars['ID']>>;
     customFields?: InputMaybe<UpdateCollectionCustomFieldsInput>;
     featuredAssetId?: InputMaybe<Scalars['ID']>;
@@ -5537,7 +5537,7 @@ export declare type UpdateCollectionInput = {
     parentId?: InputMaybe<Scalars['ID']>;
     translations?: InputMaybe<Array<UpdateCollectionTranslationInput>>;
 };
-export declare type UpdateCollectionTranslationInput = {
+export type UpdateCollectionTranslationInput = {
     customFields?: InputMaybe<Scalars['JSON']>;
     description?: InputMaybe<Scalars['String']>;
     id?: InputMaybe<Scalars['ID']>;
@@ -5545,19 +5545,19 @@ export declare type UpdateCollectionTranslationInput = {
     name?: InputMaybe<Scalars['String']>;
     slug?: InputMaybe<Scalars['String']>;
 };
-export declare type UpdateCountryInput = {
+export type UpdateCountryInput = {
     code?: InputMaybe<Scalars['String']>;
     customFields?: InputMaybe<Scalars['JSON']>;
     enabled?: InputMaybe<Scalars['Boolean']>;
     id: Scalars['ID'];
     translations?: InputMaybe<Array<CountryTranslationInput>>;
 };
-export declare type UpdateCustomerGroupInput = {
+export type UpdateCustomerGroupInput = {
     customFields?: InputMaybe<Scalars['JSON']>;
     id: Scalars['ID'];
     name?: InputMaybe<Scalars['String']>;
 };
-export declare type UpdateCustomerInput = {
+export type UpdateCustomerInput = {
     customFields?: InputMaybe<Scalars['JSON']>;
     emailAddress?: InputMaybe<Scalars['String']>;
     firstName?: InputMaybe<Scalars['String']>;
@@ -5566,32 +5566,32 @@ export declare type UpdateCustomerInput = {
     phoneNumber?: InputMaybe<Scalars['String']>;
     title?: InputMaybe<Scalars['String']>;
 };
-export declare type UpdateCustomerNoteInput = {
+export type UpdateCustomerNoteInput = {
     note: Scalars['String'];
     noteId: Scalars['ID'];
 };
-export declare type UpdateCustomerResult = Customer | EmailAddressConflictError;
-export declare type UpdateFacetInput = {
+export type UpdateCustomerResult = Customer | EmailAddressConflictError;
+export type UpdateFacetInput = {
     code?: InputMaybe<Scalars['String']>;
     customFields?: InputMaybe<Scalars['JSON']>;
     id: Scalars['ID'];
     isPrivate?: InputMaybe<Scalars['Boolean']>;
     translations?: InputMaybe<Array<FacetTranslationInput>>;
 };
-export declare type UpdateFacetValueInput = {
+export type UpdateFacetValueInput = {
     code?: InputMaybe<Scalars['String']>;
     customFields?: InputMaybe<Scalars['JSON']>;
     id: Scalars['ID'];
     translations?: InputMaybe<Array<FacetValueTranslationInput>>;
 };
-export declare type UpdateGlobalSettingsInput = {
+export type UpdateGlobalSettingsInput = {
     availableLanguages?: InputMaybe<Array<LanguageCode>>;
     customFields?: InputMaybe<Scalars['JSON']>;
     outOfStockThreshold?: InputMaybe<Scalars['Int']>;
     trackInventory?: InputMaybe<Scalars['Boolean']>;
 };
-export declare type UpdateGlobalSettingsResult = ChannelDefaultLanguageError | GlobalSettings;
-export declare type UpdateOrderAddressInput = {
+export type UpdateGlobalSettingsResult = ChannelDefaultLanguageError | GlobalSettings;
+export type UpdateOrderAddressInput = {
     city?: InputMaybe<Scalars['String']>;
     company?: InputMaybe<Scalars['String']>;
     countryCode?: InputMaybe<Scalars['String']>;
@@ -5602,17 +5602,17 @@ export declare type UpdateOrderAddressInput = {
     streetLine1?: InputMaybe<Scalars['String']>;
     streetLine2?: InputMaybe<Scalars['String']>;
 };
-export declare type UpdateOrderInput = {
+export type UpdateOrderInput = {
     customFields?: InputMaybe<Scalars['JSON']>;
     id: Scalars['ID'];
 };
-export declare type UpdateOrderItemsResult = InsufficientStockError | NegativeQuantityError | Order | OrderLimitError | OrderModificationError;
-export declare type UpdateOrderNoteInput = {
+export type UpdateOrderItemsResult = InsufficientStockError | NegativeQuantityError | Order | OrderLimitError | OrderModificationError;
+export type UpdateOrderNoteInput = {
     isPublic?: InputMaybe<Scalars['Boolean']>;
     note?: InputMaybe<Scalars['String']>;
     noteId: Scalars['ID'];
 };
-export declare type UpdatePaymentMethodInput = {
+export type UpdatePaymentMethodInput = {
     checker?: InputMaybe<ConfigurableOperationInput>;
     code?: InputMaybe<Scalars['String']>;
     customFields?: InputMaybe<Scalars['JSON']>;
@@ -5621,7 +5621,7 @@ export declare type UpdatePaymentMethodInput = {
     id: Scalars['ID'];
     translations?: InputMaybe<Array<PaymentMethodTranslationInput>>;
 };
-export declare type UpdateProductInput = {
+export type UpdateProductInput = {
     assetIds?: InputMaybe<Array<Scalars['ID']>>;
     customFields?: InputMaybe<Scalars['JSON']>;
     enabled?: InputMaybe<Scalars['Boolean']>;
@@ -5630,19 +5630,19 @@ export declare type UpdateProductInput = {
     id: Scalars['ID'];
     translations?: InputMaybe<Array<ProductTranslationInput>>;
 };
-export declare type UpdateProductOptionGroupInput = {
+export type UpdateProductOptionGroupInput = {
     code?: InputMaybe<Scalars['String']>;
     customFields?: InputMaybe<Scalars['JSON']>;
     id: Scalars['ID'];
     translations?: InputMaybe<Array<ProductOptionGroupTranslationInput>>;
 };
-export declare type UpdateProductOptionInput = {
+export type UpdateProductOptionInput = {
     code?: InputMaybe<Scalars['String']>;
     customFields?: InputMaybe<Scalars['JSON']>;
     id: Scalars['ID'];
     translations?: InputMaybe<Array<ProductOptionGroupTranslationInput>>;
 };
-export declare type UpdateProductVariantInput = {
+export type UpdateProductVariantInput = {
     assetIds?: InputMaybe<Array<Scalars['ID']>>;
     customFields?: InputMaybe<Scalars['JSON']>;
     enabled?: InputMaybe<Scalars['Boolean']>;
@@ -5659,7 +5659,7 @@ export declare type UpdateProductVariantInput = {
     translations?: InputMaybe<Array<ProductVariantTranslationInput>>;
     useGlobalOutOfStockThreshold?: InputMaybe<Scalars['Boolean']>;
 };
-export declare type UpdatePromotionInput = {
+export type UpdatePromotionInput = {
     actions?: InputMaybe<Array<ConfigurableOperationInput>>;
     conditions?: InputMaybe<Array<ConfigurableOperationInput>>;
     couponCode?: InputMaybe<Scalars['String']>;
@@ -5671,26 +5671,26 @@ export declare type UpdatePromotionInput = {
     startsAt?: InputMaybe<Scalars['DateTime']>;
     translations?: InputMaybe<Array<PromotionTranslationInput>>;
 };
-export declare type UpdatePromotionResult = MissingConditionsError | Promotion;
-export declare type UpdateRoleInput = {
+export type UpdatePromotionResult = MissingConditionsError | Promotion;
+export type UpdateRoleInput = {
     channelIds?: InputMaybe<Array<Scalars['ID']>>;
     code?: InputMaybe<Scalars['String']>;
     description?: InputMaybe<Scalars['String']>;
     id: Scalars['ID'];
     permissions?: InputMaybe<Array<Permission>>;
 };
-export declare type UpdateSellerInput = {
+export type UpdateSellerInput = {
     customFields?: InputMaybe<Scalars['JSON']>;
     id: Scalars['ID'];
     name?: InputMaybe<Scalars['String']>;
 };
-export declare type UpdateSettingInput = {
+export type UpdateSettingInput = {
     enabled?: InputMaybe<Scalars['Boolean']>;
     id: Scalars['ID'];
     key?: InputMaybe<Scalars['String']>;
     translations?: InputMaybe<Array<SettingTranslationInput>>;
 };
-export declare type UpdateShippingMethodInput = {
+export type UpdateShippingMethodInput = {
     calculator?: InputMaybe<ConfigurableOperationInput>;
     checker?: InputMaybe<ConfigurableOperationInput>;
     code?: InputMaybe<Scalars['String']>;
@@ -5699,23 +5699,23 @@ export declare type UpdateShippingMethodInput = {
     id: Scalars['ID'];
     translations: Array<ShippingMethodTranslationInput>;
 };
-export declare type UpdateStockLocationInput = {
+export type UpdateStockLocationInput = {
     customFields?: InputMaybe<Scalars['JSON']>;
     description?: InputMaybe<Scalars['String']>;
     id: Scalars['ID'];
     name?: InputMaybe<Scalars['String']>;
 };
-export declare type UpdateSubscriptionFacetInput = {
+export type UpdateSubscriptionFacetInput = {
     code?: InputMaybe<Scalars['String']>;
     id: Scalars['ID'];
     name?: InputMaybe<Scalars['String']>;
 };
-export declare type UpdateSubscriptionFacetValueInput = {
+export type UpdateSubscriptionFacetValueInput = {
     code?: InputMaybe<Scalars['String']>;
     id: Scalars['ID'];
     name?: InputMaybe<Scalars['String']>;
 };
-export declare type UpdateSubscriptionInput = {
+export type UpdateSubscriptionInput = {
     enabled?: InputMaybe<Scalars['Boolean']>;
     facetValueIds?: InputMaybe<Array<Scalars['ID']>>;
     id: Scalars['ID'];
@@ -5724,17 +5724,17 @@ export declare type UpdateSubscriptionInput = {
     type?: InputMaybe<SubscriptionType>;
     value?: InputMaybe<Scalars['String']>;
 };
-export declare type UpdateTagInput = {
+export type UpdateTagInput = {
     id: Scalars['ID'];
     value?: InputMaybe<Scalars['String']>;
 };
-export declare type UpdateTaxCategoryInput = {
+export type UpdateTaxCategoryInput = {
     customFields?: InputMaybe<Scalars['JSON']>;
     id: Scalars['ID'];
     isDefault?: InputMaybe<Scalars['Boolean']>;
     name?: InputMaybe<Scalars['String']>;
 };
-export declare type UpdateTaxRateInput = {
+export type UpdateTaxRateInput = {
     categoryId?: InputMaybe<Scalars['ID']>;
     customFields?: InputMaybe<Scalars['JSON']>;
     customerGroupId?: InputMaybe<Scalars['ID']>;
@@ -5744,12 +5744,12 @@ export declare type UpdateTaxRateInput = {
     value?: InputMaybe<Scalars['Float']>;
     zoneId?: InputMaybe<Scalars['ID']>;
 };
-export declare type UpdateZoneInput = {
+export type UpdateZoneInput = {
     customFields?: InputMaybe<Scalars['JSON']>;
     id: Scalars['ID'];
     name?: InputMaybe<Scalars['String']>;
 };
-export declare type User = Node & {
+export type User = Node & {
     __typename?: 'User';
     authenticationMethods: Array<AuthenticationMethod>;
     createdAt: Scalars['DateTime'];
@@ -5761,7 +5761,7 @@ export declare type User = Node & {
     updatedAt: Scalars['DateTime'];
     verified: Scalars['Boolean'];
 };
-export declare type Zone = Node & {
+export type Zone = Node & {
     __typename?: 'Zone';
     createdAt: Scalars['DateTime'];
     customFields?: Maybe<Scalars['JSON']>;

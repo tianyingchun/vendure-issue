@@ -42,8 +42,8 @@ export class CampaignService {
   async initCampaigns() {
     if (this.options.autoDataInit) {
       Logger.debug('initCampaigns...', loggerCtx);
-      await this.makeSureDefaultCampaigns();
-      await this.makeSureDefaultCollections();
+      const item = await this.makeSureDefaultCampaigns();
+      await this.makeSureDefaultCollections(item);
     }
   }
 
@@ -142,20 +142,22 @@ export class CampaignService {
   private async makeSureDefaultCampaigns() {
     const ctx = RequestContext.empty();
     const { items } = await this.findAll(ctx);
+    let item;
     for (const campaignItem of defaultCampaignData()) {
       const hasOne = items.find((s) => s.code === campaignItem.code);
       if (!hasOne) {
-        await this.create(ctx, campaignItem);
+        item = await this.create(ctx, campaignItem);
       } else {
-        await this.update(ctx, {
+        item = await this.update(ctx, {
           ...campaignItem,
           id: hasOne.id,
         });
       }
     }
+    return item;
   }
 
-  private async makeSureDefaultCollections() {
+  private async makeSureDefaultCollections(campaign: Translated<Campaign>) {
     const ctx = RequestContext.empty();
     const { totalItems } = await this.collectionService.findAll(ctx);
     if (totalItems > 0) {
@@ -175,7 +177,10 @@ export class CampaignService {
     });
     await this.collectionService.create(ctx, {
       filters: [],
-      parentId: parent.id,
+      parentId: parent?.id,
+      customFields: {
+        campaignId: campaign?.id,
+      },
       translations: [
         {
           name: 'children collection',

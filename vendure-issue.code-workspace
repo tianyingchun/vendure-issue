@@ -1,0 +1,42 @@
+{
+  "folders": [
+    {
+      "name": "dev-server",
+      "path": "packages/dev-server"
+    },
+    {
+      "name": "plugin-issue",
+      "path": "packages/plugin-issue"
+    },
+    {
+      "name": "root",
+      "path": "."
+    }
+  ],
+  "extensions": {
+    "recommendations": ["dbaeumer.vscode-eslint", "esbenp.prettier-vscode"]
+  },
+  "settings": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.codeActionsOnSave": {
+      "source.fixAll": "always",
+      // Using `'@armit/eslint-config-bases/typescript` instead of vscode editor organizeImport
+      "source.organizeImports": "never"
+    },
+    "files.associations": {
+      "*.css": "tailwindcss"
+    },
+    // Disable vscode formatting for js,jsx,ts,tsx files
+    // to allow dbaeumer.vscode-eslint to format them
+    "[javascript]": {
+      "editor.formatOnSave": false
+    },
+    // https://github.com/Microsoft/vscode-eslint#mono-repository-setup
+    "eslint.workingDirectories": [
+      "./packages/dev-server",
+      "./packages/plugin-issue",
+    ],
+    "typescript.tsdk": "root/node_modules/typescript/lib"
+  }
+}

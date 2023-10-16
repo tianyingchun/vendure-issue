@@ -1,10 +1,6 @@
-import {
-  ConfigService,
-  PluginCommonModule,
-  VendurePlugin,
-} from '@vendure/core';
+import { PluginCommonModule, VendurePlugin } from '@vendure/core';
 import { CampaignAdminResolver } from './api/resolvers/campaign.resolver.js';
-import { adminApiExtensions } from './api/schema/index.js';
+import { adminApiExtensions, shopApiExtensions } from './api/schema/index.js';
 import { PLUGIN_INIT_OPTIONS } from './constants.js';
 import { CampaignTranslation } from './entities/campaign-translation.entity.js';
 import { Campaign } from './entities/campaign.entity.js';
@@ -18,9 +14,11 @@ const services = [CampaignService];
   imports: [PluginCommonModule],
   entities: [Campaign, CampaignTranslation],
   adminApiExtensions: {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     schema: adminApiExtensions,
-    // resolvers: [CampaignAdminResolver],
+    resolvers: [CampaignAdminResolver],
+  },
+  shopApiExtensions: {
+    schema: shopApiExtensions,
   },
   compatibility: '>=2.0.0',
   providers: [
@@ -39,13 +37,10 @@ const services = [CampaignService];
   },
 })
 export class PluginIssue {
-  constructor(private configService: ConfigService) {
-    //
-  }
   static options: PluginInitOptions = {
     autoDataInit: false,
   };
-
+  constructor(private campaignService: CampaignService) {}
   /**
    * The static `init()` method is a convention used by Vendure plugins which allows options
    * to be configured by the user.
@@ -53,5 +48,8 @@ export class PluginIssue {
   static init(options: Partial<PluginInitOptions>) {
     this.options = { ...PluginIssue.options, ...options };
     return PluginIssue;
+  }
+  async onApplicationBootstrap() {
+    await this.campaignService.initCampaigns();
   }
 }

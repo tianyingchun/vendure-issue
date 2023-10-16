@@ -3,13 +3,13 @@ export var AdjustmentType;
     AdjustmentType["DISTRIBUTED_ORDER_PROMOTION"] = "DISTRIBUTED_ORDER_PROMOTION";
     AdjustmentType["OTHER"] = "OTHER";
     AdjustmentType["PROMOTION"] = "PROMOTION";
-})(AdjustmentType = AdjustmentType || (AdjustmentType = {}));
+})(AdjustmentType || (AdjustmentType = {}));
 export var AssetType;
 (function (AssetType) {
     AssetType["BINARY"] = "BINARY";
     AssetType["IMAGE"] = "IMAGE";
     AssetType["VIDEO"] = "VIDEO";
-})(AssetType = AssetType || (AssetType = {}));
+})(AssetType || (AssetType = {}));
 export var CampaignType;
 (function (CampaignType) {
     /** 所有用户, 固定金额拉新, 直降模式 */
@@ -22,7 +22,7 @@ export var CampaignType;
     CampaignType["NewUserFirstPair"] = "NewUserFirstPair";
     /** 新用户固定金额拉新, 领券模式 */
     CampaignType["NewUserFixedAmount"] = "NewUserFixedAmount";
-})(CampaignType = CampaignType || (CampaignType = {}));
+})(CampaignType || (CampaignType = {}));
 /**
  * @description
  * ISO 4217 currency code
@@ -345,14 +345,14 @@ export var CurrencyCode;
     CurrencyCode["ZMW"] = "ZMW";
     /** Zimbabwean dollar */
     CurrencyCode["ZWL"] = "ZWL";
-})(CurrencyCode = CurrencyCode || (CurrencyCode = {}));
+})(CurrencyCode || (CurrencyCode = {}));
 export var DeletionResult;
 (function (DeletionResult) {
     /** The entity was successfully deleted */
     DeletionResult["DELETED"] = "DELETED";
     /** Deletion did not take place, reason given in message */
     DeletionResult["NOT_DELETED"] = "NOT_DELETED";
-})(DeletionResult = DeletionResult || (DeletionResult = {}));
+})(DeletionResult || (DeletionResult = {}));
 export var ErrorCode;
 (function (ErrorCode) {
     ErrorCode["ALREADY_REFUNDED_ERROR"] = "ALREADY_REFUNDED_ERROR";
@@ -397,13 +397,13 @@ export var ErrorCode;
     ErrorCode["REFUND_STATE_TRANSITION_ERROR"] = "REFUND_STATE_TRANSITION_ERROR";
     ErrorCode["SETTLE_PAYMENT_ERROR"] = "SETTLE_PAYMENT_ERROR";
     ErrorCode["UNKNOWN_ERROR"] = "UNKNOWN_ERROR";
-})(ErrorCode = ErrorCode || (ErrorCode = {}));
+})(ErrorCode || (ErrorCode = {}));
 export var GlobalFlag;
 (function (GlobalFlag) {
     GlobalFlag["FALSE"] = "FALSE";
     GlobalFlag["INHERIT"] = "INHERIT";
     GlobalFlag["TRUE"] = "TRUE";
-})(GlobalFlag = GlobalFlag || (GlobalFlag = {}));
+})(GlobalFlag || (GlobalFlag = {}));
 export var HistoryEntryType;
 (function (HistoryEntryType) {
     HistoryEntryType["CUSTOMER_ADDED_TO_GROUP"] = "CUSTOMER_ADDED_TO_GROUP";
@@ -430,7 +430,7 @@ export var HistoryEntryType;
     HistoryEntryType["ORDER_PAYMENT_TRANSITION"] = "ORDER_PAYMENT_TRANSITION";
     HistoryEntryType["ORDER_REFUND_TRANSITION"] = "ORDER_REFUND_TRANSITION";
     HistoryEntryType["ORDER_STATE_TRANSITION"] = "ORDER_STATE_TRANSITION";
-})(HistoryEntryType = HistoryEntryType || (HistoryEntryType = {}));
+})(HistoryEntryType || (HistoryEntryType = {}));
 /**
  * @description
  * The state of a Job in the JobQueue
@@ -445,7 +445,7 @@ export var JobState;
     JobState["PENDING"] = "PENDING";
     JobState["RETRYING"] = "RETRYING";
     JobState["RUNNING"] = "RUNNING";
-})(JobState = JobState || (JobState = {}));
+})(JobState || (JobState = {}));
 /**
  * @description
  * Languages in the form of a ISO 639-1 language code with optional
@@ -771,18 +771,18 @@ export var LanguageCode;
     LanguageCode["zh_Hant"] = "zh_Hant";
     /** Zulu */
     LanguageCode["zu"] = "zu";
-})(LanguageCode = LanguageCode || (LanguageCode = {}));
+})(LanguageCode || (LanguageCode = {}));
 export var LogicalOperator;
 (function (LogicalOperator) {
     LogicalOperator["AND"] = "AND";
     LogicalOperator["OR"] = "OR";
-})(LogicalOperator = LogicalOperator || (LogicalOperator = {}));
+})(LogicalOperator || (LogicalOperator = {}));
 export var OrderType;
 (function (OrderType) {
     OrderType["Aggregate"] = "Aggregate";
     OrderType["Regular"] = "Regular";
     OrderType["Seller"] = "Seller";
-})(OrderType = OrderType || (OrderType = {}));
+})(OrderType || (OrderType = {}));
 /**
  * @description
  * Permissions for administrators and customers. Used to control access to
@@ -1019,12 +1019,12 @@ export var Permission;
     Permission["UpdateTaxRate"] = "UpdateTaxRate";
     /** Grants permission to update Zone */
     Permission["UpdateZone"] = "UpdateZone";
-})(Permission = Permission || (Permission = {}));
+})(Permission || (Permission = {}));
 export var SortOrder;
 (function (SortOrder) {
     SortOrder["ASC"] = "ASC";
     SortOrder["DESC"] = "DESC";
-})(SortOrder = SortOrder || (SortOrder = {}));
+})(SortOrder || (SortOrder = {}));
 export var StockMovementType;
 (function (StockMovementType) {
     StockMovementType["ADJUSTMENT"] = "ADJUSTMENT";
@@ -1033,9 +1033,9 @@ export var StockMovementType;
     StockMovementType["RELEASE"] = "RELEASE";
     StockMovementType["RETURN"] = "RETURN";
     StockMovementType["SALE"] = "SALE";
-})(StockMovementType = StockMovementType || (StockMovementType = {}));
+})(StockMovementType || (StockMovementType = {}));
 export var SubscriptionType;
 (function (SubscriptionType) {
     SubscriptionType["email"] = "email";
     SubscriptionType["phone"] = "phone";
-})(SubscriptionType = SubscriptionType || (SubscriptionType = {}));
+})(SubscriptionType || (SubscriptionType = {}));
