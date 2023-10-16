@@ -1,7 +1,6 @@
 {
   "extends": "../../tsconfig.base",
   "compilerOptions": {
-    "module": "commonjs",
     "sourceMap": true,
     "baseUrl": "./src",
     "paths": {

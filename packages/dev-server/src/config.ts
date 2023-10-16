@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/naming-convention */
+import { AssetServerPlugin } from '@vendure/asset-server-plugin';
 import type { VendureConfig } from '@vendure/core';
 import { DefaultLogger, LogLevel } from '@vendure/core';
+import { getDirname } from './get-dir-name.js';
 
 export const config: VendureConfig = {
   apiOptions: {
@@ -49,5 +51,10 @@ export const config: VendureConfig = {
   logger: new DefaultLogger({
     level: LogLevel.Debug,
   }),
-  plugins: [],
+  plugins: [
+    AssetServerPlugin.init({
+      assetUploadDir: getDirname(import.meta.url, './static/assets'),
+      route: 'assets',
+    }),
+  ],
 };

@@ -1,4 +1,8 @@
-import { PluginCommonModule, VendurePlugin } from '@vendure/core';
+import {
+  ConfigService,
+  PluginCommonModule,
+  VendurePlugin,
+} from '@vendure/core';
 import { SupplierStockAdminResolver } from './api/resolvers/admin/supplier-stock-admin.resolver';
 import { SupplierStockInTransitAdminResolver } from './api/resolvers/admin/supplier-stock-in-transit-admin.resolver';
 import { SupplierStockEntityResolver } from './api/resolvers/entity/suppiler-stock-entity.resolver';
@@ -40,6 +44,9 @@ const services = [SupplierStockInTransitService, SupplierStockService];
   },
 })
 export class IssueSupplierPlugin {
+  constructor(private configService: ConfigService) {
+    //
+  }
   static options: PluginInitOptions = {};
 
   /**

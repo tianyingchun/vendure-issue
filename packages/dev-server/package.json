@@ -13,13 +13,14 @@
   },
   "types": "./dist/index.d.ts",
   "scripts": {
-    "serve": "yarn ts-node-esm src/index.mts",
+    "serve": "yarn ts-node-esm src/index.ts",
     "migration:generate-dev": "ts-node src/migration.ts -- generate dev",
     "migration:revert": "ts-node src/migration.ts -- revert",
     "migration:run": "ts-node src/migration.ts -- run",
     "test-unit": "jest --config jest.config.js --runInBand --detectOpenHandles"
   },
   "dependencies": {
+    "@vendure/asset-server-plugin": "2.0.0",
     "@vendure/common": "2.0.0",
     "@vendure/core": "2.0.0",
     "bullmq": "3.15.2",
