@@ -20,8 +20,9 @@ const services = [CampaignService];
   adminApiExtensions: {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     schema: adminApiExtensions,
-    resolvers: [CampaignAdminResolver],
+    // resolvers: [CampaignAdminResolver],
   },
+  compatibility: '>=2.0.0',
   providers: [
     ...services,
 

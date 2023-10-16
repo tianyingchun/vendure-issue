@@ -46,7 +46,6 @@ export const config: VendureConfig = {
     host: '127.0.0.1',
     username: 'root',
     password: 'root',
-    entityPrefix: 'vendure_issue_',
     synchronize: true,
     charset: 'utf8mb4',
   },
@@ -60,7 +59,7 @@ export const config: VendureConfig = {
     }),
     AdminUiPlugin.init({
       port: 3002,
-      route: 'oldAdmin',
+      route: 'admin',
       adminUiConfig: {
         hideVendureBranding: true,
         brand: 'KZFOO',

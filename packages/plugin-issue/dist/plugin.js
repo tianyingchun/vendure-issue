@@ -9,7 +9,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var PluginIssue_1;
 import { ConfigService, PluginCommonModule, VendurePlugin, } from '@vendure/core';
-import { CampaignAdminResolver } from './api/resolvers/campaign.resolver.js';
 import { adminApiExtensions } from './api/schema/index.js';
 import { PLUGIN_INIT_OPTIONS } from './constants.js';
 import { CampaignTranslation } from './entities/campaign-translation.entity.js';
@@ -41,8 +40,9 @@ PluginIssue = PluginIssue_1 = __decorate([
         adminApiExtensions: {
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             schema: adminApiExtensions,
-            resolvers: [CampaignAdminResolver],
+            // resolvers: [CampaignAdminResolver],
         },
+        compatibility: '>=2.0.0',
         providers: [
             ...services,
             // By definiting the `PLUGIN_INIT_OPTIONS` symbol as a provider, we can then inject the

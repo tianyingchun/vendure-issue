@@ -1,23 +1,5 @@
 import { gql } from 'graphql-tag';
 export const campaignAdminApi = gql `
-  input CampaignTranslationInput {
-    id: ID
-    languageCode: LanguageCode!
-    name: String!
-  }
-
-  input CreateCampaignInput {
-    code: String!
-    promotionId: Int
-    translations: [CampaignTranslationInput!]!
-  }
-
-  input UpdateCampaignInput {
-    id: ID!
-    code: String
-    translations: [CampaignTranslationInput!]
-  }
-
   extend type Query {
     "Query detail of campaign entity"
     campaign(id: ID!): Campaign
@@ -37,4 +19,23 @@ export const campaignAdminApi = gql `
   }
 
   input CampaignListOptions
+
+  input CampaignTranslationInput {
+    id: ID
+    languageCode: LanguageCode!
+    name: String!
+  }
+
+  input CreateCampaignInput {
+    code: String!
+    promotionId: Int
+    translations: [CampaignTranslationInput!]!
+  }
+
+  input UpdateCampaignInput {
+    id: ID!
+    code: String
+    promotionId: Int
+    translations: [CampaignTranslationInput!]
+  }
 `;
