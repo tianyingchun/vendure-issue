@@ -1,50 +1,26 @@
 {
-  "extends": "@tsconfig/node16/tsconfig.json",
-  "ts-node": {
-    "require": ["tsconfig-paths/register"],
-    "files": true,
-    "transpileOnly": true,
-    "compilerOptions": {
-      "sourceMap": true
-    }
-  },
   "compilerOptions": {
-    "noImplicitAny": false,
-    "useUnknownInCatchVariables": false,
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
+    "strict": true,
+    "useUnknownInCatchVariables": true,
+    "allowJs": true,
+    "skipLibCheck": true,
+    "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "strictPropertyInitialization": false,
+    "esModuleInterop": true,
+    "useDefineForClassFields": false,
     "module": "nodenext",
     "target": "es2021",
     "moduleResolution": "nodenext",
-    "experimentalDecorators": true,
-    "preserveConstEnums": true,
-    "strictNullChecks": true,
-    "strictFunctionTypes": true,
-    "strictPropertyInitialization": false,
     "resolveJsonModule": true,
-    "skipLibCheck": true,
-    "lib": ["es2021", "esnext.asynciterable"],
-    "alwaysStrict": true,
-    "baseUrl": "./"
+    "incremental": true,
+    "declaration": true,
+    "newLine": "lf",
+    "baseUrl": ".",
+    "rootDir": ".",
+    "outDir": "dist"
   },
-  "include": [
-    ".eslintrc.cjs",
-    "pm2.config.js",
-    "pm2-env.config.js",
-    "pm2.rc.config.js",
-    "pm2.stage.config.js",
-    "**/*.js",
-    "**/*.ts",
-    "**/*.tsx",
-    "**/*.json"
-  ],
-  "exclude": [
-    "**/dist/**",
-    "package-lock.json",
-    "yarn.lock",
-    "**/node_modules/*",
-    "**/schema-admin.json",
-    "**/schema-shop.json"
-  ]
+  "exclude": ["**/node_modules", "**/.*/"]
 }

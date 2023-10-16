@@ -13,13 +13,15 @@
   },
   "types": "./dist/index.d.ts",
   "scripts": {
-    "serve": "yarn ts-node-esm src/index.ts",
     "migration:generate-dev": "ts-node src/migration.ts -- generate dev",
     "migration:revert": "ts-node src/migration.ts -- revert",
     "migration:run": "ts-node src/migration.ts -- run",
+    "serve": "yarn ts-node-esm src/index.ts",
     "test-unit": "jest --config jest.config.js --runInBand --detectOpenHandles"
   },
   "dependencies": {
+    "@issue/plugin-issue": "workspace:*",
+    "@vendure/admin-ui-plugin": "2.0.0",
     "@vendure/asset-server-plugin": "2.0.0",
     "@vendure/common": "2.0.0",
     "@vendure/core": "2.0.0",

@@ -23,6 +23,13 @@
     "serve": "lerna run serve --stream",
     "start": "lerna run start --stream"
   },
+  "resolutions": {
+    "@vendure/common": "2.0.0",
+    "@vendure/core": "2.0.0",
+    "graphql": "16.6.0",
+    "@vendure/admin-ui-plugin": "2.0.0",
+    "graphql-tag": "2.12.6"
+  },
   "devDependencies": {
     "@armit/eslint-config-bases": "0.0.7",
     "@babel/core": "^7.19.6",

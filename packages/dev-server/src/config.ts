@@ -1,4 +1,6 @@
 /* eslint-disable @typescript-eslint/naming-convention */
+import { PluginIssue } from '@issue/plugin-issue';
+import { AdminUiPlugin } from '@vendure/admin-ui-plugin';
 import { AssetServerPlugin } from '@vendure/asset-server-plugin';
 import type { VendureConfig } from '@vendure/core';
 import { DefaultLogger, LogLevel } from '@vendure/core';
@@ -56,5 +58,14 @@ export const config: VendureConfig = {
       assetUploadDir: getDirname(import.meta.url, './static/assets'),
       route: 'assets',
     }),
+    AdminUiPlugin.init({
+      port: 3002,
+      route: 'oldAdmin',
+      adminUiConfig: {
+        hideVendureBranding: true,
+        brand: 'KZFOO',
+      },
+    }),
+    PluginIssue.init({ autoDataInit: true }),
   ],
 };
