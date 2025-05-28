@@ -1,3 +1,4 @@
+import { program } from 'commander';
 import fs from 'fs';
 import { join } from 'path';
 import {
@@ -5,8 +6,7 @@ import {
   revertLastMigration,
   runMigrations,
 } from '@vendure/core';
-import { program } from 'commander';
-import { config } from './config';
+import { config } from './config.js';
 
 program
   .command('generate <name>')

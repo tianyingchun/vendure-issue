@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@hyperse-hub/vendure-testing": [
+        "../../packages/vendure-testing/src/index.js"
+      ],
+    }
+  }
+}

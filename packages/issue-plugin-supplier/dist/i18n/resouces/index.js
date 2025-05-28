@@ -1,1 +1,0 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.i18nResources=void 0;const de_1=require("./de"),en_1=require("./en");exports.i18nResources={en:en_1.en,de:de_1.de};

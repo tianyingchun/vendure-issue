@@ -1,4 +1,16 @@
 {
-  "dep": "prod,dev,bundle,peer,optional",
-  "reject": ["chalk", "nanoid", "graphql", "bullmq"]
+  "dep": "prod,dev,bundle,optional",
+  "reject": [
+    "@nestjs/common",
+    "@nestjs/core",
+    "@nestjs/graphql",
+    "@nestjs/testing",
+    "@nestjs/typeorm",
+    "typeorm",
+    "graphql",
+    "graphql-tag",
+    "rxjs",
+    "handlebars",
+    "body-parser"
+  ]
 }

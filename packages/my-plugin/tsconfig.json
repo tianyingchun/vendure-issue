@@ -1,0 +1,134 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": "./",
+    "allowJs": false,
+    "noEmit": false,
+    "incremental": true,
+    "paths": {
+      "@hyperse-hub/vendure-testing": [
+        "../../packages/vendure-testing/src/index.js"
+      ],
+      "@hyperse-hub/vendure-common": [
+        "../../packages/vendure-common/src/index.js"
+      ],
+      "@hyperse-hub/vendure-plugin-cron": [
+        "../../packages/vendure-plugin-cron/src/index.js"
+      ],
+      "@hyperse-hub/vendure-plugin-core": [
+        "../../packages/vendure-plugin-core/src/index.js"
+      ],
+      "@hyperse-hub/vendure-plugin-storage": [
+        "../../packages/vendure-plugin-storage/src/index.js"
+      ],
+      "@hyperse-hub/vendure-plugin-setting": [
+        "../../packages/vendure-plugin-setting/src/index.js"
+      ],
+      "@hyperse-hub/vendure-plugin-cache": [
+        "../../packages/vendure-plugin-cache/src/index.js"
+      ],
+      "@hyperse-hub/vendure-plugin-exchange-rate": [
+        "../../packages/vendure-plugin-exchange-rate/src/index.js"
+      ],
+      "@hyperse-hub/vendure-plugin-metrics": [
+        "../../packages/vendure-plugin-metrics/src/index.js"
+      ],
+      "@hyperse-hub/vendure-plugin-email": [
+        "../../packages/vendure-plugin-email/src/index.js"
+      ],
+      "@hyperse-hub/vendure-plugin-auth-code": [
+        "../../packages/vendure-plugin-auth-code/src/index.js"
+      ],
+      "@hyperse-hub/vendure-plugin-auth-google": [
+        "../../packages/vendure-plugin-auth-google/src/index.js"
+      ],
+      "@hyperse-hub/vendure-plugin-admin": [
+        "../../packages/vendure-plugin-admin/src/index.js"
+      ],
+      "@hyperse-hub/vendure-plugin-metas": [
+        "../../packages/vendure-plugin-metas/src/index.js"
+      ],
+      "@hyperse-hub/vendure-plugin-showcase": [
+        "../../packages/vendure-plugin-showcase/src/index.js"
+      ],
+      "@hyperse-hub/vendure-plugin-typesense": [
+        "../../packages/vendure-plugin-typesense/src/index.js"
+      ],
+      "@hyperse-hub/vendure-plugin-ticket": [
+        "../../packages/vendure-plugin-ticket/src/index.js"
+      ],
+      "@hyperse-hub/vendure-plugin-hub": [
+        "../../packages/vendure-plugin-hub/src/index.js"
+      ],
+      "@hyperse-hub/vendure-plugin-hub-client": [
+        "../../packages/vendure-plugin-hub-client/src/index.js"
+      ],
+      "@hyperse-hub/vendure-plugin-hub-verdaccio": [
+        "../../packages/vendure-plugin-hub-verdaccio/src/index.js"
+      ],
+      "@hyperse-hub/vendure-plugin-subscribe": [
+        "../../packages/vendure-plugin-subscribe/src/index.js"
+      ],
+      "@hyperse-hub/vendure-plugin-reward-points": [
+        "../../packages/vendure-plugin-reward-points/src/index.js"
+      ],
+      "@hyperse-hub/vendure-plugin-reward-referral": [
+        "../../packages/vendure-plugin-reward-referral/src/index.js"
+      ],
+      "@hyperse-hub/vendure-plugin-digital-card": [
+        "../../packages/vendure-plugin-digital-card/src/index.js"
+      ],
+      "@hyperse-hub/vendure-plugin-banner": [
+        "../../packages/vendure-plugin-banner/src/index.js"
+      ],
+      "@hyperse-hub/vendure-plugin-favorites": [
+        "../../packages/vendure-plugin-favorites/src/index.js"
+      ],
+      "@hyperse-hub/vendure-plugin-stock-monitor": [
+        "../../packages/vendure-plugin-stock-monitor/src/index.js"
+      ],
+      "@hyperse-hub/vendure-plugin-topic": [
+        "../../packages/vendure-plugin-topic/src/index.js"
+      ],
+      "@hyperse-hub/vendure-plugin-help-center": [
+        "../../packages/vendure-plugin-help-center/src/index.js"
+      ],
+      "@hyperse-hub/vendure-plugin-view-widget": [
+        "../../packages/vendure-plugin-view-widget/src/index.js"
+      ],
+      "@hyperse-hub/vendure-plugin-review": [
+        "../../packages/vendure-plugin-review/src/index.js"
+      ],
+      "@hyperse-hub/vendure-plugin-campaign": [
+        "../../packages/vendure-plugin-campaign/src/index.js"
+      ],
+      "@hyperse-hub/vendure-plugin-shipping-tiered-pricing": [
+        "../../packages/vendure-plugin-shipping-tiered-pricing/src/index.js"
+      ],
+      "@hyperse-hub/vendure-plugin-product-recommendation": [
+        "../../packages/vendure-plugin-product-recommendation/src/index.js"
+      ],
+      "@hyperse-hub/vendure-plugin-payment-core": [
+        "../../packages/vendure-plugin-payment-core/src/index.js"
+      ],
+      "@hyperse-hub/vendure-plugin-payment-paypal": [
+        "../../packages/vendure-plugin-payment-paypal/src/index.js"
+      ],
+      "@hyperse-hub/vendure-plugin-payment-stripe": [
+        "../../packages/vendure-plugin-payment-stripe/src/index.js"
+      ],
+      "@hyperse-hub/vendure-plugin-public-customer-groups": [
+        "../../packages/vendure-plugin-public-customer-groups/src/index.js"
+      ],
+      "@hyperse-hub/vendure-plugin-glass-tryon": [
+        "../../packages/vendure-plugin-glass-tryon/src/index.js"
+      ],
+      "@hyperse-hub/vendure-plugin-glass-dimension": [
+        "../../packages/vendure-plugin-glass-dimension/src/index.js"
+      ]
+    },
+    "types": ["vitest/globals", "node"]
+  },
+  "exclude": ["**/node_modules", "**/.*/", "dist", "build", "_release"]
+}

@@ -6,10 +6,13 @@
     "allowJs": false,
     "noEmit": false,
     "incremental": true,
-    "types": ["vitest/globals", "node"],
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "jsx": "react-jsx",
     "paths": {
-      "@vendure/my-plugin": ["../../packages/my-plugin/src/index.js"]
-    }
+      "@/gql": ["./src/gql/graphql.ts"]
+    },
+    "types": ["vitest/globals", "node"]
   },
   "exclude": ["**/node_modules", "**/.*/", "dist", "build", "_release"]
 }

@@ -1,0 +1,6 @@
+{
+  "watch": ["src"],
+  "ext": "ts,json",
+  "ignore": ["src/**/*.spec.ts", "e2e/**/*", "admin-ui/*", "src/**/*.d.ts"],
+  "exec": "node --no-warnings=ExperimentalWarning"
+}

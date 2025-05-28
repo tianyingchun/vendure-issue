@@ -1,0 +1,35 @@
+import { defineConfig } from 'vite';
+import { vendureDashboardPlugin } from '@vendure/dashboard/plugin';
+import { getDirname } from './src/get-dir-name.js';
+
+export default defineConfig({
+  build: {
+    outDir: getDirname(import.meta.url, 'dist/dashboard'),
+  },
+  plugins: [
+    vendureDashboardPlugin({
+      // The vendureDashboardPlugin will scan your configuration in order
+      // to find any plugins which have dashboard extensions, as well as
+      // to introspect the GraphQL schema based on any API extensions
+      // and custom fields that are configured.
+      vendureConfigPath: getDirname(
+        import.meta.url,
+        '../dev-server/src/config.ts'
+      ),
+      // Points to the location of your Vendure server.
+      adminUiConfig: { apiHost: 'http://localhost', apiPort: 3000 },
+      // When you start the Vite server, your Admin API schema will
+      // be introspected and the types will be generated in this location.
+      // These types can be used in your dashboard extensions to provide
+      // type safety when writing queries and mutations.
+      gqlTadaOutputPath: './src/gql',
+    }),
+  ],
+  resolve: {
+    alias: {
+      // This allows all plugins to reference a shared set of
+      // GraphQL types.
+      '@/gql': getDirname(import.meta.url, './src/gql/graphql.ts'),
+    },
+  },
+});

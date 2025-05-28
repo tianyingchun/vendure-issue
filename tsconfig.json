@@ -1,9 +1,13 @@
 {
-  "extends": "./tsconfig.base",
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "extends": "./tsconfig.base.json",
   "compilerOptions": {
-    "module": "commonjs",
-    "sourceMap": true,
     "baseUrl": "./",
-    "paths": {}
-  }
+    "allowJs": false,
+    "noEmit": false,
+    "incremental": true,
+    "paths": {},
+    "types": ["node"]
+  },
+  "exclude": ["**/node_modules", "dist", "build", "_release", "./packages"]
 }

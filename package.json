@@ -1,47 +1,80 @@
 {
   "name": "vendure-issue",
-  "version": "1.0.0",
-  "description": "vendure issue minimal reproduction repo",
-  "homepage": "https://github.com/tianyingchun/vendure-issue#readme",
-  "bugs": {
-    "url": "https://github.com/tianyingchun/vendure-issue/issues"
-  },
+  "version": "0.0.1",
+  "private": true,
+  "description": "vendure issue reproduce",
+  "keywords": [
+    "vendure",
+    "issue",
+    "reproduce"
+  ],
+  "homepage": "https://github.com/tianyingchun/vendure-issue.git",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tianyingchun/vendure-issue.git"
+    "url": "git+ssh://git@github.com/tianyingchun/vendure-issue.git"
   },
-  "license": "MIT",
-  "author": "tianyingchun",
-  "main": "index.js",
+  "license": "GPL-3.0-only",
+  "author": {
+    "name": "tianyingchun",
+    "url": "https://github.com/tianyingchun"
+  },
+  "type": "module",
   "workspaces": [
     "packages/*"
   ],
   "scripts": {
-    "migration:generate": "ts-node migration generate",
-    "migration:revert": "ts-node migration revert",
-    "migration:run": "ts-node migration run",
-    "serve": "lerna run serve --stream",
-    "start": "lerna run start --stream"
+    "?build-release": "When https://github.com/atlassian/changesets/issues/432 has a solution we can remove this trick",
+    "check:install": "yarn dlx @yarnpkg/doctor .",
+    "g:build": "yarn workspaces foreach -At run build",
+    "g:build-release": "yarn workspaces foreach -At run build-release",
+    "g:changeset": "changeset",
+    "g:clean": "yarn workspaces foreach -Ap run clean",
+    "g:conflict-package-check": "yarn node --import=@hyperse/ts-node-paths/register ./scripts/conflict-package-check.ts",
+    "g:cz": "cz",
+    "g:fix-all-files": "yarn workspaces foreach -Ap run fix-all-files",
+    "g:gen-tsconfig": "yarn node --import=@hyperse/ts-node-paths/register ./scripts/tsconfig.ts",
+    "g:lint": "yarn workspaces foreach -Ap run lint --color",
+    "g:lint-staged-files": "lint-staged --allow-empty",
+    "g:publish-local": "yarn changeset version && cd scripts && ./publish-to-verdaccio.sh",
+    "g:release": "yarn g:build-release && changeset publish",
+    "g:sync-peer-deps": "yarn node --import=@hyperse/ts-node-paths/register ./scripts/sync-peer-deps.ts",
+    "g:test": "yarn workspaces foreach -Ap run test",
+    "g:test-e2e": "yarn workspaces foreach -At run test-e2e",
+    "g:test-unit": "yarn workspaces foreach -Ap run test-unit",
+    "g:typecheck": "yarn workspaces foreach -Ap run typecheck",
+    "g:version": "changeset version",
+    "prepare": "yarn husky"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  },
+  "dependencies": {
+    "cross-env": "7.0.3"
   },
   "devDependencies": {
-    "@armit/eslint-config-bases": "0.0.7",
-    "@babel/core": "^7.19.6",
-    "@tsconfig/node16": "^1.0.3",
-    "@types/lodash": "^4.14.187",
-    "@types/prettier": "2.7.1",
-    "@types/rimraf": "^3.0.2",
-    "cross-env": "^7.0.3",
-    "eslint": "^8.26.0",
-    "jsdom": "^20.0.2",
-    "lodash": "^4.17.21",
-    "madge": "^5.0.1",
-    "prettier": "^2.7.1",
-    "rimraf": "^3.0.2"
+    "@armit/file-utility": "0.2.11",
+    "@changesets/changelog-github": "0.5.1",
+    "@changesets/cli": "2.29.4",
+    "@commitlint/cli": "19.8.1",
+    "@commitlint/config-conventional": "19.8.1",
+    "@hyperse/eslint-config-hyperse": "^1.4.4",
+    "@hyperse/ts-node-paths": "^1.0.12",
+    "commitizen": "4.3.1",
+    "cz-conventional-changelog": "3.3.0",
+    "eslint": "^9.27.0",
+    "husky": "9.1.7",
+    "lint-staged": "16.1.0",
+    "minimist": "^1.2.8",
+    "rimraf": "6.0.1",
+    "terser": "5.40.0",
+    "typescript": "5.8.3"
   },
+  "packageManager": "yarn@4.9.1",
   "engines": {
-    "node": ">=16.0.0",
+    "node": ">=18.0.0",
     "npm": "please-use-yarn",
     "yarn": ">=1.22.0"
-  },
-  "packageManager": "yarn@3.2.3"
+  }
 }

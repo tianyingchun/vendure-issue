@@ -1,0 +1,61 @@
+{
+  "folders": [
+    {
+      "name": "root",
+      "path": ".",
+    },
+    {
+      "name": "dev-server",
+      "path": "packages/dev-server",
+    },
+    {
+      "name": "my-plugin",
+      "path": "packages/my-plugin",
+    },
+    {
+      "name": "my-admin",
+      "path": "packages/my-admin",
+    }
+  ],
+  "extensions": {
+    "recommendations": [
+      "dbaeumer.vscode-eslint"
+    ],
+  },
+  "settings": {
+    "files.eol": "\n",
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+    "editor.codeActionsOnSave": {
+      "source.fixAll": "explicit",
+      "source.organizeImports": "never",
+    },
+    "files.associations": {
+      "*.css": "tailwindcss",
+    },
+    "tailwindCSS.experimental.classRegex": [
+      ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+      ["cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
+    ],
+    // Disable vscode formatting for js,jsx,ts,tsx files
+    // to allow dbaeumer.vscode-eslint to format them
+    "[javascript]": {
+      "editor.formatOnSave": false,
+    },
+    "typescript.enablePromptUseWorkspaceTsdk": true,
+    // https://github.com/Microsoft/vscode-eslint#mono-repository-setup
+    "eslint.workingDirectories": [
+      "./packages/dev-server",
+      "./packages/my-plugin",
+      "./packages/my-admin",
+    ],
+    "typescript.tsdk": "root/node_modules/typescript/lib",
+    "[json]": {
+      "editor.formatOnSave": false
+    },
+    "[jsonc]": {
+      "editor.formatOnSave": false
+    },
+    "i18n-ally.localesPaths": [],
+  },
+}

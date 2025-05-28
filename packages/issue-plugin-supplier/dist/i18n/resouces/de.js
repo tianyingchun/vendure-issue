@@ -1,1 +1,0 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.de=void 0,exports.de={message:{},error:{},errorResult:{}};

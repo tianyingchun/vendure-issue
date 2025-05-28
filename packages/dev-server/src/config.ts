@@ -1,26 +1,16 @@
-/* eslint-disable @typescript-eslint/naming-convention */
-import { IssueSupplierPlugin } from '@issue/plugin-supplier';
-import { AdminUiPlugin } from '@vendure/admin-ui-plugin';
 import type { VendureConfig } from '@vendure/core';
-import { DefaultLogger, LogLevel } from '@vendure/core';
-
+import {
+  DefaultJobQueuePlugin,
+  DefaultLogger,
+  DefaultSchedulerPlugin,
+  LogLevel,
+} from '@vendure/core';
+import { GraphiqlPlugin } from '@vendure/graphiql-plugin';
+import { MyPlugin } from '@vendure/my-plugin';
+import { getDirname } from './get-dir-name.js';
 export const config: VendureConfig = {
   apiOptions: {
     port: 3001,
-    shopListQueryLimit: 100000,
-    adminListQueryLimit: 100000,
-    adminApiPlayground: {
-      settings: {
-        'request.credentials': 'include',
-      },
-    },
-    adminApiDebug: true,
-    shopApiPlayground: {
-      settings: {
-        'request.credentials': 'include',
-      },
-    },
-    shopApiDebug: true,
   },
   paymentOptions: {
     paymentMethodHandlers: [],
@@ -37,25 +27,18 @@ export const config: VendureConfig = {
     },
   },
   dbConnectionOptions: {
-    type: 'mysql',
-    port: 3306,
-    timezone: 'Z',
-    database: 'vendure-issue',
-    host: '127.0.0.1',
-    username: 'root',
-    password: 'root',
+    type: 'sqlite',
     entityPrefix: 'vendure_issue_',
     synchronize: true,
-    charset: 'utf8mb4',
+    database: getDirname(import.meta.url, 'vendure-issue.db'),
   },
   logger: new DefaultLogger({
     level: LogLevel.Debug,
   }),
   plugins: [
-    AdminUiPlugin.init({
-      port: 3002,
-      route: 'oldAdmin',
-    }),
-    IssueSupplierPlugin.init({}),
+    MyPlugin.init({}),
+    GraphiqlPlugin.init({}),
+    DefaultJobQueuePlugin.init({}),
+    DefaultSchedulerPlugin.init({}),
   ],
 };

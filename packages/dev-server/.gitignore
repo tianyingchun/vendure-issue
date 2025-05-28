@@ -9,3 +9,14 @@ load-testing/static/assets
 dev-config-override.ts
 vendure.log
 static/assets
+__admin-ui
+migrations
+admin-ui
+# build
+/dist
+/build
+/_release
+/sitemaps
+/feeds
+vendure-admin-ui
+type-check.d.ts

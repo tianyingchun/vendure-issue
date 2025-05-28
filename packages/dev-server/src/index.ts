@@ -1,6 +1,5 @@
 import { bootstrap, JobQueueService } from '@vendure/core';
-import { config } from './config';
-import { populateData } from './populate';
+import { config } from './config.js';
 
 /**
  * This bootstraps the dev server, used for testing Vendure during development.
@@ -11,13 +10,7 @@ bootstrap(config)
       void app.get(JobQueueService).start();
     }
     if (process.env.POPULATE === 'true') {
-      populateData(app)
-        .then(() => {
-          console.log(`populate data ok`);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      console.log(`populate data ok`);
     }
   })
   .catch((err) => {

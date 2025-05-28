@@ -1,41 +1,89 @@
 {
-  "name": "@semic/dev-server",
-  "version": "1.0.0",
+  "name": "@vendure/dev-server",
+  "version": "1.4.3",
   "private": true,
-  "license": "MIT",
+  "homepage": "https://github.com/tianyingchun/vendure-issue.git",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/tianyingchun/vendure-issue.git",
+    "directory": "packages/dev-server"
+  },
+  "license": "GPL-3.0-only",
+  "author": {
+    "name": "Tianyingchun",
+    "url": "https://github.com/tianyingchun"
+  },
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./package.json": "./package.json"
+  },
+  "types": "./dist/index.d.ts",
+  "files": [
+    "./bin/",
+    "./dist/",
+    "./index.js"
+  ],
   "scripts": {
-    "migration:generate-dev": "ts-node src/migration.ts -- generate dev",
-    "migration:revert": "ts-node src/migration.ts -- revert",
-    "migration:run": "ts-node src/migration.ts -- run",
-    "serve": "ts-node src/index.ts",
-    "test-unit": "jest --config jest.config.js --runInBand --detectOpenHandles"
+    "build": "rimraf dist && tsc -p ./tsconfig.build.json",
+    "build-release": "yarn build && rimraf ./_release && yarn pack && mkdir ./_release && tar zxvf ./package.tgz --directory ./_release && rm ./package.tgz",
+    "dev": "hyper-env -- concurrently \"yarn run dev:server\" \"yarn run dev:worker\" ",
+    "dev:server": "nodemon --import=@hyperse/ts-node-paths/register ./src/index.ts",
+    "dev:worker": "nodemon --import=@hyperse/ts-node-paths/register ./src/index-worker.ts",
+    "lint": "eslint .",
+    "migration:generate": "hyper-env -- node --import=@hyperse/ts-node-paths/register src/migration.ts generate Dev",
+    "migration:generatejs": "APP_ENV=prod hyper-env -- node dist/migration.js generate Dev",
+    "migration:revert": "node --import=@hyperse/ts-node-paths/register src/migration.ts revert",
+    "migration:revertjs": "node ./dist/migration.js -- revert",
+    "migration:run": "node --import=@hyperse/ts-node-paths/register src/migration.ts run",
+    "migration:runjs": "node ./dist/migration.js -- run",
+    "pm2:start:server": "APP_ENV=prod hyper-env -- node ./dist/index.js",
+    "pm2:start:worker": "APP_ENV=prod hyper-env -- node ./dist/index-worker.js",
+    "serve": "hyper-env -- yarn dev",
+    "start": "concurrently  \"yarn run start:server\" \"yarn run start:worker\"",
+    "start:prod": "APP_ENV=prod hyper-env -- npm run start",
+    "start:server": "node ./dist/index.js",
+    "start:worker": "node ./dist/index-worker.js",
+    "typecheck": "tsc --project ./tsconfig.json --noEmit"
   },
   "dependencies": {
-    "@issue/plugin-supplier": "1.0.0",
-    "@vendure/admin-ui-plugin": "1.8.2",
-    "@vendure/core": "1.8.2",
-    "bullmq": "1.91.1",
-    "mysql": "npm:mysql2@2.3.3"
+    "@hyperse/hyper-env": "^1.0.14",
+    "@nestjs/common": "~11.0.12",
+    "@nestjs/core": "~11.0.12",
+    "@nestjs/graphql": "~13.0.4",
+    "@vendure/asset-server-plugin": "^3.3.1",
+    "@vendure/common": "^3.3.1",
+    "@vendure/core": "^3.3.1",
+    "@vendure/dashboard": "^3.3.1",
+    "@vendure/graphiql-plugin": "^3.3.1",
+    "@vendure/job-queue-plugin": "^3.3.1",
+    "@vendure/my-plugin": "workspace:*",
+    "body-parser": "^2.2.0",
+    "bullmq": "5.53.0",
+    "commander": "^14.0.0",
+    "express": "^5.1.0",
+    "graphql": "^16.10.0",
+    "graphql-tag": "^2.12.6",
+    "mysql": "npm:mysql2@3.14.1",
+    "reflect-metadata": "^0.2.2",
+    "rxjs": "^7.8.2",
+    "sqlite3": "^5.1.7"
   },
   "devDependencies": {
-    "@graphql-codegen/add": "3.2.1",
-    "@graphql-codegen/cli": "2.13.10",
-    "@graphql-codegen/introspection": "2.2.1",
-    "@graphql-codegen/typescript-operations": "2.5.6",
-    "@jest/types": "29.2.1",
-    "@types/ioredis": "^4.28.10",
-    "@types/jest": "29.2.1",
-    "@types/node": "18.11.9",
-    "@vendure/testing": "1.8.2",
-    "commander": "^9.4.1",
-    "dotenv": "^16.0.3",
-    "graphql": "15.5.1",
-    "jest": "29.2.2",
-    "terser": "5.15.1",
-    "ts-jest": "29.0.3",
-    "ts-node": "10.9.1",
-    "tsconfig-paths": "4.1.0",
-    "typescript": "4.8.4"
-  },
-  "packageManager": "yarn@3.2.4"
+    "@types/node": "22.15.23",
+    "concurrently": "9.1.2",
+    "cross-env": "7.0.3",
+    "dts-bundle-generator": "^9.5.1",
+    "eslint": "^9.27.0",
+    "handlebars": "^4.7.8",
+    "nodemon": "^3.1.10",
+    "rimraf": "^6.0.1",
+    "tsconfig-paths": "4.2.0",
+    "typescript": "5.8.3",
+    "vite-tsconfig-paths": "5.1.4",
+    "vitest": "3.1.4"
+  }
 }
