@@ -54,15 +54,15 @@
     "@nestjs/common": "~11.0.12",
     "@nestjs/core": "~11.0.12",
     "@nestjs/graphql": "~13.0.4",
-    "@vendure/asset-server-plugin": "^3.3.1",
-    "@vendure/common": "^3.3.1",
-    "@vendure/core": "^3.3.1",
-    "@vendure/dashboard": "^3.3.1",
-    "@vendure/graphiql-plugin": "^3.3.1",
-    "@vendure/job-queue-plugin": "^3.3.1",
+    "@vendure/asset-server-plugin": "^3.3.4",
+    "@vendure/common": "^3.3.4",
+    "@vendure/core": "^3.3.4",
+    "@vendure/dashboard": "^3.3.4",
+    "@vendure/graphiql-plugin": "^3.3.4",
+    "@vendure/job-queue-plugin": "^3.3.4",
     "@vendure/my-plugin": "workspace:*",
     "body-parser": "^2.2.0",
-    "bullmq": "5.53.0",
+    "bullmq": "5.54.3",
     "commander": "^14.0.0",
     "express": "^5.1.0",
     "graphql": "^16.10.0",
@@ -73,17 +73,17 @@
     "sqlite3": "^5.1.7"
   },
   "devDependencies": {
-    "@types/node": "22.15.23",
+    "@types/node": "24.0.3",
     "concurrently": "9.1.2",
     "cross-env": "7.0.3",
     "dts-bundle-generator": "^9.5.1",
-    "eslint": "^9.27.0",
+    "eslint": "^9.29.0",
     "handlebars": "^4.7.8",
     "nodemon": "^3.1.10",
     "rimraf": "^6.0.1",
     "tsconfig-paths": "4.2.0",
     "typescript": "5.8.3",
     "vite-tsconfig-paths": "5.1.4",
-    "vitest": "3.1.4"
+    "vitest": "3.2.4"
   }
 }

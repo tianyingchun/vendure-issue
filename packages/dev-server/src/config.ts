@@ -1,3 +1,4 @@
+import { join } from 'path';
 import type { VendureConfig } from '@vendure/core';
 import {
   DefaultJobQueuePlugin,
@@ -7,7 +8,7 @@ import {
 } from '@vendure/core';
 import { GraphiqlPlugin } from '@vendure/graphiql-plugin';
 import { MyPlugin } from '@vendure/my-plugin';
-import { getDirname } from './get-dir-name.js';
+
 export const config: VendureConfig = {
   apiOptions: {
     port: 3001,
@@ -30,7 +31,7 @@ export const config: VendureConfig = {
     type: 'sqlite',
     entityPrefix: 'vendure_issue_',
     synchronize: true,
-    database: getDirname(import.meta.url, 'vendure-issue.db'),
+    database: join(process.cwd(), 'dev-server', 'vendure-issue.db'),
   },
   logger: new DefaultLogger({
     level: LogLevel.Debug,
