@@ -1,7 +1,7 @@
 import { join } from 'node:path';
 import { defineConfig } from 'vite';
 import { vendureDashboardPlugin } from '@vendure/dashboard/plugin';
-import { getDirname } from './src/get-dir-name.js';
+import { getDirname } from './src/get-dirname.js';
 
 export default defineConfig({
   build: {
@@ -13,13 +13,20 @@ export default defineConfig({
       // to find any plugins which have dashboard extensions, as well as
       // to introspect the GraphQL schema based on any API extensions
       // and custom fields that are configured.
-      vendureConfigPath: getDirname(
+      vendureConfigPath: getDirname(import.meta.url, './src/config.ts'),
+      tempCompilationDir: getDirname(
         import.meta.url,
-        '../dev-server/src/config.ts'
+        './.vendure-dashboard-temp'
       ),
       pathAdapter: {
         getCompiledConfigPath: ({ outputPath, configFileName }) => {
           return join(outputPath, 'dev-server/src', configFileName);
+        },
+        transformTsConfigPathMappings: ({ patterns, phase }) => {
+          if (phase === 'loading') {
+            return patterns.map((s) => s.replace('../', './'));
+          }
+          return patterns;
         },
       },
       pluginPackageScanner: {

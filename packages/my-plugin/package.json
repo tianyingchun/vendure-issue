@@ -45,6 +45,9 @@
     "fix-all-files": "eslint . --fix",
     "typecheck": "tsc --project ./tsconfig.json --noEmit"
   },
+  "dependencies": {
+    "@vendure/dashboard": "^3.3.6"
+  },
   "devDependencies": {
     "@graphql-codegen/add": "5.0.3",
     "@graphql-codegen/cli": "5.0.7",

@@ -8,7 +8,7 @@
     "incremental": true,
     "types": ["vitest/globals", "node"],
     "paths": {
-      "@hyperse/my-plugin": ["../../packages/my-plugin/src/index.js"]
+      "@hyperse/my-plugin": ["../my-plugin/src/index.js"]
     }
   },
   "exclude": ["**/node_modules", "**/.*/", "dist", "build", "_release"]

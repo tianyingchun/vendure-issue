@@ -12,10 +12,6 @@
       "name": "my-plugin",
       "path": "packages/my-plugin",
     },
-    {
-      "name": "my-admin",
-      "path": "packages/my-admin",
-    }
   ],
   "extensions": {
     "recommendations": [
@@ -47,7 +43,6 @@
     "eslint.workingDirectories": [
       "./packages/dev-server",
       "./packages/my-plugin",
-      "./packages/my-admin",
     ],
     "typescript.tsdk": "root/node_modules/typescript/lib",
     "[json]": {
