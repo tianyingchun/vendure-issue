@@ -1,4 +1,5 @@
 import { join } from 'path';
+import { MyPlugin } from '@hyperse/my-plugin';
 import type { VendureConfig } from '@vendure/core';
 import {
   DefaultJobQueuePlugin,
@@ -7,7 +8,6 @@ import {
   LogLevel,
 } from '@vendure/core';
 import { GraphiqlPlugin } from '@vendure/graphiql-plugin';
-import { MyPlugin } from '@vendure/my-plugin';
 
 export const config: VendureConfig = {
   apiOptions: {

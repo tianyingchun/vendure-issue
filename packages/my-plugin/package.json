@@ -1,5 +1,5 @@
 {
-  "name": "@vendure/my-plugin",
+  "name": "@hyperse/my-plugin",
   "version": "1.0.0",
   "homepage": "https://github.com/tianyingchun/vendure-issue.git",
   "repository": {
@@ -13,9 +13,11 @@
     "url": "https://github.com/tianyingchun"
   },
   "sideEffects": false,
+  "main": "./dist/index.js",
   "type": "module",
   "exports": {
     ".": {
+      "default": "./dist/index.js",
       "import": "./index.js",
       "types": "./dist/index.d.ts"
     },
@@ -28,8 +30,8 @@
     "./index.js"
   ],
   "scripts": {
-    "serve": "yarn node --import=@hyperse/ts-node-paths/register ./config/dev-server.ts",
-    "build": "rimraf dist && tsc -p ./tsconfig.build.json",
+    "serve": "yarn node --import=@hyperse/ts-node/register ./config/dev-server.ts",
+    "build": "yarn node --import=@hyperse/ts-node/register ../../scripts/tsc.ts -i src/index.ts",
     "?build-release": "When https://github.com/atlassian/changesets/issues/432 has a solution we can remove this trick",
     "build-release": "yarn build && rimraf ./_release && yarn pack && mkdir ./_release && tar zxvf ./package.tgz --directory ./_release && rm ./package.tgz",
     "minify": "node ../../scripts/minify.mjs --dest=dist",
@@ -51,16 +53,16 @@
     "@nestjs/common": "~11.0.12",
     "@nestjs/core": "~11.0.12",
     "@nestjs/graphql": "~13.0.4",
-    "@swc/core": "1.12.4",
-    "@types/node": "24.0.3",
-    "@vendure/core": "^3.3.4",
-    "dotenv": "16.5.0",
-    "eslint": "^9.29.0",
+    "@swc/core": "1.12.14",
+    "@types/node": "24.0.13",
+    "@vendure/core": "^3.3.6",
+    "dotenv": "17.2.0",
+    "eslint": "^9.31.0",
     "graphql": "^16.10.0",
     "graphql-sock": "^1.0.1",
     "graphql-tag": "^2.12.6",
     "npm-run-all": "4.1.5",
-    "prettier": "3.5.3",
+    "prettier": "3.6.2",
     "reflect-metadata": "^0.2.2",
     "rimraf": "6.0.1",
     "rxjs": "^7.8.2",

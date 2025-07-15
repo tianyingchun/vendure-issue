@@ -1,3 +1,4 @@
+import { join } from 'node:path';
 import { defineConfig } from 'vite';
 import { vendureDashboardPlugin } from '@vendure/dashboard/plugin';
 import { getDirname } from './src/get-dir-name.js';
@@ -16,8 +17,16 @@ export default defineConfig({
         import.meta.url,
         '../dev-server/src/config.ts'
       ),
+      pathAdapter: {
+        getCompiledConfigPath: ({ outputPath, configFileName }) => {
+          return join(outputPath, 'dev-server/src', configFileName);
+        },
+      },
+      pluginPackageScanner: {
+        nodeModulesRoot: getDirname(import.meta.url, '../'),
+      },
       // Points to the location of your Vendure server.
-      adminUiConfig: { apiHost: 'http://localhost', apiPort: 3000 },
+      adminUiConfig: { apiHost: 'http://localhost', apiPort: 7001 },
       // When you start the Vite server, your Admin API schema will
       // be introspected and the types will be generated in this location.
       // These types can be used in your dashboard extensions to provide
