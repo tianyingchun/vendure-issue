@@ -1,5 +1,4 @@
 import { defineDashboardExtension } from '@vendure/dashboard';
-import { JsonDisplayComponent } from './components/JsonDisplay.jsx';
 
 export default defineDashboardExtension({
   detailForms: [
@@ -7,9 +6,11 @@ export default defineDashboardExtension({
       pageId: 'product-detail',
       displays: [
         {
-          blockId: 'custom-fields',
-          field: 'customMappings',
-          component: JsonDisplayComponent,
+          blockId: 'main-form',
+          field: 'name',
+          component: () => {
+            return <span>Hello</span>;
+          },
         },
       ],
     },

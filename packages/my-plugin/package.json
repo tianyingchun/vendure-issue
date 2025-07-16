@@ -58,6 +58,7 @@
     "@nestjs/graphql": "~13.0.4",
     "@swc/core": "1.12.14",
     "@types/node": "24.0.13",
+    "@types/react": "^19.1.8",
     "@vendure/core": "^3.3.6",
     "dotenv": "17.2.0",
     "eslint": "^9.31.0",

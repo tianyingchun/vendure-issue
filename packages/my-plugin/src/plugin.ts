@@ -34,7 +34,7 @@ const services = [];
     });
     return config;
   },
-  // dashboard: './dashboard/index.tsx',
+  dashboard: './dashboard/index.tsx',
 })
 export class MyPlugin {
   static options: PluginInitOptions = {};

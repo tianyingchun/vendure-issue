@@ -11,5 +11,12 @@
       "@hyperse/my-plugin": ["../my-plugin/src/index.js"]
     }
   },
-  "exclude": ["**/node_modules", "**/.*/", "dist", "build", "_release"]
+  "exclude": [
+    "**/node_modules",
+    "**/.*/",
+    "dist",
+    "build",
+    "_release",
+    ".vendure-dashboard-temp/**"
+  ]
 }

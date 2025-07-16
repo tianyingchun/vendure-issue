@@ -30,10 +30,10 @@ export default defineConfig({
         },
       },
       pluginPackageScanner: {
-        nodeModulesRoot: getDirname(import.meta.url, '../'),
+        nodeModulesRoot: getDirname(import.meta.url, '../../node_modules'),
       },
       // Points to the location of your Vendure server.
-      adminUiConfig: { apiHost: 'http://localhost', apiPort: 7001 },
+      adminUiConfig: { apiHost: 'http://localhost', apiPort: 3001 },
       // When you start the Vite server, your Admin API schema will
       // be introspected and the types will be generated in this location.
       // These types can be used in your dashboard extensions to provide

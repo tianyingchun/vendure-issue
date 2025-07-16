@@ -99,7 +99,13 @@ class TypeScriptCompiler {
         paths: {},
       },
       include: options.includes,
-      exclude: ['**/node_modules', '**/dist', '**/build', '**/.*/'],
+      exclude: [
+        '**/node_modules',
+        '**/dist',
+        '**/build',
+        '**/.*/',
+        '**/dashboard/*',
+      ],
     };
 
     const tempConfigPath = join(this.projectRoot, 'tsconfig.temp.json');
