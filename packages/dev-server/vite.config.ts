@@ -14,10 +14,6 @@ export default defineConfig({
       // to introspect the GraphQL schema based on any API extensions
       // and custom fields that are configured.
       vendureConfigPath: getDirname(import.meta.url, './src/config.ts'),
-      tempCompilationDir: getDirname(
-        import.meta.url,
-        './.vendure-dashboard-temp'
-      ),
       pathAdapter: {
         getCompiledConfigPath: ({ outputPath, configFileName }) => {
           return join(outputPath, 'dev-server/src', configFileName);
