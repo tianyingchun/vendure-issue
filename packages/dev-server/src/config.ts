@@ -9,7 +9,7 @@ import {
 } from '@vendure/core';
 import { GraphiqlPlugin } from '@vendure/graphiql-plugin';
 
-export const config: VendureConfig = {
+export const vendureConfig: VendureConfig = {
   apiOptions: {
     port: 3001,
   },

@@ -6,27 +6,27 @@ import {
   revertLastMigration,
   runMigrations,
 } from '@vendure/core';
-import { config } from './config.js';
+import { vendureConfig } from './config.js';
 
 program
   .command('generate <name>')
   .description('Generate a new migration file with the given name')
   .action((name) => {
-    void generateMigration(config, { name, outputDir: './migrations' });
+    void generateMigration(vendureConfig, { name, outputDir: './migrations' });
   });
 
 program
   .command('run')
   .description('Run all pending migrations')
   .action(() => {
-    void runMigrations(config);
+    void runMigrations(vendureConfig);
   });
 
 program
   .command('revert')
   .description('Revert the last applied migration')
   .action(() => {
-    void revertLastMigration(config);
+    void revertLastMigration(vendureConfig);
   });
 
 function exec() {

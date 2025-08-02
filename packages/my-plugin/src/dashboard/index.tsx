@@ -6,8 +6,8 @@ export default defineDashboardExtension({
       pageId: 'product-detail',
       displays: [
         {
-          blockId: 'main-form',
-          field: 'name',
+          blockId: 'custom-fields',
+          field: 'customFields',
           component: () => {
             return <span>Hello</span>;
           },
