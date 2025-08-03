@@ -61,6 +61,7 @@
     "@vendure/dashboard": "^3.4.0",
     "@vendure/graphiql-plugin": "^3.4.0",
     "@vendure/job-queue-plugin": "^3.4.0",
+    "ali-oss": "^6.23.0",
     "body-parser": "^2.2.0",
     "bullmq": "5.56.9",
     "commander": "^14.0.0",
