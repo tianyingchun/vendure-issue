@@ -1,6 +1,7 @@
 import { gql } from 'graphql-tag';
 import { PluginCommonModule, VendurePlugin } from '@vendure/core';
 import { PLUGIN_INIT_OPTIONS } from './constants.js';
+import { getDirname } from './get-dirname.js';
 import { PublicCustomerGroupsResolver } from './public-customer-groups.resolver.js';
 import type { PluginInitOptions } from './types.js';
 
@@ -37,7 +38,9 @@ const services = [];
   dashboard: './dashboard/index.tsx',
 })
 export class MyPlugin {
-  static options: PluginInitOptions = {};
+  static options: PluginInitOptions = {
+    projectDir: getDirname(import.meta.url, '../templates'),
+  };
 
   /**
    * The static `init()` method is a convention used by Vendure plugins which allows options

@@ -4,7 +4,7 @@ export default defineDashboardExtension({
   detailForms: [
     {
       pageId: 'product-detail',
-      displays: [
+      inputs: [
         {
           blockId: 'custom-fields',
           field: 'customFields',

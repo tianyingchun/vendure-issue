@@ -9,17 +9,6 @@ import {
   LogLevel,
 } from '@vendure/core';
 import { GraphiqlPlugin } from '@vendure/graphiql-plugin';
-import { configureAliOssAssetStorage } from './ali-oss/configure-ali-oss-asset-storage.js';
-import type { AliOssConfig } from './ali-oss/types.js';
-
-const aliOssConfig: AliOssConfig = {
-  secure: true,
-  expiresInSeconds: 60 * 30,
-  bucket: process.env.OSS_BUCKET!,
-  endpoint: process.env.OSS_END_POINT,
-  accessKeyId: process.env.OSS_ACCESS_KEY_ID!,
-  accessKeySecret: process.env.OSS_ACCESS_KEY_SECRET!,
-};
 
 export const vendureConfig: VendureConfig = {
   apiOptions: {
@@ -55,8 +44,6 @@ export const vendureConfig: VendureConfig = {
       previewMaxHeight: 1200,
       previewMaxWidth: 1200,
       assetUploadDir: join(process.cwd(), 'static', 'assets'),
-      // COMMENT this line npx vite works fine, if we have `storageStrategyFactory` the npx vite will hunning
-      storageStrategyFactory: configureAliOssAssetStorage(aliOssConfig),
     }),
     MyPlugin.init({}),
     GraphiqlPlugin.init({}),

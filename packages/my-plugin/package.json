@@ -46,34 +46,34 @@
     "typecheck": "tsc --project ./tsconfig.json --noEmit"
   },
   "dependencies": {
-    "@vendure/dashboard": "^3.4.0"
+    "@vendure/dashboard": "^3.5.0"
   },
   "devDependencies": {
-    "@graphql-codegen/add": "5.0.3",
-    "@graphql-codegen/cli": "5.0.7",
-    "@graphql-codegen/typescript-operations": "4.6.1",
-    "@hyperse/eslint-config-hyperse": "^1.4.5",
+    "@graphql-codegen/add": "6.0.0",
+    "@graphql-codegen/cli": "6.0.1",
+    "@graphql-codegen/typescript-operations": "5.0.2",
+    "@hyperse/eslint-config-hyperse": "^1.4.8",
     "@nestjs/common": "~11.0.12",
     "@nestjs/core": "~11.0.12",
     "@nestjs/graphql": "~13.0.4",
-    "@swc/core": "1.13.3",
-    "@types/node": "24.1.0",
-    "@types/react": "^19.1.9",
-    "@vendure/core": "^3.4.0",
-    "dotenv": "17.2.1",
-    "eslint": "^9.32.0",
+    "@swc/core": "1.15.1",
+    "@types/node": "24.10.0",
+    "@types/react": "^19.2.2",
+    "@vendure/core": "^3.5.0",
+    "dotenv": "17.2.3",
+    "eslint": "^9.39.1",
     "graphql": "^16.10.0",
     "graphql-sock": "^1.0.1",
     "graphql-tag": "^2.12.6",
     "npm-run-all": "4.1.5",
     "prettier": "3.6.2",
     "reflect-metadata": "^0.2.2",
-    "rimraf": "6.0.1",
+    "rimraf": "6.1.0",
     "rxjs": "^7.8.2",
     "swc-unplugin-ts": "1.0.3",
-    "typescript": "5.9.2",
+    "typescript": "5.9.3",
     "vite-tsconfig-paths": "5.1.4",
-    "vitest": "3.2.4"
+    "vitest": "4.0.8"
   },
   "peerDependencies": {
     "@nestjs/graphql": "~13.0.4",
