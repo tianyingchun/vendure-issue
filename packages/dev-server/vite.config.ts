@@ -1,4 +1,4 @@
-import { join } from 'node:path';
+import { basename, join } from 'node:path';
 import { defineConfig } from 'vite';
 import { vendureDashboardPlugin } from '@vendure/dashboard/vite';
 import { getDirname } from './src/get-dirname.js';
@@ -9,6 +9,7 @@ export default defineConfig({
   },
   plugins: [
     vendureDashboardPlugin({
+      module: 'esm',
       tempCompilationDir: getDirname(import.meta.url, './.cache'),
       // The vendureDashboardPlugin will scan your configuration in order
       // to find any plugins which have dashboard extensions, as well as
@@ -17,12 +18,18 @@ export default defineConfig({
       vendureConfigPath: getDirname(import.meta.url, './src/config.ts'),
       pathAdapter: {
         getCompiledConfigPath: ({ outputPath, configFileName }) => {
-          return join(outputPath, 'dev-server/src', configFileName);
+          const pluginFolder = basename(getDirname(import.meta.url));
+          const configPath = join(
+            outputPath,
+            pluginFolder,
+            'src',
+            configFileName
+          );
+          return configPath;
         },
         transformTsConfigPathMappings: ({ patterns, phase }) => {
           if (phase === 'loading') {
-            console.log(patterns.map((s) => s.replace('../', './')));
-            return patterns.map((s) => s.replace('../', './'));
+            return patterns.map((s) => s.replace('../../packages', '.'));
           }
           return patterns;
         },

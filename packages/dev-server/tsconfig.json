@@ -6,10 +6,7 @@
     "allowJs": false,
     "noEmit": false,
     "incremental": true,
-    "types": ["vitest/globals", "node"],
-    "paths": {
-      "@hyperse/my-plugin": ["../my-plugin/src/index.js"]
-    }
+    "types": ["vitest/globals", "node"]
   },
   "exclude": [
     "**/node_modules",
@@ -18,5 +15,10 @@
     "build",
     "_release",
     ".vendure-dashboard-temp/**"
+  ],
+  "references": [
+    {
+      "path": "./tsconfig.dashboard.json"
+    }
   ]
 }

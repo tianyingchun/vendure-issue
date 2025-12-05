@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "composite": true,
+    "jsx": "react-jsx",
+    "baseUrl": "./",
+    "paths": {
+      "@hyperse/my-plugin": ["../../packages/my-plugin/src/index.js"],
+      "@/gql": ["./src/gql/graphql.ts"],
+      "@/vdb/*": ["../../node_modules/@vendure/dashboard/src/lib/*"]
+    },
+    "plugins": [
+      {
+        "name": "@0no-co/graphqlsp",
+        "schemas": [
+          {
+            "name": "admin-api",
+            "schema": "http://localhost:3001/admin-api",
+            "tadaOutputLocation": "./src/gql/graphql-env.d.ts"
+          }
+        ]
+      }
+    ]
+  },
+  "references": [
+    {
+      "path": "./tsconfig.dashboard.json"
+    }
+  ],
+  "include": ["src/dashboard/**/*", "src/gql/**/*.ts"]
+}

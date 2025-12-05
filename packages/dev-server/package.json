@@ -50,20 +50,20 @@
     "typecheck": "tsc --project ./tsconfig.json --noEmit"
   },
   "dependencies": {
-    "@hyperse/hyper-env": "^1.0.17",
+    "@hyperse/hyper-env": "^1.0.18",
     "@hyperse/my-plugin": "workspace:*",
     "@nestjs/common": "~11.0.12",
     "@nestjs/core": "~11.0.12",
     "@nestjs/graphql": "~13.0.4",
-    "@vendure/asset-server-plugin": "^3.5.0",
-    "@vendure/common": "^3.5.0",
-    "@vendure/core": "^3.5.0",
-    "@vendure/dashboard": "^3.5.0",
-    "@vendure/graphiql-plugin": "^3.5.0",
-    "@vendure/job-queue-plugin": "^3.5.0",
+    "@vendure/asset-server-plugin": "^3.5.1",
+    "@vendure/common": "^3.5.1",
+    "@vendure/core": "^3.5.1",
+    "@vendure/dashboard": "^3.5.1",
+    "@vendure/graphiql-plugin": "^3.5.1",
+    "@vendure/job-queue-plugin": "^3.5.1",
     "ali-oss": "^6.23.0",
     "body-parser": "^2.2.0",
-    "bullmq": "5.63.0",
+    "bullmq": "5.63.1",
     "commander": "^14.0.2",
     "express": "^5.1.0",
     "graphql": "^16.10.0",
@@ -74,17 +74,17 @@
     "sqlite3": "^5.1.7"
   },
   "devDependencies": {
-    "@types/node": "24.10.0",
+    "@types/node": "24.10.1",
     "concurrently": "9.2.1",
     "cross-env": "10.1.0",
     "dts-bundle-generator": "^9.5.1",
     "eslint": "^9.39.1",
     "handlebars": "^4.7.8",
-    "nodemon": "^3.1.10",
+    "nodemon": "^3.1.11",
     "rimraf": "^6.1.0",
     "tsconfig-paths": "4.2.0",
     "typescript": "5.9.3",
     "vite-tsconfig-paths": "5.1.4",
-    "vitest": "4.0.8"
+    "vitest": "4.0.9"
   }
 }
