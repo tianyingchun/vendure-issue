@@ -6,7 +6,6 @@
     "jsx": "react-jsx",
     "baseUrl": "./",
     "paths": {
-      "@hyperse/my-plugin": ["../my-plugin/src/index.js"],
       "@/gql": ["./src/gql/graphql.ts"],
       "@/vdb/*": ["../../node_modules/@vendure/dashboard/src/lib/*"]
     },

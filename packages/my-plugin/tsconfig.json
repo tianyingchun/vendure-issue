@@ -6,10 +6,16 @@
     "allowJs": false,
     "noEmit": false,
     "incremental": true,
-    "paths": {
-      "@/vdb/*": ["../../node_modules/@vendure/dashboard/src/lib/*"]
-    },
     "types": ["vitest/globals", "node"]
   },
-  "exclude": ["**/node_modules", "**/.*/", "dist", "build", "_release"]
+  "exclude": [
+    "**/node_modules",
+    "**/.*/",
+    "dist",
+    "build",
+    "_release",
+    ".vendure-dashboard-temp/**",
+  ],
+  "include": ["src/dashboard/**/*", "src/gql/**/*.ts"]
+
 }

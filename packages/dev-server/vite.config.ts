@@ -27,11 +27,9 @@ export default defineConfig({
           );
           return configPath;
         },
-        transformTsConfigPathMappings: ({ patterns, phase }) => {
-          if (phase === 'loading') {
-            return patterns.map((s) => s.replace('../../packages', '.'));
-          }
-          return patterns;
+        transformTsConfigPathMappings: ({ patterns }) => {
+          const result = patterns.map((s) => s.replace('../', '../../'));
+          return result;
         },
       },
       pluginPackageScanner: {

@@ -14,7 +14,10 @@
     "dist",
     "build",
     "_release",
-    ".vendure-dashboard-temp/**"
+    ".vendure-dashboard-temp/**",
+    "src/**/dashboard/*",
+    "src/gql/*",
+    "vite.*.*ts"
   ],
   "references": [
     {
