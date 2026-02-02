@@ -4,6 +4,7 @@ import { vendureDashboardPlugin } from '@vendure/dashboard/vite';
 import { getDirname } from './src/get-dirname.js';
 
 export default defineConfig({
+  base: '/dashboard/',
   build: {
     outDir: getDirname(import.meta.url, 'dist/dashboard'),
   },
@@ -28,9 +29,9 @@ export default defineConfig({
           return configPath;
         },
         transformTsConfigPathMappings: ({ phase, patterns }) => {
-         if (phase === 'loading') {
-            return patterns.map((s) => s.replace('../', '../../'));
-          }
+          // if (phase === 'loading') {
+          //   return patterns.map((s) => s.replace('../', '../../'));
+          // }
           return patterns;
         },
       },

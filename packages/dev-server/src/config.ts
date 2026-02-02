@@ -8,7 +8,9 @@ import {
   DefaultSchedulerPlugin,
   LogLevel,
 } from '@vendure/core';
+import { DashboardPlugin } from '@vendure/dashboard/plugin';
 import { GraphiqlPlugin } from '@vendure/graphiql-plugin';
+import { getDirname } from './get-dirname.js';
 
 export const vendureConfig: VendureConfig = {
   apiOptions: {
@@ -44,6 +46,10 @@ export const vendureConfig: VendureConfig = {
       previewMaxHeight: 1200,
       previewMaxWidth: 1200,
       assetUploadDir: join(process.cwd(), 'static', 'assets'),
+    }),
+    DashboardPlugin.init({
+      route: 'dashboard',
+      appDir: getDirname(import.meta.url, '../dist/dashboard'),
     }),
     MyPlugin.init({}),
     GraphiqlPlugin.init({}),

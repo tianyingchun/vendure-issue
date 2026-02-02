@@ -1,18 +1,20 @@
 import { defineDashboardExtension } from '@vendure/dashboard';
 
 export default defineDashboardExtension({
-  detailForms: [
+  routes: [
     {
-      pageId: 'product-detail',
-      inputs: [
-        {
-          blockId: 'custom-fields',
-          field: 'customFields',
-          component: () => {
-            return <span>Hello</span>;
-          },
-        },
-      ],
+      path: '/my-custom-page',
+      component: () => <div>My Custom Page</div>,
+      navMenuItem: {
+        // The section where this item should appear
+        sectionId: 'catalog',
+        // Unique identifier for this menu item
+        id: 'my-custom-page',
+        // Display text in the navigation
+        title: 'My Custom Page',
+        // Optional: URL if different from path
+        url: '/my-custom-page',
+      },
     },
   ],
 });
