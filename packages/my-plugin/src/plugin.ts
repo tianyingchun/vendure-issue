@@ -1,11 +1,12 @@
 import { gql } from 'graphql-tag';
+import { myCommon } from '@hyperse/my-common';
 import { PluginCommonModule, VendurePlugin } from '@vendure/core';
 import { PLUGIN_INIT_OPTIONS } from './constants.js';
 import { getDirname } from './get-dirname.js';
 import { PublicCustomerGroupsResolver } from './public-customer-groups.resolver.js';
+import { MyPluginService } from './services/my-plugin-service.service.js';
 import type { PluginInitOptions } from './types.js';
-
-const services = [];
+const services = [MyPluginService];
 
 @VendurePlugin({
   imports: [PluginCommonModule],
@@ -48,6 +49,7 @@ export class MyPlugin {
    */
   static init(options: Partial<PluginInitOptions>) {
     this.options = { ...MyPlugin.options, ...options };
+    console.log(myCommon());
     return MyPlugin;
   }
 }

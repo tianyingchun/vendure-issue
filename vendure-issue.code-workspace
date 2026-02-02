@@ -8,6 +8,10 @@
       "name": "dev-server",
       "path": "packages/dev-server",
     },
+     {
+      "name": "my-common",
+      "path": "packages/my-common",
+    },
     {
       "name": "my-plugin",
       "path": "packages/my-plugin",
@@ -43,6 +47,7 @@
     "eslint.workingDirectories": [
       "./packages/dev-server",
       "./packages/my-plugin",
+      "./packages/my-common",
     ],
     "typescript.tsdk": "root/node_modules/typescript/lib",
     "[json]": {

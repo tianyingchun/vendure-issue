@@ -2909,6 +2909,45 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@hyperse/my-common@workspace:*, @hyperse/my-common@workspace:packages/my-common":
+  version: 0.0.0-use.local
+  resolution: "@hyperse/my-common@workspace:packages/my-common"
+  dependencies:
+    "@graphql-codegen/add": "npm:6.0.0"
+    "@graphql-codegen/cli": "npm:6.1.1"
+    "@graphql-codegen/typescript-operations": "npm:5.0.7"
+    "@hyperse/eslint-config-hyperse": "npm:^1.5.0"
+    "@nestjs/common": "npm:~11.0.12"
+    "@nestjs/core": "npm:~11.0.12"
+    "@nestjs/graphql": "npm:~13.0.4"
+    "@swc/core": "npm:1.15.11"
+    "@types/node": "npm:25.1.0"
+    "@types/react": "npm:^19.2.10"
+    "@vendure/core": "npm:^3.5.3"
+    "@vendure/dashboard": "npm:^3.5.3"
+    dotenv: "npm:17.2.3"
+    eslint: "npm:^9.39.2"
+    graphql: "npm:^16.10.0"
+    graphql-sock: "npm:^1.0.1"
+    graphql-tag: "npm:^2.12.6"
+    npm-run-all: "npm:4.1.5"
+    prettier: "npm:3.8.1"
+    reflect-metadata: "npm:^0.2.2"
+    rimraf: "npm:6.1.2"
+    rxjs: "npm:^7.8.2"
+    swc-unplugin-ts: "npm:1.0.3"
+    typescript: "npm:5.9.3"
+    vite: "npm:^7.3.1"
+    vite-tsconfig-paths: "npm:6.0.5"
+    vitest: "npm:4.0.18"
+  peerDependencies:
+    "@nestjs/graphql": ~13.0.4
+    "@vendure/core": ^3.3.0
+    graphql: ^16.10.0
+    rxjs: ^7.8.1
+  languageName: unknown
+  linkType: soft
+
 "@hyperse/my-plugin@workspace:*, @hyperse/my-plugin@workspace:packages/my-plugin":
   version: 0.0.0-use.local
   resolution: "@hyperse/my-plugin@workspace:packages/my-plugin"
@@ -2917,6 +2956,7 @@ __metadata:
     "@graphql-codegen/cli": "npm:6.1.1"
     "@graphql-codegen/typescript-operations": "npm:5.0.7"
     "@hyperse/eslint-config-hyperse": "npm:^1.5.0"
+    "@hyperse/my-common": "workspace:*"
     "@nestjs/common": "npm:~11.0.12"
     "@nestjs/core": "npm:~11.0.12"
     "@nestjs/graphql": "npm:~13.0.4"

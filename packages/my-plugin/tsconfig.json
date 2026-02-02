@@ -4,9 +4,13 @@
   "compilerOptions": {
     "baseUrl": "./",
     "allowJs": false,
+    "jsx": "react-jsx",
     "noEmit": false,
     "incremental": true,
-    "types": ["vitest/globals", "node"]
+    "types": ["vitest/globals", "node"],
+    "paths": {
+      "@hyperse/my-common": ["../my-common/src/index.js"]
+    }
   },
   "exclude": [
     "**/node_modules",
@@ -14,8 +18,7 @@
     "dist",
     "build",
     "_release",
-    ".vendure-dashboard-temp/**",
-  ],
-  "include": ["src/dashboard/**/*", "src/gql/**/*.ts"]
-
+    "src/**/dashboard/*",
+    "src/gql/**/*.ts"
+  ]
 }

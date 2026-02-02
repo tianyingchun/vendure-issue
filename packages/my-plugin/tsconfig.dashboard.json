@@ -7,20 +7,9 @@
     "baseUrl": "./",
     "paths": {
       "@/gql": ["./src/gql/graphql.ts"],
+      "@hyperse/my-common": ["../my-common/src/index.js"],
       "@/vdb/*": ["../../node_modules/@vendure/dashboard/src/lib/*"]
-    },
-    "plugins": [
-      {
-        "name": "@0no-co/graphqlsp",
-        "schemas": [
-          {
-            "name": "admin-api",
-            "schema": "http://localhost:3001/admin-api",
-            "tadaOutputLocation": "./src/gql/graphql-env.d.ts"
-          }
-        ]
-      }
-    ]
+    }
   },
   "include": ["src/dashboard/**/*", "src/gql/**/*.ts"]
 }

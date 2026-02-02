@@ -1,11 +1,11 @@
 {
-  "name": "@hyperse/my-plugin",
+  "name": "@hyperse/my-common",
   "version": "1.0.0",
   "homepage": "https://github.com/tianyingchun/vendure-issue.git",
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/tianyingchun/vendure-issue.git",
-    "directory": "packages/my-plugin"
+    "directory": "packages/my-common"
   },
   "license": "GPL-3.0-only",
   "author": {
@@ -46,7 +46,6 @@
     "typecheck": "tsc --project ./tsconfig.json --noEmit"
   },
   "dependencies": {
-    "@hyperse/my-common": "workspace:*",
     "@vendure/dashboard": "^3.5.3"
   },
   "devDependencies": {

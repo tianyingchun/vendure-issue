@@ -4,14 +4,10 @@
   "compilerOptions": {
     "baseUrl": "./",
     "allowJs": false,
+    "jsx": "react-jsx",
     "noEmit": false,
     "incremental": true,
-    "types": ["vitest/globals", "node"],
-    "paths": {
-      "@hyperse/my-plugin": ["../my-plugin/src/index.js"],
-      "@/gql": ["./src/gql/graphql.ts"],
-      "@/vdb/*": ["../../node_modules/@vendure/dashboard/src/lib/*"]
-    }
+    "types": ["vitest/globals", "node"]
   },
   "exclude": [
     "**/node_modules",
